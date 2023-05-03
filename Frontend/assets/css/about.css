@@ -1,0 +1,25 @@
+.container {
+    position: relative;
+  }
+  
+  
+.gato {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.demo-content {
+    margin: 0;
+    padding: 0;
+    background: #dbdfe5;
+}
+
+h1,h2{
+    font-family: Righteous;
+}
+
+p{
+    font-family: Signika Negative;
+}
+
