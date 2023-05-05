@@ -1,53 +1,26 @@
-/* General styles */
+/* Carousel Header */
 
-h1,h2{
-    font-family: Righteous;
-    text-align: center;
+.carousel-paw {
+    width: 5rem;
+    height: 5rem;
+    filter: invert(52%) sepia(7%) saturate(3082%) hue-rotate(150deg) brightness(99%) contrast(99%);
 }
 
-p{
-    font-family: Signika Negative;
-    text-align: center;
+#carousel-left-paw {
+    transform: rotate(-90deg);
 }
 
-
-/* Section About Us n Values */
-.container {
-    position: relative;
-  }
-  
-  
-.gato {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#carousel-right-paw {
+    transform: rotate(90deg);
 }
-
-.demo-content {
-    margin: 0;
-    padding: 0;
-    background: #dbdfe5;
-}
-
 
 /* Section Mision Vision */
-.variety-ajust{
-    margin: 0;
-    padding: 0;
-    width: 600px;
-    height: 500px;
-    align-items: center;
-    display: flex;
-    border-radius: 1em;
-}
 
 .paw-img{
-    width: 30px;
-    height: 30px;
+    width: 3rem;
+    height: 3rem;
 }
 
 .bg-beige{
-    background-color: #FFF1DC;
-    padding: 30px;
-    border-radius: 1em;
+    background-color: var(--beige);
 }
