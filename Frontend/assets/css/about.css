@@ -1,3 +1,17 @@
+/* General styles */
+
+h1,h2{
+    font-family: Righteous;
+    text-align: center;
+}
+
+p{
+    font-family: Signika Negative;
+    text-align: center;
+}
+
+
+/* Section About Us n Values */
 .container {
     position: relative;
   }
@@ -15,11 +29,25 @@
     background: #dbdfe5;
 }
 
-h1,h2{
-    font-family: Righteous;
+
+/* Section Mision Vision */
+.variety-ajust{
+    margin: 0;
+    padding: 0;
+    width: 600px;
+    height: 500px;
+    align-items: center;
+    display: flex;
+    border-radius: 1em;
 }
 
-p{
-    font-family: Signika Negative;
+.paw-img{
+    width: 30px;
+    height: 30px;
 }
 
+.bg-beige{
+    background-color: #FFF1DC;
+    padding: 30px;
+    border-radius: 1em;
+}
