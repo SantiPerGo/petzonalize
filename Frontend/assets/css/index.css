@@ -1,0 +1,7 @@
+.box-card{
+    background-color: blueviolet;
+    /*  Indice de resolucion 1440p a 1280p es 1.125*/
+    height: 480px;
+    min-width: 460px;
+    /* 460px para resolucion 1280p*/
+}
