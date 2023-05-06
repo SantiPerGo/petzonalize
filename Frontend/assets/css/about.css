@@ -21,6 +21,11 @@
     height: 3rem;
 }
 
+.img-values{    
+    min-width: 150px;
+    display: flex;
+}
+
 .bg-beige{
     background-color: var(--beige);
 }
