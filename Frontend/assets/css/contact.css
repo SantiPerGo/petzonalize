@@ -1,0 +1,14 @@
+.container {
+    border: 5px solid #BDA692 ;
+    background-color: #FFF1DC;
+}
+
+.img-fluid{
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+}
+/* .l1{
+    margin: 25px;
+} */
