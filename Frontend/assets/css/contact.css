@@ -3,9 +3,12 @@
     background-color: #FFF1DC;
 }
 
-.top{
+.img-fluid{
     align-content: center;
     justify-content: center;
     width: 100%;
-  height: auto;
+    height: auto;
 }
+/* .l1{
+    margin: 25px;
+} */
