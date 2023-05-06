@@ -1,7 +1,28 @@
-.box-card{
-    background-color: blueviolet;
-    /*  Indice de resolucion 1440p a 1280p es 1.125*/
+.box-card {
+    position: relative;
     height: 480px;
-    min-width: 460px;
-    /* 460px para resolucion 1280p*/
+    min-width: 320px;
+    /* 320px para resolucion 1280p*/
+    overflow: hidden;
+    border: 4px solid rgba(189, 166, 146, 0.767);
+}
+
+
+.background-image-content img {
+    width: 100%;
+    height: auto;
+}
+
+.title-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: -100px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.568) 0%, rgba(114,15,176,0) 35%);
+    transition: 0.3s;
+}
+
+.box-card:hover .title-content {
+    top: 0;
+    backdrop-filter: blur(1px);
 }
