@@ -14,7 +14,12 @@
     transform: rotate(90deg);
 }
 
+
 /* Section Mision Vision */
+.d-block{
+   height: 60vh;
+
+}
 
 .paw-img{
     width: 3rem;
