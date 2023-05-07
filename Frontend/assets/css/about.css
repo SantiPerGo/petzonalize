@@ -1,3 +1,17 @@
+body {
+    overflow-x: hidden;
+}
+
+.section-blue-title {
+    background-color: var(--blue);
+    color: white;
+}
+
+.section-purple-title {
+    background-color: var(--purple);
+    color: white;
+}
+
 /* Carousel Header */
 
 .carousel-text-shadow {
@@ -30,6 +44,7 @@
 }
 
 /* Section Mision Vision */
+
 .paw-img{
     width: 3rem;
     height: 3rem;
@@ -38,4 +53,14 @@
 .bg-beige{
     background-color: var(--beige);
     border: 0.25rem solid var(--brown);
+}
+
+/* Team Values Sections */
+
+.bg-cat {
+    background-color: #b5cce5;
+}
+
+.bg-dog {
+    background-color: #d5cce0;
 }
