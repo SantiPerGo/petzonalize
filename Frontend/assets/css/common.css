@@ -11,7 +11,7 @@
 
 body {
     background-color: var(--gray);
-    font-size: 1.5rem;
+    font-size: calc(0.75rem + 1vw);
     font-family: 'Signika Negative', sans-serif;
 }
 
