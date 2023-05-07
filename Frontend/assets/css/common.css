@@ -98,8 +98,3 @@ h1, h2, h3, h4, h5, h6 {
 .carousel-control-next-icon:hover {
     transform: scale(2) rotate(90deg);
 }
-
-.paw-img{
-    width: 3rem;
-    height: 3rem;
-}
