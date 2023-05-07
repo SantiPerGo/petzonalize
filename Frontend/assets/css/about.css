@@ -1,36 +1,45 @@
-/* Carousel Header */
-
-.carousel-paw {
-    width: 5rem;
-    height: 5rem;
-    filter: invert(52%) sepia(7%) saturate(3082%) hue-rotate(150deg) brightness(99%) contrast(99%);
+div {
+    font-size: calc(0.75rem + 1vw);
 }
 
-#carousel-left-paw {
+/* Carousel Header */
+
+.carousel-text-shadow {
+    text-shadow: 0 0 0.25rem black;
+    color: var(--gray);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(52%) sepia(7%) saturate(3082%) hue-rotate(150deg) brightness(99%) contrast(99%);
+    background-image: url("../img/about/Paw.png");
+    width: 3rem;
+    height: 3rem;
+}
+
+.carousel-control-prev-icon {
     transform: rotate(-90deg);
 }
 
-#carousel-right-paw {
+.carousel-control-prev-icon:hover {
+    transform: scale(2) rotate(-90deg);
+}
+
+.carousel-control-next-icon {
     transform: rotate(90deg);
 }
 
-
-/* Section Mision Vision */
-.d-block{
-   height: 60vh;
-
+.carousel-control-next-icon:hover {
+    transform: scale(2) rotate(90deg);
 }
 
+/* Section Mision Vision */
 .paw-img{
     width: 3rem;
     height: 3rem;
 }
 
-.img-values{    
-    min-width: 150px;
-    display: flex;
-}
-
 .bg-beige{
     background-color: var(--beige);
+    border: 0.25rem solid var(--brown);
 }
