@@ -13,7 +13,10 @@ body {
     background-color: var(--gray);
     font-size: calc(0.75rem + 1vw);
     font-family: 'Signika Negative', sans-serif;
+    overflow-x: hidden;
 }
+
+/* Navbar and footer styles */
 
 nav, footer {
     background-color: var(--beige);
@@ -40,10 +43,63 @@ footer {
     color: var(--blue) !important;
 }
 
+/* Titles, icons and squares styles */
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Righteous';
 }
 
 .bi {
     font-size: 3rem;
+}
+
+.bg-beige{
+    background-color: var(--beige);
+    border: 0.25rem solid var(--brown);
+}
+
+.section-blue-title {
+    background-color: var(--blue);
+    color: white;
+}
+
+.section-purple-title {
+    background-color: var(--purple);
+    color: white;
+}
+
+/* Carousel styles */
+
+.carousel-text-shadow {
+    text-shadow: 0 0 0.25rem black;
+    color: var(--gray);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(52%) sepia(7%) saturate(3082%) hue-rotate(150deg) brightness(99%) contrast(99%);
+    background-image: url("../img/about/Paw.png");
+    width: 3rem;
+    height: 3rem;
+}
+
+.carousel-control-prev-icon {
+    transform: rotate(-90deg);
+}
+
+.carousel-control-prev-icon:hover {
+    transform: scale(2) rotate(-90deg);
+}
+
+.carousel-control-next-icon {
+    transform: rotate(90deg);
+}
+
+.carousel-control-next-icon:hover {
+    transform: scale(2) rotate(90deg);
+}
+
+.paw-img{
+    width: 3rem;
+    height: 3rem;
 }
