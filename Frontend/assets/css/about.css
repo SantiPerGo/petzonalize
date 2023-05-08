@@ -1,3 +1,21 @@
+/* Mission and Vision Section */
+
+.carousel-shadow-blue {
+    text-shadow: 0px 0px 15px var(--blue),
+                 0px 0px 15px var(--blue),
+                 0px 0px 15px var(--blue),
+                 0px 0px 10px var(--blue),
+                 0px 0px 10px var(--blue);
+}
+
+.carousel-shadow-purple {
+    text-shadow: 0px 0px 15px var(--purple),
+                 0px 0px 15px var(--purple),
+                 0px 0px 15px var(--purple),
+                 0px 0px 10px var(--purple),
+                 0px 0px 10px var(--purple);
+}
+
 /* Team Values Sections */
 
 .bg-cat {
