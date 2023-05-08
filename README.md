@@ -54,26 +54,28 @@ Other:
 <ol>
     <li>The first word will be:</li>
 	<ul>
-	    <li>General</li>
-	    <li>Frontend</li>
-	    <li>Backend</li>
+	    <li>general</li>
+	    <li>front</li>
+	    <li>back</li>
 	</ul>
-    <li>The second word will be:</li>
+    <li>The file or section that has changed (when possible)</li>
+    <li>The third word will be:</li>
 	<ul>
-	    <li>Feat (new function or feature)</li>
-	    <li>Fix (bug or error fix)</li>
-	    <li>Docs (documentation changes)</li>
-	    <li>Style (changes that don't affect the code)</li>
-	    <li>Refactor (rewrite code without changing the behavior)</li>
-	    <li>Perf (rewrite code to improves performance)</li>
+	    <li>feat (new function or feature)</li>
+	    <li>fix (bug or error fix)</li>
+	    <li>docs (documentation changes)</li>
+	    <li>style (changes that don't affect the code)</li>
+	    <li>refact (refactor consists in rewrite code without changing the behavior)</li>
+	    <li>perf (rewrite code to improves performance)</li>
 	</ul>
-    <li>The last words will be the description</li>
-    <li>Use "-" as separator</li>
-    <li>Example:</li>
+    <li>All words must be in lowercase</li>
+    <li>The words after the ":" will be the description</li>
+    <li>Use "-" as separator of the first three words, and ":" as separator with the description</li>
+    <li>Examples:</li>
 	<ul>
-	    <li>General - Feat - Initial Folders</li>
-	    <li>Backend - Refactor - Get User Function</li>
-	    <li>Frontend - Fix - Responsive Design</li>
+	    <li>general-feat: initial folders</li>
+	    <li>back-userservice-refact: get user function</li>
+	    <li>front-index-fix: responsive design</li>
 	</ul>
 </ol>
 
