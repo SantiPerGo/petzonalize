@@ -98,3 +98,47 @@ h1, h2, h3, h4, h5, h6 {
 .carousel-control-next-icon:hover {
     transform: scale(2) rotate(90deg);
 }
+
+/*  Buttons Styles */
+
+.btn-purple{
+    background-color: #73628A;
+    color: #ffffff;
+    transition: all 0.4s;
+    font-family: 'Signika Negative', sans-serif;
+}
+
+.btn-purple:hover{
+    background-color: #73628A;
+    color: #ffffff;
+    filter: brightness(140%);
+}
+
+.btn-purple:active{
+    background-color: #73628A !important;
+    color: #ffffff;
+    filter: brightness(140%);
+    color: white !important;
+    border: none !important;
+}
+
+.btn-blue{
+    background-color: #3A98B9;
+    color: #ffffff;
+    transition: all 0.4s;
+    font-family: 'Signika Negative', sans-serif;
+} 
+
+.btn-blue:hover{
+    background-color: #3A98B9;
+    color: #ffffff;
+    filter: brightness(140%);
+}
+
+.btn-blue:active{
+    background-color: #3A98B9 !important;
+    color: #ffffff;
+    filter: brightness(140%);
+    color: white !important;
+    border: none !important;
+}
