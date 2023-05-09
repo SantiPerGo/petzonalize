@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--beige);
     border: 0.25rem solid var(--brown);
     border-radius: 1rem;
-    padding: 2rem;
+    padding: calc(0.5rem + 2vw);
 }
 
 .section-blue-title,
