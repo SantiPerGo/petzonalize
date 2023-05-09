@@ -1,43 +1,30 @@
-.container {
-    border: 5px solid #BDA692 ;
-    background-color: #FFF1DC;
-    margin: 1rem;
-    width: 95%;
-    height: auto;
+/* Beige style for inputs */
 
-
+.form-control {
+    background-color: var(--beige);
+    border: 0.25rem solid var(--brown);
+    border-radius: 0.75rem;
+    font-size: calc(0.5rem + 0.5rem);
 }
 
-.img-fluid{
-    align-content: center;
-    justify-content: center;
-    width: 100%;
-    height: auto;
-}
-#imagen-gato { 
-    align-content: center;
-    justify-content: center;
-    border: 3px solid #BDA692;
-    margin:  1rem;
-    height: 94%;
-    width: 97%;
-}
-.boton-enviar {
-    color: #ffffff;
-    background-color: #73628A;
-    border-color: #73628A;
-    margin-bottom: .5rem;
+.form-control::placeholder {
+    color: var(--brown);
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+.form-control:focus {
+    background-color: var(--beige);
+    border: 0.25rem solid var(--brown);
+    box-shadow: 0 0 1rem var(--brown);
 }
 
+/* Hiding number input arrows */
 
-.btn-borde {
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 10px 20px;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number]{
+    -moz-appearance: textfield;
 }

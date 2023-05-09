@@ -1,0 +1,33 @@
+
+.form-control{
+    border-color: 1rem #BDA692;
+    border-radius: 10px;
+}
+
+#imagen-gato { 
+    align-content: center;
+    justify-content: center;
+    border: 3px solid #BDA692;
+    margin:  1rem;
+    height: 94%;
+    width: 97%;
+}
+.boton-enviar {
+    color: #ffffff;
+    background-color: #73628A;
+    border-color: #73628A;
+    margin-bottom: .5rem;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
+.btn-borde {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
