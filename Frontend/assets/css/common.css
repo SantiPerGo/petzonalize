@@ -58,14 +58,19 @@ h1, h2, h3, h4, h5, h6 {
     border: 0.25rem solid var(--brown);
 }
 
+.section-blue-title,
+.section-purple-title {
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
 .section-blue-title {
     background-color: var(--blue);
-    color: white;
 }
 
 .section-purple-title {
     background-color: var(--purple);
-    color: white;
 }
 
 /* Carousel styles */
@@ -101,44 +106,69 @@ h1, h2, h3, h4, h5, h6 {
 
 /*  Buttons Styles */
 
-.btn-purple{
-    background-color: #73628A;
-    color: #ffffff;
-    transition: all 0.4s;
-    font-family: 'Signika Negative', sans-serif;
+.btn-blue,
+.btn-purple {
+    color: var(--gray) !important;
+    transition: all 0.5s;
+    border-radius: 5rem;
+    font-size: calc(1rem + 1vw);
+    padding: 0.5rem 2rem;
+    opacity: 0.75;
+    filter: brightness(125%);
 }
 
-.btn-purple:hover{
-    background-color: #73628A;
-    color: #ffffff;
-    filter: brightness(140%);
+.btn-blue:hover,
+.btn-purple:hover,
+.btn-purple:active,
+.btn-blue:active {
+    opacity: 1;
+    filter: brightness(100%);
 }
 
-.btn-purple:active{
-    background-color: #73628A !important;
-    color: #ffffff;
-    filter: brightness(140%);
-    color: white !important;
-    border: none !important;
+.btn-purple, 
+.btn-purple:hover,
+.btn-purple:active {
+    background-color: var(--purple) !important;
 }
 
-.btn-blue{
-    background-color: #3A98B9;
-    color: #ffffff;
-    transition: all 0.4s;
-    font-family: 'Signika Negative', sans-serif;
-} 
-
-.btn-blue:hover{
-    background-color: #3A98B9;
-    color: #ffffff;
-    filter: brightness(140%);
+.btn-blue, 
+.btn-blue:hover,
+.btn-blue:active {
+    background-color: var(--blue) !important;
 }
 
-.btn-blue:active{
-    background-color: #3A98B9 !important;
-    color: #ffffff;
-    filter: brightness(140%);
-    color: white !important;
-    border: none !important;
+.btn-purple:active,
+.btn-blue:active {
+    filter: brightness(75%);
+}
+
+/* Beige style form inputs */
+
+.form-control {
+    background-color: var(--gray);
+    border: 0.25rem solid var(--brown);
+    border-radius: 0.75rem;
+    font-size: calc(0.75rem + 0.75vw);
+}
+
+.form-control::placeholder {
+    color: var(--brown);
+}
+
+.form-control:focus {
+    background-color: var(--gray);
+    border: 0.25rem solid var(--brown);
+    box-shadow: 0 0 1rem var(--brown);
+}
+
+/* Hiding number input arrows */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number]{
+    -moz-appearance: textfield;
 }
