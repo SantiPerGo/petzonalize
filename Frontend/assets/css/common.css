@@ -9,11 +9,15 @@
     --purple: #73628A;
 }
 
+html,
+body {
+    overflow-x: hidden;
+}
+
 body {
     background-color: var(--gray);
     font-size: calc(0.75rem + 1vw);
     font-family: 'Signika Negative', sans-serif;
-    overflow-x: hidden;
 }
 
 /* Navbar and footer styles */
