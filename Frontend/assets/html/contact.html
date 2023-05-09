@@ -29,52 +29,169 @@
         </header>
 
         <main>
-            <div class="container-fluid section-blue-title">
+            <div class="container-fluid section-purple-title">
                 <h1>¡Contáctanos!</h1>
             </div>
 
             <div class="container my-5">
                 <div class="row">
-                    <div class="col-12 col-md-6 d-flex align-items-center">
-                        <img id="imagen-gato" src="../img/contact/gato-contacto.jpg" alt="Imagen de contacto" class="img-fluid rounded-4">
+                    <!-- Cat image and common questions -->
+                    <div class="col-12 col-lg-6">
+                        <div class="row h-100 d-flex justify-content-center align-items-center align-content-center">
+                            <div class="row w-100 p-0 m-0">
+                                <img id="imagen-gato" src="../img/contact/gato-contacto.jpg" alt="Imagen de contacto" class="img-fluid rounded-4">
+                            </div>
+    
+                            <div class="row my-3 text-center w-100 p-0 m-0">
+                                <h2>Preguntas frecuentes:</h2>
+                            </div>
+                        
+                            <div class="row accordion accordion-flush m-0 p-0" id="frequently-asked">
+    
+                                <div class="row accordion-item m-0">
+                                  <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        ¿Cómo puedo hacer un pedido en línea?
+                                    </button>
+                                  </h2>
+    
+                                  <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#frequently-asked">
+                                    <div class="accordion-body">
+                                        R: Ofrecemos la opción de recoger los pedidos personalizados en nuestros puntos de entrega. 
+                                        Para hacer un pedido en línea, simplemente navega por nuestra página, elige los productos que deseas comprar, agrégalos al carrito de compras y procede a pagar en línea. 
+                                        Una vez que tu pago haya sido confirmado, recibirás un correo electrónico con la confirmación de tu pedido y podrás recogerlo en nuestra tienda física en el punto de entrega que elijas.
+                                    </div>
+                                  </div>
+                                </div>
+    
+                                <div class="row accordion-item m-0">
+                                    <h2 class="accordion-header">
+                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        ¿Cuánto tiempo tardará en estar listo mi pedido?
+                                      </button>
+                                    </h2>
+      
+                                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#frequently-asked">
+                                      <div class="accordion-body">
+                                        R: El tiempo de realización del producto personalizado es de 5 días hábiles a partir del momento en que se confirma el pago. 
+                                        Después de ese plazo, tu pedido estará listo para ser recogido en nuestra tienda física.
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                <div class="row accordion-item m-0">
+                                    <h2 class="accordion-header">
+                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        ¿Puedo cancelar mi pedido?
+                                      </button>
+                                    </h2>
+      
+                                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#frequently-asked">
+                                      <div class="accordion-body">
+                                        R: Si necesitas cancelar tu pedido, por favor contáctanos inmediatamente a través de nuestro correo electrónico o teléfono de contacto. Si tu pedido aún no ha sido procesado, podremos cancelarlo y realizar el reembolso correspondiente. Si el pedido ya ha sido procesado, lamentablemente no podremos cancelarlo.
+                                      </div>
+                                    </div>
+                                  </div>
+    
+    
+                                <div class="row accordion-item m-0">
+                                    <h2 class="accordion-header">
+                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        ¿Qué debo hacer si mi pedido llega dañado o incompleto?
+                                      </button>
+                                    </h2>
+      
+                                    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#frequently-asked">
+                                      <div class="accordion-body">
+                                        R: Si tu pedido llega dañado o incompleto, por favor contáctanos inmediatamente a través de nuestra sección "contáctanos". 
+                                        Resolveremos el problema lo antes posible y te proporcionaremos una solución adecuada.
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                        
                     </div>
 
-                    <div class="col-12 d-block d-md-none my-3"></div>
+                    <div class="col-12 d-block d-lg-none my-3"></div>
 
-                    <div class="col-12 col-md-6">
-                        <form action="#">
+                    <!-- Form with inputs -->
+                    <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center">
+                        <form action="#" class="bg-beige">
                             <div class="row">
-                                <label for="name" class="form-label">Nombre:</label>
+                                <label for="name" class="form-label"><b>Nombre:</b></label>
                                 <input type="text" id="name" class="form-control" placeholder="Nombre Apellido" required>
                             </div>
 
                             <div class="row mt-3">
-                                <label for="phone" class="form-label">Teléfono:</label>
+                                <label for="phone" class="form-label"><b>Teléfono:</b></label>
                                 <input type="number" id="phone" class="form-control" placeholder="55 00 00 00" required>
                             </div>
 
                             <div class="row mt-3">
-                                <label for="email" class="form-label">Correo Electrónico:</label>
+                                <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
                                 <input type="email" class="form-control" id="email" placeholder="example@email.com" required>
                             </div>
 
                             <div class="row mt-3">
-                                <label for="subject" class="form-label">Asunto:</label>
+                                <label for="subject" class="form-label"><b>Asunto:</b></label>
                                 <input type="text" class="form-control" id="subject" placeholder="Asunto" required>
                             </div>
                             
                             <div class="row mt-3">
-                                <label for="message" class="form-label">Mensaje:</label>
+                                <label for="message" class="form-label"><b>Mensaje:</b></label>
                                 <textarea class="form-control" id="message" placeholder="Mensaje" rows="3" required></textarea>
                             </div>
 
                             <div class="row mt-3">
                                 <div class="col d-flex justify-content-center align-content-center">
-                                    <button type="submit" class="btn btn-blue">Enviar Correo</button>
+                                    <button type="submit" class="btn btn-purple">Enviar Correo</button>
                                 </div>
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+
+            <div class="container-fluid section-blue-title">
+                <h2>¡Visítanos!</h2>
+            </div>
+
+            <!-- Google Maps -->
+            <div class="container my-5">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h3>Plaza Tepeyac</h3>
+                        <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3761.6263760583065!2d-99.12478225142027!3d19.471669135073387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f9fdbfb43947%3A0xa0b7809845604a80!2sPlaza%20Tepeyac!5e0!3m2!1ses-419!2smx!4v1683586750983!5m2!1ses-419!2smx" 
+                        allowfullscreen="" loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade" class="mx-auto w-100"></iframe>
+                    </div>
+                    
+                    <div class="col-12 col-md-6">
+                        <h3>Galerías Coapa</h3>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.5364217164124!2d-99.12589428869543!3d19.302515781874032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce01c926afcdaf%3A0x2cac1d22d93955bf!2sGaler%C3%ADas%20Coapa!5e0!3m2!1ses-419!2smx!4v1683586706991!5m2!1ses-419!2smx" 
+                        allowfullscreen="" loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade" class="mx-auto w-100"></iframe>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h3>Galerías Monterrey</h3>
+                        <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3595.7025294202417!2d-100.3575577885319!3d25.68115387730838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86629605d7f93a5f%3A0x701d9661dc12e380!2sGaler%C3%ADas%20Monterrey!5e0!3m2!1ses-419!2smx!4v1683586657905!5m2!1ses-419!2smx" 
+                        allowfullscreen="" loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade" class="mx-auto w-100"></iframe>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h3>Galerías Andares</h3>
+                        <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3731.990970568485!2d-103.41030303857364!3d20.710591266913607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428af03ba1c626d%3A0xeea47646ab9fda84!2sP.%C2%BA%20Andares%2C%2045116%20Zapopan%2C%20Jal.!5e0!3m2!1ses-419!2smx!4v1683586539680!5m2!1ses-419!2smx" 
+                        allowfullscreen="" loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade" class="mx-auto w-100"></iframe>
+                    </div>
+
                 </div>
             </div>
         </main>
