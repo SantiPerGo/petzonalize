@@ -110,21 +110,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-blue,
 .btn-purple {
+    transition: all 0.25s;
     color: var(--gray) !important;
-    transition: all 0.5s;
     border-radius: 5rem;
     font-size: calc(1rem + 1vw);
     padding: 0.5rem 2rem;
-    opacity: 0.75;
-    filter: brightness(125%);
-}
-
-.btn-blue:hover,
-.btn-purple:hover,
-.btn-purple:active,
-.btn-blue:active {
-    opacity: 1;
-    filter: brightness(100%);
 }
 
 .btn-purple, 
@@ -139,15 +129,21 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--blue) !important;
 }
 
-.btn-purple:active,
-.btn-blue:active {
-    filter: brightness(75%);
+.btn-blue:hover,
+.btn-purple:hover {
+    transform: scale(1.1);
+}
+
+.btn-blue:active,
+.btn-purple:active {
+    transform: scale(1);
 }
 
 /* Beige style form inputs */
 
 .form-control {
-    background-color: var(--gray);
+    transition: all 0.25s;
+    background-color: white;
     border: 0.25rem solid var(--brown);
     border-radius: 0.75rem;
     font-size: calc(0.75rem + 0.75vw);
@@ -158,9 +154,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-control:focus {
-    background-color: var(--gray);
+    background-color: white;
     border: 0.25rem solid var(--brown);
     box-shadow: 0 0 1rem var(--brown);
+    transform: scale(1.05);
 }
 
 /* Hiding number input arrows */
