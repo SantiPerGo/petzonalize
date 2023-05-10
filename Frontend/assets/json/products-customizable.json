@@ -1,0 +1,14 @@
+{
+    "products-customizable": [
+        {
+            "id": 0,
+            "name": "",
+            "description": "",
+            "category": "",
+            "price": 0,
+            "imgUrl": "",
+            "stock": 0,
+            "type": ""
+        }
+    ]
+}
