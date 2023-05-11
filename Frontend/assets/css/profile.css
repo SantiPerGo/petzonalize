@@ -1,0 +1,23 @@
+main{
+    background-image: url(../img/profile/dog-on-computer.jpeg);
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+.custom-form {
+    max-width: 600em;
+    max-height: 200em;
+    margin: 0 auto;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    padding-bottom: 0;
+}
