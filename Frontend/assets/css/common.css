@@ -175,3 +175,31 @@ input::-webkit-inner-spin-button {
 input[type=number]{
     -moz-appearance: textfield;
 }
+
+/* Valid - Invalid forms */
+
+.was-validated :valid {
+    border-color: var(--blue) !important;
+}
+  
+.was-validated :valid:focus {
+    border-color: var(--blue)!important; 
+    box-shadow: 0 0 0 0.25rem var(--blue) !important; 
+}
+
+.was-validated :invalid {
+    border-color: var(--purple) !important; 
+}
+  
+  .was-validated :invalid:focus {
+    border-color: var(--purple) !important; 
+    box-shadow: 0 0 0 0.25rem var(--purple)!important; /* Cambia el sombreado en foco a morado */
+}
+
+.was-validated :valid ~ .valid-feedback {
+    color: var(--blue); 
+}
+
+.was-validated :invalid ~ .invalid-feedback {
+    color: var(--purple);
+}
