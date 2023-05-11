@@ -1,14 +1,160 @@
 {
     "products-customizable": [
         {
-            "id": 0,
-            "name": "",
-            "description": "",
-            "category": "",
-            "price": 0,
-            "imgUrl": "",
-            "stock": 0,
-            "type": ""
+            "id": 1,
+            "name": "Collar de Tela",
+            "category": "customizable-collar",
+            "price": 179.99,
+            "imgUrl": "/assets/img/products/customizable/customizable-collar-nylon.png",
+            "stock": 67,
+            "color": "orange",
+            "size": "normal",
+            "theme": "none"
+        },
+        {
+            "id": 2,
+            "name": "Plato de Comida",
+            "category": "customizable-bowl",
+            "price": 209.99,
+            "imgUrl": "/assets/img/products/customizable/customizable-bowl.png",
+            "stock": 136,
+            "color": "yellow",
+            "size": "normal",
+            "theme": "none"
+        },
+        {
+            "id": 3,
+            "name": "Plaquita con Forma de Pata",
+            "category": "customizable-nameplate",
+            "price": 119,
+            "imgUrl": "/assets/img/products/customizable/customizable-nameplate-paw.png",
+            "stock": 376,
+            "color": "blue",
+            "size": "normal",
+            "shape": "paw"
+        },
+        {
+            "id": 4,
+            "name": "Sombrero de Mariachi",
+            "category": "customizable-custome",
+            "type": "head",
+            "price": 234.99,
+            "imgUrl": "/assets/img/products/customizable/customizable-head-mariachi.png",
+            "stock": 30
+        },
+        {
+            "id": 5,
+            "name": "Traje de Tiburón",
+            "category": "customizable-custome",
+            "type": "body",
+            "price": 369,
+            "imgUrl": "/assets/img/products/customizable/customizable-body-shark-jacket.png",
+            "stock": 26
+        },
+        {
+            "id": 6,
+            "name": "Sombrero Color Rojo para el Frío",
+            "category": "customizable-custome",
+            "type": "head",
+            "price": 145,
+            "imgUrl": "/assets/img/products/customizable/customizable-head-cold-red.png",
+            "stock": 33
+        },
+        {
+            "id": 7,
+            "name": "Traje con Jinete",
+            "category": "customizable-custome",
+            "type": "body",
+            "price": 249.29,
+            "imgUrl": "/assets/img/products/customizable/customizable-body-rider.png",
+            "stock": 27
+        },
+        {
+            "id": 8,
+            "name": "Capa Roja",
+            "category": "customizable-custome",
+            "type": "body",
+            "price": 195,
+            "imgUrl": "/assets/img/products/customizable/customizable-body-cape.png",
+            "stock": 39
+        },
+        {
+            "id": 9,
+            "name": "Caparazón de Tortuga",
+            "category": "customizable-custome",
+            "type": "body",
+            "price": 224,
+            "imgUrl": "/assets/img/products/customizable/customizable-body-turtle-shell.png",
+            "stock": 30
+        }, 
+        {
+            "id": 10,
+            "name": "Collar de Cuero",
+            "category": "customizable-collar",
+            "price": 179,
+            "imgUrl": "/assets/img/products/customizable/customizable-collar-leather.png",
+            "stock": 67,
+            "color": "orange",
+            "size": "normal",
+            "theme": "none"
+        },
+        {
+            "id": 11,
+            "name": "Plaquita con Forma de Hueso",
+            "category": "customizable-nameplate",
+            "price": 119,
+            "imgUrl": "/assets/img/products/customizable/customizable-nameplate-bone.png",
+            "stock": 323,
+            "color": "blue",
+            "size": "normal",
+            "shape": "bone"
+        },
+        {
+            "id": 12,
+            "name": "Plaquita con Forma de Círculo con Separación del Collar",
+            "category": "customizable-nameplate",
+            "price": 119,
+            "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle-double.png",
+            "stock": 299,
+            "color": "blue",
+            "size": "normal",
+            "shape": "circle-double"
+        },
+        {
+            "id": 13,
+            "name": "Plaquita con Forma de Círculo",
+            "category": "customizable-nameplate",
+            "price": 119,
+            "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle.png",
+            "stock": 311,
+            "color": "blue",
+            "size": "normal",
+            "shape": "circle"
+        },
+        {
+            "id": 14,
+            "name": "Plaquita con Forma de Estrella",
+            "category": "customizable-nameplate",
+            "price": 119,
+            "imgUrl": "/assets/img/products/customizable/customizable-nameplate-star.png",
+            "stock": 288,
+            "color": "blue",
+            "size": "normal",
+            "shape": "star"
+        },
+        {
+            "id": 15,
+            "name": "Modelo de Gato",
+            "category": "customizable-pet",
+            "type": "cat",
+            "imgUrl": "/assets/img/products/customizable/customizable-pet-cat.png"
+        },
+        {
+            "id": 16,
+            "name": "Modelo de Perro",
+            "category": "customizable-pet",
+            "type": "dog",
+            "imgUrl": "/assets/img/products/customizable/customizable-pet-dog.png"
         }
     ]
 }
