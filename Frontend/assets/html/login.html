@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
         <link rel="stylesheet" href="/assets/css/common.css">
-
+        <link rel="stylesheet" href="../css/login.css">
         <title>Productos</title>
     </head>
     <body>
@@ -23,7 +23,71 @@
 
         <header></header>
 
-        <main></main>
+        <main class="container-fluid main-container">
+            <div class="row justify-content-center">
+                   <div class="form-space col col-12 my-4">
+                        <div class="row justify-content-center">
+                            
+                            <!---------- Contenedor Principal -------->
+                            <div class="form-container col col-lg-8 col-md-8 col-sm-10 my-4 mx-4">   
+                                <div class="row justify-content-center text-center h-100">
+                                    <!----- Columna Izquierda de Imagen ---->
+                                    <div class="col-lg-6 col-sm-12 form-cover">
+                                    </div>
+
+                                    <!------- Columna Derecha de Ingreso y Registro ------>
+                                    <div class="col-lg-6 col-sm-12 p-4 div-login">
+                                        <div class="row h-100 justify-content-center">
+                                            <!---- Columna - Contenedor de Ingreso (Login) ----->
+                                            <div class="col col-12 d-block align-self-center form-login">
+                                                <div class="d-block my-auto">   
+                                                    <form>
+                                                        <div class="form-group my-4">
+                                                            <h4>Inicio de Sesión</h4>
+                                                        </div>
+                                                        <div class="form-group my-4">
+                                                          <!--- <label for="input-email">Correo</label> --->
+                                                          <input type="email" class="form-control" id="input-email" placeholder="Correo">
+                                                        </div>
+                                                        <div class="form-group my-4">
+                                                          <!--- <label for="input-password">Contraseña</label> --->
+                                                          <input type="password" class="form-control" id="input-password" placeholder="Contraseña">
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary btn-purple d-block mx-auto my-2">Submit</button>
+                                                        <a class="text-center" href="">Registrate</a>
+                                                      </form>
+                                                 </div> 
+                                            </div>
+                                            <!----- Columna - Contenedor de Registro (Register) ----->
+                                            <div class="col col-12 d-block align-self-center form-register">
+                                                <div class="d-block my-auto">
+                                                    <form >
+                                                        <div class="form-group my-4">
+                                                            <h4>Registrate</h4>
+                                                        </div>
+                                                        <div class="form-group my-4">
+                                                          <!--- <label for="input-email">Correo</label> --->
+                                                          <input type="email" class="form-control" id="input-email" placeholder="Correo">
+                                                        </div>
+                                                        <div class="form-group my-4">
+                                                          <!--- <label for="input-password">Contraseña</label> --->
+                                                          <input type="password" class="form-control" id="input-password" placeholder="Contraseña">
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary btn-purple  my-2">Submit</button>
+                                                        <a href="">Logeate</a>
+                                                        
+                                                      </form>
+        
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+            </div>
+        </main>
 
         <footer></footer>
         

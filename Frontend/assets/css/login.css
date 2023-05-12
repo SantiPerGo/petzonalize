@@ -1,0 +1,43 @@
+.main-container{
+
+    height: 100%;
+}
+
+.form-container{
+    background-color: var(--beige);
+    border: 0.25rem solid var(--brown);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.form-cover{
+    background-image: url("https://cdn.shopify.com/s/files/1/0103/3784/5303/articles/dog_computer.png?v=1638807465&width=1100");
+    background-size: cover;
+    background-repeat: none;
+    position: relative;
+    min-height: 28rem;
+}
+
+.div-login{
+    min-height: 28rem;
+    position: relative;
+}
+
+.form-login{
+    position: absolute;
+    visibility: visible;
+}
+
+.form-register{
+    position: absolute;
+    visibility: hidden;
+}
+/* ---- add & remove clases */
+.hidden-login{
+    visibility: hidden;
+}
+
+.visibility-register{
+    visibility: visible;
+}
+/*-------------------------*/
