@@ -25,19 +25,27 @@
 
 .form-login{
     position: absolute;
-    visibility: visible;
+    visibility: hidden;
 }
 
 .form-register{
     position: absolute;
-    visibility: hidden;
+    visibility: visible;
 }
 /* ---- add & remove clases */
+/* 
 .hidden-login{
     visibility: hidden;
 }
 
 .visibility-register{
-    visibility: visible;
+    visibility: visible; 
 }
+*/
 /*-------------------------*/
+
+@media (max-width: 600px) {
+    .form-cover {
+      display: none;
+    }
+  }

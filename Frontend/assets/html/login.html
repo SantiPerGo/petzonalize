@@ -38,32 +38,40 @@
                                     <!------- Columna Derecha de Ingreso y Registro ------>
                                     <div class="col-lg-6 col-sm-12 p-4 div-login">
                                         <div class="row h-100 justify-content-center">
+
                                             <!---- Columna - Contenedor de Ingreso (Login) ----->
                                             <div class="col col-12 d-block align-self-center form-login">
                                                 <div class="d-block my-auto">   
-                                                    <form>
+                                                    <form class="needs-validation" novalidate>
                                                         <div class="form-group my-4">
                                                             <h4>Inicio de Sesión</h4>
                                                         </div>
                                                         <div class="form-group my-4">
                                                           <!--- <label for="input-email">Correo</label> --->
-                                                          <input type="email" class="form-control" id="input-email" placeholder="Correo">
+                                                          <input type="email" class="form-control" id="input-email" placeholder="Correo" required>
                                                         </div>
                                                         <div class="form-group my-4">
                                                           <!--- <label for="input-password">Contraseña</label> --->
-                                                          <input type="password" class="form-control" id="input-password" placeholder="Contraseña">
+                                                            
+                                                            <input type="password" class="form-control" id="input-password" placeholder="Contraseña" required>
+                                                            
                                                         </div>
-                                                        <button type="submit" class="btn btn-primary btn-purple d-block mx-auto my-2">Submit</button>
-                                                        <a class="text-center" href="">Registrate</a>
+                                                            <button type="submit" class="btn btn-primary btn-purple d-block mx-auto my-2">Ingresar</button>
+                                                            <a class="text-center" href="">Registrate</a>
                                                       </form>
                                                  </div> 
                                             </div>
+
                                             <!----- Columna - Contenedor de Registro (Register) ----->
                                             <div class="col col-12 d-block align-self-center form-register">
                                                 <div class="d-block my-auto">
                                                     <form >
-                                                        <div class="form-group my-4">
+                                                        <div class="form-group mt-5">
                                                             <h4>Registrate</h4>
+                                                        </div>
+                                                        <div class="form-group my-4">
+                                                          <!--- <label for="input-email">Nombre</label> --->
+                                                          <input type="email" class="form-control" id="input-email" placeholder="Nombre Apellido">
                                                         </div>
                                                         <div class="form-group my-4">
                                                           <!--- <label for="input-email">Correo</label> --->
@@ -73,7 +81,12 @@
                                                           <!--- <label for="input-password">Contraseña</label> --->
                                                           <input type="password" class="form-control" id="input-password" placeholder="Contraseña">
                                                         </div>
-                                                        <button type="submit" class="btn btn-primary btn-purple  my-2">Submit</button>
+                                                        <div class="form-group my-4">
+                                                          <!--- <label for="input-password">Contraseña</label> --->
+                                                          <input type="password" class="form-control" id="input-password" placeholder="Confirmar contraseña">
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary btn-purple  my-2">Crear cuenta</button>
+                                                        <br>
                                                         <a href="">Logeate</a>
                                                         
                                                       </form>
