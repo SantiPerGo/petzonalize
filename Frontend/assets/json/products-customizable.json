@@ -147,7 +147,6 @@
             "name": "Traje de Gato",
             "category": "customizable-cat",
             "type": "cat",
-            "price": "-",
             "imgUrl": "/assets/img/products/customizable/customizable-pet-cat.png"
         },
         {
@@ -155,8 +154,37 @@
             "name": "Traje de Perro",
             "category": "customizable-dog",
             "type": "dog",
-            "price": "-",
             "imgUrl": "/assets/img/products/customizable/customizable-pet-dog.png"
+        },
+        {
+            "id": 17,
+            "name": "Estampado de Círculos",
+            "category": "customizable-pattern",
+            "imgUrl": "/assets/img/products/customizable/customizable-pattern-circles.jpg"
+        },
+        {
+            "id": 18,
+            "name": "Estampado de Corazones",
+            "category": "customizable-pattern",
+            "imgUrl": "/assets/img/products/customizable/customizable-pattern-hearts.jpg"
+        },
+        {
+            "id": 19,
+            "name": "Estampado de Escuela",
+            "category": "customizable-pattern",
+            "imgUrl": "/assets/img/products/customizable/customizable-pattern-school.jpg"
+        },
+        {
+            "id": 20,
+            "name": "Estampado de Cuadrados",
+            "category": "customizable-pattern",
+            "imgUrl": "/assets/img/products/customizable/customizable-pattern-squares.jpg"
+        },
+        {
+            "id": 21,
+            "name": "Estampado Aesthetic",
+            "category": "customizable-pattern",
+            "imgUrl": "/assets/img/products/customizable/customizable-pattern-aesthetic.jpg"
         }
     ]
 }
