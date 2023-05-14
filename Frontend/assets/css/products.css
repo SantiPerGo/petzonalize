@@ -29,6 +29,10 @@
 
 /* Cards Styles */
 
+.card {
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
 .card:hover {
     transform: scale(1.05) perspective(0px);
     box-shadow: 0 0 1rem var(--brown);

@@ -1,10 +1,13 @@
-const loadProducts = (products, id) => {
+const createProductsCards = products => {
     // Ordering products by name
     products.sort((a, b) => a.name.localeCompare(b.name));
 
     // Creating card for each product
     for (let i = 0; i < products.length; i++) {
       const product = products[i];
+      const id = product.category.includes("customizable") ? "product-custom" : "product-not-custom" ;
+
+      // Cloning html element
       const card = $(`#${id}`).clone().appendTo('#products-div');
       card.removeClass("d-none");
 
@@ -20,11 +23,58 @@ const loadProducts = (products, id) => {
       card.find(`[id*="${id}-img-${i+1}"]`).attr('src', product.imgUrl);
       card.find(`[id*="${id}-img-${i+1}"]`).attr('alt', product.name);
       card.find(`[id*="${id}-name-${i+1}"]`).text(product.name);
-      card.find(`[id*="${id}-price-${i+1}"]`).text(product.price);
+
+      const price = product.price === undefined ? "Variable" : `$${product.price}`;
+      card.find(`[id*="${id}-price-${i+1}"]`).text(price);
     }
 
-    // Deleting default card item
-    $(`#${id}`).remove();
+    // Deleting default card items
+    $("#product-custom").remove();
+    $("#product-not-custom").remove();
+};
+
+const loadProducts = async intervalId => {
+  let productsLoaded = true, customProductsLoaded = true;
+  let products = [];
+
+  try {
+    await $.getJSON("../json/products.json",
+    productsJson => products = productsJson.products);
+  } catch (error) {
+    console.log("Not customizable products error: ", error);
+    productsLoaded = false;
+  }
+
+  try {
+    await $.getJSON("../json/products-customizable.json", productsJson => {
+        let productsArray = productsJson["products-customizable"];
+
+        // Removing duplicates and unnecesary products
+        productsArray = productsArray.filter((product, index, array) => 
+          array.findIndex(product2 => 
+            product2.category === product.category) === index &&
+            product.category !== "customizable-custome" &&
+            product.category !== "customizable-pattern");
+
+        products = products.concat(productsArray);
+      });
+  } catch (error) {
+    console.log("Customizable products error: ", error);
+    customProductsLoaded = false;
+  }
+
+  // Hiding loading animation
+  $("#loading-anim").remove()
+
+  // Stopping loading text
+  clearInterval(intervalId);
+
+  // Loading error page or products
+  if(!productsLoaded && !customProductsLoaded) {
+    $("#row-error").removeClass("d-none");
+    $("#row-products").addClass("d-none");
+  } else 
+    createProductsCards(products);
 };
 
 // Loading products in cards
@@ -36,28 +86,7 @@ $(document).ready(() => {
     $("#loading").html("loading"+Array(loadingTime+1).join("."));
   }, 500);
 
-  $.getJSON("../json/products.json",
-    productsJson => loadProducts(productsJson.products, "product-not-custom"))
-      .fail(() => console.log("Error has occurred with the json"));
-
-  $.getJSON("../json/products-customizable.json", productsJson => {
-      let products = productsJson["products-customizable"];
-
-      // Removing duplicates
-      products = products.filter((product, index, array) => 
-        array.findIndex(product2 => 
-          product2.category === product.category) === index &&
-          product.category !== "customizable-custome");
-
-      loadProducts(products, "product-custom");
-    })
-      .fail(() => console.log("Error has occurred with the json"));
-
-  // Hiding loading animation
-  $("#loading-anim").remove()
-
-  // Stopping loading text
-  clearInterval(intervalId);
+  loadProducts(intervalId);
 });
 
 // Function to toggle cards sizes

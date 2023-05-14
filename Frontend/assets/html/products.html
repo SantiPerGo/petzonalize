@@ -24,7 +24,7 @@
         <nav></nav>
 
         <main class="container my-5">
-            <div class="row">
+            <div class="row" id="row-products">
                 <div id="slide" class="col-12 col-md-5 col-lg-4 mb-5">
                     <div class="bg-beige">
                         <div class="row">
@@ -76,8 +76,8 @@
                             <div class="col text-center">
                                 <p><b>Categorías</b></p> 
                             </div>
-                            
                         </div>
+
                         <div class="row">
                             <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="perzonalizable" id="chbox-personalizable">
@@ -143,6 +143,12 @@
                             </div>
                             
                         </div>
+
+                        <div class="row px-3 pt-3">  
+                            <button type="button" class="btn btn-blue w-100 px-0">
+                                Limpiar filtros
+                            </button>
+                        </div>
                     </div>
                 </div>
     
@@ -188,13 +194,9 @@
                                 </div>
     
                                 <div class="card-footer bg-transparent">
-                                    <div class="row my-3">
-                                        <button type="button" class="btn btn-blue">
-                                            <a href="./product-details.html">
-                                                Ver más
-                                            </a>
-                                        </button>
-                                    </div>
+                                    <form class="row my-3" action="./product-details.html">
+                                        <input type="submit" class="btn btn-blue" value="Ver más" />
+                                    </form>
     
                                     <div class="row">
                                         <button type="button" class="btn btn-purple">
@@ -219,29 +221,24 @@
                                 <div class="card-body d-flex align-items-center justify-content-center">
                                     <div class="row">
                                         <p class="m-0"><b id="product-name">Nombre</b></p>
-                                        <p class="text-brown m-0"><b>Precio: $<span id="product-price">X</span></b></p>
+                                        <p class="text-brown m-0"><b>Precio: <span id="product-price">Variable</span></b></p>
                                     </div>
                                 </div>
     
                                 <div class="card-footer bg-transparent">
-                                    <div class="row my-3">
-                                        <button type="button" class="btn btn-blue">
-                                            <a href="./product-details.html">
-                                                Ver más
-                                            </a>
-                                        </button>
-                                    </div>
-    
-                                    <div class="row">
-                                        <button type="button" class="btn btn-purple">
-                                            Comprar
-                                        </button>
-                                    </div>
+                                    <form class="row mt-3" action="./product-details.html">
+                                        <input type="submit" class="btn btn-purple" value="Ver más" />
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div id="row-error" class="row text-center d-flex justify-content-center d-none">
+                <img class="img-fluid w-75 mb-5" src="../img/page-error-dog.png" alt="Dead dog that indicates page error">
+                <h2>Error: Productos No Encontrados</h2>
             </div>
         </main>
 
