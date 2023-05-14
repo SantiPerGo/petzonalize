@@ -15,12 +15,16 @@
     background-size: cover;
     background-repeat: none;
     position: relative;
-    min-height: 28rem;
+    min-height: 48rem;
 }
 
 .div-login{
-    min-height: 28rem;
+    min-height: 48rem;
     position: relative;
+}
+
+.form-group{
+    text-align: left;
 }
 
 .form-login{
@@ -32,6 +36,7 @@
     position: absolute;
     visibility: visible;
 }
+
 /* ---- add & remove clases */
 /* 
 .hidden-login{
@@ -43,6 +48,38 @@
 }
 */
 /*-------------------------*/
+
+.was-validated :valid {
+    border-color: #3A98B9 !important;
+}
+  
+.was-validated :valid:focus {
+    border-color: #3A98B9 !important; 
+    box-shadow: 0 0 0 0.25rem rgb(72, 159, 191) !important; 
+}
+
+.was-validated :invalid {
+    border-color: #8e44ad !important; 
+}
+  
+  .was-validated :invalid:focus {
+    border-color: #8e44ad !important; 
+    box-shadow: 0 0 0 0.25rem rgba(142, 68, 173, 0.25) !important; /* Cambia el sombreado en foco a morado */
+}
+
+.was-validated :valid ~ .valid-feedback {
+    color: #3A98B9; 
+}
+
+.was-validated :invalid ~ .invalid-feedback {
+    color: #8e44ad;
+}
+
+.little-text{
+    color: #837060;
+    text-decoration: none;
+}
+
 
 @media (max-width: 600px) {
     .form-cover {

@@ -14,9 +14,10 @@
         <!-- Bootstrap Icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
+        <!-- Bootstrap Custom -->
         <link rel="stylesheet" href="/assets/css/common.css">
         <link rel="stylesheet" href="../css/login.css">
-        <title>Productos</title>
+        <title>Registro</title>
     </head>
     <body>
         <nav></nav>
@@ -25,80 +26,122 @@
 
         <main class="container-fluid main-container">
             <div class="row justify-content-center">
-                   <div class="form-space col col-12 my-4">
-                        <div class="row justify-content-center">
-                            
-                            <!---------- Contenedor Principal -------->
-                            <div class="form-container col col-lg-8 col-md-8 col-sm-10 my-4 mx-4">   
-                                <div class="row justify-content-center text-center h-100">
-                                    <!----- Columna Izquierda de Imagen ---->
-                                    <div class="col-lg-6 col-sm-12 form-cover">
-                                    </div>
+                <div class="form-space col col-12 my-4">
+                    <div class="row justify-content-center">
+                        
+                        <!---------- Container -------->
+                        <div class="form-container col col-lg-9 col-md-9 col-sm-10 my-4 mx-4">   
+                            <div class="row justify-content-center text-center h-100">
+                                <!----- Columnn Left - Photo ---->
+                                <div class="col-lg-6 col-sm-12 form-cover">
+                                </div>
 
-                                    <!------- Columna Derecha de Ingreso y Registro ------>
-                                    <div class="col-lg-6 col-sm-12 p-4 div-login">
-                                        <div class="row h-100 justify-content-center">
+                                <!------- Column Right (Register n Login) ------>
+                                <div class="col-lg-6 col-sm-12 p-4 div-login">
+                                    <div class="row h-100 justify-content-center">
 
-                                            <!---- Columna - Contenedor de Ingreso (Login) ----->
-                                            <div class="col col-12 d-block align-self-center form-login">
-                                                <div class="d-block my-auto">   
-                                                    <form class="needs-validation" novalidate>
-                                                        <div class="form-group my-4">
-                                                            <h4>Inicio de Sesión</h4>
-                                                        </div>
-                                                        <div class="form-group my-4">
-                                                          <!--- <label for="input-email">Correo</label> --->
-                                                          <input type="email" class="form-control" id="input-email" placeholder="Correo" required>
-                                                        </div>
-                                                        <div class="form-group my-4">
-                                                          <!--- <label for="input-password">Contraseña</label> --->
-                                                            
-                                                            <input type="password" class="form-control" id="input-password" placeholder="Contraseña" required>
-                                                            
-                                                        </div>
-                                                            <button type="submit" class="btn btn-primary btn-purple d-block mx-auto my-2">Ingresar</button>
-                                                            <a class="text-center" href="">Registrate</a>
-                                                      </form>
-                                                 </div> 
-                                            </div>
+                                        <!---- Column - Login container (Login) ----->
+                                        <div class="col col-12 d-block align-self-center form-login">
+                                            <div class="d-block my-auto">   
+                                                <form class="needs-validation" novalidate>
 
-                                            <!----- Columna - Contenedor de Registro (Register) ----->
-                                            <div class="col col-12 d-block align-self-center form-register">
-                                                <div class="d-block my-auto">
-                                                    <form >
-                                                        <div class="form-group mt-5">
-                                                            <h4>Registrate</h4>
-                                                        </div>
-                                                        <div class="form-group my-4">
-                                                          <!--- <label for="input-email">Nombre</label> --->
-                                                          <input type="email" class="form-control" id="input-email" placeholder="Nombre Apellido">
-                                                        </div>
-                                                        <div class="form-group my-4">
-                                                          <!--- <label for="input-email">Correo</label> --->
-                                                          <input type="email" class="form-control" id="input-email" placeholder="Correo">
-                                                        </div>
-                                                        <div class="form-group my-4">
-                                                          <!--- <label for="input-password">Contraseña</label> --->
-                                                          <input type="password" class="form-control" id="input-password" placeholder="Contraseña">
-                                                        </div>
-                                                        <div class="form-group my-4">
-                                                          <!--- <label for="input-password">Contraseña</label> --->
-                                                          <input type="password" class="form-control" id="input-password" placeholder="Confirmar contraseña">
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary btn-purple  my-2">Crear cuenta</button>
-                                                        <br>
-                                                        <a href="">Logeate</a>
-                                                        
-                                                      </form>
-        
+                                                    <!-- Section right - Login -->
+                                                    <div class="form-group my-4 text-center">
+                                                        <h2>Inicio de Sesión</h2>
                                                     </div>
+                                                    
+                                                    <div class="form-group my-4 mx-3">                    
+                                                        <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
+                                                        <input type="email" class="form-control" id="input-email" placeholder="example@email.com" required>
+                                                        <div class="invalid-feedback">
+                                                            Por favor ingresa tu correo electrónico.
+                                                        </div>
+                                                    </div>       
+
+                                                    <div class="form-group my-4 mx-3">
+                                                        <label for="email" class="form-label"><b>Contraseña:</b></label>   
+                                                        <input type="password" class="form-control" id="input-password" placeholder="Contraseña" required>
+                                                        <div class="invalid-feedback">
+                                                            Por favor verifica tu contraseña.
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="little-text">
+                                                        <a href="#">He olvidado la contraseña.</a> 
+                                                    </div>
+
+                                                    <!-- Buttons of login -->
+                                                    <div class="form-group my-5 mx-3 d-flex justify-content-around">
+                                                        <button type="submit" class="btn btn-purple w-90 d-block mx-auto my-2" onclick="LogIn()"> Iniciar sesión </button>
+                                                    </div>
+                                                    <div class="form-group mb-1 mx-3 d-flex justify-content-around"> 
+                                                        <button id="view-log-in" type="button" class="btn btn-blue my-2" onclick="changeToRegister()"> Registrarme </button>
+                                                    </div>
+                                                </form>
+                                            </div> 
+                                        </div>
+
+                                        <!----- Columnn - Register container ----->
+                                        <div class="col col-12 d-block align-self-center form-register">
+                                            <div class="d-block my-auto">
+                                                <form class="needs-validation" novalidate>
+
+                                                    <!-- Section right - Register -->
+                                                    <div class="form-group text-center mt-5">
+                                                        <h2>Regístrate</h2>
+                                                    </div>
+
+                                                    <div class="form-group my-3 mx-3">
+                                                        <label for="name" class="form-label"><b>Nombre:</b></label>
+                                                        <input type="text" class="form-control" id="input-name" placeholder="Nombre Apellido" required>
+                                                        <div class="invalid-feedback">
+                                                            Por favor ingresa tu nombre.
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group my-3 mx-3" style="text-align: left;">
+                                                        <label for="phone" class="form-label"><b>Teléfono:</b></label>
+                                                        <input type="number" class="form-control" id="input-phone" placeholder="55 00 00 00" required>
+                                                        <div class="invalid-feedback">
+                                                        Por favor ingrese su número
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group my-3 mx-3">
+                                                        <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
+                                                        <input type="email" class="form-control" id="input-email" placeholder="example@email.com" required>
+                                                        <div class="invalid-feedback">
+                                                            Por favor ingresa tu correo electrónico.
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group my-3 mx-3">
+                                                        <label for="password" class="form-label"><b>Contraseña:</b></label>
+                                                        <input type="password" class="form-control" id="input-password" placeholder="Contraseña" required>                                                    
+                                                    </div>
+
+                                                    <div class="form-group my-3 mx-3">
+                                                        <label for="confirm-password" class="form-label"><b>Confirmar contraseña:</b></label>                                                          
+                                                        <input type="password" class="form-control" id="input-password" placeholder="Confirmar contraseña" required>
+                                                        <div class="invalid-feedback">
+                                                            Por favor verifica que la contraseña esté escrita idénticamente.
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Buttons of register -->
+                                                    <div class="form-group mb-5 mx-3 d-flex justify-content-around">
+                                                        <button id="create-account" type="submit" class="btn btn-purple my-2" onclick="CreateAccount()">Crear cuenta</button>
+                                                        <button id="view-log-in" type="button" class="btn btn-blue my-2" onclick="ChangeToLogIn()">Tengo cuenta</button>                        
+                                                    </div>
+                                                </form>        
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                   </div>
+                    </div>
+                </div>
             </div>
         </main>
 
@@ -107,6 +150,7 @@
         <!-- Loading Navbar and Footer with Jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="/assets/js/common.js"></script>
+        <script src="/assets/js/login.js"></script>
 
         <!-- Bootstrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>

@@ -14,7 +14,7 @@
         }
          else{
           setTimeout(()=>{window.location.href = "https://petzonalize.netlify.app/";}, 2500)
-          alert("Gracias por su opinion")
+          alert("Gracias por registrarse")
             }
         form.classList.add('was-validated')
         
