@@ -20,4 +20,10 @@
         
       }, false)
     })
-  })()
+  })();
+  
+
+/*   function changeToRegister(){
+    document.getElementById(form-register).style.display = 'block';
+    document.getElementById(form-login).style.display = 'none';
+  } */
