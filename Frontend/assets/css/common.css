@@ -89,7 +89,7 @@ h1, h2, h3, h4, h5, h6 {
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     filter: invert(52%) sepia(7%) saturate(3082%) hue-rotate(150deg) brightness(99%) contrast(99%);
-    background-image: url("../img/about/Paw.png");
+    background-image: url("../img/Paw.png");
     width: calc(1rem + 3vw);
     height: calc(1rem + 3vw);
 }
