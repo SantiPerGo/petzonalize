@@ -27,14 +27,45 @@
     font-size: calc(0.5rem + 2vw);
 }
 
-/* Cards Sizes */
+/* Cards Styles */
+
+.card:hover {
+    transform: scale(1.05) perspective(0px);
+    box-shadow: 0 0 1rem var(--brown);
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
 
 .card-img-top {
     width: 100%;
-    height: calc(5rem + 15vw);
+    height: calc(5rem + 10vw);
     object-fit: contain;
 }
 
+.card-header {
+    font-size: calc(1.5rem + 0.5vw);
+}
+
 .card-body {
-    font-size: calc(0.75rem + 1vw);
+    font-size: calc(1rem + 0.5vw);
+}
+
+.card-customizable {
+    background-color: var(--beige) !important;
+    color: var(--brown);
+}
+
+.text-brown {
+    color: var(--brown);
+}
+
+button a {
+    text-decoration: none;
+    color: var(--gray);
+}
+
+/* Loading animation */
+
+#loading-anim {
+    fill: var(--blue);
+    color: var(--blue);
 }

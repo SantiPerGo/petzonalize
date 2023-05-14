@@ -2,7 +2,7 @@
     "products-customizable": [
         {
             "id": 1,
-            "name": "Collar de Tela",
+            "name": "Collar de Nylon",
             "category": "customizable-collar",
             "price": 179.99,
             "imgUrl": "/assets/img/products/customizable/customizable-collar-nylon.png",
@@ -144,16 +144,18 @@
         },
         {
             "id": 15,
-            "name": "Modelo de Gato",
-            "category": "customizable-pet",
+            "name": "Traje de Gato",
+            "category": "customizable-cat",
             "type": "cat",
+            "price": "-",
             "imgUrl": "/assets/img/products/customizable/customizable-pet-cat.png"
         },
         {
             "id": 16,
-            "name": "Modelo de Perro",
-            "category": "customizable-pet",
+            "name": "Traje de Perro",
+            "category": "customizable-dog",
             "type": "dog",
+            "price": "-",
             "imgUrl": "/assets/img/products/customizable/customizable-pet-dog.png"
         }
     ]
