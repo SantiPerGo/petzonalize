@@ -18,3 +18,21 @@
       }, false)
     })
   })()
+
+
+
+const referenciaUsuario= document.getElementById("estado");
+const referenciaBoton= document.getElementById("boton-admin");
+let estadoAdmin;
+estadoAdmin=false;
+
+referenciaBoton.style.display="none";
+
+if (estadoAdmin === true) {
+  referenciaUsuario.textContent = "Administrador";
+  referenciaBoton.style.display = "block";
+} else {
+  referenciaUsuario.textContent = "Usuario";
+  referenciaBoton.style.display = "none";
+}
+
