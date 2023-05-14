@@ -16,5 +16,8 @@ $(document).ready(() => {
             alertElement.addClass("alert-danger");
             alertElement.addClass("text-danger");
         }
+
+        sessionStorage.removeItem("email-operation");
+        sessionStorage.removeItem("email-status");
     }
 });
