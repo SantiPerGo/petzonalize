@@ -62,10 +62,8 @@ const getProductsFromJson = async () => {
     await $.getJSON("../json/products-customizable.json", productsJson => {
         let productsArray = productsJson["products-customizable"];
 
-        // Removing duplicates and unnecesary products
-        productsArray = productsArray.filter((product, index, array) => 
-          array.findIndex(product2 => 
-            product2.category === product.category) === index &&
+        // Removing custome and pattern categories
+        productsArray = productsArray.filter(product =>
             product.category !== "custome" &&
             product.category !== "pattern");
 
@@ -93,9 +91,13 @@ const loadProducts = async intervalId => {
   clearInterval(intervalId);
 
   // Loading error page or products
-  if(!productsHasLoaded)
+  if(!productsHasLoaded) {
     showErrorPage(true);
-  else {
+    
+    // Deleting default card items
+    $("#product-custom").remove();
+    $("#product-not-custom").remove();
+  } else {
     createProductsCards(products);
     sessionStorage.setItem("products", JSON.stringify(products));
 
@@ -193,102 +195,84 @@ const handleSearch = async () => filterProducts($("#search").val());
 // Adding method to search input
 $('#search').on('input', handleSearch);
 
-const savePropertyObjectInArray = (checkboxName, array) => {
+const savePropertyObjectInArray = (checkboxName, petsArray, typesArray, categoriesArray) => {
   switch(checkboxName) {
     case "perros":
-      array.push({
+      petsArray.push({
         "key": "type",
         "value" : "dog"
       });
       break;
     case "gatos":
-      array.push({
+      petsArray.push({
         "key": "type",
         "value" : "cat"
       });
       break;
     case "petzonalizable":
-      array.push({
+      typesArray.push({
         "key": "customizable",
         "value" : true
       });
       break;
     case "no petzonalizable":
-      array.push({
+      typesArray.push({
         "key": "customizable",
         "value" : false
       });
       break;
     case "alimentos":
-      array.push({
+      categoriesArray.push({
         "key": "category",
         "value" : "food"
       });
       break;
     case "juguetes":
-      array.push({
+      categoriesArray.push({
         "key": "category",
         "value" : "toys"
       });
       break;
     case "limpieza":
-      array.push({
+      categoriesArray.push({
         "key": "category",
         "value" : "cleaning"
       });
       break;
     case "hogar":
-      array.push({
+      categoriesArray.push({
         "key": "category",
         "value" : "supplies"
       });
       break;
     case "salud":
-      array.push({
+      categoriesArray.push({
         "key": "category",
         "value" : "health"
       });
       break;
     case "collares":
-      array.push({
+      categoriesArray.push({
         "key": "category",
-        "value" : "collar-nylon"
-      }, {
-        "key": "category",
-        "value" : "collar-leather"
+        "value" : "collar"
       });
       break;
     case "bowls":
-      array.push({
+      categoriesArray.push({
         "key": "category",
         "value" : "bowl"
       });
       break;
     case "placas":
-      array.push({
+      categoriesArray.push({
         "key": "category",
-        "value" : "nameplate-paw"
-      }, {
-        "key": "category",
-        "value" : "nameplate-bone"
-      }, {
-        "key": "category",
-        "value" : "nameplate-circle"
-      }, {
-        "key": "category",
-        "value" : "nameplate-star"
-      }, {
-        "key": "category",
-        "value" : "nameplate-collar"
+        "value" : "nameplate"
       });
       break;
     case "disfraces":
-      array.push({
+      categoriesArray.push({
         "key": "category",
-        "value" : "pet-cat"
-      }, {
-        "key": "category",
-        "value" : "pet-dog"
+        "value" : "pet"
       });
       break;
   }
@@ -296,20 +280,35 @@ const savePropertyObjectInArray = (checkboxName, array) => {
 
 const handleFilters = async () => {
   const checkboxes = $(".form-check-input");
-  const checkboxesArray = [];
+  const petsArray = [], typesArray = [], categoriesArray = [];
 
   // Getting checked checkboxes value
   checkboxes.each((_, checkbox) => {
     if($(checkbox).is(":checked"))
-      savePropertyObjectInArray($(checkbox).val(), checkboxesArray);
+      savePropertyObjectInArray($(checkbox).val(), petsArray, typesArray, categoriesArray);
   });
 
-  applyProductFilters(checkboxesArray);
+  applyProductFilters(petsArray, typesArray, categoriesArray);
 };
 
-const applyProductFilters = (array) => {
+const verifyIfProductHasProperties = (product, propertiesArray) => {
+  if(propertiesArray.length === 0)
+    return true;
+
+  for (let i = 0; i < propertiesArray.length; i++) {
+    const propertyObject = propertiesArray[i];
+    const productProperty = product[propertyObject.key];
+  
+    if(productProperty === propertyObject.value || productProperty === undefined)
+      return true;
+  }
+
+  return false;
+};
+
+const applyProductFilters = (petsArray, typesArray, categoriesArray) => {
   // Applying filters
-  if(array.length !== 0) {
+  if(petsArray.length !== 0 || typesArray.length !== 0 || categoriesArray.length !== 0) {
     const products = JSON.parse(sessionStorage.getItem("products"));
     const filteredProducts = [];
 
@@ -317,17 +316,12 @@ const applyProductFilters = (array) => {
     for (let i = 0; i < products.length; i++) {
       const product = products[i];
 
-      for (let j = 0; j < array.length; j++) {
-        const propertyObject = array[j];
-        const productProperty = product[propertyObject.key];
-      
-        if(productProperty === propertyObject.value || productProperty === undefined) {
-          filteredProducts.push(product.name);
-          break;
-        }
-      }
+      if(verifyIfProductHasProperties(product, petsArray) &&
+        verifyIfProductHasProperties(product, typesArray) &&
+        verifyIfProductHasProperties(product, categoriesArray))
+        filteredProducts.push(product.name);
     }
-
+    
     // Applying filters
     filterProducts(filteredProducts);
   } else
