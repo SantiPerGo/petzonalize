@@ -15,9 +15,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
         <!-- Bootstrap Custom -->
-        <link rel="stylesheet" href="/assets/css/common.css">
+        <link rel="stylesheet" href="../css/common.css">
         <link rel="stylesheet" href="../css/login.css">
-        <title>Registro</title>
     </head>
     <body>
         <nav></nav>
@@ -30,7 +29,7 @@
                     <div class="row justify-content-center">
                         
                         <!---------- Container -------->
-                        <div class="form-container col col-lg-9 col-md-9 col-sm-10 my-4 mx-4">   
+                        <div class="form-container col col-lg-10 col-md-10 col-sm-10 my-4 mx-4">   
                             <div class="row justify-content-center text-center h-100">
                                 <!----- Columnn Left - Photo ---->
                                 <!-- <div class="col-lg-6 col-sm-12 form-cover"> -->
@@ -45,7 +44,7 @@
                                         <!---- Column - Login container (Login) ----->
                                         <div class="col col-12 d-block align-self-center form-login">
                                             <div class="d-block my-auto">   
-                                                <form class="needs-validation" novalidate>
+                                                <form id="login-form">
 
                                                     <!-- Section right - Login -->
                                                     <div class="form-group my-4 text-center">
@@ -54,17 +53,19 @@
                                                     
                                                     <div class="form-group my-4 mx-3">                    
                                                         <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
-                                                        <input type="email" class="form-control" id="input-email-login" placeholder="example@email.com" required>
+                                                        <input type="email" class="form-control" id="input-email-login" 
+                                                                placeholder="example@email.com" name="login-email" required>
                                                         <div class="invalid-feedback">
-                                                            Por favor ingresa tu correo electrónico.
+                                                            Correo Electronico No Válido.
                                                         </div>
                                                     </div>       
 
                                                     <div class="form-group my-4 mx-3">
                                                         <label for="password" class="form-label"><b>Contraseña:</b></label>   
-                                                        <input type="password" class="form-control" id="input-password-login" placeholder="Contraseña" required>
+                                                        <input type="password" class="form-control" id="input-password-login" 
+                                                                placeholder="Contraseña" name="login-password" required>
                                                         <div class="invalid-feedback">
-                                                            Por favor verifica tu contraseña.
+                                                            Ingresa una contraseña.
                                                         </div>
                                                     </div>
 
@@ -74,10 +75,10 @@
 
                                                     <!-- Buttons of login -->
                                                     <div class="form-group my-5 mx-3 d-flex justify-content-around">
-                                                        <button type="submit" class="btn btn-purple w-90 d-block mx-auto my-2" onclick="LogIn()"> Iniciar sesión </button>
+                                                        <button type="submit" class="btn btn-purple w-90 d-block mx-auto my-2"> Iniciar sesión </button>
                                                     </div>
                                                     <div class="form-group mb-1 mx-3 d-flex justify-content-around"> 
-                                                        <button id="view-log-in" type="button" class="btn btn-blue my-2" onclick="changeToRegister()"> Registrarme </button>
+                                                        <button id="view-log-in" type="button" class="btn btn-blue my-2"> Registrarme </button>
                                                     </div>
                                                 </form>
                                             </div> 
@@ -86,7 +87,7 @@
                                         <!----- Columnn - Register container ----->
                                         <div class="col col-12 d-block align-self-center form-register">
                                             <div class="d-block my-auto">
-                                                <form class="needs-validation" novalidate>
+                                                <form id="sing-up-form">
 
                                                     <!-- Section right - Register -->
                                                     <div class="form-group text-center mt-5">
@@ -95,44 +96,49 @@
 
                                                     <div class="form-group my-3 mx-3">
                                                         <label for="name" class="form-label"><b>Nombre:</b></label>
-                                                        <input type="text" class="form-control" id="input-name-register" placeholder="Nombre Apellido" required>
+                                                        <input type="text" class="form-control" id="input-name-register" 
+                                                                placeholder="Nombre Apellido" name="signup-name" required>
                                                         <div class="invalid-feedback">
-                                                            Por favor ingresa tu nombre.
+                                                            El nombre no debe contener carácteres especiales.
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group my-3 mx-3" style="text-align: left;">
                                                         <label for="phone" class="form-label"><b>Teléfono:</b></label>
-                                                        <input type="number" class="form-control" id="input-phone-register" placeholder="55 00 00 00" required>
+                                                        <input type="number" class="form-control" id="input-phone-register" 
+                                                                placeholder="55 00 00 00" name="signup-phone" required>
                                                         <div class="invalid-feedback">
-                                                        Por favor ingrese su número
+                                                        El Numero debe contener 10 cifras.
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group my-3 mx-3">
                                                         <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
-                                                        <input type="email" class="form-control" id="input-email-register" placeholder="example@email.com" required>
+                                                        <input type="email" class="form-control" id="input-email-register" 
+                                                                placeholder="example@email.com" name="signup-email"  required>
                                                         <div class="invalid-feedback">
-                                                            Por favor ingresa tu correo electrónico.
+                                                           El correo debe tener el formato correo@empresa.dominio
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group my-3 mx-3">
                                                         <label for="password" class="form-label"><b>Contraseña:</b></label>
-                                                        <input type="password" class="form-control" id="input-password-register" placeholder="Contraseña" required>
+                                                        <input type="password" class="form-control" id="input-signup-password" 
+                                                                placeholder="Contraseña" name="signup-password" required>
                                                     </div>
 
                                                     <div class="form-group my-3 mx-3">
                                                         <label for="confirm-password" class="form-label"><b>Confirmar contraseña:</b></label>
-                                                        <input type="password" class="form-control" id="input-password-confirm-register" placeholder="Confirmar contraseña" required>
+                                                        <input type="password" class="form-control" id="input-password-confirm-register" 
+                                                                placeholder="Confirmar contraseña" name="signup-password-2" required>
                                                         <div class="invalid-feedback">
-                                                            Por favor verifica que la contraseña esté escrita idénticamente.
+                                                            Las contraseñas no coinciden.
                                                         </div>
                                                     </div>
 
                                                     <!-- Buttons of register -->
                                                     <div class="form-group mb-5 mx-3 d-flex justify-content-around">
-                                                        <button id="create-account" type="submit" class="btn btn-purple my-2" onclick="CreateAccount()">Crear cuenta</button>
+                                                        <button id="create-account" type="submit" class="btn btn-purple my-2">Crear cuenta</button>
                                                         <button id="view-log-register" type="button" class="btn btn-blue my-2" onclick="ChangeToLogIn()">Tengo cuenta</button>                        
                                                     </div>
                                                 </form>        
