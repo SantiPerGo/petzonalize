@@ -4,24 +4,22 @@
     background-color: var(--beige);
     border: 0.25rem solid var(--brown);
     border-radius: 1rem;
-    overflow: hidden;
 }
 
 .dog-searching{
     overflow: hidden;
+    min-height: 28rem;
 }
 
 .dog-searching img{
     position: relative;
     left: -40%;
-    height: 100%;
-    width: auto;
+    height: auto;
 }
 
 
 .div-login{
-    min-height: 48rem;
-    position: relative;
+    min-height: 38rem;
 }
 
 .form-group{
@@ -29,13 +27,13 @@
 }
 
 .form-login{
-    position: absolute;
-    visibility: visible;
+    /* none */
+    text-align: center;
 }
 
 .form-register{
-    position: absolute;
-    visibility: hidden;
+    text-align: center;
+    /* none */
 }
 
 /*---------- Estilos de Validacion -------------------*/

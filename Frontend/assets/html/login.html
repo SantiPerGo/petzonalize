@@ -42,8 +42,8 @@
                                     <div class="row h-100 justify-content-center">
 
                                         <!---- Column - Login container (Login) ----->
-                                        <div class="col col-12 d-block align-self-center form-login">
-                                            <div class="d-block my-auto">   
+                                        <div id="login-container" class="col col-12 d-block align-self-center form-login">
+                                            <div class="my-auto">   
                                                 <form id="login-form">
 
                                                     <!-- Section right - Login -->
@@ -78,15 +78,15 @@
                                                         <button type="submit" class="btn btn-purple w-90 d-block mx-auto my-2"> Iniciar sesión </button>
                                                     </div>
                                                     <div class="form-group mb-1 mx-3 d-flex justify-content-around"> 
-                                                        <button id="view-log-in" type="button" class="btn btn-blue my-2"> Registrarme </button>
+                                                        <button id="view-sign-up" type="button" class="btn btn-blue my-2"> Registrarme </button>
                                                     </div>
                                                 </form>
                                             </div> 
                                         </div>
 
                                         <!----- Columnn - Register container ----->
-                                        <div class="col col-12 d-block align-self-center form-register">
-                                            <div class="d-block my-auto">
+                                        <div id="signup-container" class="col col-12 align-self-center d-none form-register">
+                                            <div class="my-auto">
                                                 <form id="sing-up-form">
 
                                                     <!-- Section right - Register -->
@@ -139,7 +139,7 @@
                                                     <!-- Buttons of register -->
                                                     <div class="form-group mb-5 mx-3 d-flex justify-content-around">
                                                         <button id="create-account" type="submit" class="btn btn-purple my-2">Crear cuenta</button>
-                                                        <button id="view-log-register" type="button" class="btn btn-blue my-2" onclick="ChangeToLogIn()">Tengo cuenta</button>                        
+                                                        <button id="view-login" type="button" class="btn btn-blue my-2">Tengo cuenta</button>                        
                                                     </div>
                                                 </form>        
                                             </div>

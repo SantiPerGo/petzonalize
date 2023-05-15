@@ -1,6 +1,12 @@
 const singUpForm = document.getElementById("sing-up-form");
 const loginForm = document.getElementById("login-form");
 const singUpFormInputs = document.querySelectorAll(".form-control");
+
+const buttonToSignUp = document.getElementById("view-sign-up");
+const buttonToLogin = document.getElementById("view-login");
+const loginContainer = document.getElementById("login-container");
+const signupContainer = document.getElementById("signup-container");
+
 const regExpFormVal = {
 	name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // texto 
 	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // correo@correo.domino
@@ -103,4 +109,16 @@ loginForm.addEventListener('submit', (eventLogin)=>{
     else{
         console.log("something was wrong");
     }
+});
+
+//-------------- Cambio de Vista -------------------
+
+buttonToSignUp.addEventListener('click', ()=>{
+    loginContainer.classList.add("d-none");
+    signupContainer.classList.remove("d-none");
+});
+
+buttonToLogin.addEventListener('click', ()=>{
+    loginContainer.classList.remove("d-none");
+    signupContainer.classList.add("d-none");
 });
