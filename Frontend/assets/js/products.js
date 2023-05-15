@@ -109,3 +109,27 @@ function toggle () {
   toggleCards("col-xl-4", "col-xl-6");
   toggleCards("col-md-6", "col-md-12");
 }
+
+// Filtrar productos en la barra de busqueda
+
+const handleSearch = async () => {
+  const searchValue = searchInput.value.toLowerCase().trim();
+  const productsResponse = await fetch('../json/products.json');
+  const productsJson = await productsResponse.json();
+  const customizableProductsResponse = await fetch('../json/products-customizable.json');
+  const customizableProductsJson = await customizableProductsResponse.json();
+  const matchingProducts = [
+    ...productsJson.products.filter(product => product.name.toLowerCase().includes(searchValue)),
+    ...customizableProductsJson['products-customizable'].filter(product => product.name.toLowerCase().includes(searchValue))
+  ];
+  console.log(matchingProducts);
+
+  
+};
+
+const searchInput = document.getElementById('search');
+searchInput.addEventListener('input', handleSearch);
+
+
+
+
