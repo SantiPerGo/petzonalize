@@ -21,3 +21,8 @@ $(document).ready(() => {
         sessionStorage.removeItem("email-status");
     }
 });
+
+const changeToProductsPage = type => {
+    sessionStorage.setItem("pet-filter", type);
+    window.location.href = "/assets/html/products.html";
+};

@@ -3,7 +3,8 @@
         {
             "id": 1,
             "name": "Collar de Nylon",
-            "category": "customizable-collar",
+            "category": "collar-nylon",
+            "customizable": true,
             "price": 179.99,
             "imgUrl": "/assets/img/products/customizable/customizable-collar-nylon.png",
             "stock": 67,
@@ -14,7 +15,8 @@
         {
             "id": 2,
             "name": "Plato de Comida",
-            "category": "customizable-bowl",
+            "category": "bowl",
+            "customizable": true,
             "price": 209.99,
             "imgUrl": "/assets/img/products/customizable/customizable-bowl.png",
             "stock": 136,
@@ -25,7 +27,8 @@
         {
             "id": 3,
             "name": "Plaquita con Forma de Pata",
-            "category": "customizable-nameplate",
+            "category": "nameplate-paw",
+            "customizable": true,
             "price": 119,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-paw.png",
             "stock": 376,
@@ -36,7 +39,7 @@
         {
             "id": 4,
             "name": "Sombrero de Mariachi",
-            "category": "customizable-custome",
+            "category": "custome",
             "type": "head",
             "price": 234.99,
             "imgUrl": "/assets/img/products/customizable/customizable-head-mariachi.png",
@@ -45,7 +48,7 @@
         {
             "id": 5,
             "name": "Traje de Tiburón",
-            "category": "customizable-custome",
+            "category": "custome",
             "type": "body",
             "price": 369,
             "imgUrl": "/assets/img/products/customizable/customizable-body-shark-jacket.png",
@@ -54,7 +57,7 @@
         {
             "id": 6,
             "name": "Sombrero Color Rojo para el Frío",
-            "category": "customizable-custome",
+            "category": "custome",
             "type": "head",
             "price": 145,
             "imgUrl": "/assets/img/products/customizable/customizable-head-cold-red.png",
@@ -63,7 +66,7 @@
         {
             "id": 7,
             "name": "Traje con Jinete",
-            "category": "customizable-custome",
+            "category": "custome",
             "type": "body",
             "price": 249.29,
             "imgUrl": "/assets/img/products/customizable/customizable-body-rider.png",
@@ -72,7 +75,7 @@
         {
             "id": 8,
             "name": "Capa Roja",
-            "category": "customizable-custome",
+            "category": "custome",
             "type": "body",
             "price": 195,
             "imgUrl": "/assets/img/products/customizable/customizable-body-cape.png",
@@ -81,7 +84,7 @@
         {
             "id": 9,
             "name": "Caparazón de Tortuga",
-            "category": "customizable-custome",
+            "category": "custome",
             "type": "body",
             "price": 224,
             "imgUrl": "/assets/img/products/customizable/customizable-body-turtle-shell.png",
@@ -90,7 +93,8 @@
         {
             "id": 10,
             "name": "Collar de Cuero",
-            "category": "customizable-collar",
+            "category": "collar-leather",
+            "customizable": true,
             "price": 179,
             "imgUrl": "/assets/img/products/customizable/customizable-collar-leather.png",
             "stock": 67,
@@ -101,7 +105,8 @@
         {
             "id": 11,
             "name": "Plaquita con Forma de Hueso",
-            "category": "customizable-nameplate",
+            "category": "nameplate-bone",
+            "customizable": true,
             "price": 119,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-bone.png",
             "stock": 323,
@@ -112,7 +117,8 @@
         {
             "id": 12,
             "name": "Plaquita con Forma de Círculo con Separación del Collar",
-            "category": "customizable-nameplate",
+            "category": "nameplate-collar",
+            "customizable": true,
             "price": 119,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle-double.png",
             "stock": 299,
@@ -123,7 +129,8 @@
         {
             "id": 13,
             "name": "Plaquita con Forma de Círculo",
-            "category": "customizable-nameplate",
+            "category": "nameplate-circle",
+            "customizable": true,
             "price": 119,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle.png",
             "stock": 311,
@@ -134,7 +141,8 @@
         {
             "id": 14,
             "name": "Plaquita con Forma de Estrella",
-            "category": "customizable-nameplate",
+            "category": "nameplate-star",
+            "customizable": true,
             "price": 119,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-star.png",
             "stock": 288,
@@ -145,45 +153,47 @@
         {
             "id": 15,
             "name": "Traje de Gato",
-            "category": "customizable-cat",
+            "category": "pet-cat",
+            "customizable": true,
             "type": "cat",
             "imgUrl": "/assets/img/products/customizable/customizable-pet-cat.png"
         },
         {
             "id": 16,
             "name": "Traje de Perro",
-            "category": "customizable-dog",
+            "category": "pet-dog",
+            "customizable": true,
             "type": "dog",
             "imgUrl": "/assets/img/products/customizable/customizable-pet-dog.png"
         },
         {
             "id": 17,
             "name": "Estampado de Círculos",
-            "category": "customizable-pattern",
+            "category": "pattern",
             "imgUrl": "/assets/img/products/customizable/customizable-pattern-circles.jpg"
         },
         {
             "id": 18,
             "name": "Estampado de Corazones",
-            "category": "customizable-pattern",
+            "category": "pattern",
             "imgUrl": "/assets/img/products/customizable/customizable-pattern-hearts.jpg"
         },
         {
             "id": 19,
             "name": "Estampado de Escuela",
-            "category": "customizable-pattern",
+            "category": "pattern",
             "imgUrl": "/assets/img/products/customizable/customizable-pattern-school.jpg"
         },
         {
             "id": 20,
             "name": "Estampado de Cuadrados",
-            "category": "customizable-pattern",
+            "category": "pattern",
             "imgUrl": "/assets/img/products/customizable/customizable-pattern-squares.jpg"
         },
         {
             "id": 21,
             "name": "Estampado Aesthetic",
-            "category": "customizable-pattern",
+            "category": "pattern",
             "imgUrl": "/assets/img/products/customizable/customizable-pattern-aesthetic.jpg"
         }
     ]

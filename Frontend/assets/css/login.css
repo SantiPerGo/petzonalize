@@ -1,32 +1,31 @@
+
+
 main{
     background-image: url(/assets/img/login-register/dog-computer-searching.png);
     background-repeat: no-repeat;
     background-size:cover;
 }
 
-.main-container{
-
-    height: 100%;
-}
-
 .form-container{
     background-color: var(--beige);
     border: 0.25rem solid var(--brown);
     border-radius: 1rem;
-    overflow: hidden;
 }
 
-.form-cover{
-    background-image: url("https://cdn.shopify.com/s/files/1/0103/3784/5303/articles/dog_computer.png?v=1638807465&width=1100");
-    background-size: cover;
-    background-repeat: none;
-    position: relative;
-    min-height: 48rem;
+.dog-searching{
+    overflow: hidden;
+    min-height: 28rem;
 }
+
+.dog-searching img{
+    position: relative;
+    left: -40%;
+    height: auto;
+}
+
 
 .div-login{
-    min-height: 48rem;
-    position: relative;
+    min-height: 38rem;
 }
 
 .form-group{
@@ -36,26 +35,19 @@ main{
 .form-login{
     position: absolute;
     visibility: visible;
+    /* none */
+    text-align: center;
 }
 
 .form-register{
     position: absolute;
     visibility: hidden;
+    text-align: center; 
 }
 
-/* ---- add & remove clases */
-/* 
-.hidden-login{
-    visibility: hidden;
-}
+/*---------- Estilos de Validacion -------------------*/
 
-.visibility-register{
-    visibility: visible; 
-}
-*/
-/*-------------------------*/
-
-.was-validated :valid {
+.is-valid{
     border-color: #3A98B9 !important;
 }
   
@@ -64,7 +56,7 @@ main{
     box-shadow: 0 0 0 0.25rem rgb(72, 159, 191) !important; 
 }
 
-.was-validated :invalid {
+.is-invalid {
     border-color: #8e44ad !important; 
 }
   
@@ -88,7 +80,7 @@ main{
 
 
 @media (max-width: 600px) {
-    .form-cover {
+    .dog-searching {
       display: none;
     }
   }
