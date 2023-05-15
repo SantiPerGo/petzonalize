@@ -5,27 +5,22 @@ const createProductsCards = products => {
     // Creating card for each product
     for (let i = 0; i < products.length; i++) {
       const product = products[i];
-      const id = product.category.includes("customizable") ? "product-custom" : "product-not-custom" ;
+      const id = product.customizable === true ? "product-custom" : "product-not-custom";
 
       // Cloning html element
-      const card = $(`#${id}`).clone().appendTo('#products-div');
+      const card = $(`#${id}`).clone().appendTo('#row-products');
       card.removeClass("d-none");
 
       // Changing id
       card.attr('id', `${id}-${i+1}`);
-
-      // Changing id number of item
-      card.find('[id*="product-img"]').attr('id', `${id}-img-${i+1}`);
-      card.find('[id*="product-name"]').attr('id', `${id}-name-${i+1}`);
-      card.find('[id*="product-price"]').attr('id', `${id}-price-${i+1}`);
       
       // Showing user data
-      card.find(`[id*="${id}-img-${i+1}"]`).attr('src', product.imgUrl);
-      card.find(`[id*="${id}-img-${i+1}"]`).attr('alt', product.name);
-      card.find(`[id*="${id}-name-${i+1}"]`).text(product.name);
+      card.find('[id*="product-img"]').attr('src', product.imgUrl);
+      card.find('[id*="product-img"]').attr('alt', product.name);
+      card.find('[id*="product-name"]').text(product.name);
 
       const price = product.price === undefined ? "Variable" : `$${product.price}`;
-      card.find(`[id*="${id}-price-${i+1}"]`).text(price);
+      card.find('[id*="product-price"]').text(price);
     }
 
     // Deleting default card items
@@ -33,7 +28,17 @@ const createProductsCards = products => {
     $("#product-not-custom").remove();
 };
 
-const loadProducts = async intervalId => {
+const showErrorPage = state => {
+  if(state) {
+    $("#row-error").removeClass("d-none");
+    $("#row-products").addClass("d-none");
+  } else {
+    $("#row-error").addClass("d-none");
+    $("#row-products").removeClass("d-none");
+  }
+};
+
+const getProductsFromJson = async () => {
   let productsLoaded = true, customProductsLoaded = true;
   let products = [];
 
@@ -53,8 +58,8 @@ const loadProducts = async intervalId => {
         productsArray = productsArray.filter((product, index, array) => 
           array.findIndex(product2 => 
             product2.category === product.category) === index &&
-            product.category !== "customizable-custome" &&
-            product.category !== "customizable-pattern");
+            product.category !== "custome" &&
+            product.category !== "pattern");
 
         products = products.concat(productsArray);
       });
@@ -63,6 +68,12 @@ const loadProducts = async intervalId => {
     customProductsLoaded = false;
   }
 
+  return [products, productsLoaded && customProductsLoaded];
+};
+
+const loadProducts = async intervalId => {
+  const [products, productsHasLoaded] = await getProductsFromJson();
+
   // Hiding loading animation
   $("#loading-anim").remove()
 
@@ -70,11 +81,12 @@ const loadProducts = async intervalId => {
   clearInterval(intervalId);
 
   // Loading error page or products
-  if(!productsLoaded && !customProductsLoaded) {
-    $("#row-error").removeClass("d-none");
-    $("#row-products").addClass("d-none");
-  } else 
+  if(!productsHasLoaded)
+    showErrorPage(true);
+  else {
     createProductsCards(products);
+    sessionStorage.setItem("products", JSON.stringify(products));
+  }
 };
 
 // Loading products in cards
@@ -112,24 +124,171 @@ function toggle () {
 
 // Filtrar productos en la barra de busqueda
 
-const handleSearch = async () => {
-  const searchValue = searchInput.value.toLowerCase().trim();
-  const productsResponse = await fetch('../json/products.json');
-  const productsJson = await productsResponse.json();
-  const customizableProductsResponse = await fetch('../json/products-customizable.json');
-  const customizableProductsJson = await customizableProductsResponse.json();
-  const matchingProducts = [
-    ...productsJson.products.filter(product => product.name.toLowerCase().includes(searchValue)),
-    ...customizableProductsJson['products-customizable'].filter(product => product.name.toLowerCase().includes(searchValue))
-  ];
-  console.log(matchingProducts);
+const filterProducts = (searchValue = "") => {
+  const isArray = Array.isArray(searchValue);
+  const products = $(".products");
+  let productsCounter = products.length;
 
-  
+  for (let i = 0; i < products.length; i++) {
+    const card = $(products[i]);
+    const cardName = card.find('[id*="product-name"]').text();
+
+    if(isArray && searchValue.find(str => str === cardName) === undefined) {
+      productsCounter--;
+      card.addClass("d-none");
+    } else if(!isArray && !cardName.toLowerCase().includes(searchValue.toLowerCase())) {
+      productsCounter--;
+      card.addClass("d-none");
+    } else
+      card.removeClass("d-none");
+  }  
+
+  console.log(productsCounter)
+
+  if(productsCounter === 0)
+    showErrorPage(true);
+  else
+    showErrorPage(false);
 };
 
-const searchInput = document.getElementById('search');
-searchInput.addEventListener('input', handleSearch);
+// Input search method
+const handleSearch = async () => filterProducts($("#search").val());
 
+// Adding method to search input
+$('#search').on('input', handleSearch);
 
+const getCheckboxObject = (checkboxName, array) => {
+  switch(checkboxName) {
+    case "perros":
+      array.push({
+        "key": "type",
+        "value" : "dog"
+      });
+      break;
+    case "gatos":
+      array.push({
+        "key": "type",
+        "value" : "cat"
+      });
+      break;
+    case "petzonalizable":
+      array.push({
+        "key": "customizable",
+        "value" : true
+      });
+      break;
+    case "no petzonalizable":
+      array.push({
+        "key": "customizable",
+        "value" : false
+      });
+      break;
+    case "alimentos":
+      array.push({
+        "key": "category",
+        "value" : "food"
+      });
+      break;
+    case "juguetes":
+      array.push({
+        "key": "category",
+        "value" : "toys"
+      });
+      break;
+    case "limpieza":
+      array.push({
+        "key": "category",
+        "value" : "cleaning"
+      });
+      break;
+    case "hogar":
+      array.push({
+        "key": "category",
+        "value" : "supplies"
+      });
+      break;
+    case "salud":
+      array.push({
+        "key": "category",
+        "value" : "health"
+      });
+      break;
+    case "collares":
+      array.push({
+        "key": "category",
+        "value" : "collar"
+      });
+      break;
+    case "bowls":
+      array.push({
+        "key": "category",
+        "value" : "bowl"
+      });
+      break;
+    case "placas":
+      array.push({
+        "key": "category",
+        "value" : "nameplate"
+      });
+      break;
+    case "disfraces":
+      array.push({
+        "key": "category",
+        "value" : "pet-cat"
+      });
 
+      array.push({
+        "key": "category",
+        "value" : "pet-dog"
+      });
+      break;
+  }
+};
 
+const handleFilters = async () => {
+  const checkboxes = $(".form-check-input");
+  const checkboxesArray = [];
+
+  // Getting checked checkboxes value
+  checkboxes.each((_, checkbox) => {
+    if($(checkbox).is(":checked"))
+      getCheckboxObject($(checkbox).val(), checkboxesArray);
+  });
+
+  // Applying filters
+  if(checkboxesArray.length !== 0) {
+    const products = JSON.parse(sessionStorage.getItem("products"));
+    const filteredProducts = [];
+
+    // Getting names for products filtered
+    for (let i = 0; i < products.length; i++) {
+      const product = products[i];
+
+      for (let j = 0; j < checkboxesArray.length; j++) {
+        const checkboxObject = checkboxesArray[j];
+        const productProperty = product[checkboxObject.key];
+      
+        if(productProperty === checkboxObject.value || productProperty === undefined) {
+          filteredProducts.push(product.name);
+          break;
+        }
+      }
+    }
+
+    // Applying filters
+    filterProducts(filteredProducts);
+  } else
+    filterProducts();
+};
+
+function clearProductFilters() {
+  filterProducts();
+
+  const checkboxes = $(".form-check-input");
+
+  // Getting checked checkboxes value
+  checkboxes.each((_, checkbox) => {
+    if($(checkbox).is(":checked"))
+      $(checkbox).prop('checked', false); 
+  });
+}

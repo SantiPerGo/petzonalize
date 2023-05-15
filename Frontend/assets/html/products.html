@@ -24,7 +24,7 @@
         <nav></nav>
 
         <main class="container my-5">
-            <div class="row" id="row-products">
+            <div class="row">
                 <div id="slide" class="col-12 col-md-5 col-lg-4 mb-5">
                     <div class="bg-beige">
                         <div class="row">
@@ -35,14 +35,14 @@
 
                         <div class="row">
                             <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="perros" id="chbox-perros">
+                            <input onclick="handleFilters()" class="form-check-input" type="checkbox" value="perros" id="chbox-perros">
                             <label class="form-check-label" for="chbox-perros">
                                 Perros
                             </label>
 
                             </div>
                             <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="gatos" id="chbox-gatos">
+                            <input onclick="handleFilters()" class="form-check-input" type="checkbox" value="gatos" id="chbox-gatos">
                             <label class="form-check-label" for="chbox-gatos">
                                 Gatos
                             </label>
@@ -57,15 +57,15 @@
                         </div>
                         <div class="row">
                             <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="perzonalizable" id="chbox-personalizable">
+                            <input onclick="handleFilters()" class="form-check-input" type="checkbox" value="petzonalizable" id="chbox-personalizable">
                             <label class="form-check-label text-truncate" for="chbox-personalizable">
                                 Petzonalizable
                             </label>
                             
                             </div>
                             <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="chbox-no-personalizable" id="no-chbox-personalizable" >
-                            <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" sfor="no-chbox-personalizable">
+                            <input onclick="handleFilters()" class="form-check-input" type="checkbox" value="no petzonalizable" id="no-chbox-personalizable" >
+                            <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" for="no-chbox-personalizable">
                                 No petzonalizable
                             </label>
                             </div>
@@ -80,64 +80,64 @@
 
                         <div class="row">
                             <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="perzonalizable" id="chbox-personalizable">
-                            <label class="form-check-label text-truncate" for="chbox-personalizable">
-                                Alimentos
-                            </label>
+                                <input onclick="handleFilters()" class="form-check-input" type="checkbox" value="alimentos" id="chbox-food">
+                                <label class="form-check-label text-truncate" for="chbox-food">
+                                    Alimentos
+                                </label>
                             </div>
                             
                             <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="chbox-no-personalizable" id="no-chbox-personalizable" >
-                            <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" sfor="no-chbox-personalizable">
-                                Juguetes
-                            </label>
+                                <input onclick="handleFilters()" class="form-check-input" type="checkbox" value="juguetes" id="chbox-toys" >
+                                <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" for="chbox-toys">
+                                    Juguetes
+                                </label>
                             </div>
 
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="chbox-no-personalizable" id="no-chbox-personalizable" >
-                                <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" sfor="no-chbox-personalizable">
+                                <input onclick="handleFilters()" class="form-check-input" type="checkbox" value="limpieza" id="chbox-cleaning" >
+                                <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" for="chbox-cleaning">
                                     Limpieza
                                 </label>
                             </div>
 
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="chbox-no-personalizable" id="no-chbox-personalizable" >
-                                <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" sfor="no-chbox-personalizable">
+                                <input onclick="handleFilters()" class="form-check-input" type="checkbox" value="hogar" id="chbox-supplies" >
+                                <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" for="chbox-supplies">
                                     Hogar
                                 </label>
                             </div>
 
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="chbox-no-personalizable" id="no-chbox-personalizable" >
-                                <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" sfor="no-chbox-personalizable">
+                                <input onclick="handleFilters()" class="form-check-input" type="checkbox" value="salud" id="chbox-health" >
+                                <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" for="chbox-health">
                                     Salud
                                 </label>
                             </div>
 
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="chbox-no-personalizable" id="no-chbox-personalizable" >
-                                <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" sfor="no-chbox-personalizable">
+                                <input onclick="handleFilters()" class="form-check-input" type="checkbox" value="collares" id="chbox-collar" >
+                                <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" for="chbox-collar">
                                     Collares
                                 </label>
                             </div>
 
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="chbox-no-personalizable" id="no-chbox-personalizable" >
-                                <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" sfor="no-chbox-personalizable">
+                                <input onclick="handleFilters()" class="form-check-input" type="checkbox" value="bowls" id="chbox-bowls" >
+                                <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" for="chbox-bowls">
                                     Bowls
                                 </label>
                             </div>
 
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="chbox-no-personalizable" id="no-chbox-personalizable" >
-                                <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" sfor="no-chbox-personalizable">
+                                <input onclick="handleFilters()" class="form-check-input" type="checkbox" value="placas" id="chbox-nameplate" >
+                                <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" for="chbox-nameplate">
                                     Placas
                                 </label>
                             </div>
 
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="chbox-no-personalizable" id="no-chbox-personalizable" >
-                                <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" sfor="no-chbox-personalizable">
+                                <input onclick="handleFilters()" class="form-check-input" type="checkbox" value="disfraces" id="chbox-custom" >
+                                <label class="form-check-label text-nowrap w-auto text-truncate"  style="width: 70%;" for="chbox-custom">
                                     Disfraces
                                 </label>
                             </div>
@@ -145,7 +145,7 @@
                         </div>
 
                         <div class="row px-3 pt-3">  
-                            <button type="button" class="btn btn-blue w-100 px-0">
+                            <button onclick="clearProductFilters()" type="button" class="btn btn-blue w-100 px-0">
                                 Limpiar filtros
                             </button>
                         </div>
@@ -169,7 +169,7 @@
                         </div>
                     </div>
     
-                    <div class="row px-3 g-5" id="products-div">
+                    <div class="row px-3 g-5" id="row-products">
                         <div class="col-12 my-5" id="loading-anim">
                             <svg width="150" height="150" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <style>.spinner_9y7u{animation:spinner_fUkk 2.4s linear infinite;animation-delay:-2.4s}.spinner_DF2s{animation-delay:-1.6s}.spinner_q27e{animation-delay:-.8s}@keyframes spinner_fUkk{8.33%{x:13px;y:1px}25%{x:13px;y:1px}33.3%{x:13px;y:13px}50%{x:13px;y:13px}58.33%{x:1px;y:13px}75%{x:1px;y:13px}83.33%{x:1px;y:1px}}</style>
@@ -234,11 +234,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div id="row-error" class="row text-center d-flex justify-content-center d-none">
-                <img class="img-fluid w-75 mb-5" src="../img/page-error-dog.png" alt="Dead dog that indicates page error">
-                <h2>Error: Productos No Encontrados</h2>
+                <div id="row-error" class="row text-center d-flex justify-content-center d-none">
+                    <img class="img-fluid w-75 mb-5" src="../img/page-error-dog.png" alt="Dead dog that indicates page error">
+                    <h2>Error: Productos No Encontrados</h2>
+                </div>
             </div>
         </main>
 
