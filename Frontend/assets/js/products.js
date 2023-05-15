@@ -174,8 +174,6 @@ const filterProducts = (searchValue = "") => {
       card.removeClass("d-none");
   }  
 
-  console.log(productsCounter)
-
   if(productsCounter === 0)
     showErrorPage(true);
   else
@@ -247,7 +245,10 @@ const savePropertyObjectInArray = (checkboxName, array) => {
     case "collares":
       array.push({
         "key": "category",
-        "value" : "collar"
+        "value" : "collar-nylon"
+      }, {
+        "key": "category",
+        "value" : "collar-leather"
       });
       break;
     case "bowls":
@@ -259,16 +260,26 @@ const savePropertyObjectInArray = (checkboxName, array) => {
     case "placas":
       array.push({
         "key": "category",
-        "value" : "nameplate"
+        "value" : "nameplate-paw"
+      }, {
+        "key": "category",
+        "value" : "nameplate-bone"
+      }, {
+        "key": "category",
+        "value" : "nameplate-circle"
+      }, {
+        "key": "category",
+        "value" : "nameplate-star"
+      }, {
+        "key": "category",
+        "value" : "nameplate-collar"
       });
       break;
     case "disfraces":
       array.push({
         "key": "category",
         "value" : "pet-cat"
-      });
-
-      array.push({
+      }, {
         "key": "category",
         "value" : "pet-dog"
       });

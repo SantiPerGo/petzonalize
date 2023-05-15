@@ -23,9 +23,12 @@
     <body>
         <nav></nav>
 
-        <main class="container my-5">
+        <main class="container">
+            <div class="mt-5 d-none d-md-block"></div>
+            <div class="mt-3 d-block d-md-none"></div>
+            
             <div class="row">
-                <div id="slide" class="col-12 col-md-5 col-lg-4 mb-5">
+                <div id="slide" class="col-12 col-md-5 col-lg-4 mb-3">
                     <div class="bg-beige">
                         <div class="row">
                             <div class="col text-center">
@@ -153,7 +156,7 @@
                 </div>
     
                 <div class="col text-center">
-                    <div class="row d-flex justify-content-center mb-5">
+                    <div class="row d-flex justify-content-center mb-3">
                         <div class="col-12 col-md-4 col-lg-3 d-none d-md-inline">  
                             <button type="button" class="btn btn-blue w-100 px-0" onclick="toggle()">Filtros</button>
                         </div>
@@ -162,14 +165,16 @@
                             <input id="search" type="text" class="form-control w-100 h-100" placeholder="buscar">
                         </div>
 
-                        <div class="col-12 my-3 d-block d-lg-none"></div>
+                        <div class="col-12 mt-3 d-block d-md-none"></div>
 
                         <div class="col-9 d-block d-md-none">
                             <button type="button" class="btn btn-blue w-100 px-0" onclick="toggle()">Filtros</button>
                         </div>
                     </div>
+
+                    <div class="mt-5 d-none d-md-block"></div>
     
-                    <div class="row px-3 g-5" id="row-products">
+                    <div class="row px-3 g-3" id="row-products">
                         <div class="col-12 my-5" id="loading-anim">
                             <svg width="150" height="150" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <style>.spinner_9y7u{animation:spinner_fUkk 2.4s linear infinite;animation-delay:-2.4s}.spinner_DF2s{animation-delay:-1.6s}.spinner_q27e{animation-delay:-.8s}@keyframes spinner_fUkk{8.33%{x:13px;y:1px}25%{x:13px;y:1px}33.3%{x:13px;y:13px}50%{x:13px;y:13px}58.33%{x:1px;y:13px}75%{x:1px;y:13px}83.33%{x:1px;y:1px}}</style>
@@ -240,6 +245,9 @@
                     <h2>Error: Productos No Encontrados</h2>
                 </div>
             </div>
+
+            <div class="mt-5 d-none d-md-block"></div>
+            <div class="mt-3 d-block d-md-none"></div>
         </main>
 
         <footer></footer>

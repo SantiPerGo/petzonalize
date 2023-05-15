@@ -3,7 +3,7 @@
         {
             "id": 1,
             "name": "Collar de Nylon",
-            "category": "collar",
+            "category": "collar-nylon",
             "customizable": true,
             "price": 179.99,
             "imgUrl": "/assets/img/products/customizable/customizable-collar-nylon.png",
@@ -27,7 +27,7 @@
         {
             "id": 3,
             "name": "Plaquita con Forma de Pata",
-            "category": "nameplate",
+            "category": "nameplate-paw",
             "customizable": true,
             "price": 119,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-paw.png",
@@ -93,7 +93,7 @@
         {
             "id": 10,
             "name": "Collar de Cuero",
-            "category": "collar",
+            "category": "collar-leather",
             "customizable": true,
             "price": 179,
             "imgUrl": "/assets/img/products/customizable/customizable-collar-leather.png",
@@ -105,7 +105,7 @@
         {
             "id": 11,
             "name": "Plaquita con Forma de Hueso",
-            "category": "nameplate",
+            "category": "nameplate-bone",
             "customizable": true,
             "price": 119,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-bone.png",
@@ -117,7 +117,7 @@
         {
             "id": 12,
             "name": "Plaquita con Forma de Círculo con Separación del Collar",
-            "category": "nameplate",
+            "category": "nameplate-collar",
             "customizable": true,
             "price": 119,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle-double.png",
@@ -129,7 +129,7 @@
         {
             "id": 13,
             "name": "Plaquita con Forma de Círculo",
-            "category": "nameplate",
+            "category": "nameplate-circle",
             "customizable": true,
             "price": 119,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle.png",
@@ -141,7 +141,7 @@
         {
             "id": 14,
             "name": "Plaquita con Forma de Estrella",
-            "category": "nameplate",
+            "category": "nameplate-star",
             "customizable": true,
             "price": 119,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-star.png",
