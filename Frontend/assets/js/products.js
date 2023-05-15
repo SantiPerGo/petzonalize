@@ -106,6 +106,13 @@ const loadProducts = async intervalId => {
       const productsArray = [];
       savePropertyObjectInArray(petFilter, productsArray);
       applyProductFilters(productsArray);
+
+      // Showing filters
+      $(`#chbox-${petFilter}`).prop('checked', true); 
+      toggle();
+
+      // Deleting session storage
+      sessionStorage.removeItem("pet-filter");
     }
   }
 };
