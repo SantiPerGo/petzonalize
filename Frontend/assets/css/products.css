@@ -16,7 +16,6 @@
 
 #slide.show {
     display: block;
-    animation: fadeIn 0.5s;
 }
 
 /* Cards Styles */
@@ -64,4 +63,18 @@ button a {
 #loading-anim {
     fill: var(--blue);
     color: var(--blue);
+}
+
+/* Checkboxes */
+
+.form-check-input {
+    background-color: var(--brown);
+}
+
+.form-check-input::after {
+    background-color: aquamarine;
+}
+
+.form-check-input:checked {
+    background-color: var(--purple);
 }

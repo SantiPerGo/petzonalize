@@ -151,9 +151,11 @@ const toggleCards = (classOne, classTwo) => {
 };
 
 // Function to toggle filters and cards sizes
-function toggle () {
+const toggle = () => {
+  const slideElement = $("#slide");
+
   // Showing or hiding filters
-  $("#slide").toggleClass("show");
+  slideElement.toggleClass("show");
 
   // Changing cards sizes
   toggleCards("col-xl-4", "col-xl-6");
