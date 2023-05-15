@@ -1,3 +1,7 @@
+// *********************************************************************************
+// Load product card
+// *********************************************************************************
+
 const createProductsCards = products => {
     // Ordering products by name
     products.sort((a, b) => a.name.localeCompare(b.name));
@@ -38,6 +42,10 @@ const showErrorPage = state => {
   }
 };
 
+// *********************************************************************************
+// Get products from json files
+// *********************************************************************************
+
 const getProductsFromJson = async () => {
   let productsLoaded = true, customProductsLoaded = true;
   let products = [];
@@ -71,6 +79,10 @@ const getProductsFromJson = async () => {
   return [products, productsLoaded && customProductsLoaded];
 };
 
+// *********************************************************************************
+// Create product cards from json files
+// *********************************************************************************
+
 const loadProducts = async intervalId => {
   const [products, productsHasLoaded] = await getProductsFromJson();
 
@@ -86,8 +98,21 @@ const loadProducts = async intervalId => {
   else {
     createProductsCards(products);
     sessionStorage.setItem("products", JSON.stringify(products));
+
+    // Getting filter if exists
+    const petFilter = sessionStorage.getItem("pet-filter");
+    
+    if(petFilter !== null) {
+      const productsArray = [];
+      savePropertyObjectInArray(petFilter, productsArray);
+      applyProductFilters(productsArray);
+    }
   }
 };
+
+// *********************************************************************************
+// Start loading animation and load products
+// *********************************************************************************
 
 // Loading products in cards
 $(document).ready(() => {
@@ -100,6 +125,10 @@ $(document).ready(() => {
 
   loadProducts(intervalId);
 });
+
+// *********************************************************************************
+// Change cards sizes when filter button is pressed
+// *********************************************************************************
 
 // Function to toggle cards sizes
 const toggleCards = (classOne, classTwo) => {
@@ -122,7 +151,9 @@ function toggle () {
   toggleCards("col-md-6", "col-md-12");
 }
 
-// Filtrar productos en la barra de busqueda
+// *********************************************************************************
+// Filter products
+// *********************************************************************************
 
 const filterProducts = (searchValue = "") => {
   const isArray = Array.isArray(searchValue);
@@ -157,7 +188,7 @@ const handleSearch = async () => filterProducts($("#search").val());
 // Adding method to search input
 $('#search').on('input', handleSearch);
 
-const getCheckboxObject = (checkboxName, array) => {
+const savePropertyObjectInArray = (checkboxName, array) => {
   switch(checkboxName) {
     case "perros":
       array.push({
@@ -252,11 +283,15 @@ const handleFilters = async () => {
   // Getting checked checkboxes value
   checkboxes.each((_, checkbox) => {
     if($(checkbox).is(":checked"))
-      getCheckboxObject($(checkbox).val(), checkboxesArray);
+      savePropertyObjectInArray($(checkbox).val(), checkboxesArray);
   });
 
+  applyProductFilters(checkboxesArray);
+};
+
+const applyProductFilters = (array) => {
   // Applying filters
-  if(checkboxesArray.length !== 0) {
+  if(array.length !== 0) {
     const products = JSON.parse(sessionStorage.getItem("products"));
     const filteredProducts = [];
 
@@ -264,11 +299,11 @@ const handleFilters = async () => {
     for (let i = 0; i < products.length; i++) {
       const product = products[i];
 
-      for (let j = 0; j < checkboxesArray.length; j++) {
-        const checkboxObject = checkboxesArray[j];
-        const productProperty = product[checkboxObject.key];
+      for (let j = 0; j < array.length; j++) {
+        const propertyObject = array[j];
+        const productProperty = product[propertyObject.key];
       
-        if(productProperty === checkboxObject.value || productProperty === undefined) {
+        if(productProperty === propertyObject.value || productProperty === undefined) {
           filteredProducts.push(product.name);
           break;
         }
@@ -281,7 +316,7 @@ const handleFilters = async () => {
     filterProducts();
 };
 
-function clearProductFilters() {
+const clearProductFilters = () => {
   filterProducts();
 
   const checkboxes = $(".form-check-input");
