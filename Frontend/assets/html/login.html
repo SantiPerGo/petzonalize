@@ -27,19 +27,22 @@
         <main class="container-fluid main-container">
             <div class="row justify-content-center">
                 <div class="form-space col col-12 my-4">
-                    <div class="row justify-content-center">
-                        
-                        <!---------- Container -------->
-                        <div class="form-container col col-lg-9 col-md-9 col-sm-10 my-4 mx-4">   
+                    
+                    <!---------- Container -------->
+                    <div class="row justify-content-end">
+                        <div class="form-container col col-lg-5 col-md-6 col-sm-10 my-4 mx-4">   
                             <div class="row justify-content-center text-center h-100">
                                 <!----- Columnn Left - Photo ---->
                                 <!-- <div class="col-lg-6 col-sm-12 form-cover"> -->
-                                <div class="col-lg-6 col-sm-12 dog-searching justify-content-around">
+                                <!-- <div class="col-lg-6 col-sm-12 dog-search
+                                    
+                                    ing justify-content-around">
                                     <img  src="../img/login-register/dog-computer-searching-dialogue.png" class="img-dog" alt="">
-                                </div>
+                                </div> -->
 
                                 <!------- Column Right (Register n Login) ------>
-                                <div class="col-lg-6 col-sm-12 p-4 div-login">
+                                
+                                <div class="col-lg-10 col-sm-12 p-4 div-login">
                                     <div class="row h-100 justify-content-center">
 
                                         <!---- Column - Login container (Login) ----->
@@ -53,7 +56,7 @@
                                                     </div>
                                                     
                                                     <div class="form-group my-4 mx-3">                    
-                                                        <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
+                                                        <label for="email" class="form-label" name="login-email"><b>Correo Electrónico:</b></label>
                                                         <input type="email" class="form-control" id="input-email-login" placeholder="example@email.com" required>
                                                         <div class="invalid-feedback">
                                                             Por favor ingresa tu correo electrónico.
@@ -61,7 +64,7 @@
                                                     </div>       
 
                                                     <div class="form-group my-4 mx-3">
-                                                        <label for="password" class="form-label"><b>Contraseña:</b></label>   
+                                                        <label for="password" class="form-label" name="login-password"><b>Contraseña:</b></label>   
                                                         <input type="password" class="form-control" id="input-password-login" placeholder="Contraseña" required>
                                                         <div class="invalid-feedback">
                                                             Por favor verifica tu contraseña.
@@ -94,7 +97,7 @@
                                                     </div>
 
                                                     <div class="form-group my-3 mx-3">
-                                                        <label for="name" class="form-label"><b>Nombre:</b></label>
+                                                        <label for="name" class="form-label" name="register-name"><b>Nombre:</b></label>
                                                         <input type="text" class="form-control" id="input-name-register" placeholder="Nombre Apellido" required>
                                                         <div class="invalid-feedback">
                                                             Por favor ingresa tu nombre.
@@ -102,15 +105,16 @@
                                                     </div>
 
                                                     <div class="form-group my-3 mx-3" style="text-align: left;">
-                                                        <label for="phone" class="form-label"><b>Teléfono:</b></label>
+                                                        <label for="phone" class="form-label" name="register-number"><b>Teléfono:</b></label>
                                                         <input type="number" class="form-control" id="input-phone-register" placeholder="55 00 00 00" required>
                                                         <div class="invalid-feedback">
-                                                        Por favor ingrese su número
+                                                        Por favor ingrese su número.
+                                                        
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group my-3 mx-3">
-                                                        <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
+                                                        <label for="email" class="form-label" name="register-email"><b>Correo Electrónico:</b></label>
                                                         <input type="email" class="form-control" id="input-email-register" placeholder="example@email.com" required>
                                                         <div class="invalid-feedback">
                                                             Por favor ingresa tu correo electrónico.
@@ -118,12 +122,12 @@
                                                     </div>
 
                                                     <div class="form-group my-3 mx-3">
-                                                        <label for="password" class="form-label"><b>Contraseña:</b></label>
+                                                        <label for="password" class="form-label" name="register-password"><b>Contraseña:</b></label>
                                                         <input type="password" class="form-control" id="input-password-register" placeholder="Contraseña" required>
                                                     </div>
 
                                                     <div class="form-group my-3 mx-3">
-                                                        <label for="confirm-password" class="form-label"><b>Confirmar contraseña:</b></label>
+                                                        <label for="confirm-password" class="form-label" name="register-confirm-password"><b>Confirmar contraseña:</b></label>
                                                         <input type="password" class="form-control" id="input-password-confirm-register" placeholder="Confirmar contraseña" required>
                                                         <div class="invalid-feedback">
                                                             Por favor verifica que la contraseña esté escrita idénticamente.

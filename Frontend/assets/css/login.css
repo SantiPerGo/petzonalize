@@ -1,3 +1,9 @@
+main{
+    background-image: url(/assets/img/login-register/dog-computer-searching.png);
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
 .main-container{
 
     height: 100%;
@@ -29,12 +35,12 @@
 
 .form-login{
     position: absolute;
-    visibility: hidden;
+    visibility: visible;
 }
 
 .form-register{
     position: absolute;
-    visibility: visible;
+    visibility: hidden;
 }
 
 /* ---- add & remove clases */
