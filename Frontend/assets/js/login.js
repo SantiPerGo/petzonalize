@@ -4,8 +4,13 @@ const singUpFormInputs = document.querySelectorAll(".form-control");
 
 const buttonToSignUp = document.getElementById("view-sign-up");
 const buttonToLogin = document.getElementById("view-login");
+const toRecoverPassword = document.getElementById("view-recover-section");
+const buttonBackToLogin = document.getElementById("view-login-2"); //This button is in recover container
+
 const loginContainer = document.getElementById("login-container");
 const signupContainer = document.getElementById("signup-container");
+const recoverContainer = document.getElementById("recover-container");
+
 
 const regExpFormVal = {
 	name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // texto 
@@ -133,11 +138,25 @@ loginForm.addEventListener('submit', (eventLogin)=>{
 buttonToSignUp.addEventListener('click', ()=>{
     loginContainer.classList.add("d-none");
     signupContainer.classList.remove("d-none");
+    recoverContainer.classList.add("d-none");
 });
 
 buttonToLogin.addEventListener('click', ()=>{
     loginContainer.classList.remove("d-none");
     signupContainer.classList.add("d-none");
+    recoverContainer.classList.add("d-none");
+});
+
+toRecoverPassword.addEventListener('click', ()=>{
+    loginContainer.classList.add("d-none");
+    signupContainer.classList.add("d-none");
+    recoverContainer.classList.remove("d-none");
+});
+
+buttonBackToLogin.addEventListener('click', ()=>{
+    loginContainer.classList.remove("d-none");
+    signupContainer.classList.add("d-none");
+    recoverContainer.classList.add("d-none");
 });
 
 //------- Comprobar correo -------------

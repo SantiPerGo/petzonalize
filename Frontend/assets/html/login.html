@@ -74,7 +74,7 @@
                                                     </div>
 
                                                     <div class="little-text">
-                                                        <a href="#">He olvidado la contraseña.</a> 
+                                                        <a href="#" id="view-recover-section">He olvidado la contraseña.</a> 
                                                     </div>
 
                                                     <!-- Buttons of login -->
@@ -150,6 +150,34 @@
                                                     </div>
                                                 </form>        
                                             </div>
+                                        </div>
+
+                                        <!-- Column - Forgotten password -->
+                                        <div id="recover-container" class="col col-12 d-block align-self-center d-none form-recover">
+                                            <div class="my-auto">   
+                                                <form id="recover-form">
+
+                                                    <!-- Section right - Login -->
+                                                    <div class="form-group my-4 text-center">
+                                                        <h2>¿Has olvidado la contraseña?</h2>
+                                                    </div>
+                                                    <div class="form-group my-4 text-center accordion-body">
+                                                        No te preocupes, a los mejores lomitos nos pasa. Por favor ingresa el correo electrónico con el que te registraste.
+                                                    </div>                                                    
+                                                    <div class="form-group">                    
+                                                        <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
+                                                        <input type="email" class="form-control" id="recover-email-login" 
+                                                                placeholder="example@email.com" name="recover-email" required>
+
+                                                    <!-- Buttons of login -->
+                                                    <div class="form-group my-5 mx-3 d-flex justify-content-around">
+                                                        <button id="send-password" type="submit" class="btn btn-purple w-90 d-block mx-auto my-2"> Enviar correo </button>
+                                                    </div>
+                                                    <div class="form-group mb-1 mx-3 d-flex justify-content-around"> 
+                                                        <button id="view-login-2" type="button" class="btn btn-blue my-2"> Iniciar sesión </button>
+                                                    </div>
+                                                </form>
+                                            </div> 
                                         </div>
                                     </div>
                                 </div>
