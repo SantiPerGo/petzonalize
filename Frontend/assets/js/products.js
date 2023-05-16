@@ -342,3 +342,12 @@ const clearProductFilters = () => {
       $(checkbox).prop('checked', false); 
   });
 }
+
+// *********************************************************************************
+// Save product details in local storage
+// *********************************************************************************
+
+const saveProductInStorage = card => {
+  const productName = $(card).find('[id*="product-name"]').text();
+  sessionStorage.setItem("product-name", productName);
+};
