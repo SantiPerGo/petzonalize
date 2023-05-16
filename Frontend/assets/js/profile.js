@@ -23,7 +23,10 @@ fetch(urlUsers)
   .then(response => response.json())
   .then(data => {
     // Obtener el usuario con ID 2
-    const user = data.users.find(user => user.id === 2);
+    const user = data.users.find(user => user.id === 1);
+
+    let userActual=JSON.stringify(user);
+    sessionStorage.setItem("data", userActual);
 
     // Mostrar los datos del usuario en los campos de entrada correspondientes
     document.getElementById('name').value = user.name;
@@ -68,6 +71,7 @@ fetch(urlUsers)
     // Obtener todos los botones de edición y el botón de guardar
     const editButtons = document.querySelectorAll('.btn-edit');
     const saveButton = document.querySelector('.btn-save');
+    const refForm =document.forms["edit-form"];
   
     // Agregar el controlador de eventos a cada botón de edición
     editButtons.forEach(button => {
@@ -84,16 +88,40 @@ fetch(urlUsers)
     });
   
     // Agregar el controlador de eventos al botón de guardar
-    saveButton.addEventListener('click', event => {
-      event.preventDefault(); // Evitar la acción predeterminada del botón
+    refForm.addEventListener(`submit`, (event)=>{
+      event.preventDefault();
+ //Recuperar la sessionstorage
+     let  user = sessionStorage.getItem("data");
+      let users= JSON.parse(user);
+    
+      const name =refForm.elements["name"];
+      const email =refForm.elements["email"];
+      const phone =refForm.elements["phone"];
+      const password =refForm.elements["password"];
+
+      document.getElementById('name').value=name.value;
+
+      users.name=name.value;
+      users.email=email.value;
+      users.phone=phone.value;
+      users.password=password.value;
+
+      let userActual=JSON.stringify(users);
+      sessionStorage.setItem("data", userActual);
+
   
-      // Realizar el proceso de guardar los datos o enviar el formulario, según sea necesario
-    });
+  
+  });
+    
   });
   
   
+
   
-  
+
+
+
+
   
   
   
