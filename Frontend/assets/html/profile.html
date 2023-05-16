@@ -40,7 +40,7 @@
                     <h1>Datos de perfil</h1>
                 </div>
                 <div class="row align-items-end">
-                    <div class="col-12 col-sm-6">
+                    <div class="col-12 col-sm-12">
                         <label for="name" class="form-label"><b>Nombre:</b></label>
                         <div class="input-group">
                             <input type="text" id="name" class="form-control" placeholder="Nombre y Apellidos"
@@ -48,7 +48,10 @@
                             <button class="btn btn-edit" data-field="name">Editar</button>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6">
+                    
+                </div>
+                <div class="row mt-3 ">
+                    <div class="col-12 col-sm-12">
                         <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
                         <div class="input-group">
                             <input type="email" class="form-control" id="email" placeholder="Correo" required readonly>
@@ -57,15 +60,19 @@
                     </div>
                 </div>
 
-                <div class="row mt-3 align-items-end">
-                    <div class="col-12 col-sm-6">
+                <div class="row mt-3 ">
+                    <div class="col-12 col-sm-12">
                         <label for="phone" class="form-label"><b>Teléfono:</b></label>
                         <div class="input-group">
                             <input type="number" id="phone" class="form-control" placeholder="55 00 00 00" required readonly>
                             <button class="btn btn-edit" data-field="phone">Editar</button>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6">
+                    
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12 col-sm-12">
                         <label for="password" class="form-label"><b>Contraseña:</b></label>
                         <div class="input-group">
                             <input class="form-control" id="password" placeholder="*******" required readonly></textarea>
@@ -73,11 +80,13 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="row mt-3">
                     <div class="col d-flex justify-content-center align-content-center">
                         <button type="submit" class="btn btn-purple btn-save">Guardar</button>
                     </div>
                 </div>
+
                 <div class="row mt-3">
                     <div class="col d-flex justify-content-center align-content-center">
                         <button id="boton-admin" type="submit" class="btn btn-purple">Añadir producto</button>
