@@ -197,7 +197,8 @@ const handleSearch = async () => filterProducts($("#search").val());
 // Adding method to search input
 $('#search').on('input', handleSearch);
 
-const savePropertyObjectInArray = (checkboxName, petsArray, typesArray, categoriesArray) => {
+const savePropertyObjectInArray = (checkboxName, petsArray = [],
+  typesArray = [], categoriesArray = []) => {
   switch(checkboxName) {
     case "perros":
       petsArray.push({
@@ -308,7 +309,7 @@ const verifyIfProductHasProperties = (product, propertiesArray) => {
   return false;
 };
 
-const applyProductFilters = (petsArray, typesArray, categoriesArray) => {
+const applyProductFilters = (petsArray = [], typesArray = [], categoriesArray = []) => {
   // Applying filters
   if(petsArray.length !== 0 || typesArray.length !== 0 || categoriesArray.length !== 0) {
     const products = JSON.parse(sessionStorage.getItem("products"));
