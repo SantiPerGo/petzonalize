@@ -48,3 +48,10 @@ body {
 #botonadmin{
     align-items: end;
 }
+
+.bg-beige {
+    width: 90%; /* Ajusta el ancho en porcentaje según tus necesidades */
+    padding: 2%; /* Ajusta el padding en porcentaje según tus necesidades */
+    max-width: 900px; /* Agrega un máximo de ancho en píxeles para evitar que se estire demasiado en pantallas grandes */
+}
+

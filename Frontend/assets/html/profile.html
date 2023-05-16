@@ -30,53 +30,101 @@
     <header></header>
 
     <main>
-        <div class="container">
+
+        <!-- Profile container -->
+
+<!--     <div id="profile-container" class="container">
             <div class="row justify-content-end">
                 <div class="col-12 col-md-8 col-lg-9 d-flex justify-content-end">
-                    <form class="bg-beige my-5 needs-validation" novalidate id="registro">
+                    <div itemid="usuarioInterfaz" class="bg-beige my-5 needs-validation" novalidate id="registro">
                         <div class="row text-center">
-                            <h6 id="estado"></h6>
                             <h1>Datos de perfil</h1>
                         </div>
-                        <div class="row align-items-end">
+                        <div id="profile-data" class="row align-items-end">
                             <div class="col-12 col-sm-6">
-                                <label for="name" class="form-label"><b>Nombre:</b></label>
-                                <input type="text" id="name" class="form-control" placeholder="Nombre y Apellidos"
-                                    required>
-
+                                <h3><b>Nombre:</b> <span id="name"></span></h3>
                             </div>
                             <div class="col-12 col-sm-6">
-                                <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
-                                <input type="email" class="form-control" id="email" placeholder="Correo" required>
-                            </div>
-                        </div>
-
-                        <div class="row mt-3 align-items-end">
-                            <div class="col-12 col-sm-6">
-                                <label for="phone" class="form-label"><b>Teléfono:</b></label>
-                                <input type="number" id="phone" class="form-control" placeholder="55 00 00 00" required>
+                                <div class="overflow-container">
+                                    <h3><b>Correo Electrónico:</b> <span id="email"></span></h3>
+                                </div>
                             </div>
                             <div class="col-12 col-sm-6">
-                                <label for="password" class="form-label"><b>Contraseña:</b></label>
-                                <input class="form-control" id="password" placeholder="*******" required></textarea>
+                                <h3><b>Teléfono:</b> <span id="phone"></span></h3>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <h3><b>Contraseña:</b> <span id="password"></span></h3>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col d-flex justify-content-center align-content-center">
-                                <button type="submit" class="btn btn-purple">Guardar</button>
+                        <div id="button-container" class="row mt-3 justify-content-center">
+                            <div class="col-6 justify-content-center">
+                                <button id="edit-button" type="button" class="btn btn-purple">Editar datos</button>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col d-flex justify-content-center align-content-center">
-                                <button id="boton-admin" type="submit" class="btn btn-purple">Añadir producto</button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
+        </div> -->
+        
+        
+<!-- form-container -->
+<!-- form-container -->
+<div id="form-container" class="container" id="edit-form" style="display: block;">
+    <div class="row justify-content-end">
+        <div class="col-12 col-md-8 col-lg-9 d-flex justify-content-end">
+            <form class="bg-beige my-5 needs-validation" novalidate id="edit-form">
+                <div class="row text-center">
+                    <h6 id="estado"></h6>
+                    <h1>Datos de perfil</h1>
+                </div>
+                <div class="row align-items-end">
+                    <div class="col-12 col-sm-6">
+                        <label for="name" class="form-label"><b>Nombre:</b></label>
+                        <div class="input-group">
+                            <input type="text" id="name" class="form-control" placeholder="Nombre y Apellidos"
+                                required readonly>
+                            <button class="btn btn-edit" data-field="name">Editar</button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
+                        <div class="input-group">
+                            <input type="email" class="form-control" id="email" placeholder="Correo" required readonly>
+                            <button class="btn btn-edit" data-field="email">Editar</button>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="row mt-3 align-items-end">
+                    <div class="col-12 col-sm-6">
+                        <label for="phone" class="form-label"><b>Teléfono:</b></label>
+                        <div class="input-group">
+                            <input type="number" id="phone" class="form-control" placeholder="55 00 00 00" required readonly>
+                            <button class="btn btn-edit" data-field="phone">Editar</button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <label for="password" class="form-label"><b>Contraseña:</b></label>
+                        <div class="input-group">
+                            <input class="form-control" id="password" placeholder="*******" required readonly></textarea>
+                            <button class="btn btn-edit" data-field="password">Editar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col d-flex justify-content-center align-content-center">
+                        <button type="submit" class="btn btn-purple btn-save">Guardar</button>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col d-flex justify-content-center align-content-center">
+                        <button id="boton-admin" type="submit" class="btn btn-purple">Añadir producto</button>
+                    </div>
+                </div>
+            </form>
         </div>
-       
+    </div>
+</div>
             
        
     </main>
