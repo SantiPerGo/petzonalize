@@ -33,15 +33,11 @@ main{
 }
 
 .form-login{
-    /* position: absolute; */
-    visibility: visible;
     /* none */
     text-align: center;
 }
 
 .form-register{
-    /* position: absolute; */
-    visibility: hidden;
     text-align: center; 
 }
 

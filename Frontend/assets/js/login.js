@@ -20,6 +20,13 @@ const validatedFormResultFlag = {
     phone: false,
     password: false
 }
+//--------- Limpiar campos --------------
+const clearSignup = ()=>{
+    singUpFormInputs.forEach((input)=>{
+        input.value = '';
+    })
+}
+
 
 //--------- Identificar tipo de campo -----------
 const getInputIdentify = (props) =>{
@@ -53,13 +60,13 @@ const validateInput = (validatorType, input, inputIdentity) => {
         validatedFormResultFlag[inputIdentity] |= true;
         input.classList.remove('is-invalid'); 
         input.classList.add('is-valid'); // 
-        console.log(`The input ${inputIdentity} is OK: ${validatedFormResultFlag[inputIdentity]}`);
+        //console.log(`The input ${inputIdentity} is OK: ${validatedFormResultFlag[inputIdentity]}`);
 	} 
     else {
         validatedFormResultFlag[inputIdentity] &= false;
         input.classList.remove('is-valid');
         input.classList.add('is-invalid');
-		console.warn(`The input ${inputIdentity} is not OK: ${validatedFormResultFlag[inputIdentity]}`);
+		//console.warn(`The input ${inputIdentity} is not OK: ${validatedFormResultFlag[inputIdentity]}`);
 	}
 }
 
@@ -92,7 +99,7 @@ singUpForm.addEventListener('submit', (submitButton)=>{
     submitButton.preventDefault();
 
     if(validatedFormResultFlag.name && validatedFormResultFlag.phone && validatedFormResultFlag.email && validatedFormResultFlag.password ){
-        console.log("cool!");
+        creatingUserAccount();
     }
     else{
         prompt("Verifique que haya rellenado el formulario correctamente");
@@ -101,14 +108,24 @@ singUpForm.addEventListener('submit', (submitButton)=>{
 
 // ------ Escucha cuando el usuario inicie sesion -----
 loginForm.addEventListener('submit', (eventLogin)=>{
-    eventLogin.defaultPrevented();
+    eventLogin.preventDefault();
+
+    const email = document.getElementById("input-email-login").value;
+    const password = document.getElementById("input-password-login").value;
 
     if(validatedFormResultFlag.email && validatedFormResultFlag.password){
-        console.log("you can login");
+        if( checkLoginUser(email, password) ){
+            setTimeout(()=>{window.location.href = "https://petzonalize.netlify.app/";}, 1500)
+            alert("Bienvenido de nuevo");
+        }
+        else{
+            alert("Correo o Contraseña incorrectos")
+        }
     }
     else{
         console.log("something was wrong");
     }
+
 });
 
 //-------------- Cambio de Vista -------------------
@@ -122,3 +139,67 @@ buttonToLogin.addEventListener('click', ()=>{
     loginContainer.classList.remove("d-none");
     signupContainer.classList.add("d-none");
 });
+
+//------- Comprobar correo -------------
+const checkEmailExist = (user) =>{
+    if(localStorage.getItem("users")){
+        const usersDatabase = JSON.parse(localStorage.getItem("users"));
+        return usersDatabase.users.some( registeredUser => registeredUser.email == user.email );
+    }
+    else{
+        return false;
+    }
+}
+
+//-----------Comprobar Contraseña -----------
+const checkLoginUser = (email, password) =>{
+    if(localStorage.getItem("users")){
+        const usersDatabase = JSON.parse(localStorage.getItem("users"));
+        return usersDatabase.users.some( registeredUser => registeredUser.email == email && registeredUser.password === password );
+    }
+    else{
+        return false;
+    }
+}
+
+//------------ Guardar Usuarios ----------
+const creatingUserAccount = () => {
+
+    const name = document.getElementById("input-name-register").value;
+    const email = document.getElementById("input-email-register").value;
+    const phone = document.getElementById("input-phone-register").value;
+    const password = document.getElementById("input-signup-password").value;
+
+    const user = {
+        "name": name,
+        "email": email,
+        "phone": phone,
+        "password": password,
+        "privileges": "client" 
+    };
+
+    let users = {
+        "users": []
+    }
+
+    if( localStorage.getItem("users") ){
+        let validEmail = checkEmailExist(user);
+        if(validEmail == false){
+            
+            users = JSON.parse(localStorage.getItem("users"));
+            users.users.push(user);
+            localStorage.setItem("users", JSON.stringify(users));
+            clearSignup();
+            window.location.reload()
+            console.log(users);
+        }
+        else{
+            alert("El correo de usuario ya existe, por favor escoja otro diferente");
+        }
+    }
+    else{
+        users.users.push(user);
+        console.log(users);
+        localStorage.setItem("users", JSON.stringify(users));
+    }
+} 
