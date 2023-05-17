@@ -222,3 +222,24 @@ const creatingUserAccount = () => {
         localStorage.setItem("users", JSON.stringify(users));
     }
 } 
+
+// ----------------------Boton Formulario
+// La ingresar o registrarse, el botón redirigirá el usario a la página "profile"
+// si los campos del formulario son válidos
+
+document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita que el formulario se envíe por defecto
+    let inputsValidos = true;
+
+    if (inputsValidos) {
+      window.location.href = 'profile.html';
+    }
+  });
+document.getElementById('sing-up-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita que el formulario se envíe por defecto
+    let inputsValidos = true;
+
+    if (inputsValidos) {
+      window.location.href = 'profile.html';
+    }
+  });

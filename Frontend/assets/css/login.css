@@ -42,31 +42,15 @@ main{
 }
 
 /*---------- Estilos de Validacion -------------------*/
-
-.is-valid{
-    border-color: #3A98B9 !important;
-}
-  
-.was-validated :valid:focus {
-    border-color: #3A98B9 !important; 
-    box-shadow: 0 0 0 0.25rem rgb(72, 159, 191) !important; 
+ 
+.is-valid{ 
+border-color: #3A98B9 !important;
+box-shadow: 0 0 0 0.25rem rgb(72, 159, 191) !important; 
 }
 
-.is-invalid {
-    border-color: #8e44ad !important; 
-}
-  
-  .was-validated :invalid:focus {
-    border-color: #8e44ad !important; 
-    box-shadow: 0 0 0 0.25rem rgba(142, 68, 173, 0.25) !important; /* Cambia el sombreado en foco a morado */
-}
-
-.was-validated :valid ~ .valid-feedback {
-    color: #3A98B9; 
-}
-
-.was-validated :invalid ~ .invalid-feedback {
-    color: #8e44ad;
+.is-invalid {    
+    border-color: #8e44ad !important;
+    box-shadow: 0 0 0 0.25rem var(--purple) !important; 
 }
 
 .little-text{
@@ -80,3 +64,13 @@ main{
       display: none;
     }
   }
+
+#row-container {
+    justify-content: end;
+}
+
+@media (max-width:320px){
+    #row-container {
+        justify-content: center;
+    }
+}
