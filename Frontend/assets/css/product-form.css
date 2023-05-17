@@ -1,0 +1,13 @@
+.form-container{
+    background-color: var(--beige);
+    border: 0.25rem solid var(--brown);
+    border-radius: 1rem;
+}
+
+.form-group{
+    text-align: left;
+}
+
+.icon{
+    height: 50px;
+}
