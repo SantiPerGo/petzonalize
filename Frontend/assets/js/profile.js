@@ -19,16 +19,18 @@
 
 localStorage.getItem("users")
 
+    
+
 if(localStorage.getItem("users")){
   console.log("localStorage");
   let user = JSON.parse(localStorage.getItem("users"));
- 
-
+  user=user.users;
+  console.log(user);
     // Mostrar los datos del usuario en los campos de entrada correspondientes
-    document.getElementById('name').value = user.name;
-    document.getElementById('email').value = user.email;
-    document.getElementById('phone').value = user.phone;
-    document.getElementById('password').value = user.password;
+    document.getElementById('name').value = user[1].name;
+    document.getElementById('email').value = user[2].email;
+    document.getElementById('phone').value = user[3].phone;
+    document.getElementById('password').value = user[4].password;
     const referenciaUsuario = document.getElementById("estado");
     const referenciaBoton = document.getElementById("boton-admin");
     let estadoAdmin;
@@ -129,7 +131,7 @@ fetch(urlUsers)
     // Obtener el usuario con ID 2
     const user = data.users.find(user => user.id === 1);
 
-    let userActual=JSON.stringify(user);
+    let userActual=JSON.stringify(data);
     localStorage.setItem("users", userActual);
 
     // Mostrar los datos del usuario en los campos de entrada correspondientes
