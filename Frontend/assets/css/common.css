@@ -193,7 +193,7 @@ input[type=number]{
 
 .was-validated :valid:focus {
     border-color: var(--blue) !important; 
-    sbox-shadow: 0 0 0 0.25rem var(--blue) !important; /* Cambia el sombreado en foco a morado */
+    box-shadow: 0 0 0 0.25rem var(--blue) !important; /* Cambia el sombreado en foco a morado */
 } 
 
 .was-validated :valid ~ .valid-feedback {
