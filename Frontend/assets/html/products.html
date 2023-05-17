@@ -175,7 +175,7 @@
                         </div>
 
                         <div class="col-12 col-md-6 col-xl-4 d-none products" id="product-not-custom">
-                            <div class="card rounded-5 px-3 pt-1 pb-3 w-100 h-100">
+                            <form class="card rounded-5 px-3 pt-1 pb-3 w-100 h-100" action="./product-details.html" onsubmit="saveProductInStorage(this)">
                                 <div class="card-header bg-transparent row d-flex justify-content-center">
                                     <img id="product-img" class="card-img-top" alt="X">
                                 </div>
@@ -188,9 +188,9 @@
                                 </div>
     
                                 <div class="card-footer bg-transparent">
-                                    <form class="row my-3" action="./product-details.html">
+                                    <div class="row my-3">
                                         <input type="submit" class="btn btn-blue" value="Ver más" />
-                                    </form>
+                                    </div>
     
                                     <div class="row">
                                         <button type="button" class="btn btn-purple">
@@ -198,11 +198,11 @@
                                         </button>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
 
                         <div class="col-12 col-md-6 col-xl-4 d-none products" id="product-custom">
-                            <div class="card rounded-5 px-3 pt-1 pb-3 w-100 h-100">
+                            <form class="card rounded-5 px-3 pt-1 pb-3 w-100 h-100" action="./product-details.html" onsubmit="saveProductInStorage(this)">
                                 <div class="card-header rounded-top-5 bg-transparent row d-flex justify-content-center card-customizable">
                                     <div class="row">
                                         <p><b>Petzonalizable</b></p>
@@ -220,11 +220,11 @@
                                 </div>
     
                                 <div class="card-footer bg-transparent">
-                                    <form class="row mt-3" action="./product-details.html">
+                                    <div class="row mt-3">
                                         <input type="submit" class="btn btn-purple" value="Ver más" />
-                                    </form>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 
