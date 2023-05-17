@@ -22,14 +22,85 @@ const createProductsCards = products => {
       card.find('[id*="product-img"]').attr('src', product.imgUrl);
       card.find('[id*="product-img"]').attr('alt', product.name);
       card.find('[id*="product-name"]').text(product.name);
-
       const price = product.price === undefined ? "Variable" : `$${product.price}`;
       card.find('[id*="product-price"]').text(price);
+
+      // Adding increase and decrease buttons methods
+      const increaseButton = card.find('[id*="increase"]');
+      const decreaseButton = card.find('[id*="decrease"]');
+
+      increaseButton.click(() => {
+        let value = parseInt(productQuantity.val());
+        
+        if(isNaN(value))
+          value = 1;
+        else {
+          value++;
+          decreaseButton.prop('disabled', false);
+        }
+
+        productQuantity.val(value);
+      });
+    
+      decreaseButton.click(() => {
+        let value = parseInt(productQuantity.val());
+
+        if(isNaN(value) || (value <= 2)) {
+          value = 1;
+          decreaseButton.prop('disabled', true);
+        } else
+          value--;
+
+        productQuantity.val(value);
+      });
+
+      // Adding buy and see more buttons methods
+      const buyButton = card.find('[id*="product-buy"]');
+      const seeProductButton = card.find('[id*="product-see-more"]');
+      const quantityGroup = card.find('[id*="quantity-group"]');
+      const productQuantity = card.find('[id*="product-quantity"]');
+
+      buyButton.on('click', () => showQuantityButtons(product, buyButton, seeProductButton,
+        quantityGroup, productQuantity, decreaseButton));
+      seeProductButton.on('click', () => saveProductInStorage(product));
     }
 
     // Deleting default card items
     $("#product-custom").remove();
     $("#product-not-custom").remove();
+};
+
+const showQuantityButtons = (product, buyButton, seeProductButton,
+  quantityGroup, productQuantity, decreaseButton) => {
+  
+  quantityGroup.removeClass("d-none");
+  buyButton.text("Aceptar");
+  seeProductButton.text("Cancelar");
+
+  buyButton.off('click');
+  buyButton.on('click', () => {
+    addProductsToCart(product, productQuantity.val());
+    buyButton.prop('disabled', true);
+    seeProductButton.prop('disabled', true);
+    buyButton.text("¡Agregado al Carrito!");
+    quantityGroup.addClass("d-none");
+  });
+
+  seeProductButton.off('click');
+  seeProductButton.on('click', () => {
+    quantityGroup.addClass("d-none");
+    productQuantity.val("1");
+    buyButton.text("Comprar");
+    seeProductButton.text("Ver más");
+    decreaseButton.prop('disabled', true);
+
+    buyButton.off('click');
+    buyButton.on('click', () => showQuantityButtons(product, buyButton, seeProductButton,
+      quantityGroup, productQuantity, decreaseButton));
+    
+    seeProductButton.off('click');
+    seeProductButton.on('click', () => saveProductInStorage(product));
+  });
 };
 
 const showErrorPage = state => {
@@ -40,6 +111,25 @@ const showErrorPage = state => {
     $("#row-error").addClass("d-none");
     $("#row-products").removeClass("d-none");
   }
+};
+
+// *********************************************************************************
+// Save product details in local storage
+// *********************************************************************************
+
+const saveProductInStorage = product => {
+  sessionStorage.setItem("product", JSON.stringify(product));
+  window.location.href = "./product-details.html";
+};
+
+const addProductsToCart = (product, quantity) => {
+  const shoppingCart = localStorage.getItem("shopping-cart");
+  const products = shoppingCart !== null ? JSON.parse(shoppingCart) : [];
+
+  for(let i = 0; i < quantity; i++)
+    products.push(product);
+
+  localStorage.setItem("shopping-cart", JSON.stringify(products));
 };
 
 // *********************************************************************************
@@ -342,12 +432,3 @@ const clearProductFilters = () => {
       $(checkbox).prop('checked', false); 
   });
 }
-
-// *********************************************************************************
-// Save product details in local storage
-// *********************************************************************************
-
-const saveProductInStorage = card => {
-  const productName = $(card).find('[id*="product-name"]').text();
-  sessionStorage.setItem("product-name", productName);
-};

@@ -175,7 +175,7 @@
                         </div>
 
                         <div class="col-12 col-md-6 col-xl-4 d-none products" id="product-not-custom">
-                            <form class="card rounded-5 px-3 pt-1 pb-3 w-100 h-100" action="./product-details.html" onsubmit="saveProductInStorage(this)">
+                            <div class="card rounded-5 px-3 pt-1 pb-3 w-100 h-100">
                                 <div class="card-header bg-transparent row d-flex justify-content-center">
                                     <img id="product-img" class="card-img-top" alt="X">
                                 </div>
@@ -188,17 +188,33 @@
                                 </div>
     
                                 <div class="card-footer bg-transparent">
+                                    <div class="row mt-3 d-none" id="quantity-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                              <button id="decrease" class="input-group-text btn btn-blue" disabled>-</button>
+                                            </div>
+    
+                                            <input id="product-quantity" type="text" class="form-control bg-none border-0 text-center" value="1">
+                                            
+                                            <div class="input-group-append">
+                                              <button id="increase" class="input-group-text btn btn-blue">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="row my-3">
-                                        <input type="submit" class="btn btn-blue" value="Ver más" />
+                                        <button class="btn btn-blue" id="product-see-more">
+                                            Ver más
+                                        </button>
                                     </div>
     
                                     <div class="row">
-                                        <button type="button" class="btn btn-purple">
+                                        <button class="btn btn-purple" id="product-buy">
                                             Comprar
                                         </button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
 
                         <div class="col-12 col-md-6 col-xl-4 d-none products" id="product-custom">
