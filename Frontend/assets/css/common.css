@@ -47,6 +47,32 @@ footer {
     color: var(--blue) !important;
 }
 
+/* Navbar Shopping Cart Counter */
+
+.shopping-cart {
+    display: inline-block;
+}
+
+.shopping-cart .shopping-cart-counter {
+    position: absolute;
+    top: 3.5rem;
+    right: 4.75rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 50%;
+    background: var(--purple);
+    color: var(--gray);
+    font-size: calc(0.5rem + 0.75vw);
+}
+
+@media (max-width: 767.98px) {
+    .shopping-cart .shopping-cart-counter {
+        top: 67%;
+        right: 43.5%;
+        padding: 0.25rem 0.5rem;
+        font-size: calc(0.25rem + 2vw);
+    }
+}
+
 /* Titles, icons and squares styles */
 
 h1, h2, h3, h4, h5, h6 {

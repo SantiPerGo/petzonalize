@@ -130,6 +130,10 @@ const addProductsToCart = (product, quantity) => {
     products.push(product);
 
   localStorage.setItem("shopping-cart", JSON.stringify(products));
+  
+  const shoppingCartCounter = $("#shopping-cart-counter");
+  shoppingCartCounter.text(products.length);
+  shoppingCartCounter.removeClass("d-none");
 };
 
 // *********************************************************************************
