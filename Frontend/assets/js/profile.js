@@ -15,18 +15,122 @@
       form.classList.add('was-validated')
     }, false)
   })
-})()
+})
 
-const urlUsers = "/assets/json/users.json";
+localStorage.getItem("users")
 
+if(localStorage.getItem("users")){
+  console.log("localStorage");
+  let user = JSON.parse(localStorage.getItem("users"));
+ 
+
+    // Mostrar los datos del usuario en los campos de entrada correspondientes
+    document.getElementById('name').value = user.name;
+    document.getElementById('email').value = user.email;
+    document.getElementById('phone').value = user.phone;
+    document.getElementById('password').value = user.password;
+    const referenciaUsuario = document.getElementById("estado");
+    const referenciaBoton = document.getElementById("boton-admin");
+    let estadoAdmin;
+
+
+    const usuariosJson = user;
+    const usuario = usuariosJson.fprivileges;
+
+    if (usuario && usuario.privileges === "admin") {
+      estadoAdmin = true;
+    } else {
+      estadoAdmin = false;
+    }
+
+    if (estadoAdmin) {
+      referenciaUsuario.textContent = "Administrador";
+      referenciaBoton.style.display = "block";
+    } else {
+      referenciaUsuario.textContent = "Usuario";
+      referenciaBoton.style.display = "none";
+    }
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Aquí va tu código JavaScript
+    
+    // Obtener todos los botones de edición y el botón de guardar
+    const editButtons = document.querySelectorAll('.btn-edit');
+    const saveButton = document.querySelector('.btn-save');
+    const refForm =document.forms["edit-form"];
+  
+    // Agregar el controlador de eventos a cada botón de edición
+    editButtons.forEach(button => {
+      button.addEventListener('click', event => {
+        event.preventDefault(); // Evitar la acción predeterminada del botón
+        // Obtener el campo asociado al botón de edición
+        const fieldId = button.getAttribute('data-field');
+        const field = document.getElementById(fieldId);
+  
+        // Habilitar la edición del campo
+        field.removeAttribute('readonly');
+        field.focus(); // Opcionalmente, poner el foco en el campo editado
+      });
+    });
+  
+    // Agregar el controlador de eventos al botón de guardar
+    refForm.addEventListener(`submit`, (event)=>{
+      event.preventDefault();
+ //Recuperar la sessionstorage
+     let  user = localStorage.getItem("users");
+      let users= JSON.parse(user);
+    
+      const name =refForm.elements["name"];
+      const email =refForm.elements["email"];
+      const phone =refForm.elements["phone"];
+      const password =refForm.elements["password"];
+
+      document.getElementById('name').value=name.value;
+
+      users.name=name.value;
+      users.email=email.value;
+      users.phone=phone.value;
+      users.password=password.value;
+
+      let userActual=JSON.stringify(users);
+      sessionStorage.setItem("users", userActual);
+      localStorage.setItem("users",userActual);
+
+  
+  
+  });
+    
+  });
+
+  let exit = document.getElementById(`exit`);
+
+  exit.addEventListener(`click`, () =>{
+    localStorage.clear();
+  })
+
+
+
+}
+
+
+
+
+    else{
+
+      console.log("Json");
+
+    
+
+    let urlUsers = "/assets/json/users.json";
 fetch(urlUsers)
   .then(response => response.json())
   .then(data => {
     // Obtener el usuario con ID 2
-    const user = data.users.find(user => user.id === 2);
+    const user = data.users.find(user => user.id === 1);
 
     let userActual=JSON.stringify(user);
-    sessionStorage.setItem("data", userActual);
+    localStorage.setItem("users", userActual);
 
     // Mostrar los datos del usuario en los campos de entrada correspondientes
     document.getElementById('name').value = user.name;
@@ -91,7 +195,7 @@ fetch(urlUsers)
     refForm.addEventListener(`submit`, (event)=>{
       event.preventDefault();
  //Recuperar la sessionstorage
-     let  user = sessionStorage.getItem("data");
+     let  user = localStorage.getItem("users");
       let users= JSON.parse(user);
     
       const name =refForm.elements["name"];
@@ -107,8 +211,8 @@ fetch(urlUsers)
       users.password=password.value;
 
       let userActual=JSON.stringify(users);
-      sessionStorage.setItem("data", userActual);
-      localStorage.setItem("data",userActual);
+      sessionStorage.setItem("users", userActual);
+      localStorage.setItem("users",userActual);
 
   
   
@@ -122,7 +226,7 @@ fetch(urlUsers)
     localStorage.clear();
 
   })
-
+    }
   
 
 
