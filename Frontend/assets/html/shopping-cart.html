@@ -15,25 +15,99 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
         <link rel="stylesheet" href="/assets/css/common.css">
-
-        <title>Productos</title>
+        <link rel="stylesheet" href="../css/shopping-cart.css">
+        <title>Carrito</title>
     </head>
     <body>
         <nav></nav>
         
-        <div class="alert alert-primary m-0 text-primary" role="alert">
+        <!---
+            <div class="alert alert-primary m-0 text-primary" role="alert">
             A simple primary alert—check it out!
         </div>
-
+        ---->
         <header></header>
 
-        <main></main>
+        <main class="container-fluid">
+            <div class="row justify-content-center">
+                <!--------- Titulo ------>
+                <div class="col-lg-12 col-sm-12 p-4 text-center tittle-container">
+                    <h2 class="lh-sm">Carrito de Compras</h2>
+                </div>
+                <div class="col-12 text-center p-2">
+                    <div class="row">
+                        <!----- Contenedor de Productos ---->
+                        <div id="products-list" class="col-lg-8 col-sm-12 h-50 px-auto products-container">
+                            <div class="product-box my-4 bg-beige">
+                               <div class="row justify-content-center">
+                                <!--------- Columna de Imagen Producto--------->
+                                <div class="col col-lg-4">
+                                    <div>
+                                        <img src="" alt="">
+                                    </div>
+                                </div>
+                                <!------- Columna Informacion de Producto-------->
+                                <div class="col col-lg-8">
+                                    <div class="row justify-content-center">
+                                        <div class="col-12 col-lg-12">
+                                            <h4>Croquetas Pedigree</h4>
+                                        </div>
+                                        <div class="col col-lg-12">
+                                            <p>Itaque impedit veritatis odit dolorum ipsam officiis? Voluptatibus dolor dolore ipsa, quas blanditiis et, incidunt consequuntur aliquam perspiciatis nobis molestias error nam.</p>
+                                        </div>
+                                        <div class="col-12 col-lg-12">
+                                            <div class="row justify-content-center">
+                                                <div class="col col-lg-6 col-sm-12">
+                                                    <p>Precio Individual: $<span>10</span></p>
+                                                </div>
+                                                <div class="col col-lg-6 col-sm-12">
+                                                    <p>Cantidad <span>5</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               </div>
+                            </div>
+                            <div class="product-box my-4 bg-beige">Producto 2</div>
+                            <div class="product-box my-4 bg-beige">Producto 3</div>
+                            <div class="product-box my-4 bg-beige">Producto 4</div>
+                            <div class="product-box my-4 bg-beige">Producto 5</div>
+                        </div>
+                        <!--------Botones de compra -------->
+                        <div class="col-lg-4 col-sm-12 pt-4 h-100 buttons-container">
+                            <aside>
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-12 col-sm-6 my-1 info">
+                                        <p>Productos: <span id="piecesProducts">6</span></p>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-6 my-1 info">
+                                        <p>Total: $<span class="totalPrice">100.00</span></p>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-6 my-1 info">
+                                        <button class="btn btn-blue">Crear Orden</button>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-6 my-1 col-md-6 info">
+                                        <button class="btn btn-blue">Vaciar Carrito</button>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12 my-4 col mx-auto">
+                                        <button class="btn btn-purple">Regresar</button>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
 
         <footer></footer>
         
         <!-- Loading Navbar and Footer with Jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="/assets/js/common.js"></script>
+        <script src="../js/shopping-cart.js"></script>
 
         <!-- Bootstrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>

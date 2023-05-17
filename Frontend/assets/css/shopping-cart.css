@@ -1,0 +1,31 @@
+.products-container{
+    max-height: 80vh;
+    overflow: scroll;
+}
+
+.buttons-container button {
+    font-size: 1.2rem;
+}
+
+.product-box{
+    /*background-color: brown;*/
+    min-height: 280px;
+    max-width: 84%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.info{
+    width: 14rem;
+}
+/*
+@media (max-width: 992px) {
+    .tittle-container{
+        position: absolute;
+    }
+    .product-box{
+        position: relative;
+        top: 65px;
+    }
+  }
+*/
