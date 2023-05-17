@@ -120,7 +120,9 @@ loginForm.addEventListener('submit', (eventLogin)=>{
 
     if(validatedFormResultFlag.email && validatedFormResultFlag.password){
         if( checkLoginUser(email, password) ){
-            setTimeout(()=>{window.location.href = "https://petzonalize.netlify.app/";}, 1500)
+            setTimeout(()=>{
+                window.location.href = 'profile.html';
+        }, 1500)
             alert("Bienvenido de nuevo");
         }
         else{
@@ -226,7 +228,7 @@ const creatingUserAccount = () => {
 // ----------------------Boton Formulario
 // La ingresar o registrarse, el botón redirigirá el usario a la página "profile"
 // si los campos del formulario son válidos
-
+/*
 document.getElementById('login-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita que el formulario se envíe por defecto
     let inputsValidos = true;
@@ -243,3 +245,4 @@ document.getElementById('sing-up-form').addEventListener('submit', function(even
       window.location.href = 'profile.html';
     }
   });
+  */
