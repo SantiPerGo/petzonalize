@@ -23,7 +23,7 @@ fetch(urlUsers)
   .then(response => response.json())
   .then(data => {
     // Obtener el usuario con ID 2
-    const user = data.users.find(user => user.id === 1);
+    const user = data.users.find(user => user.id === 2);
 
     let userActual=JSON.stringify(user);
     sessionStorage.setItem("data", userActual);
@@ -46,7 +46,7 @@ fetch(urlUsers)
     let estadoAdmin;
 
     // Obtener los privilegios del usuario desde el JSON
-    const usuario = usuariosJson.users.find(user => user.id === 2);
+    const usuario = usuariosJson.users.find(user => user.id === 4);
     if (usuario && usuario.privileges === "admin") {
       estadoAdmin = true;
     } else {
@@ -108,6 +108,7 @@ fetch(urlUsers)
 
       let userActual=JSON.stringify(users);
       sessionStorage.setItem("data", userActual);
+      localStorage.setItem("data",userActual);
 
   
   
@@ -115,7 +116,12 @@ fetch(urlUsers)
     
   });
   
-  
+  let exit = document.getElementById(`exit`);
+
+  exit.addEventListener(`click`, () =>{
+    localStorage.clear();
+
+  })
 
   
 
