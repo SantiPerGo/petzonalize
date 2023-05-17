@@ -49,7 +49,7 @@ if(localStorage.getItem("users")){
       referenciaUsuario.textContent = "Administrador";
       referenciaBoton.style.display = "block";
     } else {
-      referenciaUsuario.textContent = "Usuario";
+      referenciaUsuario.textContent = "";
       referenciaBoton.style.display = "none";
     }
 
@@ -152,7 +152,7 @@ fetch(urlUsers)
     let estadoAdmin;
 
     // Obtener los privilegios del usuario desde el JSON
-    const usuario = usuariosJson.users.find(user => user.id === 4);
+    const usuario = usuariosJson.users.find(user => user.id === 1);
     if (usuario && usuario.privileges === "admin") {
       estadoAdmin = true;
     } else {
@@ -163,8 +163,8 @@ fetch(urlUsers)
       referenciaUsuario.textContent = "Administrador";
       referenciaBoton.style.display = "block";
     } else {
-      referenciaUsuario.textContent = "Usuario";
-      referenciaBoton.style.display = "none";
+      referenciaUsuario.textContent = "";
+     
     }
   })
   .catch(error => {

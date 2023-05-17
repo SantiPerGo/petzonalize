@@ -78,3 +78,7 @@ body {
       max-height: 28px;
     }
   }
+
+  #estado{
+    text-align: center;
+  }
