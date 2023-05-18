@@ -49,34 +49,8 @@
                                                         <div class="invalid-feedback">
                                                             El nombre no debe contener carácteres especiales.
                                                         </div>
-                                                    </div>
-
-                                                    <div class="form-group my-3 mx-3">
-                                                        <label for="description" class="form-label"><b>Descripción:</b></label>
-                                                        <input type="text" class="form-control" id="" 
-                                                                placeholder="Descripción del producto" name="" required>
-                                                        <div class="invalid-feedback">
-                                                            Esto brinda información básica al cliente que puede aclarar sus dudas acerca del producto.  
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group my-3 mx-3">
-                                                        <label for="category" class="form-label"><b>Categoría:</b></label>
-                                                        <input type="text" class="form-control" id="" 
-                                                                placeholder="Categoría" name=""  required>
-                                                        <div class="invalid-feedback">
-                                                            Facilita al cliente encontrar productos.
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group my-3 mx-3">
-                                                        <label for="necklace" class="form-label"><b>Collares:</b></label>
-                                                        <input type="text" class="form-control" id="" placeholder="Collares" name="" required>
-                                                        <div class="invalid-feedback">
-                                                            Selecciona el tipo.
-                                                        </div>
-                                                    </div> 
-
+                                                    </div>                                                    
+                                                    
                                                     <div class="form-group my-3 mx-3">
                                                         <label for="quantity" class="form-label"><b>Cantidad:</b></label>
                                                         <input type="number" class="form-control" id="" placeholder="Cantidad" name="" required>
@@ -92,6 +66,113 @@
                                                             Ingrese precio.
                                                         </div>
                                                     </div> 
+
+                                                    <div class="form-group my-3 mx-3">
+                                                        <label for="customaizable" class="form-label"><b>Personalizable:</b></label>
+                                                        <br>
+                                                        <input type="checkbox" class="" id="" name="" required>Sí
+                                                        <input type="checkbox" class="" id="" name="" required>No
+                                                        <div class="invalid-feedback">
+                                                            Selecciona un tipo para poder asignar propiedades del producto.
+                                                        </div>
+                                                    </div>                                                     
+
+                                                    <div class="form-group my-3 mx-3">
+                                                        <label for="properties" class="form-label"><b>Categoría:</b></label>
+                                                        <br>
+                                                        <!-- Customatizable -->
+                                                        <input type="checkbox" class="" id="collar" name="" required> Collar
+                                                        <input type="checkbox" class="" id="bowl" name="" required> Plato
+                                                        <input type="checkbox" class="" id="nameplate" name="" required> Nombre de la placa
+                                                        <input type="checkbox" class="" id="pet" name="" required> Mascota
+                                                        <input type="checkbox" class="" id="pattern" name="" required> Patrón
+                                                        <input type="checkbox" class="" id="custome" name="" required> Otros
+
+                                                        <!-- No customatizable -->
+                                                        <input type="checkbox" class="" id="food" name="" required> Comida
+                                                        <input type="checkbox" class="" id="toys" name="" required> Juguetes
+                                                        <input type="checkbox" class="" id="cleaning" name="" required> Limpieza
+                                                        <input type="checkbox" class="" id="supplies" name="" required> Suministros
+                                                        <input type="checkbox" class="" id="health" name="" required> Salud
+
+                                                        <div class="invalid-feedback">
+                                                            Seleccione el tipo de productos que ofrecerá.
+                                                        </div>
+                                                    </div>
+
+                                                    <br>
+                                                    <br>
+                                                    
+                                                    <!-- Customizable -->
+                                                    <div>                                            
+
+                                                        <div class="form-group my-3 mx-3">
+                                                            <label for="properties" class="form-label"><b>Propiedades:</b></label>
+                                                            <br>
+                                                            <input type="checkbox" class="" id="color" name="" required>Color
+                                                            <input type="checkbox" class="" id="size" name="" required>Tamaño
+                                                            <input type="checkbox" class="" id="theme" name="" required>Tema
+                                                            <input type="checkbox" class="" id="material" name="" required>Material
+                                                            <input type="checkbox" class="" id="petname" name="" required>Nombre de la mascota
+                                                            <input type="checkbox" class="" id="petphone" name="" required>Teléfono
+                                                            <input type="checkbox" class="" id="shape" name="" required>Forma
+                                                            <input type="checkbox" class="" id="body" name="" required>Traje
+                                                            <input type="checkbox" class="" id="head" name="" required>Sombrero
+                                                            <div class="invalid-feedback">
+                                                                Selecciona un tipo para poder asignar propiedades del producto.
+                                                            </div>
+                                                        </div> 
+
+                                                        <div class="form-group my-3 mx-3">
+                                                            <label for="properties" class="form-label"><b>Material:</b></label>
+                                                            <br>
+                                                            <input type="checkbox" class="" id="" name="" required>Piel
+                                                            <input type="checkbox" class="" id="" name="" required>Nylon
+                                                            <div class="invalid-feedback">
+                                                                Seleccione el tipo de productos que ofrecerá.
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group my-3 mx-3">
+                                                            <label for="properties" class="form-label"><b>Tamaño:</b></label>
+                                                            <br>
+                                                            <input type="checkbox" class="" id="" name="" required>Pequeño
+                                                            <input type="checkbox" class="" id="" name="" required>Mediano
+                                                            <input type="checkbox" class="" id="" name="" required>Grande
+                                                            <div class="invalid-feedback">
+                                                                Seleccione un tamaño.
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group my-3 mx-3">
+                                                            <label for="properties" class="form-label"><b>Color:</b></label>
+                                                            <br>
+                                                            <input type="checkbox" class="" id="" name="" required>Negro
+                                                            <input type="checkbox" class="" id="" name="" required>Amarillo
+                                                            <input type="checkbox" class="" id="" name="" required>Rojo
+                                                            <input type="checkbox" class="" id="" name="" required>Azul
+                                                            <input type="checkbox" class="" id="" name="" required>Rosa
+                                                            <input type="checkbox" class="" id="" name="" required>Verde
+                                                            <div class="invalid-feedback">
+                                                                Seleccione un tamaño.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <br>
+                                                    <br>
+                                                    <!-- Not customizable -->
+                                                    <div>
+                                                        <div class="form-group my-3 mx-3">
+                                                            <label for="description" class="form-label"><b>Descripción:</b></label>
+                                                            <input type="text" class="form-control" id="" 
+                                                                    placeholder="Descripción del producto" name="" required>
+                                                            <div class="invalid-feedback">
+                                                                Esto brinda información básica al cliente que puede aclarar sus dudas acerca del producto.  
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>                                    
                                         </div>
@@ -108,12 +189,14 @@
                                                     <button id="" type="submit" class="btn btn-blue my-2">Cargar imagen</button>
                                                 </div>
                                                 <div class="form-group my-3 mx-3">
-                                                    Tipo:
-                                                </div>
-                                                <div>
-                                                    <img src="../img/product-form/icon-dog.png" class="icon" alt="">
-                                                    <img src="../img/product-form/icon-cat.png" class="icon" alt="">
-                                                </div>
+                                                    <label for="customaizable" class="form-label"><b>Tipo:</b></label>
+                                                    <br>
+                                                    <input type="checkbox" class="" id="" name="" required>Perro <img src="../img/product-form/icon-dog.png" class="icon" alt="">
+                                                    <input type="checkbox" class="" id="" name="" required>Gato <img src="../img/product-form/icon-cat.png" class="icon" alt="">
+                                                    <div class="invalid-feedback">
+                                                        Selecciona un tipo para poder asignar propiedades del producto.
+                                                    </div>
+                                                </div> 
 
                                             </div>                                    
                                         </div>
