@@ -10,11 +10,6 @@ main{
     margin: 0 auto;
 }
 
-body {
-    margin: 0;
-    padding-bottom: 0;
-}
-
 .was-validated :valid {
     border-color: #3A98B9 !important;
 }

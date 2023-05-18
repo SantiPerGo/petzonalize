@@ -18,6 +18,7 @@ body {
     background-color: var(--gray);
     font-size: calc(0.75rem + 1vw);
     font-family: 'Signika Negative', sans-serif;
+    margin-top: calc(4.4rem + 2.5vw);
 }
 
 /* Navbar and footer styles */
