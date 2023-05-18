@@ -102,7 +102,7 @@
         }, 
         {
             "id": 10,
-            "name": "Collar de Cuero",
+            "name": "Collar de Cuero Sintético",
             "category": "collar",
             "customizable": true,
             "price": 179,
@@ -112,7 +112,7 @@
                 "color": "blue",
                 "size": "normal",
                 "theme": "Estampado de Círculos",
-                "material": "leather"
+                "material": "synthetic leather"
             }
         },
         {
