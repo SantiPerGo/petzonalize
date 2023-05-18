@@ -16,7 +16,7 @@ const regExpFormVal = {
 	name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // texto 
 	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // correo@correo.domino
 	phone: /^\d{7,14}$/, // numeros de 7 a 14 digitos
-	password: /^.{4,12}$/ // caracteres de 4 a 12 digitos
+	password: /^.{4,25}$/ // caracteres de 4 a 12 digitos
 }
 //--------- Objeto de Validacion --------------
 const validatedFormResultFlag = {
@@ -118,21 +118,25 @@ loginForm.addEventListener('submit', (eventLogin)=>{
     const email = document.getElementById("input-email-login").value;
     const password = document.getElementById("input-password-login").value;
 
-    if(validatedFormResultFlag.email && validatedFormResultFlag.password){
-        if( checkLoginUser(email, password) ){
-            setTimeout(()=>{
-                window.location.href = 'profile.html';
-        }, 1500)
-            alert("Bienvenido de nuevo");
-        }
-        else{
-            alert("Correo o Contraseña incorrectos")
-        }
-    }
-    else{
-        console.log("something was wrong");
-    }
-
+    fetch("/assets/json/users.json")
+        .then(res => res.json())
+        .then(usersResponse =>{
+            
+            if(validatedFormResultFlag.email){
+                if( checkLoginUser(email, password, usersResponse) ){
+                    setTimeout(()=>{
+                        window.location.href = 'profile.html';
+                }, 1500)
+                    alert("Bienvenido de nuevo");
+                }
+                else{
+                    alert("Correo o Contraseña incorrectos")
+                }
+            }
+            else{
+                console.log("something was wrong");
+            }
+        })
 });
 
 //-------------- Cambio de Vista -------------------
@@ -173,9 +177,8 @@ const checkEmailExist = (user) =>{
 }
 
 //-----------Comprobar Contraseña -----------
-const checkLoginUser = (email, password) =>{
-    if(localStorage.getItem("users")){
-        const usersDatabase = JSON.parse(localStorage.getItem("users"));
+const checkLoginUser = (email, password, usersDatabase) =>{
+    if(usersDatabase){
         return usersDatabase.users.some( registeredUser => registeredUser.email == email && registeredUser.password === password );
     }
     else{
