@@ -29,6 +29,18 @@ $(document).ready(() => {
         setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
         sessionStorage.removeItem("emliminated-account");
     }
+    const sessionStatus = sessionStorage.getItem("not-account")
+
+    if(sessionStatus === "true") {
+        alertElement.removeClass("alert-success");
+        alertElement.removeClass("text-success");
+        alertElement.addClass("alert-danger");
+        alertElement.addClass("text-danger");
+        alertElement.text("inicia sesion");
+        alertElement.slideDown(250);
+        setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+        sessionStorage.removeItem("emliminated-account");
+    }
 });
 
 const changeToProductsPage = type => {
