@@ -11,103 +11,53 @@ const loginContainer = document.getElementById("login-container");
 const signupContainer = document.getElementById("signup-container");
 const recoverContainer = document.getElementById("recover-container");
 
+//---------- Crear objeto usuario logueado ------
+const setUserLoggedIn = (userObtained) => {
 
-const regExpFormVal = {
-	name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // texto 
-	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // correo@correo.domino
-	phone: /^\d{7,14}$/, // numeros de 7 a 14 digitos
-	password: /^.{4,25}$/ // caracteres de 4 a 12 digitos
+    if( localStorage.getItem("user-logged-in") ){
+        localStorage.setItem("user-logged-in", JSON.stringify(userObtained));
+    }
+    else{
+        localStorage.setItem("users-logged-in", JSON.stringify(userObtained));
+    }
 }
-//--------- Objeto de Validacion --------------
-const validatedFormResultFlag = {
-    name: false,
-    email: false,
-    phone: false,
-    password: false
-}
+
+
 //--------- Limpiar campos --------------
-const clearSignup = ()=>{
+
+const clearInputs = ()=>{
     singUpFormInputs.forEach((input)=>{
         input.value = '';
     })
 }
 
-
-//--------- Identificar tipo de campo -----------
-const getInputIdentify = (props) =>{
-    if(props.name === 'signup-name'){
-        validateInput(regExpFormVal.name, props, 'name');
-    }
-    else if(props.name === 'signup-email'){
-        validateInput(regExpFormVal.email, props, 'email');
-    }
-    else if(props.name === 'signup-phone'){
-        validateInput(regExpFormVal.phone, props, 'phone');
-    }
-    else if(props.name === 'signup-password'){
-        validateInput(regExpFormVal.password, props, 'password');
-    }
-    else if(props.name === 'signup-password-2'){
-        matchPasswords(props);
-    }
-    else if(props.name === 'login-email'){
-        validateInput(regExpFormVal.email, props, 'email');
-    }
-    else if(props.name === 'login-password'){
-        validateInput(regExpFormVal.password, props, 'password');
-    }
-}
-
-// -------- Validar campo seleccionado ----------------
-const validateInput = (validatorType, input, inputIdentity) => {
-	//if(input.value.match(validatorType)){
-    if(validatorType.test(input.value)){
-        validatedFormResultFlag[inputIdentity] |= true;
-        input.classList.remove('is-invalid'); 
-        input.classList.add('is-valid'); // 
-        //console.log(`The input ${inputIdentity} is OK: ${validatedFormResultFlag[inputIdentity]}`);
-	} 
-    else {
-        validatedFormResultFlag[inputIdentity] &= false;
-        input.classList.remove('is-valid');
-        input.classList.add('is-invalid');
-		//console.warn(`The input ${inputIdentity} is not OK: ${validatedFormResultFlag[inputIdentity]}`);
-	}
-}
-
 //--------- Comparar contraseñas -------------------
-const matchPasswords = (input)=>{
+const matchPasswords = ()=>{
     const firstPassword = document.getElementById("input-signup-password");
-    if(input.value === firstPassword.value){
-        validatedFormResultFlag['password'] |= true;
-        input.classList.remove('is-invalid'); 
-        input.classList.add('is-valid'); // 
+    const secondPassword = document.getElementById("input-password-confirm-register");
+    if(secondPassword.value === firstPassword.value){
+        return true;
         
     }
     else{
-        validatedFormResultFlag['password'] &= false;
-        input.classList.remove('is-valid');
-        input.classList.add('is-invalid');
+        secondPassword.value = '';
+        return false;
     }
 }
-
-
-//---------- Leer tecla en un campo -------------------
-singUpFormInputs.forEach((input)=>{
-    input.addEventListener('keyup', (inputProps)=>{
-        getInputIdentify(inputProps.target);
-    });
-});
 
 // ----- Escucha cuando el usuario se registre ------
 singUpForm.addEventListener('submit', (submitButton)=>{
     submitButton.preventDefault();
+    singUpForm.classList.add('was-validated');
+    const secondPassword = document.getElementById("input-password-confirm-register");
 
-    if(validatedFormResultFlag.name && validatedFormResultFlag.phone && validatedFormResultFlag.email && validatedFormResultFlag.password ){
-        creatingUserAccount();
-    }
-    else{
-        prompt("Verifique que haya rellenado el formulario correctamente");
+    if( singUpForm.classList.contains('was-validated')){
+        if( matchPasswords() ){
+            creatingUserAccount();
+        }
+        else{
+            secondPassword.value = '';
+        }
     }
 });
 
@@ -117,20 +67,22 @@ loginForm.addEventListener('submit', (eventLogin)=>{
 
     const email = document.getElementById("input-email-login").value;
     const password = document.getElementById("input-password-login").value;
+    loginForm.classList.add('was-validated');
 
     fetch("/assets/json/users.json")
         .then(res => res.json())
         .then(usersResponse =>{
-            
-            if(validatedFormResultFlag.email){
+            if( loginForm.classList.contains("was-validated")){
                 if( checkLoginUser(email, password, usersResponse) ){
+                    const userObtained = getUserFromDataBase(email, password, usersResponse);
+                    setUserLoggedIn(userObtained);
                     setTimeout(()=>{
-                        window.location.href = 'profile.html';
+                       window.location.href = 'profile.html';
                 }, 1500)
                     alert("Bienvenido de nuevo");
                 }
                 else{
-                    alert("Correo o Contraseña incorrectos")
+                    clearInputs();
                 }
             }
             else{
@@ -175,6 +127,23 @@ const checkEmailExist = (user) =>{
         return false;
     }
 }
+//----------- Obtener Usuario -----------
+const getUserFromDataBase = (email, password, usersDatabase) =>{
+    let userFound = {};
+    if(usersDatabase){
+       
+        usersDatabase.users.some( registeredUser => {
+            const isUser = registeredUser.email == email && registeredUser.password === password;
+            userFound = registeredUser;
+            return isUser;
+        });
+    }
+    else{
+       userFound = {};
+    }
+    return userFound;
+}
+
 
 //-----------Comprobar Contraseña -----------
 const checkLoginUser = (email, password, usersDatabase) =>{
@@ -213,7 +182,7 @@ const creatingUserAccount = () => {
             users = JSON.parse(localStorage.getItem("users"));
             users.users.push(user);
             localStorage.setItem("users", JSON.stringify(users));
-            clearSignup();
+            clearInputs();
             window.location.reload()
             console.log(users);
         }
