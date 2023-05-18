@@ -1,5 +1,5 @@
 .products-container{
-    max-height: 80vh;
+    max-height: 60vh;
     overflow: scroll;
 }
 
@@ -18,14 +18,9 @@
 .info{
     width: 14rem;
 }
+
 /*
 @media (max-width: 992px) {
-    .tittle-container{
-        position: absolute;
-    }
-    .product-box{
-        position: relative;
-        top: 65px;
-    }
-  }
+
+}
 */
