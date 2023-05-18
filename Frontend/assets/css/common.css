@@ -18,7 +18,7 @@ body {
     background-color: var(--gray);
     font-size: calc(0.75rem + 1vw);
     font-family: 'Signika Negative', sans-serif;
-    margin-top: calc(4.4rem + 2.5vw);
+    margin-top: calc(3rem + 4vw);
 }
 
 /* Navbar and footer styles */
@@ -32,12 +32,17 @@ nav {
     border-bottom: .5rem solid var(--brown);
 }
 
+nav .bi {
+    font-size: calc(1rem + 2vw);
+    padding: 0;
+}
+
 footer {
     border-top: .5rem solid var(--brown);
 }
 
 #nav-icon {
-    width: 15rem;
+    width: calc(5rem + 20vw);
 }
 
 .nav-link {
@@ -56,21 +61,25 @@ footer {
 
 .shopping-cart .shopping-cart-counter {
     position: absolute;
-    top: 3.5rem;
-    right: 4.75rem;
-    padding: 0.1rem 0.5rem;
+    top: calc(1.5rem + 2vw);
+    right: calc(3rem + 2vw);
+    padding: calc(0.1rem + 0.1vw) calc(0.35rem + 0.25vw);
     border-radius: 50%;
     background: var(--purple);
     color: var(--gray);
-    font-size: calc(0.5rem + 0.75vw);
+    font-size: calc(0.5rem + 0.5vw);
 }
 
 @media (max-width: 767.98px) {
     .shopping-cart .shopping-cart-counter {
-        top: 67%;
-        right: 43.5%;
-        padding: 0.25rem 0.5rem;
-        font-size: calc(0.25rem + 2vw);
+        top: calc(12.5rem + 10vw);
+        right: 45vw;
+        padding: calc(0.1rem + 0.1vw) calc(0.4rem + 0.4vw);
+        font-size: calc(0.5rem + 1.5vw);
+    }
+
+    nav .bi {
+        font-size: calc(2rem + 2vw);
     }
 }
 
