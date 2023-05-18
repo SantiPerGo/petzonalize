@@ -24,3 +24,47 @@
 
 }
 */
+
+
+/* Estos estilos corresponden a los botones
+y disposición de los mismos para que sea responsivo
+*/
+
+ion-icon {
+    color: #73628A;
+    font-size: 35px;
+  }
+
+
+ #cantidadproductos {
+    display: flex;
+    align-items: center;
+  }
+  
+  .button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .number-display {
+    padding: 0 25px;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 3px;
+    margin: 0 5px;
+  }
+
+  
+@media screen and (max-width: 768px) {
+    .button-icon {
+      padding: 3px;
+    }
+    
+    .number-display {
+      padding: 0 10px;
+    }
+  }
