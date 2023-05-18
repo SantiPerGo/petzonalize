@@ -17,14 +17,14 @@
   })
 })
 
-localStorage.getItem("user-loged")
+localStorage.getItem("users-logged-in")
 const alertElement = $("#alert");
 alertElement.hide();
 
 
-if(localStorage.getItem("user-loged")){
+if(localStorage.getItem("users-logged-in")){
   console.log("localStorage");
-  let user = JSON.parse(localStorage.getItem("user-loged"));
+  let user = JSON.parse(localStorage.getItem("users-logged-in"));
   //user=user.users;
   console.log(user);
     // Mostrar los datos del usuario en los campos de entrada correspondientes
@@ -81,8 +81,8 @@ if(localStorage.getItem("user-loged")){
     refForm.addEventListener(`submit`, (event)=>{
       event.preventDefault();
  //Recuperar la sessionstorage
-     let  user = localStorage.getItem("users");
-      let users= JSON.parse(user.users);
+     let  user = localStorage.getItem("users-logged-in");
+      let users= JSON.parse(user);
     
       const name =refForm.elements["name"];
       const email =refForm.elements["email"];
@@ -97,9 +97,13 @@ if(localStorage.getItem("user-loged")){
       users.password=password.value;
 
       let userActual=JSON.stringify(users);
-      sessionStorage.setItem("user-loged", userActual);
-      localStorage.setItem("user-loged",userActual);
+      sessionStorage.setItem("users-logged-in", userActual);
+      localStorage.setItem("users-logged-in",userActual);
 
+      alertElement.text("¡Datos actualizados exitosamente!");
+      alertElement.slideDown(250);
+      setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+      sessionStorage.removeItem("emliminated-account");
   
   
   });
@@ -109,7 +113,7 @@ if(localStorage.getItem("user-loged")){
   let exit = document.getElementById(`exit`);
 
   exit.addEventListener(`click`, () =>{
-    localStorage.clear();
+    localStorage.removeItem("users-logged-in");
   });
 // constantes de botones
   const deleter = document.getElementById(`boom`);
@@ -118,7 +122,7 @@ if(localStorage.getItem("user-loged")){
 
   // boton eliminar cuenta
   deleter.addEventListener(`click`, () =>{
-   // localStorage.clear();
+   
    completeDelete.style.display=`inline`;
    cancel.style.display=`inline`;
    deleter.style.display=`none`;
@@ -126,7 +130,7 @@ if(localStorage.getItem("user-loged")){
 
   // boton cancelar
   cancel.addEventListener(`click`, () =>{
-    // localStorage.clear();
+    //localStorage.clear();
     completeDelete.style.display=`none`;
     cancel.style.display=`none`;
     deleter.style.display=`inline`;
@@ -136,10 +140,10 @@ if(localStorage.getItem("user-loged")){
 // boton borrar cuenta definitivamente
  const refForm =document.forms["edit-form"];
 completeDelete.addEventListener(`click`, (event) =>{
-    //event.preventDefault();
+    event.preventDefault();
     
     const password =refForm.elements["password"].value;
-    let compare = localStorage.getItem("user-loged");
+    let compare = localStorage.getItem("users-logged-in");
     compare=JSON.parse(compare)
     compare=compare.password;
     console.log(password);
@@ -151,18 +155,17 @@ completeDelete.addEventListener(`click`, (event) =>{
 
     if(password == compare) {
 
-      alertElement.text("Cuenta eliminada");
+      
       alertElement.slideDown(250);
 
-      localStorage.clear();
+      localStorage.removeItem("users-logged-in");
       sessionStorage.setItem("emliminated-account", "true");
 
       location.assign("../../index.html")
 
   }else{
 
- 
-    alertElement.text("Cuenta eliminada");
+
     alertElement.slideDown(250);
 
       alertElement.removeClass("alert-success");
@@ -180,12 +183,8 @@ completeDelete.addEventListener(`click`, (event) =>{
 
 
 
-    else{
-
-      console.log("Json");
-
-    
-
+    else{    
+console.log("Else")
     let urlUsers = "/assets/json/users.json";
 fetch  (urlUsers)
   .then(response => response.json())
@@ -194,7 +193,7 @@ fetch  (urlUsers)
     const user = data.users.find(user => user.id === 1);
 
     let userActual=JSON.stringify(user);
-    localStorage.setItem("user-loged", userActual);
+    localStorage.setItem("users-logged-in", userActual);
 
     // Mostrar los datos del usuario en los campos de entrada correspondientes
     document.getElementById('name').value = user.name;
@@ -205,10 +204,10 @@ fetch  (urlUsers)
     alertElement.text("Cuenta eliminada");
     alertElement.slideDown(250);
 
-    localStorage.clear();
+  
     sessionStorage.setItem("not-account", "true");
 
-    //location.assign("../../index.html")
+    location.assign("../../index.html")
 
   });
 
@@ -223,7 +222,7 @@ fetch  (urlUsers)
   let exit = document.getElementById(`exit`);
 
   exit.addEventListener(`click`, () =>{
-    localStorage.clear();
+    localStorage.removeItem("users-logged-in");
 
   })
     
