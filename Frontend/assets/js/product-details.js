@@ -31,3 +31,10 @@ $(document).ready(() => {
     
   }
 });
+
+let input = document.querySelector(".circle");
+input.addEventListener("mouseover", aplicarFocus);
+
+function aplicarFocus() {
+  input.focus();
+}
