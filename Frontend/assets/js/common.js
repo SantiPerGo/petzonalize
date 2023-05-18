@@ -8,7 +8,7 @@ $(document).ready(function(){
         if(shoppingCart !== null) {
             const products = JSON.parse(shoppingCart);
             const shoppingCartCounter = $("#shopping-cart-counter");
-            shoppingCartCounter.text(products.length);
+            shoppingCartCounter.text(products[0].total);
             shoppingCartCounter.removeClass("d-none");
         }
     });

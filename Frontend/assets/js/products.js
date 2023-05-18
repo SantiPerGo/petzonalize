@@ -35,16 +35,13 @@ const createProductsCards = products => {
         increaseButton.click(() => {
           let value = parseInt(productQuantity.val());
 
-          const shoppingCart = localStorage.getItem("shopping-cart");
-          const products = shoppingCart !== null ? JSON.parse(shoppingCart) : [];
-          
           if(isNaN(value))
             value = 1;
           else {
             value++;
             decreaseButton.prop('disabled', false);
 
-            if(value >= stock || (products.length + value) >= 10)
+            if(value >= stock || (getShoppingCartLength() + value) >= 10)
               increaseButton.prop('disabled', true);
           } 
 
@@ -73,10 +70,27 @@ const createProductsCards = products => {
 
         buyButton.on('click', () => showQuantityButtons(product, buyButton, seeProductButton,
           quantityGroup, productQuantity, increaseButton, decreaseButton));
-        seeProductButton.on('click', () => saveProductInStorage(product));
-      } else
-        card.find('[id*="product-see-more"]').click(() => saveProductInStorage(product));
-      
+        seeProductButton.on('click', () => {
+          if(getShoppingCartLength() >= 10) {
+            buyButton.prop('disabled', true);
+            seeProductButton.prop('disabled', true);
+            seeProductButton.text("¡Carrito Lleno!");
+          } else       
+            saveProductInStorage(product);
+        });
+      } else {
+        const buyButton = card.find('[id*="product-buy"]');
+        const seeProductButton = card.find('[id*="product-see-more"]');
+
+        card.find('[id*="product-see-more"]').click(() => { 
+          if(getShoppingCartLength() >= 10) {
+            buyButton.prop('disabled', true);
+            seeProductButton.prop('disabled', true);
+            seeProductButton.text("¡Carrito Lleno!");
+          } else       
+            saveProductInStorage(product);
+        });
+      }
     }
 
     // Deleting default card items
@@ -91,18 +105,19 @@ const showQuantityButtons = (product, buyButton, seeProductButton,
   buyButton.text("Aceptar");
   seeProductButton.text("Cancelar");
 
-  const shoppingCart = localStorage.getItem("shopping-cart");
-  const products = shoppingCart !== null ? JSON.parse(shoppingCart) : [];
-  if(products.length >= 9) {
+  const shoppingCartLength = getShoppingCartLength();
+
+  if(shoppingCartLength >= 9) {
     increaseButton.prop('disabled', true);
   } else
     increaseButton.prop('disabled', false);
 
-  if(products.length >= 10) {
+  if(shoppingCartLength >= 10) {
     buyButton.prop('disabled', true);
     seeProductButton.prop('disabled', true);
     quantityGroup.addClass("d-none");
     buyButton.text("¡Carrito Lleno!");
+    seeProductButton.text("Ver más");   
   }
 
   buyButton.off('click');
@@ -111,14 +126,13 @@ const showQuantityButtons = (product, buyButton, seeProductButton,
     seeProductButton.prop('disabled', true);
     quantityGroup.addClass("d-none");
 
-    const shoppingCart = localStorage.getItem("shopping-cart");
-    const products = shoppingCart !== null ? JSON.parse(shoppingCart) : [];
-
-    if(products.length < 10 && (products.length + parseInt(productQuantity.val())) <= 10) {
+    if(shoppingCartLength < 10 && (shoppingCartLength + parseInt(productQuantity.val())) <= 10) {
       addProductsToCart(product, parseInt(productQuantity.val()));
       buyButton.text("¡Agregado al Carrito!");
-    } else
+    } else {
       buyButton.text("¡Carrito Lleno!");
+      seeProductButton.text("Ver más");   
+    }
   });
 
   seeProductButton.off('click');
@@ -134,7 +148,16 @@ const showQuantityButtons = (product, buyButton, seeProductButton,
       quantityGroup, productQuantity, increaseButton, decreaseButton));
     
     seeProductButton.off('click');
-    seeProductButton.on('click', () => saveProductInStorage(product));
+    seeProductButton.on('click', () => {
+      if(shoppingCartLength >= 10) {
+        buyButton.prop('disabled', true);
+        seeProductButton.prop('disabled', true);
+        quantityGroup.addClass("d-none");
+        buyButton.text("¡Carrito Lleno!");
+        seeProductButton.text("Ver más");      
+      } else       
+        saveProductInStorage(product);
+    });
   });
 };
 
@@ -148,6 +171,14 @@ const showErrorPage = state => {
   }
 };
 
+const getShoppingCartLength = () => {
+  const shoppingCart = localStorage.getItem("shopping-cart");
+  if(shoppingCart !== null)
+    return JSON.parse(shoppingCart)[0].total;
+  else
+    return 0;
+};
+
 // *********************************************************************************
 // Save product details in local storage
 // *********************************************************************************
@@ -159,15 +190,17 @@ const saveProductInStorage = product => {
 
 const addProductsToCart = (product, quantity) => {
   const shoppingCart = localStorage.getItem("shopping-cart");
-  const products = shoppingCart !== null ? JSON.parse(shoppingCart) : [];
+  const products = shoppingCart !== null ? JSON.parse(shoppingCart) : [{total: 0}];
 
-  for(let i = 0; i < quantity; i++)
-    products.push(product);
+  // Adding product with new property to the shopping cart
+  product["amount"] = quantity;
+  products.push(product);
+  products[0].total += quantity;
 
   localStorage.setItem("shopping-cart", JSON.stringify(products));
   
   const shoppingCartCounter = $("#shopping-cart-counter");
-  shoppingCartCounter.text(products.length);
+  shoppingCartCounter.text(products[0].total);
   shoppingCartCounter.removeClass("d-none");
 };
 
