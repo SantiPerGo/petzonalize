@@ -26,90 +26,130 @@
 
 <body>
     <nav></nav>
-
+    <div id="alert" class="alert alert-success m-0 text-success text-center" role="alert"></div>
     <header></header>
 
     <main>
-<!-- form-container -->
-<div id="form-container" class="container" id="edit-form" style="display: block;">
-    <div class="row justify-content-end">
-        <div class="col-12 col-md-8 col-lg-9 d-flex justify-content-end">
-            <form class="bg-beige my-5 needs-validation" novalidate id="edit-form" >
-                <div class="row text-center">
-                    <h1>Datos de perfil</h1>
-                    <p id="estado"></p>
-                </div>
-                <div class="row align-items-end">
-                    <div class="col-12 col-sm-12">
-                        <label for="name" class="form-label"><b>Nombre:</b></label>
-                        <div class="input-group">
-                            <input type="text" id="name" class="form-control" placeholder="Nombre y Apellidos"
-                                required readonly>
-                            <button class="btn btn-edit" data-field="name"><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"><i class="fa fa-pencil"></i></button>
+        <!-- form-container -->
+        <div id="form-container" class="container" id="edit-form" style="display: block;">
+            <div class="row justify-content-end">
+                <div class="col-12 col-md-8 col-lg-9 d-flex justify-content-end">
+                    <form class="bg-beige my-5 needs-validation" novalidate id="edit-form">
+                        <div class="row text-center">
+                            <h1>Datos de perfil</h1>
+                            <p id="estado"></p>
                         </div>
-                    </div>
-                    
-                </div>
-                <div class="row mt-3 ">
-                    <div class="col-12 col-sm-12">
-                        <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
-                        <div class="input-group">
-                            <input type="email" class="form-control" id="email" placeholder="Correo" required readonly>
-                            <button class="btn btn-edit" data-field="email"><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"><i class="fa fa-pencil"></i></button>
+                        <div class="row align-items-end">
+                            <div class="col-12 col-sm-12">
+                                <label for="name" class="form-label"><b>Nombre:</b></label>
+                                <div class="input-group">
+                                    <input type="text" id="name" class="form-control" placeholder="Nombre y Apellidos"
+                                        required readonly>
+                                    <button class="btn btn-edit" data-field="name">
+                                        <link
+                                            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+                                            rel="stylesheet"><i class="fa fa-pencil"></i>
+                                    </button>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-                </div>
-
-                <div class="row mt-3 ">
-                    <div class="col-12 col-sm-12">
-                        <label for="phone" class="form-label"><b>Teléfono:</b></label>
-                        <div class="input-group">
-                            <input type="number" id="phone" class="form-control" placeholder="55 00 00 00" required readonly>
-                            <button class="btn btn-edit" data-field="phone"><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"><i class="fa fa-pencil"></i></button>
+                        <div class="row mt-3 ">
+                            <div class="col-12 col-sm-12">
+                                <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
+                                <div class="input-group">
+                                    <input type="email" class="form-control" id="email" placeholder="Correo" required
+                                        readonly>
+                                    <button class="btn btn-edit" data-field="email">
+                                        <link
+                                            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+                                            rel="stylesheet"><i class="fa fa-pencil"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    
-                </div>
 
-                <div class="row mt-3">
-                    <div class="col-12 col-sm-12">
-                        <label for="password" class="form-label"><b>Contraseña:</b></label>
-                        <div class="input-group">
-                            <input class="form-control" id="password" placeholder="*******" required readonly></textarea>
-                            <button class="btn btn-edit" data-field="password"><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"><i class="fa fa-pencil"></i></button>
+                        <div class="row mt-3 ">
+                            <div class="col-12 col-sm-12">
+                                <label for="phone" class="form-label"><b>Teléfono:</b></label>
+                                <div class="input-group">
+                                    <input type="number" id="phone" class="form-control" placeholder="55 00 00 00"
+                                        required readonly>
+                                    <button class="btn btn-edit" data-field="phone">
+                                        <link
+                                            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+                                            rel="stylesheet"><i class="fa fa-pencil"></i>
+                                    </button>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-                </div>
-                
-                <div class="row mt-3">
-                    <div class="col d-flex justify-content-center align-content-center">
-                        <button type="submit" class="btn btn-purple btn-save">Guardar</button>
-                    </div>
-                </div>
 
-                <div class="row mt-3">
-                    <div class="col d-flex justify-content-center align-content-center">
-                        <button id="boton-admin" type="submit" class="btn btn-purple">Añadir producto</button>
-                    </div>
-                </div>
+                        <div class="row mt-3">
+                            <div class="col-12 col-sm-12">
+                                <label for="password" class="form-label"><b>Contraseña:</b></label>
+                                <div class="input-group">
+                                    <input class="form-control" id="password" placeholder="*******" required
+                                        readonly></textarea>
+                                    <button class="btn btn-edit" data-field="password">
+                                        <link
+                                            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+                                            rel="stylesheet"><i class="fa fa-pencil"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="row mt-3">
-                    <div class="col d-flex justify-content-center align-content-center">
-                       <a href="../html/login.html"> <button id="exit" type="button" class="btn btn-purple"> Cerrar sesion</button></a>
-                    </div>
+                        <div class="row mt-3">
+                            <div class="col d-flex justify-content-center align-content-center">
+                                <button type="submit" class="btn btn-purple btn-save">Guardar</button>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col d-flex justify-content-center align-content-center">
+                                <button id="boton-admin" type="submit" class="btn btn-purple">Añadir producto</button>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col d-flex justify-content-center align-content-center">
+                                <a href="../html/login.html"> <button id="exit" type="button" class="btn btn-purple">
+                                        Cerrar sesion</button></a>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col d-flex justify-content-center align-content-center">
+                                <button id="boom" type="button" class="btn btn-purple"
+                                    style="display: inline;">¿Eliminar cuenta?</button>
+                            </div>
+                        </div>
+                        <div class="col mt-3">
+                            <div class="col d-flex justify-content-center align-content-center">
+                                <a href="#"> <button id="kaboom" type="button" class="btn btn-purple"
+                                    style=" display: none;">Eliminar
+                                    Definitivamente</button></a>
+                            </div>
+                        </div>
+                        <div class="col mt-3">
+                            <div class="col d-flex justify-content-center align-content-center">
+                                <button id="nope" type="submit" class="btn btn-purple"
+                                    style="display: none;">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
-</div>
-            
-       
+
+
     </main>
 
     <footer></footer>
 
     <!-- Loading Navbar and Footer with Jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/assets/js/common.js"></script>
     <script src="../js/profile.js"></script>
 
@@ -118,7 +158,7 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
 
- 
+
 </body>
 
 </html>

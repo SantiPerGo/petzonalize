@@ -18,19 +18,20 @@
 })
 
 localStorage.getItem("users")
+const alertElement = $("#alert");
+alertElement.hide();
 
-    
 
 if(localStorage.getItem("users")){
   console.log("localStorage");
   let user = JSON.parse(localStorage.getItem("users"));
-  user=user.users;
+  //user=user.users;
   console.log(user);
     // Mostrar los datos del usuario en los campos de entrada correspondientes
-    document.getElementById('name').value = user[1].name;
-    document.getElementById('email').value = user[2].email;
-    document.getElementById('phone').value = user[3].phone;
-    document.getElementById('password').value = user[4].password;
+    document.getElementById('name').value = user.name;
+    document.getElementById('email').value = user.email;
+    document.getElementById('phone').value = user.phone;
+    document.getElementById('password').value = user.password;
     const referenciaUsuario = document.getElementById("estado");
     const referenciaBoton = document.getElementById("boton-admin");
     let estadoAdmin;
@@ -81,7 +82,7 @@ if(localStorage.getItem("users")){
       event.preventDefault();
  //Recuperar la sessionstorage
      let  user = localStorage.getItem("users");
-      let users= JSON.parse(user);
+      let users= JSON.parse(user.users);
     
       const name =refForm.elements["name"];
       const email =refForm.elements["email"];
@@ -104,15 +105,78 @@ if(localStorage.getItem("users")){
   });
     
   });
-
+  // boton salir de sesison
   let exit = document.getElementById(`exit`);
 
   exit.addEventListener(`click`, () =>{
     localStorage.clear();
+  });
+// constantes de botones
+  const deleter = document.getElementById(`boom`);
+  const completeDelete= document.getElementById(`kaboom`);
+  const cancel= document.getElementById(`nope`);
+
+  // boton eliminar cuenta
+  deleter.addEventListener(`click`, () =>{
+   // localStorage.clear();
+   completeDelete.style.display=`inline`;
+   cancel.style.display=`inline`;
+   deleter.style.display=`none`;
   })
 
+  // boton cancelar
+  cancel.addEventListener(`click`, () =>{
+    // localStorage.clear();
+    completeDelete.style.display=`none`;
+    cancel.style.display=`none`;
+    deleter.style.display=`inline`;
+
+   })
+
+// boton borrar cuenta definitivamente
+ const refForm =document.forms["edit-form"];
+completeDelete.addEventListener(`click`, (event) =>{
+    //event.preventDefault();
+    
+    const password =refForm.elements["password"].value;
+    let compare = localStorage.getItem("users");
+    compare=JSON.parse(compare)
+    compare=compare.password;
+    console.log(password);
 
 
+//alert
+
+    setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+
+    if(password == compare) {
+
+      alertElement.text("Cuenta eliminada");
+      alertElement.slideDown(250);
+
+      localStorage.clear();
+      alertElement.removeClass("alert-success");
+      alertElement.removeClass("text-success");
+      alertElement.addClass("alert-danger");
+      alertElement.addClass("text-danger");
+      location.assign("../../index.html")
+
+  }else{
+
+ 
+    alertElement.text("Cuenta eliminada");
+    alertElement.slideDown(250);
+
+      alertElement.removeClass("alert-success");
+      alertElement.removeClass("text-success");
+      alertElement.addClass("alert-warning");
+      alertElement.addClass("text-warnind");
+      alertElement.text("Contraseña incorrecta Ingresa tu contraseña en el campo correspondiente");
+
+  }
+
+   })
+   
 }
 
 
@@ -131,7 +195,7 @@ fetch(urlUsers)
     // Obtener el usuario con ID 2
     const user = data.users.find(user => user.id === 1);
 
-    let userActual=JSON.stringify(data);
+    let userActual=JSON.stringify(user);
     localStorage.setItem("users", userActual);
 
     // Mostrar los datos del usuario en los campos de entrada correspondientes
