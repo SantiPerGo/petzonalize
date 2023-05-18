@@ -155,10 +155,8 @@ completeDelete.addEventListener(`click`, (event) =>{
       alertElement.slideDown(250);
 
       localStorage.clear();
-      alertElement.removeClass("alert-success");
-      alertElement.removeClass("text-success");
-      alertElement.addClass("alert-danger");
-      alertElement.addClass("text-danger");
+      sessionStorage.setItem("emliminated-account", "true");
+
       location.assign("../../index.html")
 
   }else{
@@ -176,7 +174,7 @@ completeDelete.addEventListener(`click`, (event) =>{
   }
 
    })
-   
+
 }
 
 

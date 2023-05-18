@@ -20,9 +20,26 @@ $(document).ready(() => {
         sessionStorage.removeItem("email-operation");
         sessionStorage.removeItem("email-status");
     }
-});
 
 const changeToProductsPage = type => {
     sessionStorage.setItem("pet-filter", type);
     window.location.href = "/assets/html/products.html";
 };
+
+
+const accountStatus = sessionStorage.getItem("emliminated-account")
+
+if(accountStatus == "true") {
+  
+    alertElement.text("Cuenta eliminada");
+    alertElement.slideDown(250);
+    setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+
+   
+        alertElement.removeClass("alert-success");
+        alertElement.removeClass("text-success");
+        alertElement.addClass("alert-danger");
+        alertElement.addClass("text-danger");
+        sessionStorage.clear();
+}
+});
