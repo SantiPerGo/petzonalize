@@ -20,3 +20,9 @@
 .scrollable-section {
   scrollbar-width: none; /* Oculta las barras de desplazamiento en navegadores que soportan la propiedad scrollbar-width */
 }
+
+#product-img {
+  background-color: var(--beige);
+  border: 0.25rem solid var(--brown);
+  border-radius: 1rem;
+}

@@ -27,3 +27,21 @@ $(document).ready(() => {
 
   }
 });
+$(document).ready(() => {
+  const product = JSON.parse(sessionStorage.getItem("product"));
+  if (product.customizable === true) {
+    document.getElementById("size-row").style.visibility = "visible";
+  } else {
+    document.getElementById("size-row").style.visibility = "hidden";
+
+  }
+});
+$(document).ready(() => {
+  const product = JSON.parse(sessionStorage.getItem("product"));
+  if (product.customizable === true) {
+    document.getElementById("color-row").style.visibility = "visible";
+  } else {
+    document.getElementById("color-row").style.visibility = "hidden";
+
+  }
+});
