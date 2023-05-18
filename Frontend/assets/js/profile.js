@@ -17,14 +17,14 @@
   })
 })
 
-localStorage.getItem("users")
+localStorage.getItem("user-loged")
 const alertElement = $("#alert");
 alertElement.hide();
 
 
-if(localStorage.getItem("users")){
+if(localStorage.getItem("user-loged")){
   console.log("localStorage");
-  let user = JSON.parse(localStorage.getItem("users"));
+  let user = JSON.parse(localStorage.getItem("user-loged"));
   //user=user.users;
   console.log(user);
     // Mostrar los datos del usuario en los campos de entrada correspondientes
@@ -97,8 +97,8 @@ if(localStorage.getItem("users")){
       users.password=password.value;
 
       let userActual=JSON.stringify(users);
-      sessionStorage.setItem("users", userActual);
-      localStorage.setItem("users",userActual);
+      sessionStorage.setItem("user-loged", userActual);
+      localStorage.setItem("user-loged",userActual);
 
   
   
@@ -139,7 +139,7 @@ completeDelete.addEventListener(`click`, (event) =>{
     //event.preventDefault();
     
     const password =refForm.elements["password"].value;
-    let compare = localStorage.getItem("users");
+    let compare = localStorage.getItem("user-loged");
     compare=JSON.parse(compare)
     compare=compare.password;
     console.log(password);
@@ -187,14 +187,14 @@ completeDelete.addEventListener(`click`, (event) =>{
     
 
     let urlUsers = "/assets/json/users.json";
-fetch(urlUsers)
+fetch  (urlUsers)
   .then(response => response.json())
   .then(data => {
     // Obtener el usuario con ID 2
     const user = data.users.find(user => user.id === 1);
 
     let userActual=JSON.stringify(user);
-    localStorage.setItem("users", userActual);
+    localStorage.setItem("user-loged", userActual);
 
     // Mostrar los datos del usuario en los campos de entrada correspondientes
     document.getElementById('name').value = user.name;
@@ -208,7 +208,7 @@ fetch(urlUsers)
     localStorage.clear();
     sessionStorage.setItem("not-account", "true");
 
-    location.assign("../../index.html")
+    //location.assign("../../index.html")
 
   });
 
