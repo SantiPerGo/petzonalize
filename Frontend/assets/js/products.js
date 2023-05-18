@@ -22,6 +22,8 @@ const createProductsCards = products => {
       card.find('[id*="product-img"]').attr('src', product.imgUrl);
       card.find('[id*="product-img"]').attr('alt', product.name);
       card.find('[id*="product-name"]').text(product.name);
+      const stock = product.stock === undefined ? "Variable" : product.stock;
+      card.find('[id*="product-stock"]').text(stock);
       const price = product.price === undefined ? "Variable" : `$${product.price}`;
       card.find('[id*="product-price"]').text(price);
 
@@ -38,7 +40,10 @@ const createProductsCards = products => {
           else {
             value++;
             decreaseButton.prop('disabled', false);
-          }
+
+            if(value == stock)
+              increaseButton.prop('disabled', true);
+          } 
 
           productQuantity.val(value);
         });
@@ -49,8 +54,10 @@ const createProductsCards = products => {
           if(isNaN(value) || (value <= 2)) {
             value = 1;
             decreaseButton.prop('disabled', true);
-          } else
+          } else {
+            increaseButton.prop('disabled', false);
             value--;
+          }
 
           productQuantity.val(value);
         });
