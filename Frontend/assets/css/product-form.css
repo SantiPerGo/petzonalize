@@ -36,3 +36,16 @@
 .scrollable-section {
   scrollbar-width: none;
 }
+
+/* Contenedores Productos Personalizables */
+/* #material-container{
+    visibility: hidden;
+
+}
+ */
+
+ #material{
+    background-color: var(--beige);
+    border: 0.25rem solid var(--brown);
+    border-radius: 1rem;
+ }
