@@ -26,3 +26,12 @@
   border: 0.25rem solid var(--brown);
   border-radius: 1rem;
 }
+
+#material, #size, #color {
+  background-color: var(--beige);
+  border: 0.25rem solid var(--brown);
+  border-radius: 1rem;
+}
+#product-name{
+  text-align: center;
+}
