@@ -25,44 +25,48 @@ const createProductsCards = products => {
       const price = product.price === undefined ? "Variable" : `$${product.price}`;
       card.find('[id*="product-price"]').text(price);
 
-      // Adding increase and decrease buttons methods
-      const increaseButton = card.find('[id*="increase"]');
-      const decreaseButton = card.find('[id*="decrease"]');
+      if(product.customizable === false) {
+        // Adding increase and decrease buttons methods
+        const increaseButton = card.find('[id*="increase"]');
+        const decreaseButton = card.find('[id*="decrease"]');
 
-      increaseButton.click(() => {
-        let value = parseInt(productQuantity.val());
-        
-        if(isNaN(value))
-          value = 1;
-        else {
-          value++;
-          decreaseButton.prop('disabled', false);
-        }
+        increaseButton.click(() => {
+          let value = parseInt(productQuantity.val());
+          
+          if(isNaN(value))
+            value = 1;
+          else {
+            value++;
+            decreaseButton.prop('disabled', false);
+          }
 
-        productQuantity.val(value);
-      });
-    
-      decreaseButton.click(() => {
-        let value = parseInt(productQuantity.val());
+          productQuantity.val(value);
+        });
+      
+        decreaseButton.click(() => {
+          let value = parseInt(productQuantity.val());
 
-        if(isNaN(value) || (value <= 2)) {
-          value = 1;
-          decreaseButton.prop('disabled', true);
-        } else
-          value--;
+          if(isNaN(value) || (value <= 2)) {
+            value = 1;
+            decreaseButton.prop('disabled', true);
+          } else
+            value--;
 
-        productQuantity.val(value);
-      });
+          productQuantity.val(value);
+        });
 
-      // Adding buy and see more buttons methods
-      const buyButton = card.find('[id*="product-buy"]');
-      const seeProductButton = card.find('[id*="product-see-more"]');
-      const quantityGroup = card.find('[id*="quantity-group"]');
-      const productQuantity = card.find('[id*="product-quantity"]');
+        // Adding buy and see more buttons methods
+        const buyButton = card.find('[id*="product-buy"]');
+        const seeProductButton = card.find('[id*="product-see-more"]');
+        const quantityGroup = card.find('[id*="quantity-group"]');
+        const productQuantity = card.find('[id*="product-quantity"]');
 
-      buyButton.on('click', () => showQuantityButtons(product, buyButton, seeProductButton,
-        quantityGroup, productQuantity, decreaseButton));
-      seeProductButton.on('click', () => saveProductInStorage(product));
+        buyButton.on('click', () => showQuantityButtons(product, buyButton, seeProductButton,
+          quantityGroup, productQuantity, decreaseButton));
+        seeProductButton.on('click', () => saveProductInStorage(product));
+      } else
+        card.find('[id*="product-see-more"]').click(() => saveProductInStorage(product));
+      
     }
 
     // Deleting default card items

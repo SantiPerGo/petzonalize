@@ -218,7 +218,7 @@
                         </div>
 
                         <div class="col-12 col-md-6 col-xl-4 d-none products" id="product-custom">
-                            <form class="card rounded-5 px-3 pt-1 pb-3 w-100 h-100" action="./product-details.html" onsubmit="saveProductInStorage(this)">
+                            <div class="card rounded-5 px-3 pt-1 pb-3 w-100 h-100">
                                 <div class="card-header rounded-top-5 bg-transparent row d-flex justify-content-center card-customizable">
                                     <div class="row">
                                         <p><b>Petzonalizable</b></p>
@@ -237,10 +237,12 @@
     
                                 <div class="card-footer bg-transparent">
                                     <div class="row mt-3">
-                                        <input type="submit" class="btn btn-purple" value="Ver más" />
+                                        <button class="btn btn-purple" id="product-see-more">
+                                            Ver más
+                                        </button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
 
