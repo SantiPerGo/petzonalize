@@ -34,6 +34,9 @@ const createProductsCards = products => {
 
         increaseButton.click(() => {
           let value = parseInt(productQuantity.val());
+
+          const shoppingCart = localStorage.getItem("shopping-cart");
+          const products = shoppingCart !== null ? JSON.parse(shoppingCart) : [];
           
           if(isNaN(value))
             value = 1;
@@ -41,7 +44,7 @@ const createProductsCards = products => {
             value++;
             decreaseButton.prop('disabled', false);
 
-            if(value == stock)
+            if(value >= stock || (products.length + value) >= 10)
               increaseButton.prop('disabled', true);
           } 
 
@@ -69,7 +72,7 @@ const createProductsCards = products => {
         const productQuantity = card.find('[id*="product-quantity"]');
 
         buyButton.on('click', () => showQuantityButtons(product, buyButton, seeProductButton,
-          quantityGroup, productQuantity, decreaseButton));
+          quantityGroup, productQuantity, increaseButton, decreaseButton));
         seeProductButton.on('click', () => saveProductInStorage(product));
       } else
         card.find('[id*="product-see-more"]').click(() => saveProductInStorage(product));
@@ -82,19 +85,40 @@ const createProductsCards = products => {
 };
 
 const showQuantityButtons = (product, buyButton, seeProductButton,
-  quantityGroup, productQuantity, decreaseButton) => {
+  quantityGroup, productQuantity, increaseButton, decreaseButton) => {
   
   quantityGroup.removeClass("d-none");
   buyButton.text("Aceptar");
   seeProductButton.text("Cancelar");
 
-  buyButton.off('click');
-  buyButton.on('click', () => {
-    addProductsToCart(product, productQuantity.val());
+  const shoppingCart = localStorage.getItem("shopping-cart");
+  const products = shoppingCart !== null ? JSON.parse(shoppingCart) : [];
+  if(products.length >= 9) {
+    increaseButton.prop('disabled', true);
+  } else
+    increaseButton.prop('disabled', false);
+
+  if(products.length >= 10) {
     buyButton.prop('disabled', true);
     seeProductButton.prop('disabled', true);
-    buyButton.text("¡Agregado al Carrito!");
     quantityGroup.addClass("d-none");
+    buyButton.text("¡Carrito Lleno!");
+  }
+
+  buyButton.off('click');
+  buyButton.on('click', () => {
+    buyButton.prop('disabled', true);
+    seeProductButton.prop('disabled', true);
+    quantityGroup.addClass("d-none");
+
+    const shoppingCart = localStorage.getItem("shopping-cart");
+    const products = shoppingCart !== null ? JSON.parse(shoppingCart) : [];
+
+    if(products.length < 10 && (products.length + parseInt(productQuantity.val())) <= 10) {
+      addProductsToCart(product, parseInt(productQuantity.val()));
+      buyButton.text("¡Agregado al Carrito!");
+    } else
+      buyButton.text("¡Carrito Lleno!");
   });
 
   seeProductButton.off('click');
@@ -107,7 +131,7 @@ const showQuantityButtons = (product, buyButton, seeProductButton,
 
     buyButton.off('click');
     buyButton.on('click', () => showQuantityButtons(product, buyButton, seeProductButton,
-      quantityGroup, productQuantity, decreaseButton));
+      quantityGroup, productQuantity, increaseButton, decreaseButton));
     
     seeProductButton.off('click');
     seeProductButton.on('click', () => saveProductInStorage(product));

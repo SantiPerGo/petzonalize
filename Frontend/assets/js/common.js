@@ -10,8 +10,6 @@ $(document).ready(function(){
             const shoppingCartCounter = $("#shopping-cart-counter");
             shoppingCartCounter.text(products.length);
             shoppingCartCounter.removeClass("d-none");
-    
-            console.log(shoppingCartCounter)
         }
     });
     
