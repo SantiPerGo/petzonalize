@@ -24,11 +24,12 @@ $(document).ready(() => {
     const accountStatus = sessionStorage.getItem("emliminated-account")
 
     if(accountStatus === "true") {
-        alertElement.text("Cuenta eliminada");
+        alertElement.text("¡Cuenta Eliminada con Éxito!");
         alertElement.slideDown(250);
         setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
         sessionStorage.removeItem("emliminated-account");
     }
+
     const sessionStatus = sessionStorage.getItem("not-account")
 
     if(sessionStatus === "true") {
@@ -36,10 +37,10 @@ $(document).ready(() => {
         alertElement.removeClass("text-success");
         alertElement.addClass("alert-danger");
         alertElement.addClass("text-danger");
-        alertElement.text("inicia sesion");
+        alertElement.text("¡Necesitas Iniciar Sesión para Acceder a tu Perfil!");
         alertElement.slideDown(250);
         setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-        sessionStorage.removeItem("emliminated-account");
+        sessionStorage.removeItem("not-account");
     }
 });
 
