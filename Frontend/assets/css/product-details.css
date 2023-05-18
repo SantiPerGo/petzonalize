@@ -1,0 +1,22 @@
+.container {
+  height: 100vh;
+}
+
+.fixed-section {
+  width: 300px;
+  height: 100vh;
+  background-color: #f1f1f1;
+}
+
+.scrollable-section {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.scrollable-section::-webkit-scrollbar {
+  display: none; /* Oculta las barras de desplazamiento en navegadores webkit */
+}
+
+.scrollable-section {
+  scrollbar-width: none; /* Oculta las barras de desplazamiento en navegadores que soportan la propiedad scrollbar-width */
+}

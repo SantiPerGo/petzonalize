@@ -1,13 +1,38 @@
-.form-container{
-    background-color: var(--beige);
-    border: 0.25rem solid var(--brown);
-    border-radius: 1rem;
+.form-container {
+  background-color: var(--beige);
+  border: 0.25rem solid var(--brown);
+  border-radius: 1rem;
 }
 
-.form-group{
-    text-align: left;
+.form-group {
+  text-align: left;
 }
 
-.icon{
-    height: 50px;
+.icon {
+  height: 50px;
+}
+
+/* Scroll Section */
+.container {
+  height: 100vh;
+}
+
+.fixed-section {
+  width: 300px;
+  height: 100vh;
+  background-color: #f1f1f1;
+}
+
+.scrollable-section {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+/* Ocultar barras de navegación al hacer scroll */
+.scrollable-section::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollable-section {
+  scrollbar-width: none;
 }
