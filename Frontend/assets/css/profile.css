@@ -78,19 +78,3 @@ main{
     text-align: center;
   }
 
-    /* Botones */
-    @media screen and (min-width: 768px) {
-        #boom, #save, #exit {
-          font-size: 23px;
-          width: 240px;
-          height: 80px;
-        }
-      }
-    
-      @media screen and (max-width: 767px) {
-        #boom, #save, #exit {
-          font-size: 14px;
-          width: 170px;
-          height: 40px;
-        }
-      }
