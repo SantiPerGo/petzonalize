@@ -7,19 +7,25 @@ $(document).ready(() => {
   const product = JSON.parse(sessionStorage.getItem("product"));
 
   if (product !== undefined && product !== null) {
-    if (product.customizable === true){
-      $("#product-custom").removeClass("d-none");
-      $("#product-not-custom").addClass("d-none");
-    } else {
-      $("#product-custom").addClass("d-none");
-      $("#product-not-custom").removeClass("d-none");
-    };
-    $("#product-img").attr("src", product.imgUrl);
-    $("#product-img").attr("alt", product.name);
-    $("#product-name").text(product.name);
+    const customProductForm = $("#product-custom");
+    const productForm = $("#product-not-custom");
 
-    if (product.customizable === false)
-      $("#product-description").text(product.description);
+    if (product.customizable === true){
+      customProductForm.removeClass("d-none");
+      productForm.addClass("d-none");
+
+      customProductForm.find('[id*="product-img"]').attr("src", product.imgUrl);
+      customProductForm.find('[id*="product-img"]').attr("alt", product.name);
+      customProductForm.find('[id*="product-name"]').text(product.name);
+    } else {
+      customProductForm.addClass("d-none");
+      productForm.removeClass("d-none");
+
+      productForm.find('[id*="product-img"]').attr("src", product.imgUrl);
+      productForm.find('[id*="product-img"]').attr("alt", product.name);
+      productForm.find('[id*="product-name"]').text(product.name);
+      productForm.find('[id*="product-description"]').text(product.description);
+    };
   } else {
     console.error("product doesnt exist");
     
