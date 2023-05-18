@@ -11,7 +11,8 @@
             "color": "orange",
             "size": "normal",
             "theme": "none",
-            "material": "nylon"
+            "material": "nylon",
+            "properties": ["color", "size", "theme", "material"]
         },
         {
             "id": 2,
@@ -24,7 +25,8 @@
             "color": "yellow",
             "size": "normal",
             "theme": "none",
-            "petname": "firulais"
+            "petname": "firulais",
+            "properties": ["color", "size", "theme", "petname"]
         },
         {
             "id": 3,
@@ -38,7 +40,8 @@
             "size": "normal",
             "shape": "paw",
             "petname": "firulais",
-            "petphone": "55123456"
+            "petphone": "55123456",
+            "properties": ["color", "size", "shape", "petname", "petphone"]
         },
         {
             "id": 4,
@@ -105,7 +108,8 @@
             "color": "orange",
             "size": "normal",
             "theme": "none",
-            "material": "leather"
+            "material": "leather",
+            "properties": ["color", "size", "theme", "material"]
         },
         {
             "id": 11,
@@ -119,7 +123,8 @@
             "size": "normal",
             "shape": "bone",
             "petname": "cheems",
-            "petphone": "55123456"
+            "petphone": "55123456",
+            "properties": ["color", "size", "shape", "petname", "petphone"]
         },
         {
             "id": 12,
@@ -133,7 +138,8 @@
             "size": "normal",
             "shape": "circle-double",
             "petname": "lomito",
-            "petphone": "55123456"
+            "petphone": "55123456",
+            "properties": ["color", "size", "shape", "petname", "petphone"]
         },
         {
             "id": 13,
@@ -147,7 +153,8 @@
             "size": "normal",
             "shape": "circle",
             "petname": "max",
-            "petphone": "55123456"
+            "petphone": "55123456",
+            "properties": ["color", "size", "shape", "petname", "petphone"]
         },
         {
             "id": 14,
@@ -161,7 +168,8 @@
             "size": "normal",
             "shape": "star",
             "petname": "doge",
-            "petphone": "55123456"
+            "petphone": "55123456",
+            "properties": ["color", "size", "shape", "petname", "petphone"]
         },
         {
             "id": 15,
