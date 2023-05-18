@@ -8,11 +8,12 @@
             "price": 179.99,
             "imgUrl": "/assets/img/products/customizable/customizable-collar-nylon.png",
             "stock": 67,
-            "color": "orange",
-            "size": "normal",
-            "theme": "none",
-            "material": "nylon",
-            "properties": ["color", "size", "theme", "material"]
+            "properties": {
+                "color": "orange",
+                "size": "normal",
+                "theme": "Estampado de Escuela",
+                "material": "nylon"
+            }
         },
         {
             "id": 2,
@@ -22,11 +23,12 @@
             "price": 209.99,
             "imgUrl": "/assets/img/products/customizable/customizable-bowl.png",
             "stock": 136,
-            "color": "yellow",
-            "size": "normal",
-            "theme": "none",
-            "petname": "firulais",
-            "properties": ["color", "size", "theme", "petname"]
+            "properties": {
+                "color": "yellow",
+                "size": "normal",
+                "theme": "Estampado de Corazones",
+                "petname": "firulais"
+            }
         },
         {
             "id": 3,
@@ -36,12 +38,13 @@
             "price": 119,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-paw.png",
             "stock": 376,
-            "color": "blue",
-            "size": "normal",
-            "shape": "paw",
-            "petname": "firulais",
-            "petphone": "55123456",
-            "properties": ["color", "size", "shape", "petname", "petphone"]
+            "properties": {
+                "color": "blue",
+                "size": "normal",
+                "shape": "paw",
+                "petname": "firulais",
+                "petphone": "55123456"
+            }
         },
         {
             "id": 4,
@@ -105,11 +108,12 @@
             "price": 179,
             "imgUrl": "/assets/img/products/customizable/customizable-collar-leather.png",
             "stock": 67,
-            "color": "orange",
-            "size": "normal",
-            "theme": "none",
-            "material": "leather",
-            "properties": ["color", "size", "theme", "material"]
+            "properties": {
+                "color": "blue",
+                "size": "normal",
+                "theme": "Estampado de Círculos",
+                "material": "leather"
+            }
         },
         {
             "id": 11,
@@ -119,12 +123,13 @@
             "price": 119,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-bone.png",
             "stock": 323,
-            "color": "blue",
-            "size": "normal",
-            "shape": "bone",
-            "petname": "cheems",
-            "petphone": "55123456",
-            "properties": ["color", "size", "shape", "petname", "petphone"]
+            "properties": {
+                "color": "blue",
+                "size": "normal",
+                "shape": "bone",
+                "petname": "cheems",
+                "petphone": "55123456"
+            }
         },
         {
             "id": 12,
@@ -134,12 +139,13 @@
             "price": 119,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle-double.png",
             "stock": 299,
-            "color": "blue",
-            "size": "normal",
-            "shape": "circle-double",
-            "petname": "lomito",
-            "petphone": "55123456",
-            "properties": ["color", "size", "shape", "petname", "petphone"]
+            "properties": {
+                "color": "blue",
+                "size": "normal",
+                "shape": "circle-double",
+                "petname": "lomito",
+                "petphone": "55123456"
+            }
         },
         {
             "id": 13,
@@ -149,12 +155,13 @@
             "price": 119,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle.png",
             "stock": 311,
-            "color": "blue",
-            "size": "normal",
-            "shape": "circle",
-            "petname": "max",
-            "petphone": "55123456",
-            "properties": ["color", "size", "shape", "petname", "petphone"]
+            "properties": {
+                "color": "blue",
+                "size": "normal",
+                "shape": "circle",
+                "petname": "max",
+                "petphone": "55123456"
+            }
         },
         {
             "id": 14,
@@ -164,12 +171,13 @@
             "price": 119,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-star.png",
             "stock": 288,
-            "color": "blue",
-            "size": "normal",
-            "shape": "star",
-            "petname": "doge",
-            "petphone": "55123456",
-            "properties": ["color", "size", "shape", "petname", "petphone"]
+            "properties": {
+                "color": "blue",
+                "size": "normal",
+                "shape": "star",
+                "petname": "doge",
+                "petphone": "55123456"
+            }
         },
         {
             "id": 15,
@@ -177,7 +185,11 @@
             "category": "pet",
             "customizable": true,
             "type": "cat",
-            "imgUrl": "/assets/img/products/customizable/customizable-pet-cat.png"
+            "imgUrl": "/assets/img/products/customizable/customizable-pet-cat.png",
+            "properties": {
+                "body": "Caparazón de Tortuga",
+                "head": "Sombrero Color Rojo para el Frío"
+            }
         },
         {
             "id": 16,
@@ -185,7 +197,11 @@
             "category": "pet",
             "customizable": true,
             "type": "dog",
-            "imgUrl": "/assets/img/products/customizable/customizable-pet-dog.png"
+            "imgUrl": "/assets/img/products/customizable/customizable-pet-dog.png",
+            "properties": {
+                "body": "Traje de Tiburón",
+                "head": "Sombrero de Mariachi"
+            }
         },
         {
             "id": 17,
