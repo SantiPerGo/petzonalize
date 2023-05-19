@@ -1,7 +1,6 @@
-const singUpForm = document.getElementById("sing-up-form");
-const loginForm = document.getElementById("login-form");
-const recoverForm = document.getElementById("recover-form");
-const singUpFormInputs = document.querySelectorAll(".form-control");
+const signUpForm = $("#sing-up-form");
+const loginForm = $("#login-form");
+const recoverForm = $("#recover-form");
 
 const buttonToSignUp = document.getElementById("view-sign-up");
 const buttonToLogin = document.getElementById("view-login");
@@ -12,72 +11,85 @@ const loginContainer = document.getElementById("login-container");
 const signupContainer = document.getElementById("signup-container");
 const recoverContainer = document.getElementById("recover-container");
 
-//---------- Crear objeto usuario logueado ------
-const setUserLoggedIn = userObtained => {
-    if(localStorage.getItem("user-logged-in"))
-        localStorage.setItem("user-logged-in", JSON.stringify(userObtained));
-    else
-        localStorage.setItem("users-logged-in", JSON.stringify(userObtained));
-}
+const alertElement = $("#alert");
+alertElement.hide();
 
+$(document).ready(() => {
+    validateForm(signUpForm);
+    validateForm(loginForm);
+    validateForm(recoverForm);
+});
 
 //--------- Limpiar campos --------------
-const clearInputs = () => singUpFormInputs.forEach(input => input.value = '');
+const clearInputs = () => {
+    signUpForm.find('input').each((key, input) => resetInput(input));
+    recoverForm.find('input').each((key, input) => resetInput(input));
+    loginForm.find('input').each((key, input) => resetInput(input));
+};
 
-//--------- Comparar contraseñas -------------------
-const matchPasswords = () => {
-    const firstPassword = document.getElementById("input-signup-password");
-    const secondPassword = document.getElementById("input-password-confirm-register");
-    
-    if(secondPassword.value !== firstPassword.value)
-        secondPassword.value = '';
-
-    return secondPassword.value === firstPassword.value;
-}
+const resetInput = input => {
+    $(input).val("");
+    $(input).removeData("previousValue");
+    $(input).removeAttr("aria-invalid");
+    $(input).removeClass("valid");
+    $(input).removeClass("invalid");
+    $(input).removeClass("input-icon-valid");
+    $(input).removeClass("input-icon-invalid");
+    $(`#${input.id}-error`).remove();
+};
 
 // ----- Escucha cuando el usuario se registre ------
-singUpForm.addEventListener('submit', submitButton => {
+signUpForm.submit(submitButton => {
     submitButton.preventDefault();
-    singUpForm.classList.add('was-validated');
-    const secondPassword = document.getElementById("input-password-confirm-register");
 
-    if(singUpForm.classList.contains('was-validated'))
-        if(matchPasswords())
-            creatingUserAccount();
-        else
-            secondPassword.value = '';
+    if(signUpForm.valid())
+        creatingUserAccount();
 });
 
 // ----- Escucha cuando el usuario recupera contraseña ------
-recoverForm.addEventListener('submit', submitButton => {
+recoverForm.submit(submitButton => {
     submitButton.preventDefault();
-    recoverForm.classList.add('was-validated');
-    if(recoverForm.classList.contains('was-validated'))
-        console.log("Recover password correct");
+
+    if(recoverForm.valid()) {
+        alertElement.text("Se ha enviado la contraseña a tu correo");
+        alertElement.slideDown(250);
+        setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+
+        alertElement.addClass("alert-success");
+        alertElement.addClass("text-success");
+        alertElement.removeClass("alert-danger");
+        alertElement.removeClass("text-danger");
+    }
 });
 
 // ------ Escucha cuando el usuario inicie sesion -----
-loginForm.addEventListener('submit', submitButton => {
+loginForm.submit(submitButton => {
     submitButton.preventDefault();
 
-    const email = document.getElementById("input-email-login").value;
-    const password = document.getElementById("input-password-login").value;
-    loginForm.classList.add('was-validated');
+    const email = $("#input-email-login").val();
+    const password = $("#input-password-login").val();
 
-    fetch("/assets/json/users.json")
-        .then(res => res.json())
-        .then(usersResponse =>{
-            if( loginForm.classList.contains("was-validated")) {
+    if(loginForm.valid())
+        fetch("/assets/json/users.json")
+            .then(res => res.json())
+            .then(usersResponse =>{
                 if( checkLoginUser(email, password, usersResponse) ){
                     const userObtained = getUserFromDataBase(email, password, usersResponse);
-                    setUserLoggedIn(userObtained);
-                    setTimeout(() => window.location.href = 'profile.html', 1500);
-                    alert("Bienvenido de nuevo");
+                    localStorage.setItem("users-logged-in", JSON.stringify(userObtained));
+                    window.location.href = 'profile.html';
+                    console.log("Sesion iniciada");
                 }
-                else
-                    clearInputs();
-            }
-        })
+                else {
+                    alertElement.text("Correo o contraseña incorrectos");
+                    alertElement.slideDown(250);
+                    setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+
+                    alertElement.removeClass("alert-success");
+                    alertElement.removeClass("text-success");
+                    alertElement.addClass("alert-danger");
+                    alertElement.addClass("text-danger");
+                }
+            })
 });
 
 //-------------- Cambio de Vista -------------------
@@ -85,35 +97,29 @@ buttonToSignUp.addEventListener('click', ()=>{
     loginContainer.classList.add("d-none");
     signupContainer.classList.remove("d-none");
     recoverContainer.classList.add("d-none");
+    clearInputs();
 });
 
 buttonToLogin.addEventListener('click', ()=>{
     loginContainer.classList.remove("d-none");
     signupContainer.classList.add("d-none");
     recoverContainer.classList.add("d-none");
+    clearInputs();
 });
 
 toRecoverPassword.addEventListener('click', ()=>{
     loginContainer.classList.add("d-none");
     signupContainer.classList.add("d-none");
     recoverContainer.classList.remove("d-none");
+    clearInputs();
 });
 
 buttonBackToLogin.addEventListener('click', ()=>{
     loginContainer.classList.remove("d-none");
     signupContainer.classList.add("d-none");
     recoverContainer.classList.add("d-none");
+    clearInputs();
 });
-
-//------- Comprobar correo -------------
-const checkEmailExist = user => {
-    if(localStorage.getItem("users")){
-        const usersDatabase = JSON.parse(localStorage.getItem("users"));
-        return usersDatabase.users.some( registeredUser => registeredUser.email == user.email );
-    }
-    else
-        return false;
-}
 
 //----------- Obtener Usuario -----------
 const getUserFromDataBase = (email, password, usersDatabase) =>{
@@ -153,28 +159,9 @@ const creatingUserAccount = () => {
         "privileges": "client" 
     };
 
-    let users = { "users": [] }
-
-    if( localStorage.getItem("users") ){
-        let validEmail = checkEmailExist(user);
-        if(validEmail == false){
-            
-            users = JSON.parse(localStorage.getItem("users"));
-            users.users.push(user);
-            localStorage.setItem("users", JSON.stringify(users));
-            clearInputs();
-            window.location.reload()
-            console.log(users);
-        }
-        else{
-            alert("El correo de usuario ya existe, por favor escoja otro diferente");
-        }
-    }
-    else{
-        users.users.push(user);
-        console.log(users);
-        localStorage.setItem("users", JSON.stringify(users));
-    }
+    localStorage.setItem("users-logged-in", JSON.stringify(user));
+    window.location.href = 'profile.html';
+    console.log("Cuenta creada");
 } 
 
 // ----------------------Boton Formulario

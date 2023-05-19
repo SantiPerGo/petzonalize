@@ -21,6 +21,9 @@
     <body>
         <nav></nav>
 
+        <!-- Success Alert -->
+        <div id="alert" class="alert alert-danger m-0 text-danger text-center" role="alert"></div>
+
         <main class="container-fluid p-0 d-flex align-items-center justify-content-center">
 
             <!-- Invisible container -->
@@ -33,7 +36,7 @@
 
                     <!---- Column - Login container (Login) ----->
                     <div id="login-container" class="col">
-                        <form id="login-form" novalidate>
+                        <form id="login-form">
 
                             <!-- Section right - Login -->
                             <div class="text-start mb-3 text-center">
@@ -41,28 +44,19 @@
                             </div>
                             
                             <div class="text-start">               
-                                <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
+                                <label for="input-email-login" class="form-label"><b>Correo Electrónico:</b></label>
                                 <input type="email" class="form-control" id="input-email-login" 
-                                        placeholder="example@email.com" name="login-email" required>
-                                <div class="invalid-feedback">
-                                    Por favor ingresa un correo válido.
-                                </div>
-                                <div class="valid-feedback">
-                                    ¡Correo ingresado correctamente!
-                                </div>
+                                        placeholder="example@email.com" name="email" required>
                             </div>   
 
                             <div class="text-start my-4">
-                                <label for="password" class="form-label"><b>Contraseña:</b></label>   
+                                <label for="input-password-login" class="form-label"><b>Contraseña:</b></label>   
                                 <input type="password" class="form-control" id="input-password-login" 
-                                        placeholder="Contraseña" name="login-password" required>
-                                <div class="invalid-feedback">
-                                    Ingresa una contraseña.
-                                </div>
+                                        placeholder="Contraseña" name="password" required>
                             </div>
 
                             <div class="mt-1 mt-md-3 text-brown">
-                                <a href="#" id="view-recover-section">
+                                <a href="#" class="btn" id="view-recover-section">
                                     <b>He olvidado la contraseña</b>
                                 </a> 
                             </div>
@@ -81,7 +75,7 @@
 
                     <!----- Columnn - Register container ----->
                     <div id="signup-container" class="col align-self-center d-none form-register">
-                        <form id="sing-up-form" novalidate>
+                        <form id="sing-up-form">
 
                             <!-- Section right - Register -->
                             <div class="text-start text-center">
@@ -89,50 +83,34 @@
                             </div>
 
                             <div class="text-start my-3 mx-3">
-                                <label for="name" class="form-label"><b>Nombre:</b></label>
+                                <label for="input-name-register" class="form-label"><b>Nombre:</b></label>
                                 <input type="text" class="form-control" id="input-name-register" 
-                                        placeholder="Nombre Apellido" name="signup-name" required>
-
-                                <div class="invalid-feedback">
-                                    El nombre no debe contener carácteres especiales.
-                                </div>
+                                        placeholder="Nombre Apellido" name="name" required>
                             </div>
 
                             <div class="text-start my-3 mx-3">
 
-                                <label for="phone" class="form-label"><b>Teléfono:</b></label>
+                                <label for="input-phone-register" class="form-label"><b>Teléfono:</b></label>
                                 <input type="number" class="form-control" id="input-phone-register" 
-                                        placeholder="52 00 00 00 00" name="signup-phone" required>
-                                <div class="invalid-feedback">
-                                El Numero debe contener 10 cifras.
-                                </div>
+                                        placeholder="52 00 00 00 00" name="phone" required>
                             </div>
 
                             <div class="text-start my-3 mx-3">
-                                <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
+                                <label for="input-email-register" class="form-label"><b>Correo Electrónico:</b></label>
                                 <input type="email" class="form-control" id="input-email-register" 
-                                        placeholder="example@email.com" name="signup-email"  required>
-                                <div class="invalid-feedback">
-                                    El correo debe tener el formato correo@empresa.dominio
-                                </div>
+                                        placeholder="example@email.com" name="email"  required>
                             </div>
 
                             <div class="text-start my-3 mx-3">
 
-                                <label for="password" class="form-label"><b>Contraseña:</b></label>
+                                <label for="input-signup-password" class="form-label"><b>Contraseña:</b></label>
                                 <input type="password" class="form-control" id="input-signup-password" 
-                                        placeholder="Contraseña" name="signup-password" required>
-                                <div class="invalid-feedback">
-                                    Debes ingresar una contraseña.
-                                </div>
+                                        placeholder="Contraseña" name="password" required>
                             </div>
                             <div class="text-start mx-3">
-                                <label for="confirm-password" class="form-label"><b>Confirmar contraseña:</b></label>
-                                <input type="password" class="form-control" id="input-password-confirm-register" 
-                                        placeholder="Confirmar contraseña" name="signup-password-2" required>
-                                <div class="invalid-feedback">
-                                    Las contraseñas no coinciden.
-                                </div>
+                                <label for="input-password-confirm-register" class="form-label"><b>Confirmar contraseña:</b></label>
+                                <input type="password" class="form-control" id="confirmPassword" 
+                                        placeholder="Confirmar contraseña" name="confirmPassword" required>
                             </div>
 
                             <!-- Buttons of register -->
@@ -149,7 +127,7 @@
 
                     <!-- Column - Forgotten password -->
                     <div id="recover-container" class="col col-12 d-block align-self-center d-none form-recover">
-                        <form id="recover-form" novalidate>
+                        <form id="recover-form">
 
                             <!-- Section right - Login -->
                             <div class="text-start mb-4 text-center">
@@ -159,15 +137,9 @@
                                 No te preocupes, a los mejores lomitos nos pasa. Por favor ingresa el correo electrónico con el que te registraste.
                             </div>                                                    
                             <div class="text-start">                    
-                                <label for="recover-email" class="form-label"><b>Correo Electrónico:</b></label>
-                                <input type="recover-email" class="form-control" id="recover-email-login" 
-                                        placeholder="example@email.com" name="recover-email" required>
-                                <div class="invalid-feedback">
-                                    Por favor ingresa tu correo electrónico.
-                                </div>
-                                <div class="valid-feedback">
-                                    ¡Correo ingresado correctamente!
-                                </div>
+                                <label for="recover-email-login" class="form-label"><b>Correo Electrónico:</b></label>
+                                <input type="email" class="form-control" id="recover-email-login" 
+                                        placeholder="example@email.com" name="email" required>
                             </div>
 
                             <!-- Buttons of login -->
@@ -189,6 +161,7 @@
         
         <!-- Loading Navbar and Footer with Jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
         <script src="/assets/js/common.js"></script>
         <script src="/assets/js/login.js"></script>
 
