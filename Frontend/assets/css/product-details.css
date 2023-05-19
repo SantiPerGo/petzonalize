@@ -30,8 +30,10 @@
 #material-collar,
 #size-collar,
 #color-collar,
-#shape-platename,
-#size-nameplate {
+#shape-nameplate,
+#size-nameplate,
+#color-nameplate,
+#name-nameplate {
   background-color: var(--beige);
   border: 0.25rem solid var(--brown);
   border-radius: 1rem;
