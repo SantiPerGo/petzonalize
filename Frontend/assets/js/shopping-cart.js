@@ -82,7 +82,63 @@ const getUserProductsInStorage = () => {
 
 }
 
+/* Establecer el precio en 0.00 en el DOM al cargar la pagina */
+
+let totalPrice=0;
+const totalPriceElement = document.querySelector('.totalPrice');
+totalPriceElement.textContent = totalPrice.toFixed(2);
+
+
+/*Función para  Vaciar Carrito de compras */
+
+function deleteShoppingCart() {
+    // Eliminar solo los datos del carrito de compras del Local Storage
+    localStorage.removeItem("shopping-cart");
+  
+    // Establecer el valor del precio total a 0
+    let totalPrice = 0;
+  
+    // Actualizar el contenido de la clase "totalPrice" en el DOM
+    const totalPriceElement = document.querySelector('.totalPrice');
+    totalPriceElement.textContent = totalPrice.toFixed(2);
+  
+    // Vaciar el contenido del contenedor
+    productsListContainer.innerHTML = "";
+  }
+
+
 getUserProductsInStorage();
+
+
+/*Función para obtener el valor total llegado del localstorage*/
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Obtener el valor del carrito de compras del Local Storage
+    const userCartProducts = JSON.parse(localStorage.getItem("shopping-cart"));
+  
+    let totalPrice = 0;
+    if (userCartProducts && userCartProducts.length > 0) {
+      totalPrice = userCartProducts.reduce((total, product) => {
+        const price = parseFloat(product.price);
+        const amount = parseInt(product.amount);
+        if (!isNaN(price) && !isNaN(amount)) {
+          return total + price * amount;
+        } else {
+          return total;
+        }
+      }, 0);
+    }
+  
+    // Actualizar el contenido de la clase "totalPrice" al valor del carrito de compras
+    const totalPriceElement = document.querySelector(".totalPrice");
+    totalPriceElement.textContent = totalPrice.toFixed(2); // Asegura que se muestren dos decimales
+  });
+  
+  
+  //Regresar al product page
+  function backShoppingCartPage() {
+      window.location.href = "./products.html";
+    }
 
 //-------------------- Add more pices of an product ---------------
 const modifyAmountProducts = ()=>{
