@@ -1,76 +1,16 @@
-
-
 main{
     background-image: url(/assets/img/login-register/dog-computer-searching.png);
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
+    min-height: 75vh;
 }
 
-.form-container{
-    background-color: var(--beige);
-    border: 0.25rem solid var(--brown);
-    border-radius: 1rem;
-}
-
-.dog-searching{
-    overflow: hidden;
-    min-height: 28rem;
-}
-
-.dog-searching img{
-    position: relative;
-    left: -40%;
-    height: auto;
-}
-
-
-.div-login{
-    min-height: 38rem;
-}
-
-.form-group{
-    text-align: left;
-}
-
-.form-login{
-    /* none */
-    text-align: center;
-}
-
-.form-register{
-    text-align: center; 
-}
-
-/*---------- Estilos de Validacion -------------------*/
- 
-.is-valid{ 
-border-color: #3A98B9 !important;
-box-shadow: 0 0 0 0.25rem rgb(72, 159, 191) !important; 
-}
-
-.is-invalid {    
-    border-color: #8e44ad !important;
-    box-shadow: 0 0 0 0.25rem var(--purple) !important; 
-}
-
-.little-text{
-    color: #837060;
+#view-recover-section {
     text-decoration: none;
+    color: var(--blue);
+    font-size: calc(1rem + 1vw);
 }
 
-
-@media (max-width: 600px) {
-    .dog-searching {
-      display: none;
-    }
-  }
-
-#row-container {
-    justify-content: end;
-}
-
-@media (max-width:320px){
-    #row-container {
-        justify-content: center;
-    }
+#view-recover-section:hover {
+    color: var(--purple);
 }
