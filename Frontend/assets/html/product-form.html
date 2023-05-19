@@ -39,7 +39,7 @@
                             <div class="form-group text-center mt-5">
                                 <h1> Producto </h1>
                             </div>
-                            <form action="">
+                            <form id="edit-form">
                                 <!------- Column Left ------>
                                 <div class="col-lg-6 col-sm-5 p-4 align-self-center">
                                     <div class="row justify-content-center h-100">
@@ -51,7 +51,7 @@
                                                     <label for="name" 
                                                         class="form-label"><b>Nombre:</b></label>
                                                     <input type="text" class="form-control" id="product-form-name"
-                                                        placeholder="Nombre del producto" name="name" required>
+                                                        placeholder="Nombre del producto" name="name" >
                                                     <div class="invalid-feedback">
                                                         El nombre no debe contener carácteres especiales.
                                                     </div>
@@ -64,7 +64,7 @@
                                                     <textarea class="form-control" type="text" id="product-form-description"
                                                         placeholder="Descripción del producto" name=""
                                                         placeholder="Descripción del producto" rows="3"
-                                                        required></textarea>
+                                                        ></textarea>
                                                     <div class="invalid-feedback">
                                                         Esto brinda información básica al cliente que puede aclarar sus
                                                         dudas acerca del producto.
@@ -75,7 +75,7 @@
                                                 <div class="form-group my-3 mx-3">
                                                     <label for="quantity" class="form-label"><b>Cantidad:</b></label>
                                                     <input type="number" class="form-control" id="product-form-quantity"
-                                                        placeholder="Cantidad" name="stock" required>
+                                                        placeholder="Cantidad" name="stock" >
                                                     <div class="invalid-feedback">
                                                         Ingrese cantidad.
                                                     </div>
@@ -85,7 +85,7 @@
                                                 <div class="form-group my-3 mx-3">
                                                     <label for="price" class="form-label"><b>Precio:</b></label>
                                                     <input type="number" class="form-control" id="product-form-price"
-                                                        placeholder="Precio" name="price" required>
+                                                        placeholder="Precio" name="price" >
                                                     <div class="invalid-feedback">
                                                         Ingrese precio.
                                                     </div>
@@ -138,10 +138,10 @@
                                             <div class="form-group my-3 mx-3 justify-content-around">
                                                 <label for="customizable" class="form-label"><b>Tipo de mascota:</b></label>
                                                 <br>
-                                                <input type="radio" id="product-form-dog" name="properties" value="#" />
+                                                <input type="radio" id="product-form-dog" name="properties" value="dog" />
                                                 <label for="#"><img src="../img/product-form/icon-dog.png"
                                                     class="icon" alt=""></label>
-                                                <input type="radio" id="product-form-cat" name="properties" value="#" />
+                                                <input type="radio" id="product-form-cat" name="properties" value="cat" />
                                                 <label for="#"><img src="../img/product-form/icon-cat.png"
                                                     class="icon" alt=""></label>
 
@@ -157,7 +157,7 @@
                                 <!----------- Buttons bottom --------->
                                 <div class="col-lg-10 col-sm-10 p-4 d-flex justify-content-around">
                                     <button id="" type="submit" class="btn btn-purple my-2">Editar</button>
-                                    <button id="add" type="button" class="btn btn-purple my-2">Añadir/Actualizar</button>
+                                    <button id="add" type="submit" class="btn btn-purple my-2">Añadir/Actualizar</button>
                                     <button id="" type="button" class="btn btn-purple my-2">Eliminar</button>
                                 </div>
                             </form>
