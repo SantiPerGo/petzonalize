@@ -81,3 +81,27 @@
     width: 100;
   }
 }
+
+/* Hover selection effect in Material Selection section */
+.piel:hover,
+.nylon:hover{
+  font-weight: bold;
+  font-size: 25px;
+}
+
+/* Hover selection effect in Size Selection section */
+.size-pequeño:hover,
+.size-pequeño:hover + .size-pequeño {
+  font-weight: bold;
+  font-size: 25px;
+}
+.size-mediano:hover,
+.size-mediano:hover + .size-mediano {
+  font-weight: bold;
+  font-size: 25px;
+}
+.size-grande:hover,
+.size-grande:hover + .size-grande {
+  font-weight: bold;
+  font-size: 25px;
+}
