@@ -21,8 +21,22 @@ refForm.addEventListener(`submit`, event=>{
 
     console.log("en el click")
 
+
 const name=refForm.elements["name"].value;
-const stock=refForm.elements["stock"].value;
+let stock=refForm.elements["stock"].value;
+let getty = document.getElementById('product-form-uploads').files[0].name;
+getty= ("/assets/img/products/not customizable/"+getty)
+const category = document.getElementById("product-form-category").value;
+let price = refForm.elements["price"].value;
+let pet;
+stock=Number(stock);
+price=Number(price);
+if (document.getElementById('product-form-dog').checked) {  
+           pet="dog";
+                    }else{ pet="cat"}
+ 
+ 
+
 
 // agregar los productos 
 let productos= localStorage.getItem("products")
@@ -31,7 +45,7 @@ productos=JSON.parse(productos);
 
 
 let id=productos.length+1;
-let i = productos.push({id:id, name:name, stock:stock});
+let i = productos.push({id:id, category:category, customizable:false, name:name, stock:stock, imgUrl:getty, price:price, type:pet});
 
 actualProducts=JSON.stringify(productos);
 localStorage.setItem("products", actualProducts);
