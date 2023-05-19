@@ -1,5 +1,11 @@
 const alertElement = $("#alert");
+const editform =$("#edit-form");
 alertElement.hide();
+
+
+$(document).ready(() => {
+validateForm(editform);
+});
  //Obtener el json y cargarlo a local storage 
 
 fetch("/assets/json/products.json")
