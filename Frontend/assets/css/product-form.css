@@ -9,7 +9,7 @@
 }
 
 .icon {
-  height: 50px;
+  height: 80px;
 }
 
 /* Scroll Section */
@@ -52,8 +52,8 @@
 
 
 .image-preview {
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
 
   display: flex;
   align-items: center;
@@ -65,3 +65,16 @@
   display: none;
   width: 100%;
 }
+
+.fieldset-left {
+  float:left;
+}
+.fieldset-right {
+  float:right;
+}
+/* 
+.row-flex{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+} */

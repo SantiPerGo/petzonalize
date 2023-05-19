@@ -28,23 +28,22 @@
     <header></header>
 
     <main class="container-fluid main-container">
-        <div class="row justify-content-center">
-            <div class="form-space col col-12 my-4">
+        <div class="row justify-content-center row-flex">
+            <div class="form-space col col-10 my-4">
 
                 <!---------- Container -------->
                 <div class="row justify-content-center" id="row-container">
                     <div class="form-container col col-lg-10 col-md-10 col-sm-10 my-4 mx-4">
-                        <div class="row justify-content-center text-center h-100">
+                        <div class="row justify-content-center text-center ">
                             <!-- <form action=""> -->
                             <div class="form-group text-center mt-5">
                                 <h1> Producto </h1>
                             </div>
+
                             <form id="edit-form">
+
                                 <!------- Column Left ------>
-                                <div class="col-lg-6 col-sm-5 p-4 align-self-center">
-                                    <div class="row justify-content-center h-100">
-                                        <div id="" class="col col-12 align-self-center">
-                                            <div class="my-auto">
+                                <fieldset class="fieldset-left bg-success col-flex col-6 col-md-6 col-sm-12">
 
                                                 <!-- Name -->
                                                 <div class="form-group my-3 mx-3">
@@ -108,15 +107,10 @@
                                                         Seleccione el tipo de productos que ofrecerá.
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </fieldset>
 
                                 <!------- Column Right ------>
-                                <div class="col-lg-6 col-sm-5 align-self-center">
-                                    <div id="" class="col col-12 align-self-center">
-                                        <div class="my-auto">
+                                <fieldset class="fieldset-right bg-white col-flex col-6 col-md-6 col-sm-12">
 
                                             <!-- Upload image -->
                                             <div class="form-group my-3 mx-3">
@@ -141,7 +135,7 @@
                                             </div>
 
                                             <!-- Tipo de mascota -->
-                                            <div class="form-group my-3 mx-3 justify-content-around">
+                                            <div class="form-group my-3 mx-3 justify-content-around bg-danger">
                                                 <label for="customizable" class="form-label"><b>Tipo de mascota:</b></label>
                                                 <br>
                                                 <input type="radio" id="product-form-dog" name="properties" value="dog" />
@@ -156,12 +150,11 @@
                                                 </div>
                                             </div>
 
-                                        </div>
-                                    </div>
-                                </div>
+                            </fieldset>
 
                                 <!----------- Buttons bottom --------->
-                                <div class="col-lg-10 col-sm-10 p-4 d-flex justify-content-around">
+                            
+                                <div class="col-lg-12 col-sm-12 p-4 d-flex justify-content-around bg-success">
                                     <button id="" type="submit" class="btn btn-purple my-2">Editar</button>
                                     <button id="add" type="submit" class="btn btn-purple my-2">Añadir/Actualizar</button>
                                     <button id="" type="button" class="btn btn-purple my-2">Eliminar</button>
