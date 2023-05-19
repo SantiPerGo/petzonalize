@@ -1,4 +1,7 @@
-//Obtener el json y cargarlo a local storage 
+const alertElement = $("#alert");
+alertElement.hide();
+ //Obtener el json y cargarlo a local storage 
+
 fetch("/assets/json/products.json")
 .then(res => res.json())
 .then(data =>{
@@ -21,8 +24,22 @@ refForm.addEventListener(`submit`, event=>{
 
     console.log("en el click")
 
+
 const name=refForm.elements["name"].value;
-const stock=refForm.elements["stock"].value;
+let stock=refForm.elements["stock"].value;
+let getty = document.getElementById('product-form-uploads').files[0].name;
+getty= ("/assets/img/products/not customizable/"+getty)
+const category = document.getElementById("product-form-category").value;
+let price = refForm.elements["price"].value;
+let pet;
+stock=Number(stock);
+price=Number(price);
+if (document.getElementById('product-form-dog').checked) {  
+           pet="dog";
+                    }else{ pet="cat"}
+ 
+ 
+
 
 // agregar los productos 
 let productos= localStorage.getItem("products")
@@ -31,14 +48,39 @@ productos=JSON.parse(productos);
 
 
 let id=productos.length+1;
-let i = productos.push({id:id, name:name, stock:stock});
+let i = productos.push({id:id, category:category, customizable:false, name:name, stock:stock, imgUrl:getty, price:price, type:pet});
 
 actualProducts=JSON.stringify(productos);
 localStorage.setItem("products", actualProducts);
 
     console.log(i);
     console.log(productos)
-})
+    if(id && category && name && stock && getty && price && pet)  {
+      alertElement.text("¡Producto añadido con Éxito!");
+      alertElement.slideDown(250);
+      setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+     
+  }
+}); 
+
+// Boton cargar imagen
+const realFileBtn = document.getElementById("product-form-uploads");
+const customBtn = document.getElementById("upload-image");
+const customTxt = document.getElementById("custom-text");
+
+customBtn.addEventListener("click", function() {
+  realFileBtn.click();
+});
+
+realFileBtn.addEventListener("change", function() {
+  if (realFileBtn.value) {
+    customTxt.innerHTML = realFileBtn.value.match(
+      /[\/\\]([\w\d\s\.\-\(\)]+)$/
+    )[1];
+  } else {
+    customTxt.innerHTML = "No file chosen, yet.";
+  }
+});
 
 // Mostrar imagen previa que se añadirá al producto
 const uploadImg = document.getElementById("product-form-uploads");
@@ -56,7 +98,6 @@ uploadImg.addEventListener("change", function() {
         previewImage.style.display = "block";
 
         reader.addEventListener("load", function() {
-            console.log(this);
             previewImage.setAttribute("src", this.result);
         });
         reader.readAsDataURL(file);

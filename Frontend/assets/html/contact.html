@@ -119,60 +119,30 @@
                     <!-- Form with inputs -->
                   
                     <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center ">
-                        <form  class="bg-beige" novalidate id="contact-form" action="../../index.html">
+                        <form class="bg-beige" id="contact-form">
                           <div class="row">
                             <label for="name" class="form-label"><b>Nombre:</b></label>
                             <input type="text" id="name" name="name" class="form-control" placeholder="Nombre Apellido" required>
-                            <div class="invalid-feedback">
-                              Por favor ingresa tu nombre.
-                            </div>
-                            <div class="valid-feedback">
-                              ¡Nombre ingresado correctamente!
-                            </div>
                           </div>
 
                             <div class="row mt-3">
                                 <label for="phone" class="form-label"><b>Teléfono:</b></label>
                                 <input type="number" id="phone" name="phone" class="form-control" placeholder="55 00 00 00" required>
-                                <div class="invalid-feedback">
-                                  Por favor ingrese su numero
-                                </div>
-                                <div class="valid-feedback">
-                                  ¡Número ingresado correctamente!
-                                </div>
                             </div>
 
                             <div class="row mt-3">
                                 <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
                                 <input type="email" name="email" class="form-control" id="email" placeholder="example@email.com" required>
-                                <div class="invalid-feedback">
-                                  Por favor ingresa tu correo electrónico.
-                                </div>
-                                <div class="valid-feedback">
-                                  ¡Correo ingresado correctamente!
-                                </div>
                             </div>
 
                             <div class="row mt-3">
                                 <label for="subject" class="form-label"><b>Asunto:</b></label>
                                 <input type="text" class="form-control" id="subject" name="subject" placeholder="Asunto" required>
-                                <div class="invalid-feedback">
-                                  Por favor ingresa el asunto.
-                                </div>
-                                <div class="valid-feedback">
-                                  ¡Asunto ingresado correctamente!
-                                </div>
                             </div>
                             
                             <div class="row mt-3">
                                 <label for="message" class="form-label"><b>Mensaje:</b></label>
                                 <textarea class="form-control" id="message" name="message" placeholder="Mensaje" rows="3" required></textarea>
-                                <div class="invalid-feedback">
-                                  Por favor ingresa tu mensaje.
-                                </div>
-                                <div class="valid-feedback">
-                                  ¡Mensaje ingresado correctamente!
-                                </div>
                             </div>
 
                             <div class="row mt-3">
@@ -238,6 +208,7 @@
         
         <!-- Loading Navbar and Footer with Jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
         <script src="../js/common.js"></script>
         <script src="../js/contact.js"></script>
     </body>

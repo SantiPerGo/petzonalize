@@ -9,8 +9,14 @@ main {
     text-decoration: none;
     color: var(--blue);
     font-size: calc(1rem + 1vw);
+    transition: all 0.25s;
 }
 
 #view-recover-section:hover {
     color: var(--purple);
+    transform: scale(1.1);
+}
+
+#view-recover-section:active {
+    transform: scale(1);
 }
