@@ -41,6 +41,10 @@ const validateForm = form => {
                 minlength: 8,
                 required: true,
                 equalTo: "#confirmPassword"
+            }, 
+            number: {
+                minlength: 1,
+                required: true
             }
         },
         messages : {
@@ -66,6 +70,10 @@ const validateForm = form => {
                 required: "Debes confirmar tu contraseña",
                 minlength: "Tu contraseña debe tener al menos 8 caracteres",
                 equalTo: "Las contraseñas no coinciden"
+            },
+            number: {
+                required: "Debes ingresar la cantidad deseada",
+                minlength: "El valor debe ser al menos 1"
             }
         },
         errorClass: "valid is-valid valid-feedback",
