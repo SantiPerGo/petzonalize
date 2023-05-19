@@ -26,130 +26,137 @@
 
 <body>
     <nav></nav>
+    
     <div id="alert" class="alert alert-success m-0 text-success text-center" role="alert"></div>
-    <header></header>
+    
+    <main class="container-fluid p-0 d-flex align-items-center justify-content-center">
 
-    <main>
-        <!-- form-container -->
-        <div id="form-container" class="container" id="edit-form" style="display: block;">
-            <div class="row justify-content-end">
-                <div class="col-12 col-md-8 col-lg-9 d-flex justify-content-end">
-                    <form class="bg-beige my-5 needs-validation" novalidate id="edit-form">
-                        <div class="row text-center">
-                            <h1>Datos de perfil</h1>
-                            <p id="estado"></p>
-                        </div>
-                        <div class="row align-items-end">
-                            <div class="col-12 col-sm-12">
-                                <label for="name" class="form-label"><b>Nombre:</b></label>
-                                <div class="input-group">
-                                    <input type="text" id="name" class="form-control" placeholder="Nombre y Apellidos"
-                                        required readonly>
-                                    <button class="btn btn-edit" data-field="name">
-                                        <link
-                                            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-                                            rel="stylesheet"><i class="fa fa-pencil"></i>
-                                    </button>
-                                </div>
-                            </div>
+        <!-- Invisible container -->
+        <div class="row m-0 p-3 w-100 h-100 d-flex align-items-center justify-content-center">
+            <!-- Desktop space -->
+            <div class="col-0 col-md-6"></div>
+            
+            <!-- Beige container -->
+            <div id="beige-container" class="bg-beige col-12 col-md-6 m-0 p-3 p-md-5 text-center">   
 
-                        </div>
-                        <div class="row mt-3 ">
-                            <div class="col-12 col-sm-12">
-                                <label for="email" class="form-label"><b>Correo Electrónico:</b></label>
-                                <div class="input-group">
-                                    <input type="email" class="form-control" id="email" placeholder="Correo" required
-                                        readonly>
-                                    <button class="btn btn-edit" data-field="email">
-                                        <link
-                                            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-                                            rel="stylesheet"><i class="fa fa-pencil"></i>
-                                    </button>
-                                </div>
-                            </div>
+                <!-- Section right - Register -->
+                <div class="text-start text-center">
+                    <h1>Perfil de Usuario</h1>
+                </div>
+
+                <form id="form-name" class="text-start m-md-3">
+                    <label for="input-name" class="form-label"><b>Nombre:</b></label>
+
+                    <div class="row">
+                        <div class="col-10 col-md-11">
+                            <input type="text" class="form-view" id="input-name" 
+                                placeholder="Nombre Apellido" name="name" readonly>
                         </div>
 
-                        <div class="row mt-3 ">
-                            <div class="col-12 col-sm-12">
-                                <label for="phone" class="form-label"><b>Teléfono:</b></label>
-                                <div class="input-group">
-                                    <input type="number" id="phone" class="form-control" placeholder="55 00 00 00"
-                                        required readonly>
-                                    <button class="btn btn-edit" data-field="phone">
-                                        <link
-                                            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-                                            rel="stylesheet"><i class="fa fa-pencil"></i>
-                                    </button>
-                                </div>
+                        <div class="col-2 col-md-1">
+                            <div class="row">
+                                <button id="edit-name" class="btn m-0 p-0 btn-pencil" onclick="editInput('name')">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
                             </div>
-
                         </div>
+                    </div>
+                </form>
 
-                        <div class="row mt-3">
-                            <div class="col-12 col-sm-12">
-                                <label for="password" class="form-label"><b>Contraseña:</b></label>
-                                <div class="input-group">
-                                    <input class="form-control" id="password" placeholder="*******" required
-                                        readonly></textarea>
-                                    <button class="btn btn-edit" data-field="password">
-                                        <link
-                                            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-                                            rel="stylesheet"><i class="fa fa-pencil"></i>
-                                    </button>
-                                </div>
-                            </div>
+                <form id="form-phone" class="text-start m-md-3">
+                    <label for="input-phone" class="form-label"><b>Teléfono:</b></label>
+
+                    <div class="row">
+                        <div class="col-10 col-md-11">
+                            <input type="number" class="form-view" id="input-phone" 
+                            placeholder="52 00 00 00 00" name="phone" readonly>
                         </div>
 
-                        <div class="row mt-3">
-                            <div class="col d-flex justify-content-center align-content-center">
-                                <button id="save" type="submit" class="btn btn-purple btn-save">Guardar</button>
+                        <div class="col-2 col-md-1">
+                            <div class="row">
+                                <button id="edit-phone" class="btn m-0 p-0 btn-pencil" onclick="editInput('phone')">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
                             </div>
+                        </div>
+                    </div>
+                </form>
+
+                <form id="form-email" class="text-start m-md-3">
+                    <label for="input-email" class="form-label"><b>Correo Electrónico:</b></label>
+
+                    <div class="row">
+                        <div class="col-10 col-md-11">
+                            <input type="email" class="form-view" id="input-email" 
+                            placeholder="example@email.com" name="email" readonly>
                         </div>
 
-                        <div class="row mt-3">
-                            <div class="col d-flex justify-content-center align-content-center">
-                               <a href="../../assets/html/product-form.html"><button id="boton-admin" type="button" class="btn btn-purple">Añadir producto</button>
-                            </div></a> 
+                        <div class="col-2 col-md-1">
+                            <div class="row">
+                                <button id="edit-email" class="btn m-0 p-0 btn-pencil" onclick="editInput('email')">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <form id="form-password" class="text-start m-md-3">
+                    <label for="input-password" class="form-label"><b>Contraseña:</b></label>
+
+                    <div class="row">
+                        <div class="col-10 col-md-11">
+                            <input type="password" class="form-view" id="input-password" 
+                            placeholder="********" name="password" readonly>
                         </div>
 
-                        <div class="row mt-2">
-                            <div class="col d-flex justify-content-center align-content-center">
-                                <a href="../html/login.html"> <button id="exit" type="button" class="btn btn-purple">
-                                        Cerrar sesion</button></a>
+                        <div class="col-2 col-md-1">
+                            <div class="row">
+                                <button id="edit-password" class="btn m-0 p-0 btn-pencil" onclick="editInput('password')">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
                             </div>
                         </div>
+                    </div>
+                </form>
 
-                        <div class="row mt-3">
-                            <div class="col d-flex justify-content-center align-content-center">
-                                <button id="boom" type="button" class="btn btn-purple"
-                                    style="display: inline;">¿Eliminar cuenta?</button>
-                            </div>
-                        </div>
-                        <div class="col mt-3">
-                            <div class="col d-flex justify-content-center align-content-center">
-                                <a href="#"> <button id="kaboom" type="button" class="btn btn-purple"
-                                    style=" display: none;">Eliminar
-                                    Definitivamente</button></a>
-                            </div>
-                        </div>
-                        <div class="col mt-3">
-                            <div class="col d-flex justify-content-center align-content-center">
-                                <button id="nope" type="button" class="btn btn-purple"
-                                    style="display: none;">Cancelar</button>
-                            </div>
-                        </div>
-                    </form>
+                <!-- Buttons -->
+                <div id="buttons" class="row gy-3 mt-1 mt-md-3">
+                    <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+                        <a id="log-out" href="../html/login.html" class="btn btn-blue h-100">
+                            Cerrar sesion
+                        </a>
+                    </div>
+
+                    <div id="delete" class="col-12 col-sm-6 col-md-12 col-lg-6">
+                        <button type="button" class="btn btn-blue h-100">
+                            Eliminar cuenta
+                        </button>
+                    </div>
+                </div>
+                        
+                <div id="delete-buttons" class="row gy-3 mt-1 mt-md-3 d-none">
+                    <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+                        <a href="../html/login.html" id="confirm-delete" class="btn btn-blue h-100">
+                            Eliminar Definitivamente
+                        </a>
+                    </div>
+                    
+                    <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+                        <button id="cancel" type="button" class="btn btn-purple h-100">
+                            Cancelar Eliminacion
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-
-
     </main>
 
     <footer></footer>
 
     <!-- Loading Navbar and Footer with Jquery -->
     <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <script src="/assets/js/common.js"></script>
     <script src="../js/profile.js"></script>
 

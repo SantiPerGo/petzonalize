@@ -1,4 +1,97 @@
-(() => {
+// *********************************************************************************
+// Delete account and cancel deletion functions 
+// *********************************************************************************
+
+const deleteButton = $("#delete");
+const cancelButton = $("#cancel");
+const deleteButtonsContainer = $("#delete-buttons");
+const buttonsContainer = $("#buttons");
+
+// boton eliminar cuenta
+deleteButton.click(() =>{
+  deleteButtonsContainer.removeClass("d-none");
+  buttonsContainer.addClass("d-none");
+})
+
+// boton cancelar
+cancelButton.click(() =>{
+  deleteButtonsContainer.addClass("d-none");
+  buttonsContainer.removeClass("d-none");
+});
+
+// *********************************************************************************
+// Icons and Inputs functions
+// *********************************************************************************
+
+$(document).ready(() => {
+  const alertElement = $("#alert");
+  alertElement.hide();
+
+  const formName = $("#form-name");
+  const formPhone = $("#form-phone");
+  const formEmail = $("#form-email");
+  const formPassword = $("#form-password");
+
+  validateForm(formName);
+  validateForm(formPhone);
+  validateForm(formEmail);
+  validateForm(formPassword);
+
+  formName.submit(submitButton => submitButton.preventDefault());
+  formPhone.submit(submitButton => submitButton.preventDefault());
+  formEmail.submit(submitButton => submitButton.preventDefault());
+  formPassword.submit(submitButton => submitButton.preventDefault());
+});
+
+const editInput = inputId => {
+  inputState(inputId, true);
+
+  const iconButton = $(`#edit-${inputId}`);
+  iconButton.prop("onclick", null).off("click");
+  iconButton.on("click", () => {
+    if($(`#form-${inputId}`).valid()) {
+      inputState(inputId, false);
+      iconButton.off("click");
+      iconButton.on("click", () => editInput(inputId));
+    }
+  });
+};
+
+const inputState = (id, state) => {
+  const input = $(`#input-${id}`);
+  const icon = $(`#edit-${id}`).children();
+  const form = $("#form-name");
+
+  console.log(input, form, icon)
+  if(state) {
+    form.validate().settings.ignore = ":hidden";
+    input.removeClass("form-view");
+    input.addClass("form-control");
+    input.prop('readonly', false);
+    icon.removeClass("bi-pencil-square");
+    icon.addClass("bi-check-lg");
+  } else {
+    form.validate().settings.ignore = "*";
+    input.addClass("form-view");
+    input.removeClass("form-control");
+    input.prop('readonly', true);
+    icon.addClass("bi-pencil-square");
+    icon.removeClass("bi-check-lg");
+    form.find('input').each((key, input) => resetInput(input));
+  }
+};
+
+const resetInput = input => {
+  $(input).val("");
+  $(input).removeData("previousValue");
+  $(input).removeAttr("aria-invalid");
+  $(input).removeClass("valid");
+  $(input).removeClass("invalid");
+  $(input).removeClass("input-icon-valid");
+  $(input).removeClass("input-icon-invalid");
+  $(`#${input.id}-error`).remove();
+};
+/*(() => {
   'use strict'
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -116,30 +209,30 @@ if(localStorage.getItem("users-logged-in")){
     localStorage.removeItem("users-logged-in");
   });
 // constantes de botones
-  const deleter = document.getElementById(`boom`);
-  const completeDelete= document.getElementById(`kaboom`);
-  const cancel= document.getElementById(`nope`);
+  const deleter = $(`#boom`);
+  const completeDelete= $(`#kaboom`);
+  const cancel= $(`#nope`);
 
   // boton eliminar cuenta
-  deleter.addEventListener(`click`, () =>{
+  deleter.submit(() =>{
    
-   completeDelete.style.display=`inline`;
-   cancel.style.display=`inline`;
-   deleter.style.display=`none`;
+   completeDelete.removeClass(`d-none`);
+   cancel.removeClass(`d-none`);
+   deleter.addClass(`d-none`);
   })
 
   // boton cancelar
-  cancel.addEventListener(`click`, () =>{
+  cancel.submit(() =>{
     //localStorage.clear();
-    completeDelete.style.display=`none`;
-    cancel.style.display=`none`;
-    deleter.style.display=`inline`;
+    completeDelete.addClass(`d-none`);
+    cancel.addClass(`d-none`);
+    deleter.removeClass(`d-none`);
 
    })
 
 // boton borrar cuenta definitivamente
  const refForm =document.forms["edit-form"];
-completeDelete.addEventListener(`click`, (event) =>{
+completeDelete.submit((event) =>{
     event.preventDefault();
     
     const password =refForm.elements["password"].value;
@@ -202,12 +295,12 @@ fetch  (urlUsers)
     document.getElementById('password').value = user.password;
 
     alertElement.text("Cuenta eliminada");
-    alertElement.slideDown(250);
+    //alertElement.slideDown(250);
 
   
     sessionStorage.setItem("not-account", "true");
 
-    location.assign("../../index.html")
+    //location.assign("../../index.html")
 
   });
 
@@ -226,7 +319,7 @@ fetch  (urlUsers)
 
   })
     
-  
+  */
 
 
 

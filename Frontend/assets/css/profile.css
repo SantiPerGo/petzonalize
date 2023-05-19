@@ -1,80 +1,28 @@
-main{
+main {
     background-image: url(../img/profile/dog-on-computer.jpeg);
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
+    min-height: calc(80vh + 1vw);
 }
 
-.custom-form {
-    max-width: 600em;
-    max-height: 200em;
-    margin: 0 auto;
+.btn-pencil {
+    color: var(--blue);
+    font-size: calc(1rem + 1vw);
+    transition: all 0.25s;
+    border: none;
 }
 
-.was-validated :valid {
-    border-color: #3A98B9 !important;
-}
-  
-.was-validated :valid:focus {
-    border-color: #3A98B9 !important; 
-    box-shadow: 0 0 0 0.25rem rgb(72, 159, 191) !important; 
+.btn-pencil:hover {
+    color: var(--purple);
+    transform: scale(1.1);
 }
 
-.was-validated :invalid {
-    border-color: #8e44ad !important; 
-}
-  
-  .was-validated :invalid:focus {
-    border-color: #8e44ad !important; 
-    box-shadow: 0 0 0 0.25rem rgba(142, 68, 173, 0.25) !important; /* Cambia el sombreado en foco a morado */
+.btn-pencil:active {
+    transform: scale(1);
 }
 
-.was-validated :valid ~ .valid-feedback {
-    color: #3A98B9; 
+.form-view {
+    background-color: var(--beige);
+    border: none;
+    outline: none;
 }
-
-.was-validated :invalid ~ .invalid-feedback {
-    color: #8e44ad;
-}
-
-#estado{
-    text-align: left;
-}
-
-#botonadmin{
-    align-items: end;
-}
-
-.bg-beige {
-    width: 90%; 
-    padding: 2%; 
-    max-width: 25em; 
-}
-
-.fa.fa-pencil {
-    color: rgb(115, 98, 138);
-    font-size: 2vw; 
-    text-shadow: none;
-    box-sizing: content-box;
-    line-height: 3vw; 
-    text-align: center;
-    max-width: 3vw; 
-    max-height: 3vw; 
-    display: inline-block;
-    overflow: hidden;
-  }
-
-  
-  /* Media Query para pantallas de tamaño pequeño */
-  @media (max-width: 576px) {
-    .fa.fa-pencil {
-      font-size: 18px;
-      line-height: 28px;
-      max-width: 28px;
-      max-height: 28px;
-    }
-  }
-
-  #estado{
-    text-align: center;
-  }
-
