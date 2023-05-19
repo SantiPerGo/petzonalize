@@ -54,6 +54,25 @@ localStorage.setItem("products", actualProducts);
     console.log(productos)
 }); */
 
+// Boton cargar imagen
+const realFileBtn = document.getElementById("product-form-uploads");
+const customBtn = document.getElementById("upload-image");
+const customTxt = document.getElementById("custom-text");
+
+customBtn.addEventListener("click", function() {
+  realFileBtn.click();
+});
+
+realFileBtn.addEventListener("change", function() {
+  if (realFileBtn.value) {
+    customTxt.innerHTML = realFileBtn.value.match(
+      /[\/\\]([\w\d\s\.\-\(\)]+)$/
+    )[1];
+  } else {
+    customTxt.innerHTML = "No file chosen, yet.";
+  }
+});
+
 // Mostrar imagen previa que se añadirá al producto
 const uploadImg = document.getElementById("product-form-uploads");
 const previewContainer = document.getElementById("imagePreview");
