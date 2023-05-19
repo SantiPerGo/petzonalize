@@ -1,4 +1,7 @@
+const alertElement = $("#alert");
+alertElement.hide();
  //Obtener el json y cargarlo a local storage 
+
 fetch("/assets/json/products.json")
 .then(res => res.json())
 .then(data =>{
@@ -52,6 +55,12 @@ localStorage.setItem("products", actualProducts);
 
     console.log(i);
     console.log(productos)
+    if(id && category && name && stock && getty && price && pet)  {
+      alertElement.text("¡Producto añadido con Éxito!");
+      alertElement.slideDown(250);
+      setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+     
+  }
 }); 
 
 // Boton cargar imagen
