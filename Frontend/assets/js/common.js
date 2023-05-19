@@ -45,6 +45,14 @@ const validateForm = form => {
             number: {
                 minlength: 1,
                 required: true
+            },
+            subject: {
+                minlength: 5,
+                required: true
+            },
+            message: {
+                minlength: 5,
+                required: true
             }
         },
         messages : {
@@ -74,6 +82,14 @@ const validateForm = form => {
             number: {
                 required: "Debes ingresar la cantidad deseada",
                 minlength: "El valor debe ser al menos 1"
+            },
+            subject: {
+                required: "Debes ingresar el asunto del correo",
+                minlength: "El asunto debe tener al menos 5 caracteres"
+            },
+            message: {
+                required: "Debes ingresar el mensaje del correo",
+                minlength: "El mensaje debe tener al menos 5 caracteres"
             }
         },
         errorClass: "valid is-valid valid-feedback",
