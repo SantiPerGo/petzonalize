@@ -1,4 +1,4 @@
-//Obtener el json y cargarlo a local storage 
+/* //Obtener el json y cargarlo a local storage 
 fetch("/assets/json/products.json")
 .then(res => res.json())
 .then(data =>{
@@ -38,7 +38,7 @@ localStorage.setItem("products", actualProducts);
 
     console.log(i);
     console.log(productos)
-})
+}); */
 
 // Mostrar imagen previa que se añadirá al producto
 const uploadImg = document.getElementById("product-form-uploads");
@@ -56,7 +56,6 @@ uploadImg.addEventListener("change", function() {
         previewImage.style.display = "block";
 
         reader.addEventListener("load", function() {
-            console.log(this);
             previewImage.setAttribute("src", this.result);
         });
         reader.readAsDataURL(file);
