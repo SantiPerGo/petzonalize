@@ -126,3 +126,9 @@
   justify-content: center;
   align-items: center;
 }
+
+#product-buy,
+#product-clear {
+  /* padding: 8px 100px; */
+  width: 290px;
+}
