@@ -5,8 +5,8 @@ fetch("/assets/json/products.json")
     console.log(data)
     const products = data.products;
    
-    //let actualProducts=JSON.stringify(products);
-    //localStorage.setItem("products", actualProducts);
+    let actualProducts=JSON.stringify(products);
+    localStorage.setItem("products", actualProducts);
 });
 //declarar elementos
 let name = document.getElementById("name");
@@ -15,19 +15,38 @@ let price = document.getElementById("price");
 
 
 //obtener los datos del formulario
-const refForm =document.getElementById["add"];
-refForm.addEventListener(`submit`, (event)=>{
+const refForm =document.forms["edit-form"];
+refForm.addEventListener(`submit`, event=>{
+    event.preventDefault();
+
+    console.log("en el click")
 
 const name=refForm.elements["name"].value;
 const stock=refForm.elements["stock"].value;
 
+// agregar los productos 
 let productos= localStorage.getItem("products")
 productos=JSON.parse(productos);
+<<<<<<< HEAD
 console.log("productos", productos)
 let i = productos.push({id:13, name:"prueba", description:"still prueba"});
 console.log(i);
 console.log(productos)
 }); */
+=======
+    console.log("productos", productos)
+
+
+let id=productos.length+1;
+let i = productos.push({id:id, name:name, stock:stock});
+
+actualProducts=JSON.stringify(productos);
+localStorage.setItem("products", actualProducts);
+
+    console.log(i);
+    console.log(productos)
+})
+>>>>>>> 7498601 (front-productform-style: in form)
 
 // Mostrar imagen previa que se añadirá al producto
 const uploadImg = document.getElementById("product-form-uploads");
