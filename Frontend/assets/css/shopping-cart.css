@@ -36,7 +36,7 @@ ion-icon {
   }
 
 
- #cantidadproductos {
+ .cantidadproductos {
     display: flex;
     align-items: center;
   }
@@ -95,4 +95,41 @@ ion-icon {
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    
+    /* ver mas y ver menos */
+    .descriptioncontainer{
+      position: relative;
+      overflow: hidden !important;
+      height: 8rem;
+    }
+    
+    .description {
+      text-overflow: ellipsis !important;
+      word-break: break-word !important;
+
+    }
+
+  .description-gradient{
+      top: 0;
+      height: inherit;
+      width: 100%;
+      background: rgb(255,255,255);
+      background: linear-gradient(180deg, rgba(255,255,255,0) 52%, rgba(255,241,220,1) 88%);
+      position: absolute;
+    }
+ 
+    .show-description {
+      height: auto;
+    }
+    
+    .hide-description {
+      height: 8rem;
+
+    }
+    
+    .ver-mas {
+      color: var(--purple); /* Cambia el color a tu preferencia */
+      text-decoration: underline; /* Agrega decoración de subrayado o personalízala */
+      cursor: pointer; /* Cambia el cursor al estilo "puntero" al pasar el ratón sobre él */
     }

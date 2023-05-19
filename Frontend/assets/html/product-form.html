@@ -24,7 +24,7 @@
 
 <body>
     <nav></nav>
-
+    <div id="alert" class="alert alert-success m-0 text-success text-center" role="alert"></div>
     <header></header>
 
     <main class="container-fluid main-container">
@@ -50,7 +50,7 @@
                                                     <label for="name" 
                                                         class="form-label"><b>Nombre:</b></label>
                                                     <input type="text" class="form-control" id="product-form-name"
-                                                        placeholder="Nombre del producto" name="name" >
+                                                        placeholder="Nombre del producto" name="name" required >
                                                     <div class="invalid-feedback">
                                                         El nombre no debe contener carácteres especiales.
                                                     </div>
@@ -61,7 +61,7 @@
                                                     <label for="description" 
                                                         class="form-label"><b>Descripción:</b></label>
                                                     <textarea class="form-control" type="text" id="product-form-description"
-                                                        placeholder="Descripción del producto" name=""
+                                                        placeholder="Descripción del producto" name="description"
                                                         placeholder="Descripción del producto" rows="3"
                                                         ></textarea>
                                                     <div class="invalid-feedback">
@@ -74,7 +74,7 @@
                                                 <div class="form-group my-3 mx-3">
                                                     <label for="quantity" class="form-label"><b>Cantidad:</b></label>
                                                     <input type="number" class="form-control" id="product-form-quantity"
-                                                        placeholder="Cantidad" name="stock" >
+                                                        placeholder="Cantidad" name="number" >
                                                     <div class="invalid-feedback">
                                                         Ingrese cantidad.
                                                     </div>
@@ -84,7 +84,7 @@
                                                 <div class="form-group my-3 mx-3">
                                                     <label for="price" class="form-label"><b>Precio:</b></label>
                                                     <input type="number" class="form-control" id="product-form-price"
-                                                        placeholder="Precio" name="price" >
+                                                        placeholder="Precio" name="number" >
                                                     <div class="invalid-feedback">
                                                         Ingrese precio.
                                                     </div>
@@ -171,6 +171,7 @@
 
     <!-- Loading Navbar and Footer with Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <script src="/assets/js/common.js"></script>
     <script src="../js/product-form.js"></script>
 
