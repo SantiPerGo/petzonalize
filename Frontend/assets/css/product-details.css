@@ -27,9 +27,11 @@
 }
 
 /* Estilos contenedores */
-#material,
-#size,
-#color {
+#material-collar,
+#size-collar,
+#color-collar,
+#shape-platename,
+#size-nameplate {
   background-color: var(--beige);
   border: 0.25rem solid var(--brown);
   border-radius: 1rem;
@@ -104,4 +106,21 @@
 .size-grande:hover + .size-grande {
   font-weight: bold;
   font-size: 25px;
+}
+
+/* Hover selection effect in Shape Selection section */
+#circulo-shape:hover,
+#estrella-shape:hover,
+#hueso-shape:hover,
+#huella-shape:hover,
+#esfera-shape:hover {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+/* Color Name plate */
+.color-picker-nameplate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

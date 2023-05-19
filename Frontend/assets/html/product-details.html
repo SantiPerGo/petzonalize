@@ -37,8 +37,9 @@
                         <h1 class="justify-content-center" id="product-name"></h1>
                     </div>
 
-                    <div class="row justify-content-center mb-2" id="material-row">
-                        <div class="col-11 align-content-center p-0" id="material">
+                    <!-- Material Selection Collar -->
+                    <div class="row justify-content-center mb-2">
+                        <div class="col-11 align-content-center p-0" id="material-collar">
                             <div class="row text-center w-100 m-0">
                                 <h2>Material</h2>
                             </div>
@@ -52,63 +53,100 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row justify-content-center mb-2" id="size-row">
-                        <div class="col-11 align-content-center p-0" id="size">
+
+                    <!-- Size Selection Collar -->
+                    <div class="row justify-content-center mb-2">
+                        <div class="col-11 align-content-center p-0" id="size-collar">
                             <div class="row text-center m-0">
                                 <h2>Tamaño</h2>
                             </div>
                             <div class="row text-center ">
-                                <div class="col-6 size-pequeño">
+                                <div class="col-6 size-pequeño mx-0">
                                     <p>Pequeño</p>
                                 </div>
                                 <div class="col-6 size-pequeño">
-                                    <p>35mm x 18 mm</p>
+                                    <p>35 mm. x 18 mm.</p>
                                 </div>
                                 <div class="col-6 size-mediano">
                                     <p>Mediano</p>
                                 </div>
                                 <div class="col-6 size-mediano">
-                                    <p>38mm x 25mm</p>
+                                    <p>38 mm. x 25 mm.</p>
                                 </div>
                                 <div class="col-6 size-grande">
                                     <p>Grande</p>
                                 </div>
                                 <div class="col-6 size-grande">
-                                    <p>50mm x 32mm</p>
+                                    <p>50 mm. x 32 mm.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row justify-content-center" id="color-row">
-                        <div class="col-11 align-content-center" id="color">
+
+                    <!-- Color Selection Collar-->
+                    <div class="row justify-content-center mb-2">
+                        <div class="col-11 align-content-center" id="color-collar">
                             <div class="row text-center">
                                 <h2 class="p-0 m-0 w-100">Color</h2>
                             </div>
                             <div class="row justify-content-center m-1">
-                                <div class="col-4 circle black mx-lg-5"></div>
-                                <div class="col-4 circle yellow mx-lg-4"></div>
-                                <div class="col-4 circle red mx-lg-5"></div>
-                            </div>
-                            <div class="row justify-content-center mb-3">
-                                <div class="col-4 circle blue mx-lg-5"></div>
-                                <div class="col-4 circle pink mx-lg-4"></div>    
-                                <div class="col-4 circle green mx-lg-5"></div>
+                                <div class="col-sm-4 col-lg-4 circle black mx-lg-5"></div>
+                                <div class="col-sm-4 col-lg-4 circle yellow mx-lg-4"></div>
+                                <div class="col-sm-4 col-lg-4 circle red mx-lg-5"></div>
+                                <div class="col-sm-4 col-lg-4 circle blue mx-lg-5"></div>
+                                <div class="col-sm-4 col-lg-4 circle pink mx-lg-4"></div>    
+                                <div class="col-sm-4 col-lg-4 circle green mx-lg-5"></div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <h1 id="size"></h1>
+                    <!-- Shape Selection NamePlate -->
+                    <div class="row justify-content-center mb-2">
+                        <div class="col-11 align-content-center" id="shape-platename">
+                            <div class="row text-center">
+                                <h2 class="p-0 m-0 w-100 text-center">Forma</h2>
+                            </div>
+                            <div class="row justify-content-center text-center m-1">
+                                <div class="col-4" id="circulo-shape">
+                                    <p>Ciculo</p>
+                                </div>
+                                <div class="col-4" id="estrella-shape">
+                                    <p>Estrella</p>
+                                </div>
+                                <div class="col-4" id="hueso-shape">
+                                    <p>Hueso</p>
+                                </div>
+                                <div class="col-6" id="huella-shape">
+                                    <p>Huella</p>
+                                </div>
+                                <div class="col-6" id="esfera-shape">
+                                    <p>Esfera</p>
+                                </div>    
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="row">
-                        <h1 id="color"></h1>
+                    <!-- Color Selesction NamePlate -->
+                    <div class="row justify-content-center mb-2">
+                        <div class="col-11 align-content-center p-0" id="size-nameplate">
+                            <div class="row text-center m-0">
+                                <h2>Color</h2>
+                            </div>
+                            <div class="row text-center mb-0">
+                                <p class="m-0 mb-1">Seleccióna tu color favorito!</p>
+                            </div>
+                            <div class="col color-picker-nameplate">
+                                <input name="Color Picker" type="color" class="w-25 mb-3 mt-2"/>
+                            </div>
+                        </div>
                     </div>
 
+                    <!-- Name and Phone Form NamePlate  -->
                     <div class="row">
                         <p id="product-description"></p>
                     </div>
 
+                    <!-- Buttons -->
                     <div class="row">
                         <div class="col">
                             <button class="btn btn-blue">Cantidad</button>
