@@ -44,8 +44,8 @@
 
                                                     <div class="form-group my-3 mx-3">
                                                         <label for="name" class="form-label"><b>Nombre:</b></label>
-                                                        <input type="text" class="form-control" id="" 
-                                                                placeholder="Nombre del producto" name="" required>
+                                                        <input type="text" class="form-control" id="name" 
+                                                                placeholder="Nombre del producto" name="name" required>
                                                         <div class="invalid-feedback">
                                                             El nombre no debe contener carácteres especiales.
                                                         </div>
@@ -53,7 +53,7 @@
                                                     
                                                     <div class="form-group my-3 mx-3">
                                                         <label for="quantity" class="form-label"><b>Cantidad:</b></label>
-                                                        <input type="number" class="form-control" id="" placeholder="Cantidad" name="" required>
+                                                        <input type="number" class="form-control" id="stock" placeholder="Cantidad" name="stock" required>
                                                         <div class="invalid-feedback">
                                                             Ingrese cantidad.
                                                         </div>
@@ -61,7 +61,7 @@
                                                     
                                                     <div class="form-group my-3 mx-3">
                                                         <label for="price" class="form-label"><b>Precio:</b></label>
-                                                        <input type="number" class="form-control" id="" placeholder="Precio" name="" required>
+                                                        <input type="number" class="form-control" id="price" placeholder="Precio" name="price" required>
                                                         <div class="invalid-feedback">
                                                             Ingrese precio.
                                                         </div>
@@ -72,10 +72,10 @@
                                                         <br>
                                                         <div class="input-group">
                                                             <div class="input-group-text-lg">
-                                                                <input class="form-check-input" type="radio" id="#" name="customizable" value="#" />
+                                                                <input class="form-check-input" type="radio" id="pezonalizableSi" name="customizable" value="true" />
                                                                 <label for="contactChoice1">Si</label>
     
-                                                                <input class="form-check-input" type="radio" id="#" name="customizable" value="#" />
+                                                                <input class="form-check-input" type="radio" id="pezonalizableNo" name="customizable" value="ture" />
                                                                 <label for="contactChoice2">No</label>
                                                             </div>
                                                         </div>
@@ -87,12 +87,12 @@
                                                         <label for="properties" class="form-label"><b>Categoría:</b></label>
                                                         <br>
                                                         <!-- Customizable -->
-                                                        <select class="form-select form-select-lg mb-3" id="#" name="#"> <!-- Se cambia el tipo de input a select-->
-                                                            <option selected="collar"> Collar </option>
+                                                        <select class="form-select form-select-lg mb-3" id="categoryCustom" name="categoryCustom"> <!-- Se cambia el tipo de input a select-->
+                                                            <option value="collar"> Collar </option>
                                                             <option value="bowl"> Plato </option>
-                                                            <option value="#"> Nombre de la placa </option>
+                                                            <option value="badge"> Nombre de la placa </option>
                                                             <option value="pet"> Mascota </option>
-                                                            <option value="#"> Patrón </option>
+                                                            <option value="design"> Patrón </option>
                                                             <option value="other"> Otros </option>
                                                         </select>
 
@@ -104,7 +104,7 @@
                                                         <input type="checkbox" class="" id="custome" name="" required> Otros -->
 
                                                         <!-- No customizable -->
-                                                        <select class="form-select form-select-lg mb-3" id="#" name="#"> <!-- Se cambia el tipo de input a select-->
+                                                        <select class="form-select form-select-lg mb-3" id="category" name="category"> <!-- Se cambia el tipo de input a select-->
                                                             <option value="food"> Comida </option>
                                                             <option value="toys"> Juguetes </option>
                                                             <option value="cleaning"> Limpieza </option>
@@ -150,9 +150,9 @@
                                                         <div class="form-group my-3 mx-3">
                                                             <label for="properties" class="form-label"><b>Material:</b></label>
                                                             <br>
-                                                            <input type="radio" id="#" name="properties" value="#" />
+                                                            <input type="radio" id="leather" name="properties" value="#" />
                                                             <label for="#">Piel</label>
-                                                            <input type="radio" id="#" name="properties" value="#" />
+                                                            <input type="radio" id="nylon" name="properties" value="#" />
                                                             <label for="#">Nylon</label>
                                                             <div class="invalid-feedback">
                                                                 Seleccione el tipo de productos que ofrecerá.
@@ -162,11 +162,11 @@
                                                         <div class="form-group my-3 mx-3">
                                                             <label for="size" class="form-label"><b>Tamaño:</b></label>
                                                             <br>
-                                                            <input type="radio" id="#" name="size" value="#" />
+                                                            <input type="radio" id="small" name="size" value="#" />
                                                             <label for="#">Pequeño</label>
-                                                            <input type="radio" id="#" name="size" value="#" />
+                                                            <input type="radio" id="medium" name="size" value="#" />
                                                             <label for="#">Mediano</label>
-                                                            <input type="radio" id="#" name="size" value="#" />
+                                                            <input type="radio" id="large" name="size" value="#" />
                                                             <label for="#">Grande</label>
                                                             <div class="invalid-feedback">
                                                                 Seleccione un tamaño.
@@ -176,12 +176,12 @@
                                                         <div class="form-group my-3 mx-3">
                                                             <label for="properties" class="form-label"><b>Color:</b></label>
                                                             <br>
-                                                            <input type="checkbox" class="" id="" name="" required>Negro
-                                                            <input type="checkbox" class="" id="" name="" required>Amarillo
-                                                            <input type="checkbox" class="" id="" name="" required>Rojo
-                                                            <input type="checkbox" class="" id="" name="" required>Azul
-                                                            <input type="checkbox" class="" id="" name="" required>Rosa
-                                                            <input type="checkbox" class="" id="" name="" required>Verde
+                                                            <input type="checkbox" class="" id="black" name="" required>Negro
+                                                            <input type="checkbox" class="" id="yellow" name="" required>Amarillo
+                                                            <input type="checkbox" class="" id="red" name="" required>Rojo
+                                                            <input type="checkbox" class="" id="blue" name="" required>Azul
+                                                            <input type="checkbox" class="" id="pink" name="" required>Rosa
+                                                            <input type="checkbox" class="" id="green" name="" required>Verde
                                                             <div class="invalid-feedback">
                                                                 Seleccione un tamaño.
                                                             </div>
@@ -240,7 +240,7 @@
                                     <!----------- Buttons bottom --------->
                                     <div class="col-lg-10 col-sm-10 p-4 d-flex justify-content-around">
                                         <button id="" type="submit" class="btn btn-purple my-2">Editar</button>
-                                        <button id="" type="button" class="btn btn-purple my-2">Añadir/Actualizar</button>
+                                        <button id="add" type="button" class="btn btn-purple my-2">Añadir/Actualizar</button>
                                         <button id="" type="button" class="btn btn-purple my-2">Eliminar</button>
                                     </div>
                                 <!-- </form> -->
