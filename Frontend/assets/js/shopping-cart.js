@@ -17,7 +17,7 @@ const getUserProductsInStorage = () => {
          <!--------- Columna de Imagen Producto--------->
          <div class="col col-lg-4 productimagecontainer">
              <div>
-                 <img class="productimage" src=${userCartProducts[index].imgUrl} alt="">
+                 <img class="productimage" src="${userCartProducts[index].imgUrl}" alt="">
              </div>
          </div>
          <!------- Columna Informacion de Producto-------->
@@ -37,12 +37,12 @@ const getUserProductsInStorage = () => {
                          <div class="col col-lg-6 col-sm-12">
                              <div class="container">
                                  <div class="row">
-                             <p id="cantidadproductos">
+                             <div class="cantidadproductos">
                                  Cantidad
-                                 <button type="button" onclick="" class="button-icon"><ion-icon id="removepiece" name="remove-circle"></ion-icon></button>
-                                 <span class="number-display">${userCartProducts[index].amount}</span>
-                                <button type="button" onclick="" class="button-icon"><ion-icon id="addpiece" name="add-circle"></ion-icon></button>
-                             </p>
+                                 <button type="button" class="button-icon removepiece" id="removepiece"><ion-icon id="removepiece" name="remove-circle"></ion-icon></button>
+                                 <span class="number-display" id="amount-product">${userCartProducts[index].amount}</span>
+                                <button type="button" class="button-icon addpiece" id="addpiece"><ion-icon id="addpiece" name="add-circle"></ion-icon></button>
+                             </div>
                          </div>
                          </div>
                          </div>
@@ -59,6 +59,45 @@ const getUserProductsInStorage = () => {
 }
 
 getUserProductsInStorage();
+
+//-------------------- Add more pices of an product ---------------
+const modifyAmountProducts = ()=>{
+    
+    const amountContainer = document.getElementsByClassName("cantidadproductos");
+    
+    for(let index = 0; index < amountContainer.length; index++){
+        //------------------ Agregar Items ---------------------------
+        amountContainer[index].children["addpiece"].addEventListener("click", ()=>{
+           
+            if(userCartProducts[index+1].amount < 10){
+            userCartProducts[index+1].amount += 1;
+            userCartProducts[0].total += 1;
+            amountContainer[index].children["amount-product"].innerText = userCartProducts[index+1].amount;
+            localStorage.setItem("shopping-cart", JSON.stringify(userCartProducts));
+            }
+
+        });
+        
+
+        //------------------- Quitar Items ---------------------------
+        amountContainer[index].children["removepiece"].addEventListener("click", ()=>{
+            
+            if(userCartProducts[index+1].amount > 1){
+                userCartProducts[index+1].amount -= 1;
+                userCartProducts[0].total -= 1;
+                amountContainer[index].children["amount-product"].innerText = userCartProducts[index+1].amount;
+                localStorage.setItem("shopping-cart", JSON.stringify(userCartProducts));
+            }
+            else{
+                console.log("You have 1 item only");
+            }
+        });
+        
+    }
+}
+
+modifyAmountProducts();
+
 
 // const pintarCarrito = () => {
 //     //para hacer limpieza y que no se repita el carrito
