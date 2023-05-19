@@ -109,6 +109,14 @@ function deleteShoppingCart() {
 
 getUserProductsInStorage();
 
+//------------------- Actualizar icono de carrito de compras ----------------
+const updateIconCartReference = (amount) => {
+    const shoppingCartCounter = $("#shopping-cart-counter");
+            shoppingCartCounter.text(amount);
+}
+
+
+
 //-------------------- Add more pices of an product ---------------
 const modifyAmountProducts = ()=>{
     
