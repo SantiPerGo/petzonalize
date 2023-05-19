@@ -38,9 +38,9 @@ if(localStorage.getItem("users-logged-in")){
 
 
     const usuariosJson = user;
-    const usuario = usuariosJson.fprivileges;
+    const usuario = usuariosJson;
 
-    if (usuario && usuario.privileges === "admin") {
+    if (usuario.privileges === "admin") {
       estadoAdmin = true;
     } else {
       estadoAdmin = false;
