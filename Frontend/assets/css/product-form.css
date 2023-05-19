@@ -49,3 +49,19 @@
     border: 0.25rem solid var(--brown);
     border-radius: 1rem;
  }
+
+
+.image-preview {
+  width: 300px;
+  height: 300px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #BDA692; 
+}
+
+.image-preview__image{
+  display: none;
+  width: 100%;
+}
