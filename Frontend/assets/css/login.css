@@ -1,8 +1,8 @@
-main{
+main {
     background-image: url(/assets/img/login-register/dog-computer-searching.png);
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 75vh;
+    min-height: calc(80vh + 1vw);
 }
 
 #view-recover-section {
