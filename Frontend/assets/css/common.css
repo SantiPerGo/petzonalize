@@ -28,6 +28,14 @@ nav, footer {
     color: var(--brown);
 }
 
+footer h2 {
+    font-size: calc(.75rem + 1vw) !important;
+}
+
+footer .bi {
+    font-size: calc(2rem + 1vw) !important;
+}
+
 nav {
     border-bottom: .5rem solid var(--brown);
 }
