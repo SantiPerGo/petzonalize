@@ -78,3 +78,9 @@
   justify-content: center;
   flex-direction: column;
 } */
+.custom-text{
+  color: var(--brown);
+}
+.custom-textB{
+  color: black;
+}
