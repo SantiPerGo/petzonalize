@@ -1,9 +1,9 @@
 const productsListContainer = document.getElementById("products-list");
+const userCartProducts = JSON.parse(localStorage.getItem("shopping-cart"));
 
 //-----------Defincion de funcion ----------------------
 const getUserProductsInStorage = () => {
     
-    const userCartProducts = JSON.parse(localStorage.getItem("shopping-cart"));
     console.log(userCartProducts);
 
     let product = ``;
