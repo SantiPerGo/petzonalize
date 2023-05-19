@@ -109,37 +109,6 @@ function deleteShoppingCart() {
 
 getUserProductsInStorage();
 
-
-/*Función para obtener el valor total llegado del localstorage*/
-
-document.addEventListener("DOMContentLoaded", () => {
-    // Obtener el valor del carrito de compras del Local Storage
-    const userCartProducts = JSON.parse(localStorage.getItem("shopping-cart"));
-  
-    let totalPrice = 0;
-    if (userCartProducts && userCartProducts.length > 0) {
-      totalPrice = userCartProducts.reduce((total, product) => {
-        const price = parseFloat(product.price);
-        const amount = parseInt(product.amount);
-        if (!isNaN(price) && !isNaN(amount)) {
-          return total + price * amount;
-        } else {
-          return total;
-        }
-      }, 0);
-    }
-  
-    // Actualizar el contenido de la clase "totalPrice" al valor del carrito de compras
-    const totalPriceElement = document.querySelector(".totalPrice");
-    totalPriceElement.textContent = totalPrice.toFixed(2); // Asegura que se muestren dos decimales
-  });
-  
-  
-  //Regresar al product page
-  function backShoppingCartPage() {
-      window.location.href = "./products.html";
-    }
-
 //-------------------- Add more pices of an product ---------------
 const modifyAmountProducts = ()=>{
     
@@ -152,6 +121,7 @@ const modifyAmountProducts = ()=>{
             if(userCartProducts[index+1].amount < 10){
             userCartProducts[index+1].amount += 1;
             userCartProducts[0].total += 1;
+            updateIconCartReference(userCartProducts[0].total);
             amountContainer[index].children["amount-product"].innerText = userCartProducts[index+1].amount;
             localStorage.setItem("shopping-cart", JSON.stringify(userCartProducts));
             }
@@ -165,6 +135,7 @@ const modifyAmountProducts = ()=>{
             if(userCartProducts[index+1].amount > 1){
                 userCartProducts[index+1].amount -= 1;
                 userCartProducts[0].total -= 1;
+                updateIconCartReference(userCartProducts[0].total);
                 amountContainer[index].children["amount-product"].innerText = userCartProducts[index+1].amount;
                 localStorage.setItem("shopping-cart", JSON.stringify(userCartProducts));
             }
