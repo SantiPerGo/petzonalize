@@ -4,7 +4,8 @@ const userCartProducts = JSON.parse(localStorage.getItem("shopping-cart"));
 //-----------Defincion de funcion ----------------------
 const getUserProductsInStorage = () => {
     
-    console.log(userCartProducts);
+    updateAmountSpan();
+    updateTotalPrice();
 
     let product = ``;
     //------ Iteración de lista de productos --------------
@@ -15,13 +16,13 @@ const getUserProductsInStorage = () => {
         product = `<div class="product-box my-4 bg-beige">
         <div class="row justify-content-center">
          <!--------- Columna de Imagen Producto--------->
-         <div class="col col-lg-4 productimagecontainer">
+         <div class="col-12 col-lg-4 col-md-8 col-sm-12 productimagecontainer">
              <div>
                  <img class="productimage" src="${userCartProducts[index].imgUrl}" alt="">
              </div>
          </div>
          <!------- Columna Informacion de Producto-------->
-         <div class="col col-lg-8">
+         <div class="col-12 col-lg-8 col-md-8 col-sm-12">
              <div class="row justify-content-center">
                  <div class="col-12 col-lg-12">
                      <h4>${userCartProducts[index].name }</h4>
@@ -33,23 +34,29 @@ const getUserProductsInStorage = () => {
                             <div class="description-gradient"></div>
                         </div>
                         <a href="#" class="ver-mas">Ver más</a>
-                 </div>
-                 <div class="col-12 col-lg-12">
-                     <div class="row justify-content-center">
-                         <div class="col col-lg-6 col-sm-12">
-                             <p>Precio Individual: $<span>${userCartProducts[index].price}</span></p>
-                         </div>
-                         <div class="col col-lg-6 col-sm-12">
-                             <div class="container">
-                                 <div class="row">
-                             <div class="cantidadproductos">
-                                 Cantidad
-                                 <button type="button" class="button-icon removepiece" id="removepiece"><ion-icon id="removepiece" name="remove-circle"></ion-icon></button>
-                                 <span class="number-display" id="amount-product">${userCartProducts[index].amount}</span>
-                                <button type="button" class="button-icon addpiece" id="addpiece"><ion-icon id="addpiece" name="add-circle"></ion-icon></button>
+                </div>
+                <div class="col-12 col-lg-12">
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-6 col-lg-6 col-sm-12">
+                             <div class="w-100">
+                                 <p>Precio Individual: $<span>${userCartProducts[index].price}</span></p>
                              </div>
-                         </div>
-                         </div>
+                        </div>
+                        <div class="col-6 col-lg-6 col-sm-12">
+                            <div class="row justify-content-center">
+                                <div  class="col-12">
+                                    <div class="amountText">
+                                        <p>Cantidad</p>
+                                    </div>  
+                                </div>
+                                <div class="col-12 text-center">
+                                    <div class="amountButtons cantidadproductos">
+                                        <button type="button" class="button-icon removepiece" id="removepiece"><ion-icon id="removepiece" name="remove-circle"></ion-icon></button>
+                                        <p class="number-display" id="amount-product">${userCartProducts[index].amount}</p>
+                                        <button type="button" class="button-icon addpiece" id="addpiece"><ion-icon id="addpiece" name="add-circle"></ion-icon></button>
+                                    </div>
+                                </div>
+                            </div>
                          </div>
                      </div>
                  </div>
@@ -61,9 +68,6 @@ const getUserProductsInStorage = () => {
 
         productsListContainer.innerHTML += product;
     }
-
-    updateAmountSpan();
-    updateTotalPrice();
 
     const descriptionParagraph = document.querySelector('.descriptioncontainer');
     const verMasLink = document.querySelector('.ver-mas');
@@ -107,6 +111,7 @@ function deleteShoppingCart() {
   
     // Vaciar el contenido del contenedor
     productsListContainer.innerHTML = "";
+    updateAmountSpan();
   }
 
 
@@ -135,10 +140,15 @@ function updateTotalPrice(){
 }
 
 function updateAmountSpan (){
-
-    let total = userCartProducts[0].total;
     const totalPieces = document.getElementById("piecesProducts");
-    totalPieces.innerText = `${total}`;
+    
+    if(userCartProducts){
+        let total = userCartProducts[0].total;
+        totalPieces.innerText = `${total}`;
+    }
+    else{
+        totalPieces.innerText = '0';
+    }
 }
   
   
