@@ -62,6 +62,9 @@ const getUserProductsInStorage = () => {
         productsListContainer.innerHTML += product;
     }
 
+    updateAmountSpan();
+    updateTotalPrice();
+
     const descriptionParagraph = document.querySelector('.descriptioncontainer');
     const verMasLink = document.querySelector('.ver-mas');
     
@@ -110,28 +113,33 @@ function deleteShoppingCart() {
 getUserProductsInStorage();
 
 /*Función para obtener el valor total llegado del localstorage*/
-
-document.addEventListener("DOMContentLoaded", () => {
-    // Obtener el valor del carrito de compras del Local Storage
-    const userCartProducts = JSON.parse(localStorage.getItem("shopping-cart"));
-  
-    let totalPrice = 0;
-    if (userCartProducts && userCartProducts.length > 0) {
-      totalPrice = userCartProducts.reduce((total, product) => {
-        const price = parseFloat(product.price);
-        const amount = parseInt(product.amount);
-        if (!isNaN(price) && !isNaN(amount)) {
-          return total + price * amount;
-        } else {
-          return total;
+function updateTotalPrice(){
+    
+        // Obtener el valor del carrito de compras del Local Storage
+        let totalPrice = 0;
+        if (userCartProducts && userCartProducts.length > 0) {
+          totalPrice = userCartProducts.reduce((total, product) => {
+            const price = parseFloat(product.price);
+            const amount = parseInt(product.amount);
+            if (!isNaN(price) && !isNaN(amount)) {
+              return total + price * amount;
+            } else {
+              return total;
+            }
+          }, 0);
         }
-      }, 0);
-    }
-  
-    // Actualizar el contenido de la clase "totalPrice" al valor del carrito de compras
-    const totalPriceElement = document.querySelector(".totalPrice");
-    totalPriceElement.textContent = totalPrice.toFixed(2); // Asegura que se muestren dos decimales
-  });
+      
+        // Actualizar el contenido de la clase "totalPrice" al valor del carrito de compras
+        const totalPriceElement = document.querySelector(".totalPrice");
+        totalPriceElement.textContent = totalPrice.toFixed(2); // Asegura que se muestren dos decimales
+}
+
+function updateAmountSpan (){
+
+    let total = userCartProducts[0].total;
+    const totalPieces = document.getElementById("piecesProducts");
+    totalPieces.innerText = `${total}`;
+}
   
   
   //Regresar al product page
@@ -161,6 +169,8 @@ const modifyAmountProducts = ()=>{
             userCartProducts[0].total += 1;
             updateIconCartReference(userCartProducts[0].total);
             amountContainer[index].children["amount-product"].innerText = userCartProducts[index+1].amount;
+            updateAmountSpan();
+            updateTotalPrice();
             localStorage.setItem("shopping-cart", JSON.stringify(userCartProducts));
             }
 
@@ -175,6 +185,8 @@ const modifyAmountProducts = ()=>{
                 userCartProducts[0].total -= 1;
                 updateIconCartReference(userCartProducts[0].total);
                 amountContainer[index].children["amount-product"].innerText = userCartProducts[index+1].amount;
+                updateAmountSpan();
+                updateTotalPrice();
                 localStorage.setItem("shopping-cart", JSON.stringify(userCartProducts));
             }
             else{
