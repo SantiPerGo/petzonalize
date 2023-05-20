@@ -33,7 +33,10 @@
 #shape-nameplate,
 #size-nameplate,
 #color-nameplate,
-#name-nameplate {
+#name-nameplate,
+#size-bowl,
+#color-bowl,
+#theme-bowl {
   background-color: var(--beige);
   border: 0.25rem solid var(--brown);
   border-radius: 1rem;
@@ -129,6 +132,12 @@
 
 #product-buy,
 #product-clear {
-  /* padding: 8px 100px; */
   width: 290px;
+}
+
+/* Bowl Theme Selection */
+.img-theme {
+  height: 100px;
+  width: 100px;
+  border-radius: 10px;
 }
