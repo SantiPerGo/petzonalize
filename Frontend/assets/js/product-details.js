@@ -45,6 +45,7 @@ $(document).ready(() => {
       customProductForm.find('[id*="product-img"]').attr("src", product.imgUrl);
       customProductForm.find('[id*="product-img"]').attr("alt", product.name);
       customProductForm.find('[id*="product-name"]').text(product.name);
+      $(":root").css("--img-mask", `url(${product.imgUrl})`);
     } else {
       customProductForm.addClass("d-none");
       productForm.removeClass("d-none");

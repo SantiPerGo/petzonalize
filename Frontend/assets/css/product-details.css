@@ -17,19 +17,26 @@
 
 :root {
   --color-picker: var(--beige);
+  --img-mask: none;
 }
 
 #product-img-div {
-  position: relative;
+  position: relative;  
 }
 
 #product-img-container::after {
   content: "";
   position: absolute;
-  top: 0; 
-  right: 0; 
-  bottom: 0; 
-  left: 0; 
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   mix-blend-mode: hue;  
-  background-color: var(--color-picker);            
+  background-color: var(--color-picker);   
+  -webkit-mask-image: var(--img-mask);
+  mask-image: var(--img-mask);  
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
