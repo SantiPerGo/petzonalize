@@ -38,6 +38,7 @@
 
 .card-header {
     font-size: calc(1.5rem + 0.5vw);
+    display: inline-block;
 }
 
 .card-body {
@@ -58,6 +59,27 @@ button a {
     color: var(--gray);
 }
 
+.product-edit-icon {
+    position: absolute;
+    top: 0;
+    right: -40%;
+    color: var(--blue);
+    transition: all 0.25s;
+}
+
+.product-edit-icon:hover {
+    color: var(--purple);
+    transform: scale(1.1);
+}
+
+.product-edit-icon:active {
+    transform: scale(1);
+}
+
+.bi-pencil-square {
+    font-size: calc(2rem + 0.5vw);
+}
+
 /* Loading animation */
 
 #loading-anim {
@@ -69,10 +91,6 @@ button a {
 
 .form-check-input {
     background-color: var(--brown);
-}
-
-.form-check-input::after {
-    background-color: aquamarine;
 }
 
 .form-check-input:checked {

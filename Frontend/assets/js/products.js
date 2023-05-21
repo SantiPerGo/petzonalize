@@ -28,6 +28,21 @@ const createProductsCards = products => {
       card.find('[id*="product-price"]').text(price);
 
       if(product.customizable === false) {
+        let user = localStorage.getItem("users-logged-in");
+        const editIcon = card.find('[id*="product-edit"]');
+
+        if(user != null) {
+          user = JSON.parse(user);
+
+          if(user.privileges === "admin") {
+            editIcon.removeClass("d-none");
+            editIcon.click(() => {
+              sessionStorage.setItem("product", JSON.stringify(product));
+              window.location.href = 'product-form.html';
+            });
+          }
+        } 
+
         // Adding increase and decrease buttons methods
         const increaseButton = card.find('[id*="increase"]');
         const decreaseButton = card.find('[id*="decrease"]');
