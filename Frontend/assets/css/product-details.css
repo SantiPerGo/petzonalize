@@ -1,143 +1,35 @@
-.container {
-  height: 100vh;
-}
-
-.fixed-section {
-  width: 300px;
-  height: 100vh;
-}
-
 .scrollable-section {
   flex: 1;
   overflow-y: scroll;
+
+  /* Oculta las barras de desplazamiento en navegadores que soportan la propiedad scrollbar-width */
+  scrollbar-width: none; 
 }
 
+/* Oculta las barras de desplazamiento en navegadores webkit */
 .scrollable-section::-webkit-scrollbar {
-  display: none; /* Oculta las barras de desplazamiento en navegadores webkit */
+  display: none;
 }
 
-.scrollable-section {
-  scrollbar-width: none; /* Oculta las barras de desplazamiento en navegadores que soportan la propiedad scrollbar-width */
+.bg-beige {
+  padding: calc(0.5rem + 1vw);
 }
 
-#product-img {
-  background-color: var(--beige);
-  border: 0.25rem solid var(--brown);
-  border-radius: 1rem;
+:root {
+  --color-picker: var(--beige);
 }
 
-/* Estilos contenedores */
-#material-collar,
-#size-collar,
-#color-collar,
-#shape-nameplate,
-#size-nameplate,
-#color-nameplate,
-#name-nameplate,
-#size-bowl,
-#color-bowl,
-#theme-bowl {
-  background-color: var(--beige);
-  border: 0.25rem solid var(--brown);
-  border-radius: 1rem;
-}
-#product-name {
-  text-align: center;
+#product-img-div {
+  position: relative;
 }
 
-@media (min-width: 320px) {
-  .fixed-section {
-    margin-right: 20px;
-  }
-  .scrollable-section {
-    margin-left: 20px;
-  }
-}
-
-/* Seccion Seleccion de colores */
-.circle {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin: 10px;
-}
-
-.black {
-  background-color: black;
-}
-.yellow {
-  background-color: #FAF001;
-}
-.red {
-  background-color: #FF0000;
-}
-.blue {
-  background-color: #00E7F5;
-}
-.pink {
-  background-color: #EE18B2;
-}
-.green {
-  background-color: #24FF11;
-}
-.circle:hover {
-  transform: scale(1.2);
-}
-@media only screen and (min-width: 992px) {
-  .col-color{
-    width: 100;
-  }
-}
-
-/* Hover selection effect in Material Selection section */
-.piel:hover,
-.nylon:hover{
-  font-weight: bold;
-  font-size: 25px;
-}
-
-/* Hover selection effect in Size Selection section */
-.size-pequeño:hover,
-.size-pequeño:hover + .size-pequeño {
-  font-weight: bold;
-  font-size: 25px;
-}
-.size-mediano:hover,
-.size-mediano:hover + .size-mediano {
-  font-weight: bold;
-  font-size: 25px;
-}
-.size-grande:hover,
-.size-grande:hover + .size-grande {
-  font-weight: bold;
-  font-size: 25px;
-}
-
-/* Hover selection effect in Shape Selection section */
-#circulo-shape:hover,
-#estrella-shape:hover,
-#hueso-shape:hover,
-#huella-shape:hover,
-#esfera-shape:hover {
-  font-weight: bold;
-  font-size: 25px;
-}
-
-/* Color Name plate */
-.color-picker-nameplate {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#product-buy,
-#product-clear {
-  width: 290px;
-}
-
-/* Bowl Theme Selection */
-.img-theme {
-  height: 100px;
-  width: 100px;
-  border-radius: 10px;
+#product-img-container::after {
+  content: "";
+  position: absolute;
+  top: 0; 
+  right: 0; 
+  bottom: 0; 
+  left: 0; 
+  mix-blend-mode: hue;  
+  background-color: var(--color-picker);            
 }

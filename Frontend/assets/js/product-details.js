@@ -1,9 +1,37 @@
 // *********************************************************************************
-// Getting product info from local storage
+// Getting product info from local storage and starting color picker
 // *********************************************************************************
 
-// Loading product data into the page
 $(document).ready(() => {
+  // Starting color picker
+  const colorWheel = new iro.ColorPicker("#colorWheelDemo", {
+    layout: [
+      { 
+        component: iro.ui.Wheel,
+        options: {
+          wheelLightness: true,
+          wheelDirection: "anticlockwise"
+        } 
+      },
+      {
+        component: iro.ui.Slider,
+        options: {
+          sliderType: 'alpha'
+        }
+      }
+    ]
+  });
+
+  // Resizing color picker on window size change
+  jQuery(window).resize(() => {
+    const currentWidth = jQuery(window).width();
+    colorWheel.resize(currentWidth/4);
+  });
+
+  // when the user has changed color in the color picker
+  colorWheel.on('input:change', color => $(":root").css("--color-picker", colorWheel.color.hslaString))
+
+  // Loading product data into the page
   const product = JSON.parse(sessionStorage.getItem("product"));
 
   if (product !== undefined && product !== null) {
@@ -27,14 +55,7 @@ $(document).ready(() => {
       productForm.find('[id*="product-description"]').text(product.description);
     };
 
-    sessionStorage.removeItem("product");
+    // sessionStorage.removeItem("product");
   } else
     window.location.href = 'products.html';
 });
-
-let input = document.querySelector(".circle");
-input.addEventListener("mouseover", aplicarFocus);
-
-function aplicarFocus() {
-  input.focus();
-}
