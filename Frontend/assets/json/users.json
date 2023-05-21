@@ -13,7 +13,7 @@
             "name": "Amaya Hernández Barrera",
             "email": "mayitabar98@gmail.com",
             "phone":"525517909516" ,
-            "password": "guest",
+            "password": "guestguest",
             "privileges": "client"
         },
         {
@@ -21,7 +21,7 @@
             "name": "María Guadalupe Castellanos Córdoba",
             "email": "lupita_osito32@gmail.com",
             "phone":"525580528301" ,
-            "password": "qwerty",
+            "password": "qwertyuiop",
             "privileges": "admin"
         },
         {

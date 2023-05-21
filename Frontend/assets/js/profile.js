@@ -3,10 +3,6 @@
 // *********************************************************************************
 
 $(document).ready(() => {
-  // Hiding alert in html
-  const alertElement = $("#alert");
-  alertElement.hide();
-
   // Starting inputs validation with jquery
   const formName = $("#form-name");
   const formPhone = $("#form-phone");
@@ -28,10 +24,14 @@ $(document).ready(() => {
     user = JSON.parse(user);
 
     // Showing user data into the inputs
-    $("#subtitle").text(user.privileges);
     $('#input-name').val(user.name);
     $('#input-email').val(user.email);
     $('#input-phone').val(user.phone);
+
+    if(user.privileges === "admin")
+      $("#subtitle").text("Administrador");
+    else
+      $("#subtitle").text("Cliente");
   } else {
     sessionStorage.setItem("not-account", "¡Necesitas Iniciar Sesión para Acceder a tu Perfil!");
     window.location.href = '../../index.html';

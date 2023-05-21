@@ -12,12 +12,17 @@ const signupContainer = document.getElementById("signup-container");
 const recoverContainer = document.getElementById("recover-container");
 
 const alertElement = $("#alert");
-alertElement.hide();
 
 $(document).ready(() => {
+    // Forms validation
     validateForm(signUpForm);
     validateForm(loginForm);
     validateForm(recoverForm);
+
+    // Verifying if user exists
+    let user = localStorage.getItem("users-logged-in");
+    if(user != null)
+        window.location.href = 'profile.html';
 });
 
 //--------- Limpiar campos --------------
