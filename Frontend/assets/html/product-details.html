@@ -54,19 +54,21 @@
                     </div>
                     <div class="row m-0">
                         <div class="row m-0">
-                            <div class="col-6 p-0">
-                                <p>Cuero Sintético</p>
+                            <div id="collar-leather-text" class="col-6 p-0">
+                                <p><b>Cuero Sintético</b></p>
                             </div>
-                            <div class="col-6 p-0">
-                                <p>Nylon</p>
+                            <div id="collar-nylon-text" class="col-6 p-0">
+                                <p><b>Nylon</b></p>
                             </div>
                         </div>
                         <div class="row m-0 d-flex align-items-center justify-content-center">
-                            <div class="col-6 p-0">
-                                <img alt="" class="img-fluid" src="../img/products/customizable/customizable-collar-leather.png">
+                            <div id="collar-leather" class="col-6 m-0 p-0 is-selected" onclick="updateProductImg(this)">
+                                <img alt="" class="img-fluid"
+                                    src="../img/products/customizable/customizable-collar-leather.png">
                             </div>
-                            <div class="col-6 p-0">
-                                <img alt="" class="img-fluid" src="../img/products/customizable/customizable-collar-nylon.png">
+                            <div id="collar-nylon" class="col-6 m-0 p-0 is-not-selected" onclick="updateProductImg(this)">
+                                <img alt="" class="img-fluid"
+                                    src="../img/products/customizable/customizable-collar-nylon.png">
                             </div>
                         </div>
                     </div> 
@@ -77,17 +79,17 @@
                     <div class="row m-0">
                         <h2>Tamaño</h2>
                     </div>
-                    <div class="row m-0">
-                        <div class="col-6 p-0"><p>Pequeño</p></div>
-                        <div class="col-6 p-0"><p>35 mm x 18 mm</p></div>
+                    <div class="row m-0 is-selected-text" onclick="updateText(this)">
+                        <div class="col-6 p-0"><p><b>Pequeño</b></p></div>
+                        <div class="col-6 p-0"><p><b>35 mm x 18 mm</b></p></div>
                     </div>
-                    <div class="row m-0">
-                        <div class="col-6 p-0"><p>Mediano</p></div>
-                        <div class="col-6 p-0"><p>38 mm x 25 mm</p></div>
+                    <div class="row m-0 is-not-selected-text" onclick="updateText(this)">
+                        <div class="col-6 p-0"><p><b>Mediano</b></p></div>
+                        <div class="col-6 p-0"><p><b>38 mm x 25 mm</b></p></div>
                     </div>
-                    <div class="row m-0">
-                        <div class="col-6 p-0"><p>Grande</p></div>
-                        <div class="col-6 p-0"><p>50 mm x 32 mm</p></div>
+                    <div class="row m-0 is-not-selected-text" onclick="updateText(this)">
+                        <div class="col-6 p-0"><p><b>Grande</b></p></div>
+                        <div class="col-6 p-0"><p><b>50 mm x 32 mm</b></p></div>
                     </div>
                 </div>
 
@@ -97,20 +99,25 @@
                         <h2>Forma</h2>
                     </div>
                     <div class="row m-0 justify-content-center">
-                        <div class="col-4 p-0">
-                            <img alt="" class="img-fluid" src="../img/products/customizable/customizable-nameplate-bone.png">
+                        <div class="col-4 p-0 is-not-selected" onclick="updateProductImg(this)">
+                            <img alt="" class="img-fluid"
+                                src="../img/products/customizable/customizable-nameplate-bone.png">
                         </div>
-                        <div class="col-4 p-0">
-                            <img alt="" class="img-fluid" src="../img/products/customizable/customizable-nameplate-paw.png">
+                        <div class="col-4 p-0 is-not-selected" onclick="updateProductImg(this)">
+                            <img alt="" class="img-fluid"
+                                src="../img/products/customizable/customizable-nameplate-paw.png">
                         </div>
-                        <div class="col-4 p-0">
-                            <img alt="" class="img-fluid" src="../img/products/customizable/customizable-nameplate-star.png">
+                        <div class="col-4 p-0 is-not-selected" onclick="updateProductImg(this)">
+                            <img alt="" class="img-fluid"
+                                src="../img/products/customizable/customizable-nameplate-star.png">
                         </div>
-                        <div class="col-4 p-0">
-                            <img alt="" class="img-fluid" src="../img/products/customizable/customizable-nameplate-circle.png">
+                        <div class="col-4 p-0 is-not-selected" onclick="updateProductImg(this)">
+                            <img alt="" class="img-fluid"
+                                src="../img/products/customizable/customizable-nameplate-circle.png">
                         </div>
-                        <div class="col-4 p-0">
-                            <img alt="" class="img-fluid" src="../img/products/customizable/customizable-nameplate-circle-double.png">
+                        <div class="col-4 p-0 is-not-selected" onclick="updateProductImg(this)">
+                            <img alt="" class="img-fluid"
+                                src="../img/products/customizable/customizable-nameplate-circle-double.png">
                         </div>
                     </div>
                 </div>
@@ -123,6 +130,13 @@
                     <div class="row m-0">
                         <div class="wheel d-flex justify-content-center" id="colorWheelDemo"></div>
                     </div>
+                    <div class="row m-0 mt-3">
+                        <div class="row-6">
+                            <button id="reset-color-wheel" class="btn btn-blue d-none" onclick="resetColorWheel()">
+                                Reiniciar
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Name and Phone -->
@@ -130,7 +144,7 @@
                     <div class="row m-0">
                         <h2>Datos de la Mascota</h2>
                     </div>
-                    <form id="nameplate-form" class="row m-0">
+                    <form id="pet-data-form" class="row m-0">
                         <div class="row m-0">
                             <label for="name" class="form-label">
                                 <b>Nombre de tu Peludito</b>
@@ -147,6 +161,13 @@
                                 placeholder="55 00 00 00" required>
                         </div>
                     </form>
+                    <div class="row m-0 mt-3">
+                        <div class="row-6">
+                            <button id="reset-pet-data" class="btn btn-blue d-none" onclick="resetPetData()">
+                                Reiniciar
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Theme Selection -->
@@ -154,21 +175,22 @@
                     <div class="row m-0">
                         <h2>Estampado</h2>
                     </div>
-                    <div class="row m-0 justify-content-center g-3">
-                        <div class="col-4">
-                            <img alt="" class="img-fluid h-100" src="../img/products/customizable/customizable-pattern-aesthetic.jpg">
+                    <div id="pattern-div" class="row m-0 justify-content-center g-3">
+                        <div class="col-4 is-not-selected p-1" onclick="updatePattern(this)">
+                            <img alt="" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-pattern-circles.jpg">
                         </div>
-                        <div class="col-4">
-                            <img alt="" class="img-fluid h-100" src="../img/products/customizable/customizable-pattern-circles.jpg">
+                        <div class="col-4 is-not-selected p-1" onclick="updatePattern(this)">
+                            <img alt="" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-pattern-hearts.png">
                         </div>
-                        <div class="col-4">
-                            <img alt="" class="img-fluid h-100" src="../img/products/customizable/customizable-pattern-hearts.jpg">
+                        <div class="col-4 is-not-selected p-1" onclick="updatePattern(this)">
+                            <img alt="" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-pattern-squares.jpg">
                         </div>
-                        <div class="col-4">
-                            <img alt="" class="img-fluid h-100" src="../img/products/customizable/customizable-pattern-school.jpg">
-                        </div>
-                        <div class="col-4">
-                            <img alt="" class="img-fluid h-100" src="../img/products/customizable/customizable-pattern-squares.jpg">
+                    </div>
+                    <div class="row m-0 mt-3">
+                        <div class="row-6">
+                            <button id="reset-pattern" class="btn btn-blue d-none" onclick="resetPattern()">
+                                Reiniciar
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -219,6 +241,7 @@
 
     <!-- Loading Navbar and Footer with Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <script src="../js/common.js"></script>
     <script src="../js/product-details.js"></script>
 </body>

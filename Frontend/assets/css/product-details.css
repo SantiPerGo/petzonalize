@@ -15,9 +15,42 @@
   padding: calc(0.5rem + 1vw);
 }
 
+/* Material Category */
+
+.is-selected {
+  border: 5px solid var(--purple);
+  border-radius: 1rem;
+}
+
+.is-selected-text {
+  color: var(--purple);
+}
+
+.is-not-selected:hover {
+  border: 5px solid var(--blue);
+  border-radius: 1rem;
+}
+
+.is-not-selected-text {
+  transition: all 0.25s;
+}
+
+.is-not-selected-text:hover {
+  color: var(--blue);
+  transform: scale(1.1);
+}
+
+.is-not-selected-text:active {
+  transform: scale(1);
+}
+
+/* Color and theme categories */
+
 :root {
-  --color-picker: var(--beige);
+  --color-picker: none; 
   --img-mask: none;
+  --color-filter: none; 
+  --bg-image: none;
 }
 
 #product-img-div {
@@ -32,7 +65,16 @@
   bottom: 0;
   left: 0;
   mix-blend-mode: hue;  
-  background-color: var(--color-picker);   
+
+  /* Color category */
+  background-color: var(--color-picker);
+
+  /* Pattern or theme category */
+  background-image: var(--bg-image);
+  background-size: 25%;
+  filter: var(--color-filter);
+
+  /* Applying color and pattern only in the image */
   -webkit-mask-image: var(--img-mask);
   mask-image: var(--img-mask);  
   -webkit-mask-size: 100%;
