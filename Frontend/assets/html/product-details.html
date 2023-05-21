@@ -33,9 +33,9 @@
             <!-- Imagen Producto -->
             <div class="col d-flex align-items-center">
                 <div class="row text-center">
-                    <div id="product-img-div" class="row bg-beige p-0 m-0">
-                        <div id="product-img-container" class="w-100 h-100 p-0 m-0">
-                            <img id="product-img" class="w-100 h-100 p-0 m-0">
+                    <div id="product-img-div" class="row bg-beige p-0">
+                        <div id="product-img-container" class="p-0">
+                            <img id="product-img" class="w-100 h-100 p-0">
                         </div>
                     </div>
 
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="row m-0 d-flex align-items-center justify-content-center">
-                            <div id="collar-leather" class="col-6 m-0 p-0 is-selected" onclick="updateProductImg(this)">
+                            <div id="collar-leather" class="col-6 m-0 p-0 is-not-selected" onclick="updateProductImg(this)">
                                 <img alt="" class="img-fluid"
                                     src="../img/products/customizable/customizable-collar-leather.png">
                             </div>
@@ -176,14 +176,17 @@
                         <h2>Estampado</h2>
                     </div>
                     <div id="pattern-div" class="row m-0 justify-content-center g-3">
-                        <div class="col-4 is-not-selected p-1" onclick="updatePattern(this)">
+                        <div class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
                             <img alt="" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-pattern-circles.jpg">
                         </div>
-                        <div class="col-4 is-not-selected p-1" onclick="updatePattern(this)">
+                        <div class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
                             <img alt="" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-pattern-hearts.png">
                         </div>
-                        <div class="col-4 is-not-selected p-1" onclick="updatePattern(this)">
+                        <div class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
                             <img alt="" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-pattern-squares.jpg">
+                        </div>
+                        <div class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
+                            <img alt="" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-pattern-fabric.jpg">
                         </div>
                     </div>
                     <div class="row m-0 mt-3">
