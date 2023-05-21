@@ -21,6 +21,10 @@ body {
     margin-top: calc(3rem + 4vw);
 }
 
+.alert {
+    display: none;
+}
+
 /* Navbar and footer styles */
 
 nav, footer {
