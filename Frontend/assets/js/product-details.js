@@ -26,10 +26,10 @@ $(document).ready(() => {
       productForm.find('[id*="product-name"]').text(product.name);
       productForm.find('[id*="product-description"]').text(product.description);
     };
-  } else {
-    console.error("product doesnt exist");
-    
-  }
+
+    sessionStorage.removeItem("product");
+  } else
+    window.location.href = 'products.html';
 });
 
 let input = document.querySelector(".circle");
