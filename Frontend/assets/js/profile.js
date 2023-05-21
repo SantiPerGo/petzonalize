@@ -1,47 +1,46 @@
 // *********************************************************************************
-// Delete account and cancel deletion functions 
-// *********************************************************************************
-
-const deleteButton = $("#delete");
-const cancelButton = $("#cancel");
-const deleteButtonsContainer = $("#delete-buttons");
-const buttonsContainer = $("#buttons");
-
-// boton eliminar cuenta
-deleteButton.click(() =>{
-  deleteButtonsContainer.removeClass("d-none");
-  buttonsContainer.addClass("d-none");
-})
-
-// boton cancelar
-cancelButton.click(() =>{
-  deleteButtonsContainer.addClass("d-none");
-  buttonsContainer.removeClass("d-none");
-});
-
-// *********************************************************************************
-// Icons and Inputs functions
+// Default operations when the page is loaded
 // *********************************************************************************
 
 $(document).ready(() => {
+  // Hiding alert in html
   const alertElement = $("#alert");
   alertElement.hide();
 
+  // Starting inputs validation with jquery
   const formName = $("#form-name");
   const formPhone = $("#form-phone");
   const formEmail = $("#form-email");
   const formPassword = $("#form-password");
-
   validateForm(formName);
   validateForm(formPhone);
   validateForm(formEmail);
   validateForm(formPassword);
-
   formName.submit(submitButton => submitButton.preventDefault());
   formPhone.submit(submitButton => submitButton.preventDefault());
   formEmail.submit(submitButton => submitButton.preventDefault());
   formPassword.submit(submitButton => submitButton.preventDefault());
+
+  // Getting user from local storage
+  let user = localStorage.getItem("users-logged-in");
+
+  if(user != null) {
+    user = JSON.parse(user);
+
+    // Showing user data into the inputs
+    $("#subtitle").text(user.privileges);
+    $('#input-name').val(user.name);
+    $('#input-email').val(user.email);
+    $('#input-phone').val(user.phone);
+  } else {
+    sessionStorage.setItem("not-account", "¡Necesitas Iniciar Sesión para Acceder a tu Perfil!");
+    window.location.href = '../../index.html';
+  }
 });
+
+// *********************************************************************************
+// Pencil icon, save icon and inputs validation
+// *********************************************************************************
 
 const editInput = inputId => {
   inputState(inputId, true);
@@ -60,29 +59,31 @@ const editInput = inputId => {
 const inputState = (id, state) => {
   const input = $(`#input-${id}`);
   const icon = $(`#edit-${id}`).children();
-  const form = $("#form-name");
+  const form = $(`#form-${id}`);
+  const inputContainer = $(`#input-${id}-container`);
 
-  console.log(input, form, icon)
   if(state) {
     form.validate().settings.ignore = ":hidden";
     input.removeClass("form-view");
     input.addClass("form-control");
     input.prop('readonly', false);
     icon.removeClass("bi-pencil-square");
-    icon.addClass("bi-check-lg");
+    icon.addClass("bi-check-circle");
+    inputContainer.removeClass("input-container");
   } else {
     form.validate().settings.ignore = "*";
     input.addClass("form-view");
     input.removeClass("form-control");
     input.prop('readonly', true);
     icon.addClass("bi-pencil-square");
-    icon.removeClass("bi-check-lg");
+    icon.removeClass("bi-check-circle");
+    inputContainer.addClass("input-container");
     form.find('input').each((key, input) => resetInput(input));
+    updateLocalStorage(id, input);
   }
 };
 
 const resetInput = input => {
-  $(input).val("");
   $(input).removeData("previousValue");
   $(input).removeAttr("aria-invalid");
   $(input).removeClass("valid");
@@ -91,239 +92,35 @@ const resetInput = input => {
   $(input).removeClass("input-icon-invalid");
   $(`#${input.id}-error`).remove();
 };
-/*(() => {
-  'use strict'
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation')
+const updateLocalStorage = (id, input) => {
+  const user = JSON.parse(localStorage.getItem("users-logged-in"));
+  user[id] = input.val();
+  localStorage.setItem("users-logged-in", JSON.stringify(user));
+};
 
-  // Loop over them and prevent submission
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
+// *********************************************************************************
+// Delete account and cancel deletion functions 
+// *********************************************************************************
 
-      form.classList.add('was-validated')
-    }, false)
-  })
-})
+const deleteAccount = () => {
+  $("#delete-buttons").removeClass("d-none");
+  $("#buttons").addClass("d-none");
+};
 
-localStorage.getItem("users-logged-in")
-const alertElement = $("#alert");
-alertElement.hide();
+const cancelDeleteAccount = () => {
+  $("#delete-buttons").addClass("d-none");
+  $("#buttons").removeClass("d-none");
+};
 
+const closeSession = () => {
+  localStorage.removeItem("users-logged-in");
+  sessionStorage.setItem("closed-session", "¡Cuenta Cerrada con Éxito!");
+  window.location.href = '../../index.html';
+};
 
-if(localStorage.getItem("users-logged-in")){
-  console.log("localStorage");
-  let user = JSON.parse(localStorage.getItem("users-logged-in"));
-  //user=user.users;
-  console.log(user);
-    // Mostrar los datos del usuario en los campos de entrada correspondientes
-    document.getElementById('name').value = user.name;
-    document.getElementById('email').value = user.email;
-    document.getElementById('phone').value = user.phone;
-    document.getElementById('password').value = user.password;
-    const referenciaUsuario = document.getElementById("estado");
-    const referenciaBoton = document.getElementById("boton-admin");
-    let estadoAdmin;
-
-
-    const usuariosJson = user;
-    const usuario = usuariosJson;
-
-    if (usuario.privileges === "admin") {
-      estadoAdmin = true;
-    } else {
-      estadoAdmin = false;
-    }
-
-    if (estadoAdmin) {
-      referenciaUsuario.textContent = "Administrador";
-      referenciaBoton.style.display = "block";
-    } else {
-      referenciaUsuario.textContent = "";
-      referenciaBoton.style.display = "none";
-    }
-
-
-  document.addEventListener('DOMContentLoaded', () => {
-    // Aquí va tu código JavaScript
-    
-    // Obtener todos los botones de edición y el botón de guardar
-    const editButtons = document.querySelectorAll('.btn-edit');
-    const saveButton = document.querySelector('.btn-save');
-    const refForm =document.forms["edit-form"];
-  
-    // Agregar el controlador de eventos a cada botón de edición
-    editButtons.forEach(button => {
-      button.addEventListener('click', event => {
-        event.preventDefault(); // Evitar la acción predeterminada del botón
-        // Obtener el campo asociado al botón de edición
-        const fieldId = button.getAttribute('data-field');
-        const field = document.getElementById(fieldId);
-  
-        // Habilitar la edición del campo
-        field.removeAttribute('readonly');
-        field.focus(); // Opcionalmente, poner el foco en el campo editado
-      });
-    });
-  
-    // Agregar el controlador de eventos al botón de guardar
-    refForm.addEventListener(`submit`, (event)=>{
-      event.preventDefault();
- //Recuperar la sessionstorage
-     let  user = localStorage.getItem("users-logged-in");
-      let users= JSON.parse(user);
-    
-      const name =refForm.elements["name"];
-      const email =refForm.elements["email"];
-      const phone =refForm.elements["phone"];
-      const password =refForm.elements["password"];
-
-      document.getElementById('name').value=name.value;
-
-      users.name=name.value;
-      users.email=email.value;
-      users.phone=phone.value;
-      users.password=password.value;
-
-      let userActual=JSON.stringify(users);
-      sessionStorage.setItem("users-logged-in", userActual);
-      localStorage.setItem("users-logged-in",userActual);
-
-      alertElement.text("¡Datos actualizados exitosamente!");
-      alertElement.slideDown(250);
-      setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-      sessionStorage.removeItem("emliminated-account");
-  
-  
-  });
-    
-  });
-  // boton salir de sesison
-  let exit = document.getElementById(`exit`);
-
-  exit.addEventListener(`click`, () =>{
-    localStorage.removeItem("users-logged-in");
-  });
-// constantes de botones
-  const deleter = $(`#boom`);
-  const completeDelete= $(`#kaboom`);
-  const cancel= $(`#nope`);
-
-  // boton eliminar cuenta
-  deleter.submit(() =>{
-   
-   completeDelete.removeClass(`d-none`);
-   cancel.removeClass(`d-none`);
-   deleter.addClass(`d-none`);
-  })
-
-  // boton cancelar
-  cancel.submit(() =>{
-    //localStorage.clear();
-    completeDelete.addClass(`d-none`);
-    cancel.addClass(`d-none`);
-    deleter.removeClass(`d-none`);
-
-   })
-
-// boton borrar cuenta definitivamente
- const refForm =document.forms["edit-form"];
-completeDelete.submit((event) =>{
-    event.preventDefault();
-    
-    const password =refForm.elements["password"].value;
-    let compare = localStorage.getItem("users-logged-in");
-    compare=JSON.parse(compare)
-    compare=compare.password;
-    console.log(password);
-
-
-//alert
-
-    setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-
-    if(password == compare) {
-
-      
-      alertElement.slideDown(250);
-
-      localStorage.removeItem("users-logged-in");
-      sessionStorage.setItem("emliminated-account", "true");
-
-      location.assign("../../index.html")
-
-  }else{
-
-
-    alertElement.slideDown(250);
-
-      alertElement.removeClass("alert-success");
-      alertElement.removeClass("text-success");
-      alertElement.addClass("alert-warning");
-      alertElement.addClass("text-warnind");
-      alertElement.text("Contraseña incorrecta Ingresa tu contraseña en el campo correspondiente");
-
-  }
-
-   })
-
-}
-
-
-
-
-    else{    
-console.log("Else")
-    let urlUsers = "/assets/json/users.json";
-fetch  (urlUsers)
-  .then(response => response.json())
-  .then(data => {
-    // Obtener el usuario con ID 2
-    const user = data.users.find(user => user.id === 1);
-
-    let userActual=JSON.stringify(user);
-    localStorage.setItem("users-logged-in", userActual);
-
-    // Mostrar los datos del usuario en los campos de entrada correspondientes
-    document.getElementById('name').value = user.name;
-    document.getElementById('email').value = user.email;
-    document.getElementById('phone').value = user.phone;
-    document.getElementById('password').value = user.password;
-
-    alertElement.text("Cuenta eliminada");
-    //alertElement.slideDown(250);
-
-  
-    sessionStorage.setItem("not-account", "true");
-
-    //location.assign("../../index.html")
-
-  });
-
-//Obtiene los privilegios del id del usuario
-
-  
-  
-  }
-    
-  
-  
-  let exit = document.getElementById(`exit`);
-
-  exit.addEventListener(`click`, () =>{
-    localStorage.removeItem("users-logged-in");
-
-  })
-    
-  */
-
-
-
-
-  
-  
-  
+const confirmDeleteAccount = () => {
+  localStorage.removeItem("users-logged-in");
+  sessionStorage.setItem("eliminated-account", "¡Cuenta Eliminada con Éxito!");
+  window.location.href = '../../index.html';
+};

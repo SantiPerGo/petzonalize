@@ -42,18 +42,19 @@
                 <!-- Section right - Register -->
                 <div class="text-start text-center">
                     <h1>Perfil de Usuario</h1>
+                    <h2 id="subtitle">Cliente</h2>
                 </div>
 
-                <form id="form-name" class="text-start m-md-3">
+                <form id="form-name" class="text-start m-md-3 mt-2">
                     <label for="input-name" class="form-label"><b>Nombre:</b></label>
 
                     <div class="row">
-                        <div class="col-10 col-md-11">
+                        <div id="input-name-container" class="col-10 col-lg-11 input-container">
                             <input type="text" class="form-view" id="input-name" 
                                 placeholder="Nombre Apellido" name="name" readonly>
                         </div>
 
-                        <div class="col-2 col-md-1">
+                        <div class="col-2 col-lg-1">
                             <div class="row">
                                 <button id="edit-name" class="btn m-0 p-0 btn-pencil" onclick="editInput('name')">
                                     <i class="bi bi-pencil-square"></i>
@@ -63,16 +64,16 @@
                     </div>
                 </form>
 
-                <form id="form-phone" class="text-start m-md-3">
+                <form id="form-phone" class="text-start m-md-3 mt-2">
                     <label for="input-phone" class="form-label"><b>Teléfono:</b></label>
 
                     <div class="row">
-                        <div class="col-10 col-md-11">
+                        <div id="input-phone-container" class="col-10 col-lg-11 input-container">
                             <input type="number" class="form-view" id="input-phone" 
                             placeholder="52 00 00 00 00" name="phone" readonly>
                         </div>
 
-                        <div class="col-2 col-md-1">
+                        <div class="col-2 col-lg-1">
                             <div class="row">
                                 <button id="edit-phone" class="btn m-0 p-0 btn-pencil" onclick="editInput('phone')">
                                     <i class="bi bi-pencil-square"></i>
@@ -82,16 +83,16 @@
                     </div>
                 </form>
 
-                <form id="form-email" class="text-start m-md-3">
+                <form id="form-email" class="text-start m-md-3 mt-2">
                     <label for="input-email" class="form-label"><b>Correo Electrónico:</b></label>
 
                     <div class="row">
-                        <div class="col-10 col-md-11">
+                        <div id="input-email-container" class="col-10 col-lg-11 input-container">
                             <input type="email" class="form-view" id="input-email" 
                             placeholder="example@email.com" name="email" readonly>
                         </div>
 
-                        <div class="col-2 col-md-1">
+                        <div class="col-2 col-lg-1">
                             <div class="row">
                                 <button id="edit-email" class="btn m-0 p-0 btn-pencil" onclick="editInput('email')">
                                     <i class="bi bi-pencil-square"></i>
@@ -101,16 +102,16 @@
                     </div>
                 </form>
 
-                <form id="form-password" class="text-start m-md-3">
+                <form id="form-password" class="text-start m-md-3 mt-2">
                     <label for="input-password" class="form-label"><b>Contraseña:</b></label>
 
                     <div class="row">
-                        <div class="col-10 col-md-11">
+                        <div id="input-password-container" class="col-10 col-lg-11 input-container">
                             <input type="password" class="form-view" id="input-password" 
                             placeholder="********" name="password" readonly>
                         </div>
 
-                        <div class="col-2 col-md-1">
+                        <div class="col-2 col-lg-1">
                             <div class="row">
                                 <button id="edit-password" class="btn m-0 p-0 btn-pencil" onclick="editInput('password')">
                                     <i class="bi bi-pencil-square"></i>
@@ -122,14 +123,15 @@
 
                 <!-- Buttons -->
                 <div id="buttons" class="row gy-3 mt-1 mt-md-3">
-                    <div class="col-12 col-sm-6 col-md-12 col-lg-6">
-                        <a id="log-out" href="../html/login.html" class="btn btn-blue h-100">
+                    <div class="col-12 col-sm-6 col-md-12 col-xxl-6">
+                        <!-- href="../html/login.html" -->
+                        <button id="log-out" class="btn btn-blue h-100" onclick="closeSession()">
                             Cerrar sesion
-                        </a>
+                        </button>
                     </div>
 
-                    <div id="delete" class="col-12 col-sm-6 col-md-12 col-lg-6">
-                        <button type="button" class="btn btn-blue h-100">
+                    <div id="delete" class="col-12 col-sm-6 col-md-12 col-xxl-6">
+                        <button type="button" class="btn btn-blue h-100" onclick="deleteAccount()">
                             Eliminar cuenta
                         </button>
                     </div>
@@ -137,13 +139,14 @@
                         
                 <div id="delete-buttons" class="row gy-3 mt-1 mt-md-3 d-none">
                     <div class="col-12 col-sm-6 col-md-12 col-lg-6">
-                        <a href="../html/login.html" id="confirm-delete" class="btn btn-blue h-100">
+                        <!-- href="../html/login.html" -->
+                        <button id="confirm-delete" class="btn btn-blue h-100" oncanplay="confirmDeleteAccount()">
                             Eliminar Definitivamente
-                        </a>
+                        </button>
                     </div>
                     
                     <div class="col-12 col-sm-6 col-md-12 col-lg-6">
-                        <button id="cancel" type="button" class="btn btn-purple h-100">
+                        <button id="cancel" type="button" class="btn btn-purple h-100" onclick="cancelDeleteAccount()">
                             Cancelar Eliminacion
                         </button>
                     </div>

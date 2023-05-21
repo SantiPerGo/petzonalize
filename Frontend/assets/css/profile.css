@@ -5,9 +5,12 @@ main {
     min-height: calc(80vh + 1vw);
 }
 
+h2 {
+    color: var(--brown);
+}
+
 .btn-pencil {
     color: var(--blue);
-    font-size: calc(1rem + 1vw);
     transition: all 0.25s;
     border: none;
 }
@@ -21,8 +24,27 @@ main {
     transform: scale(1);
 }
 
+.bi-pencil-square {
+    font-size: calc(1rem + 2vw);
+}
+
+.bi-check-circle {
+    font-size: calc(1.5rem + 2vw);
+}
+
 .form-view {
     background-color: var(--beige);
     border: none;
     outline: none;
+    width: 100%;
+    pointer-events: none;
+}
+
+.form-control {
+    font-size: calc(0.5rem + 1.5vw);
+}
+
+.input-container {
+    display: flex;
+    justify-items: center;
 }
