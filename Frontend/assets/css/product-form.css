@@ -66,12 +66,12 @@
   width: 100%;
 }
 
-.fieldset-left {
+/* .fieldset-left {
   float:left;
 }
 .fieldset-right {
   float:right;
-}
+} */
 /* 
 .row-flex{
   display: flex;
@@ -83,4 +83,10 @@
 }
 .custom-textB{
   color: black;
+}
+
+@media (max-width: 580px) {
+  .column {
+    width: 400px;
+  }
 }

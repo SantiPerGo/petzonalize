@@ -27,137 +27,142 @@
     <div id="alert" class="alert alert-success m-0 text-success text-center" role="alert"></div>
     <header></header>
 
-    <main class="container-fluid main-container">
+    <main class="container-fluid main-container w-100">
         <div class="row justify-content-center row-flex">
             <div class="form-space col col-10 my-4">
 
                 <!---------- Container -------->
                 <div class="row justify-content-center" id="row-container">
-                    <div class="form-container col col-lg-10 col-md-10 col-sm-10 my-4 mx-4">
-                        <div class="row justify-content-center text-center ">
-                            <!-- <form action=""> -->
+                    <div class="form-container col col-lg-10 col-md-12 col-sm-10 my-4 mx-4">
+                        <div class="row justify-content-center text-center">
                             <div class="form-group text-center mt-5">
                                 <h1> Producto </h1>
                             </div>
 
                             <form id="edit-form">
+                                <div class="row justify-content-center">
 
-                                <!------- Column Left ------>
-                                <fieldset class="fieldset-left bg-success col-flex col-6 col-md-6 col-sm-12">
-
-                                                <!-- Name -->
-                                                <div class="form-group my-3 mx-3">
-                                                    <label for="name" 
-                                                        class="form-label"><b>Nombre:</b></label>
-                                                    <input type="text" class="form-control" id="product-form-name"
-                                                        placeholder="Nombre del producto" name="name" required >
-                                                    <div class="invalid-feedback">
-                                                        El nombre no debe contener carácteres especiales.
-                                                    </div>
-                                                </div>
-
-                                                <!-- Description -->
-                                                <div class="form-group my-3 mx-3">
-                                                    <label for="description" 
-                                                        class="form-label"><b>Descripción:</b></label>
-                                                    <textarea class="form-control" type="text" id="product-form-description"
-                                                        placeholder="Descripción del producto" name="description"
-                                                        placeholder="Descripción del producto" rows="3"
-                                                        ></textarea>
-                                                    <div class="invalid-feedback">
-                                                        Esto brinda información básica al cliente que puede aclarar sus
-                                                        dudas acerca del producto.
-                                                    </div>
-                                                </div>
-
-                                                <!-- Quantity -->
-                                                <div class="form-group my-3 mx-3">
-                                                    <label for="quantity" class="form-label"><b>Cantidad:</b></label>
-                                                    <input type="number" class="form-control" id="product-form-quantity"
-                                                        placeholder="Cantidad" name="number" >
-                                                    <div class="invalid-feedback">
-                                                        Ingrese cantidad.
-                                                    </div>
-                                                </div>
-
-                                                <!-- Price -->
-                                                <div class="form-group my-3 mx-3">
-                                                    <label for="price" class="form-label"><b>Precio:</b></label>
-                                                    <input type="number" class="form-control" id="product-form-price"
-                                                        placeholder="Precio" name="number" >
-                                                    <div class="invalid-feedback">
-                                                        Ingrese precio.
-                                                    </div>
-                                                </div>
-
-                                                <!-- Catergory -->
-                                                <div class="form-group my-3 mx-3">
-                                                    <label for="properties" class="form-label"><b>Categoría:</b></label>
-                                                    <br>
-                                                    <select class="form-select form-select-lg mb-3" id="product-form-category"
-                                                        name="category">
-                                                        <option value="food"> Comida </option>
-                                                        <option value="toys"> Juguetes </option>
-                                                        <option value="cleaning"> Limpieza </option>
-                                                        <option value="supplies"> Suministros </option>
-                                                        <option value="health"> Salud </option>
-                                                    </select>
-
-                                                    <div class="invalid-feedback">
-                                                        Seleccione el tipo de productos que ofrecerá.
-                                                    </div>
-                                                </div>
-                                </fieldset>
-
-                                <!------- Column Right ------>
-                                <fieldset class="fieldset-right bg-white col-flex col-6 col-md-6 col-sm-12">
-
-                                            <!-- Upload image -->
-                                            <div class="form-group my-3 mx-3">
-                                                <label for="uploads" class=""><b> Elige la imagen que deseas cargar: </b></label>
-                                                <br>
-                                                    <input 
-                                                    type="file" 
-                                                    id="product-form-uploads" 
-                                                    class="form-control" 
-                                                    name="inpFile" 
-                                                    accept=".jpg, .jpeg, .png, .svg, .gif"
-                                                    hidden/>
-
-                                                    <button type="button" id="upload-image" class="btn btn-blue my-2">Cargar imagen</button><br>
-                                                    <span class="custom-text"id="custom-text">No se ha cargado una imagen.</span>
-
-                                                    <!-- Image Preview-->
-                                                    <div class="image-preview" id="imagePreview">
-                                                        <img src="" alt="Image Preview" class="image-preview__image">
-                                                        <span class="image-preview__default-text"><i class="bi bi-card-image"></i></span>
-                                                    </div>
+                                    <!------- Column Left ------>
+                                    <div class="col-flex col-6 col-md-6 col-sm-12 col-xs-12">
+                                        <!-- Name -->
+                                        <div class="form-group my-3 mx-3">
+                                            <label for="name" 
+                                                class="form-label"><b>Nombre:</b></label>
+                                            <input type="text" class="form-control" id="product-form-name"
+                                                placeholder="Nombre del producto" name="name" required >
+                                            <div class="invalid-feedback">
+                                                El nombre no debe contener carácteres especiales.
                                             </div>
+                                        </div>
 
-                                            <!-- Tipo de mascota -->
-                                            <div class="form-group my-3 mx-3 justify-content-around bg-danger">
-                                                <label for="customizable" class="form-label"><b>Tipo de mascota:</b></label>
-                                                <br>
-                                                <input type="radio" id="product-form-dog" name="properties" value="dog" />
-                                                <label for="#"><img src="../img/product-form/icon-dog.png"
-                                                    class="icon" alt=""></label>
-                                                <input type="radio" id="product-form-cat" name="properties" value="cat" />
-                                                <label for="#"><img src="../img/product-form/icon-cat.png"
-                                                    class="icon" alt=""></label>
-
-                                                <div class="invalid-feedback">
-                                                    Selecciona un tipo para poder asignar propiedades del producto.
-                                                </div>
+                                        <!-- Description -->
+                                        <div class="form-group my-3 mx-3">
+                                            <label for="description" 
+                                                class="form-label"><b>Descripción:</b></label>
+                                            <textarea class="form-control" type="text" id="product-form-description"
+                                                placeholder="Descripción del producto" name="description"
+                                                placeholder="Descripción del producto" rows="3"
+                                                ></textarea>
+                                            <div class="invalid-feedback">
+                                                Esto brinda información básica al cliente que puede aclarar sus
+                                                dudas acerca del producto.
                                             </div>
+                                        </div>
 
-                            </fieldset>
+                                        <!-- Quantity -->
+                                        <div class="form-group my-3 mx-3">
+                                            <label for="quantity" class="form-label"><b>Cantidad:</b></label>
+                                            <input type="number" class="form-control" id="product-form-quantity"
+                                                placeholder="Cantidad" name="number" >
+                                            <div class="invalid-feedback">
+                                                Ingrese cantidad.
+                                            </div>
+                                        </div>
 
+                                        <!-- Price -->
+                                        <div class="form-group my-3 mx-3">
+                                            <label for="price" class="form-label"><b>Precio:</b></label>
+                                            <input type="number" class="form-control" id="product-form-price"
+                                                placeholder="Precio" name="number" >
+                                            <div class="invalid-feedback">
+                                                Ingrese precio.
+                                            </div>
+                                        </div>
+
+                                        <!-- Catergory -->
+                                        <div class="form-group my-3 mx-3">
+                                            <label for="properties" class="form-label"><b>Categoría:</b></label>
+                                            <br>
+                                            <select class="form-select form-select-lg mb-3" id="product-form-category"
+                                                name="category">
+                                                <option value="food"> Comida </option>
+                                                <option value="toys"> Juguetes </option>
+                                                <option value="cleaning"> Limpieza </option>
+                                                <option value="supplies"> Suministros </option>
+                                                <option value="health"> Salud </option>
+                                            </select>
+
+                                            <div class="invalid-feedback">
+                                                Seleccione el tipo de productos que ofrecerá.
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!------- Column Right ------>
+                                    <div class="col-flex col-6 col-md-6 col-sm-12 col-xs-12">
+
+                                        <!-- Upload image -->
+                                        <div class="form-group my-3 mx-3">
+                                            <label for="uploads" class=""><b> Elige la imagen que deseas cargar: </b></label>
+                                            <br>
+                                            <input 
+                                            type="file" 
+                                            id="product-form-uploads" 
+                                            class="form-control" 
+                                            name="inpFile" 
+                                            accept=".jpg, .jpeg, .png, .svg, .gif"
+                                            hidden/>
+
+                                            <button type="button" id="upload-image" class="btn btn-blue my-2">Cargar imagen</button><br>
+                                            <span class="custom-text"id="custom-text">No se ha cargado una imagen.</span>
+
+                                            <!-- Image Preview-->
+                                            <div class="image-preview" id="imagePreview">
+                                                <img src="" alt="Image Preview" class="image-preview__image">
+                                                <span class="image-preview__default-text"><i class="bi bi-card-image"></i></span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Tipo de mascota -->
+                                        <div class="form-group my-3 mx-3 justify-content-around">
+                                            <label for="customizable" class="form-label"><b>Tipo de mascota:</b></label>
+                                            <br>
+                                            <input type="radio" id="product-form-dog" name="properties" value="dog" />
+                                            <label for="#"><img src="../img/product-form/icon-dog.png"
+                                                class="icon" alt=""></label>
+                                            <input type="radio" id="product-form-cat" name="properties" value="cat" />
+                                            <label for="#"><img src="../img/product-form/icon-cat.png"
+                                                class="icon" alt=""></label>
+
+                                            <div class="invalid-feedback">
+                                                Selecciona un tipo para poder asignar propiedades del producto.
+                                            </div>
+                                        </div>                                    
+
+                                    </div>
+                                </div>
                                 <!----------- Buttons bottom --------->
-                            
-                                <div class="col-lg-12 col-sm-12 p-4 d-flex justify-content-around bg-success">
-                                    <button id="" type="submit" class="btn btn-purple my-2">Editar</button>
-                                    <button id="add" type="submit" class="btn btn-purple my-2">Añadir/Actualizar</button>
-                                    <button id="" type="button" class="btn btn-purple my-2">Eliminar</button>
+                                <div class="row ">
+                                    <div class="col-lg-3 col-md-3 col-sm-12 my-1 mx-1 d-flex justify-content-around">
+                                        <button id="" type="submit" class="btn btn-purple my-2">Editar</button>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-12 my-1 mx- d-flex justify-content-around">
+                                        <button id="add" type="submit" class="btn btn-purple my-2">Añadir/Actualizar</button>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 my-1 mx-1 d-flex justify-content-around">
+                                        <button id="" type="button" class="btn btn-purple my-2">Eliminar</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
