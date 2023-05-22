@@ -1,329 +1,250 @@
 const productsListContainer = document.getElementById("products-list");
-const userCartProducts = JSON.parse(localStorage.getItem("shopping-cart"));
+let userCartProducts = JSON.parse(localStorage.getItem("shopping-cart"));
+const notFountContainer = document.querySelector(".list-not-found");
 
-//-----------Defincion de funcion ----------------------
-const getUserProductsInStorage = () => {
-    
-    updateAmountSpan();
-    updateTotalPrice();
-
-    let product = ``;
-    //------ Iteración de lista de productos --------------
-    for(let index = 1; index < userCartProducts.length; index++){
-        console.log(userCartProducts[index].name);
-       
-        // ----- Visualizacion de producto --------
-        product = `<div class="product-box my-4 bg-beige">
-        <div class="row justify-content-center">
-         <!--------- Columna de Imagen Producto--------->
-         <div class="col-12 col-lg-4 col-md-8 col-sm-12 productimagecontainer">
-             <div>
-                 <img class="productimage" src="${userCartProducts[index].imgUrl}" alt="">
-             </div>
-         </div>
-         <!------- Columna Informacion de Producto-------->
-         <div class="col-12 col-lg-8 col-md-8 col-sm-12">
-             <div class="row justify-content-center">
-                 <div class="col-12 col-lg-12">
-                     <h4>${userCartProducts[index].name }</h4>
-                 </div>
-                 <div class="row col-lg-12 col-md-12 col-sm-12">
-                        <div class=" descriptioncontainer">
-                            <p class="description">${userCartProducts[index].description}
-                            </p>
-                            <div class="description-gradient"></div>
-                        </div>
-                        <a href="#" class="ver-mas">Ver más</a>
-                </div>
-                <div class="col-12 col-lg-12">
-                    <div class="row justify-content-center mt-3">
-                        <div class="col-6 col-lg-6 col-sm-12">
-                             <div class="w-100">
-                                 <p>Precio Individual: $<span>${userCartProducts[index].price}</span></p>
-                             </div>
-                        </div>
-                        <div class="col-6 col-lg-6 col-sm-12">
-                            <div class="row justify-content-center">
-                                <div  class="col-12">
-                                    <div class="amountText">
-                                        <p>Cantidad</p>
-                                    </div>  
-                                </div>
-                                <div class="col-12 text-center">
-                                    <div class="amountButtons cantidadproductos">
-                                        <button type="button" class="button-icon removepiece" id="removepiece"><ion-icon id="removepiece" name="remove-circle"></ion-icon></button>
-                                        <p class="number-display" id="amount-product">${userCartProducts[index].amount}</p>
-                                        <button type="button" class="button-icon addpiece" id="addpiece"><ion-icon id="addpiece" name="add-circle"></ion-icon></button>
-                                    </div>
-                                </div>
-                            </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-        
-         </div>
-     </div>     `;
-
-        productsListContainer.innerHTML += product;
-    }
-
-    const descriptionParagraph = document.querySelector('.descriptioncontainer');
-    const verMasLink = document.querySelector('.ver-mas');
-    
-    verMasLink.addEventListener('click', function(event) {
-      event.preventDefault();
-    
-      if (descriptionParagraph.classList.contains('show-description')) {
-        descriptionParagraph.classList.remove('show-description');
-        descriptionParagraph.classList.add('hide-description');
-        verMasLink.innerText = 'Ver más';
-      } else {
-        descriptionParagraph.classList.remove('hide-description');
-        descriptionParagraph.classList.add('show-description');
-        verMasLink.innerText = 'Ver menos';
-      }
-    });
-    
-
+const emptyCart = () => {
+    return `<div class="list-not-found mt-4">
+    <div class="row justify-content-center">
+        <div class="col col-12 mt-4">
+            <h4>No tienes productos en el carrito</h4>
+        </div>
+        <div class="col col-12 mt-4">
+            <div class="error-image-container mt-4">
+                <img src="../img/page-error-cat.png" alt="Gatito dice que tienes carrito Vacio">
+            </div>
+        </div>
+    </div>
+    </div>`;
 }
 
 /* Establecer el precio en 0.00 en el DOM al cargar la pagina */
 
-let totalPrice=0;
+let totalPrice = 0;
 const totalPriceElement = document.querySelector('.totalPrice');
 totalPriceElement.textContent = totalPrice.toFixed(2);
 
+const printAllProductsFound = () =>{
+    let products = ``;
+    //------ Iteración de lista de productos --------------
+    for (let index = 1; index < userCartProducts.length; index++) {
+        // ----- Visualizacion de producto --------
+        products += `<div class="product-box product-${index} my-4 bg-beige">
+        <div class="row justify-content-center position-relative">
+        <div class="container-button-delete">
+        <button type="button" class="delete-product d-flex border-0 rounded-circle p-0" id="delete-product">
+        <img src="../img/shopping-cart/cross.svg" alt="">
+        </button>
+        </div>
+        <!--------- Columna de Imagen Producto--------->
+        <div class="col-12 col-lg-4 col-md-8 col-sm-12 product-image-container">
+        <div class="">
+        <img class="productimage" src="${userCartProducts[index].imgUrl}" alt="">
+        </div>
+        </div>
+        <!------- Columna Informacion de Producto-------->
+        <div class="col-12 col-lg-8 col-md-8 col-sm-12">
+        <div class="row justify-content-center">
+        <div class="col-12 col-lg-12">
+        <h4>${userCartProducts[index].name}</h4>
+        </div>
+        <div class="row col-lg-12 col-md-12 col-sm-12">
+        <div class=" descriptioncontainer">
+        <p class="description">${userCartProducts[index].description}
+        </p>
+        <div class="description-gradient"></div>
+        </div>
+        <a href="#" class="ver-mas">Ver más</a>
+        </div>
+        <div class="col-12 col-lg-12">
+        <div class="row justify-content-center mt-3">
+        <div class="col-6 col-lg-6 col-sm-12">
+        <div class="w-100">
+        <p>Precio Individual: $<span>${userCartProducts[index].price}</span></p>
+        </div>
+        </div>
+        <div class="col-6 col-lg-6 col-sm-12">
+        <div class="row justify-content-center">
+        <div class="col-12 py-0">
+        <div class="amountText">
+        <p class="my-0">Cantidad</p>
+        </div>  
+        </div>
+        <div class="col-12 text-center mt-0">
+        <div class="amountButtons cantidadproductos">
+        <button type="button" class="button-icon removepiece" id="removepiece"><ion-icon id="removepiece" name="remove-circle">
+        </ion-icon>
+        </button>
+        <p class="number-display" id="amount-product">${userCartProducts[index].amount}</p>
+        <button type="button" class="button-icon addpiece" id="addpiece"><ion-icon id="addpiece" name="add-circle">
+        </ion-icon>
+        </button>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>     `;
+    }
+    return products;
+}
+//----------- Carga la pagina web ----------------------
+const getUserProductsInStorage = () => {
+    if(userCartProducts !== null && userCartProducts !== undefined){
+        if(userCartProducts.length > 1){
+            productsListContainer.innerHTML = printAllProductsFound();
+            updateAmountSpan();
+            updateTotalPrice();
+        }
+        else if(userCartProducts.length <= 1){
+            productsListContainer.innerHTML = emptyCart();
+        }
+    }
+    else{
+        productsListContainer.innerHTML = emptyCart();
+    }
+
+}
+getUserProductsInStorage();
 
 /*Función para  Vaciar Carrito de compras */
 
 function deleteShoppingCart() {
     // Eliminar solo los datos del carrito de compras del Local Storage
     localStorage.removeItem("shopping-cart");
-  
+
     // Establecer el valor del precio total a 0
     let totalPrice = 0;
-  
+    userCartProducts = null;
     // Actualizar el contenido de la clase "totalPrice" en el DOM
     const totalPriceElement = document.querySelector('.totalPrice');
     totalPriceElement.textContent = totalPrice.toFixed(2);
-  
+    updateAmountSpan();
+    updateIconCartReference('0');
     // Vaciar el contenido del contenedor
     productsListContainer.innerHTML = "";
-    updateAmountSpan();
-  }
+    productsListContainer.innerHTML = emptyCart();
+}
 
 
-getUserProductsInStorage();
+
+//----------------------------------------------------------
+const descriptionParagraph = document.querySelectorAll('.descriptioncontainer');
+const verMasLink = document.querySelectorAll('.ver-mas');
+
+verMasLink.forEach((verMasButton, index) => {
+    verMasButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (descriptionParagraph[index].classList.contains('show-description')) {
+            descriptionParagraph[index].classList.remove('show-description');
+            descriptionParagraph[index].classList.add('hide-description');
+            verMasButton.innerText = 'Ver más';
+        } else {
+            descriptionParagraph[index].classList.remove('hide-description');
+            descriptionParagraph[index].classList.add('show-description');
+            verMasButton.innerText = 'Ver menos';
+        }
+    });
+});
 
 /*Función para obtener el valor total llegado del localstorage*/
-function updateTotalPrice(){
-    
-        // Obtener el valor del carrito de compras del Local Storage
-        let totalPrice = 0;
-        if (userCartProducts && userCartProducts.length > 0) {
-          totalPrice = userCartProducts.reduce((total, product) => {
+function updateTotalPrice() {
+
+    // Obtener el valor del carrito de compras del Local Storage
+    let totalPrice = 0;
+    if (userCartProducts && userCartProducts.length > 0) {
+        totalPrice = userCartProducts.reduce((total, product) => {
             const price = parseFloat(product.price);
             const amount = parseInt(product.amount);
             if (!isNaN(price) && !isNaN(amount)) {
-              return total + price * amount;
+                return total + price * amount;
             } else {
-              return total;
+                return total;
             }
-          }, 0);
-        }
-      
-        // Actualizar el contenido de la clase "totalPrice" al valor del carrito de compras
-        const totalPriceElement = document.querySelector(".totalPrice");
-        totalPriceElement.textContent = totalPrice.toFixed(2); // Asegura que se muestren dos decimales
+        }, 0);
+    }
+
+    // Actualizar el contenido de la clase "totalPrice" al valor del carrito de compras
+    const totalPriceElement = document.querySelector(".totalPrice");
+    totalPriceElement.textContent = totalPrice.toFixed(2); // Asegura que se muestren dos decimales
 }
 
-function updateAmountSpan (){
+function updateAmountSpan() {
     const totalPieces = document.getElementById("piecesProducts");
     
-    if(userCartProducts){
+    if (userCartProducts) {
         let total = userCartProducts[0].total;
         totalPieces.innerText = `${total}`;
     }
-    else{
+    else if(userCartProducts == null && userCartProducts == undefined){
         totalPieces.innerText = '0';
     }
 }
-  
-  
-  //Regresar al product page
-  function backShoppingCartPage() {
-      window.location.href = "./products.html";
-    }
+
+
+//Regresar al product page
+function backShoppingCartPage() {
+    window.location.href = "./products.html";
+}
 
 //------------------- Actualizar icono de carrito de compras ----------------
 const updateIconCartReference = (amount) => {
     const shoppingCartCounter = $("#shopping-cart-counter");
-            shoppingCartCounter.text(amount);
+    shoppingCartCounter.text(amount);
 }
 
 
 
 //-------------------- Add more pices of an product ---------------
-const modifyAmountProducts = ()=>{
-    
+const modifyAmountProducts = () => {
+
     const amountContainer = document.getElementsByClassName("cantidadproductos");
-    
-    for(let index = 0; index < amountContainer.length; index++){
+
+    for (let index = 0; index < amountContainer.length; index++) {
         //------------------ Agregar Items ---------------------------
-        amountContainer[index].children["addpiece"].addEventListener("click", ()=>{
-           
-            if(userCartProducts[index+1].amount < 10){
-            userCartProducts[index+1].amount += 1;
-            userCartProducts[0].total += 1;
-            updateIconCartReference(userCartProducts[0].total);
-            amountContainer[index].children["amount-product"].innerText = userCartProducts[index+1].amount;
-            updateAmountSpan();
-            updateTotalPrice();
-            localStorage.setItem("shopping-cart", JSON.stringify(userCartProducts));
-            }
-
-        });
-        
-
-        //------------------- Quitar Items ---------------------------
-        amountContainer[index].children["removepiece"].addEventListener("click", ()=>{
-            
-            if(userCartProducts[index+1].amount > 1){
-                userCartProducts[index+1].amount -= 1;
-                userCartProducts[0].total -= 1;
+        amountContainer[index].children["addpiece"].addEventListener("click", () => {
+            if (userCartProducts[index + 1].amount < 10) {
+                userCartProducts[index + 1].amount += 1;
+                userCartProducts[0].total += 1;
                 updateIconCartReference(userCartProducts[0].total);
-                amountContainer[index].children["amount-product"].innerText = userCartProducts[index+1].amount;
+                amountContainer[index].children["amount-product"].innerText = userCartProducts[index + 1].amount;
                 updateAmountSpan();
                 updateTotalPrice();
                 localStorage.setItem("shopping-cart", JSON.stringify(userCartProducts));
             }
-            else{
-                console.log("You have 1 item only");
+
+        });
+
+
+        //------------------- Quitar Items ---------------------------
+        amountContainer[index].children["removepiece"].addEventListener("click", () => {
+
+            if (userCartProducts[index + 1].amount > 1) {
+                userCartProducts[index + 1].amount -= 1;
+                userCartProducts[0].total -= 1;
+                updateIconCartReference(userCartProducts[0].total);
+                amountContainer[index].children["amount-product"].innerText = userCartProducts[index + 1].amount;
+                updateAmountSpan();
+                updateTotalPrice();
+                localStorage.setItem("shopping-cart", JSON.stringify(userCartProducts));
             }
         });
-        
+
     }
 }
 
 modifyAmountProducts();
 
+const deleteProduct = document.querySelectorAll(".delete-product");
 
-// const pintarCarrito = () => {
-//     //para hacer limpieza y que no se repita el carrito
-//     modalContainer.innerHTML = "";
-//     modalContainer.style.display = "flex";
-//     const modalHeader = document.createElement("div");
-//     modalHeader.className = "modal-header";
-//     modalHeader.innerHTML = `
-//     <h1 class="modal-header-title">Carrito. </h1>
-
-//     `;
-//     modalContainer.append(modalHeader);
-
-//     const modalButton = document.createElement("h1");
-//     modalButton.innerText = "x";
-//     modalButton.className = "modal-Header-button";
-
-//     modalButton.addEventListener("click", () =>{
-//         //para que desaparezca el boton de salir
-//         modalContainer.style.display = "none";
-//     });
-
-
-//     modalHeader.append(modalButton);
-
-//     carrito.forEach((product) =>{
-//         let carritoContent = document.createElement("div")
-//         carritoContent.className = "modal-content";
-//         carritoContent.innerHTML = `
-//         <img src="${product.img}">
-//         <h3>${product.nombre}</h3>
-//         <p>${product.precio}</p>
-//         <span class = "restar"> ➖ </span>
-//         <p>Cantidad: ${product.cantidad}</p>
-//         <span class = "sumar"> ➕ </span>
-//         <p>Total: ${product.cantidad * product.precio}</p>
-//         <span class = "delete-product"> ❌ </span>
-//         `;
-
-//         modalContainer.append(carritoContent);
-//         console.log(carrito.length);
-
-//         let restar = carritoContent.querySelector(".restar");
-        
-//         restar.addEventListener("click", () =>  {
-//             if(product.cantidad !== 1){
-//                 product.cantidad--;
-//             }
-//             saveLocal();
-//             pintarCarrito();
-            
-//         });
-
-//         let sumar = carritoContent.querySelector(".sumar");
-//         sumar.addEventListener("click", () =>  {
-//             ////////////////////////////////////////////////////
-//             if(product.cantidad <=9){
-//                 product.cantidad++;
-//             }
-//                 saveLocal();
-//                 pintarCarrito();
-    
-//         });
-
-//         let eliminar = carritoContent.querySelector(".delete-product");
-//         eliminar.addEventListener("click", () =>  {
-//             eliminarProducto(product.id);
-//         });
-
-//         // let eliminar = document.createElement("span");
-
-//         // eliminar.innerText = "❌";
-//         // eliminar.className = "delete-product";
-//         // carritoContent.append(eliminar);
-
-//         // eliminar.addEventListener("click", eliminarProducto);
-
-
-//     });
-//     //al acumulador le sumamos el multiplo de los productos individuales
-//     const total = carrito.reduce((acc,el) => acc + el.precio * el.cantidad, 0);
-
-//     const totalBuying = document.createElement("div");
-//     totalBuying.className = "total-content"
-//     totalBuying.innerHTML = `total a pagar: ${total} $ `;
-//     modalContainer.append(totalBuying);
-  
-//  };
-
-//  verCarrito.addEventListener("click", pintarCarrito);
-
-//  //-----------funcion para eliminar producto del carrito 
-
-//  const eliminarProducto = (id) => {
-//     //metodo que nos ayuda a buscar el id del producto que se quiere eliminar
-//     const foundId = carrito.find((element) => element.id === id);
-//     //despues de encontrarlo le asignamos a carrito nuevo valor 
-
-//     carrito = carrito.filter((carritoId) => {
-//         return carritoId !== foundId;
-//     });
-
-//     carritoCounter();
-//     saveLocal();
-//     pintarCarrito();
-//  };
-
-//  const carritoCounter = () => {
-//     cantidadCarrito.style.display= "block";
-
-//     const carritoLength = carrito.length;
-
-//     localStorage.setItem("carritoLength", JSON.stringify(carritoLength));
-
-//     cantidadCarrito.innerText = JSON.parse(localStorage.getItem("carritoLength"));
-//  };
-
-// carritoCounter();
+deleteProduct.forEach((deleteIconProduct, index) => {
+    deleteIconProduct.addEventListener("click", () => {
+        userCartProducts[0].total -= userCartProducts[index + 1].amount;
+        userCartProducts.splice(index + 1, 1);
+        localStorage.setItem("shopping-cart", JSON.stringify(userCartProducts));
+        document.location.reload();
+    });
+});
