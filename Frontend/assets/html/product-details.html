@@ -79,6 +79,33 @@
 
             <!-- Información y Acciones -->
             <div class="col scrollable-section text-center p-5">
+                <!-- Pet Selection -->
+                <div id="pet-container" class="row mb-2 bg-beige d-none">
+                    <div class="row m-0">
+                        <h2>Mascota</h2>
+                    </div>
+                    <div class="row m-0">
+                        <div class="row m-0">
+                            <div id="pet-dog-text" class="col-6 p-0">
+                                <p><b>Lomito</b></p>
+                            </div>
+                            <div id="pet-cat-text" class="col-6 p-0">
+                                <p><b>Michi</b></p>
+                            </div>
+                        </div>
+                        <div class="row m-0 d-flex align-items-center justify-content-center">
+                            <div id="pet-dog" class="col-6 m-0 p-0 is-not-selected" onclick="updatePetImg(this)">
+                                <img alt="" class="img-fluid"
+                                    src="../img/products/customizable/customizable-pet-dog.png">
+                            </div>
+                            <div id="pet-cat" class="col-6 m-0 p-0 is-not-selected" onclick="updatePetImg(this)">
+                                <img alt="" class="img-fluid"
+                                    src="../img/products/customizable/customizable-pet-cat.png">
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+
                 <!-- Collar Material Selection -->
                 <div id="collar-container" class="row mb-2 bg-beige d-none">
                     <div class="row m-0">

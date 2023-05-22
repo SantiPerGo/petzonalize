@@ -90,6 +90,7 @@ $(document).ready(() => {
       } else {
         $("#product-custome").attr("src", product.imgUrl);
         $("#product-custome").attr("alt", product.name);
+        $("#pet-container").removeClass("d-none");
         $("#product-custome-container").removeClass("d-none");
         $("#custome-head-container").removeClass("d-none");
         $("#custome-body-container").removeClass("d-none");
@@ -169,6 +170,14 @@ const updateProductImg = selectedElement => {
 
   // Changing text colors
   updateText($(`#${$(selectedElement).attr("id")}-text`));
+};
+
+const updatePetImg = selectedElement => {
+  updateProductImg(selectedElement);
+
+  // Changing pet img
+  const imgUrl = $(selectedElement).children().attr("src");
+  $("#product-custome").attr("src", imgUrl);
 };
 
 const updateNotSelectedElements = selectedElement => {
