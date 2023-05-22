@@ -225,7 +225,7 @@ const addProductsToCart = (product, quantity) => {
 
 const getProductsFromJson = async () => {
   let productsLoaded = true, customProductsLoaded = true;
-  let products = [];
+  let products = [], customes = [];
 
   try {
     await $.getJSON("../json/products.json",
@@ -239,6 +239,9 @@ const getProductsFromJson = async () => {
     await $.getJSON("../json/products-customizable.json", productsJson => {
         let productsArray = productsJson["products-customizable"];
 
+        customes = customes.concat(productsArray.filter(product =>
+          product.category === "custome"));
+
         // Removing custome and pattern categories
         productsArray = productsArray.filter(product =>
             product.category !== "custome" &&
@@ -251,7 +254,7 @@ const getProductsFromJson = async () => {
     customProductsLoaded = false;
   }
 
-  return [products, productsLoaded && customProductsLoaded];
+  return [products, customes, productsLoaded && customProductsLoaded];
 };
 
 // *********************************************************************************
@@ -259,7 +262,7 @@ const getProductsFromJson = async () => {
 // *********************************************************************************
 
 const loadProducts = async intervalId => {
-  const [products, productsHasLoaded] = await getProductsFromJson();
+  const [products, customes, productsHasLoaded] = await getProductsFromJson();
 
   // Hiding loading animation
   $("#loading-anim").remove()
@@ -277,6 +280,7 @@ const loadProducts = async intervalId => {
   } else {
     createProductsCards(products);
     sessionStorage.setItem("products", JSON.stringify(products));
+    sessionStorage.setItem("customes", JSON.stringify(customes));
 
     // Getting filter if exists
     const petFilter = sessionStorage.getItem("pet-filter");

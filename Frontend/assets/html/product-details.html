@@ -28,29 +28,61 @@
     <nav></nav>
 
     <main>
-        <div class="container d-flex" id="product-custom" action="./products.html">
+        <div class="container d-flex" id="product-custom">
             
             <!-- Imagen Producto -->
             <div class="col d-flex align-items-center">
-                <div class="row text-center">
-                    <div id="product-img-div" class="row bg-beige p-0">
-                        <div id="product-img-container" class="p-0">
+                <div class="row text-center p-0 m-0">
+                    <div id="product-img-div" class="row bg-beige p-0 m-0 d-none">
+                        <div id="product-img-container" class="p-0 d-none">
                             <img id="product-img" class="w-100 h-100 p-0">
+                            <h2 id="product-nameplate-name" class="p-0"></h2>
+                            <h2 id="product-nameplate-phone" class="p-0"></h2>
+                            <h2 id="product-bowl-name" class="p-0"></h2>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div id="product-custome-container" class="row bg-beige p-0 m-0 d-none">
+                        <img id="product-custome" class="w-100 h-100">
+                        <img id="product-body" class="p-0 d-none">
+                        <img id="product-head" class="p-0 d-none">
+                    </div>
+
+                    <div class="row m-0 mt-md-3 mt-lg-5">
                         <h1 id="product-name"></h1>
+                    </div>
+                    
+                    <div class="row mt-md-3 mt-lg-5 d-none" id="quantity-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                              <button id="decrease" class="input-group-text btn btn-blue" disabled>-</button>
+                            </div>
+
+                            <input id="product-quantity" type="text" class="form-control border-0 text-center" value="1" readonly>
+                            
+                            <div class="input-group-append">
+                              <button id="increase" class="input-group-text btn btn-blue">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-0 mt-md-3 mt-lg-5">
+                        <div class="col-md-12 col-lg-6 mb-md-3">
+                            <button class="btn btn-purple" id="product-buy">Comprar</button>
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <button class="btn btn-blue" id="product-return">Regresar</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Información y Acciones -->
             <div class="col scrollable-section text-center p-5">
-                <!-- Material Selection -->
-                <div class="row mb-2 bg-beige">
+                <!-- Collar Material Selection -->
+                <div id="collar-container" class="row mb-2 bg-beige d-none">
                     <div class="row m-0">
-                        <h2>Material</h2>
+                        <h2>Material del Collar</h2>
                     </div>
                     <div class="row m-0">
                         <div class="row m-0">
@@ -74,27 +106,35 @@
                     </div> 
                 </div>
 
-                <!-- Material Selection -->
-                <div class="row mb-2 bg-beige">
+                <!-- Bowl Material Selection -->
+                <div id="bowl-container" class="row mb-2 bg-beige d-none">
                     <div class="row m-0">
-                        <h2>Tamaño</h2>
+                        <h2>Material del Plato</h2>
                     </div>
-                    <div class="row m-0 is-selected-text" onclick="updateText(this)">
-                        <div class="col-6 p-0"><p><b>Pequeño</b></p></div>
-                        <div class="col-6 p-0"><p><b>35 mm x 18 mm</b></p></div>
-                    </div>
-                    <div class="row m-0 is-not-selected-text" onclick="updateText(this)">
-                        <div class="col-6 p-0"><p><b>Mediano</b></p></div>
-                        <div class="col-6 p-0"><p><b>38 mm x 25 mm</b></p></div>
-                    </div>
-                    <div class="row m-0 is-not-selected-text" onclick="updateText(this)">
-                        <div class="col-6 p-0"><p><b>Grande</b></p></div>
-                        <div class="col-6 p-0"><p><b>50 mm x 32 mm</b></p></div>
-                    </div>
+                    <div class="row m-0">
+                        <div class="row m-0">
+                            <div id="bowl-plastic-text" class="col-6 p-0">
+                                <p><b>Plástico</b></p>
+                            </div>
+                            <div id="bowl-ceramic-text" class="col-6 p-0">
+                                <p><b>Cerámica</b></p>
+                            </div>
+                        </div>
+                        <div class="row m-0 d-flex align-items-center justify-content-center">
+                            <div id="bowl-plastic" class="col-6 m-0 p-0 is-not-selected" onclick="updateProductImg(this)">
+                                <img alt="" class="img-fluid"
+                                    src="../img/products/customizable/customizable-bowl-plastic.png">
+                            </div>
+                            <div id="bowl-ceramic" class="col-6 m-0 p-0 is-not-selected" onclick="updateProductImg(this)">
+                                <img alt="" class="img-fluid"
+                                    src="../img/products/customizable/customizable-bowl-ceramic.png">
+                            </div>
+                        </div>
+                    </div> 
                 </div>
 
                 <!-- Shape Selection -->
-                <div class="row mb-2 bg-beige">
+                <div id="shape-container" class="row mb-2 bg-beige d-none">
                     <div class="row m-0">
                         <h2>Forma</h2>
                     </div>
@@ -122,8 +162,24 @@
                     </div>
                 </div>
 
-                <!-- NamePlate Color Selection -->
-                <div class="row mb-2 bg-beige">
+                <!-- Size Selection -->
+                <div id="size-container" class="row mb-2 bg-beige d-none">
+                    <div class="row m-0">
+                        <h2>Tamaño</h2>
+                    </div>
+                    <div class="row m-0 is-selected-text" onclick="updateText(this)">
+                        <p><b>Pequeño - 35 mm x 18 mm</b></p>
+                    </div>
+                    <div class="row m-0 is-not-selected-text" onclick="updateText(this)">
+                        <p><b>Mediano - 38 mm x 25 mm</b></p>
+                    </div>
+                    <div class="row m-0 is-not-selected-text" onclick="updateText(this)">
+                        <p><b>Grande - 50 mm x 32 mm</b></p>
+                    </div>
+                </div>
+
+                <!-- Color Selection -->
+                <div id="color-container" class="row mb-2 bg-beige d-none">
                     <div class="row m-0">
                         <h2>Color</h2>
                     </div>
@@ -140,7 +196,7 @@
                 </div>
 
                 <!-- Name and Phone -->
-                <div class="row mb-2 bg-beige">
+                <div id="pet-data-container" class="row mb-2 bg-beige d-none">
                     <div class="row m-0">
                         <h2>Datos de la Mascota</h2>
                     </div>
@@ -170,8 +226,31 @@
                     </div>
                 </div>
 
-                <!-- Theme Selection -->
-                <div class="row mb-2 bg-beige">
+                <!-- Name -->
+                <div id="pet-bowl-data-container" class="row mb-2 bg-beige d-none">
+                    <div class="row m-0">
+                        <h2>Datos de la Mascota</h2>
+                    </div>
+                    <form id="pet-bowl-data-form" class="row m-0">
+                        <div class="row m-0">
+                            <label for="name" class="form-label">
+                                <b>Nombre de tu Peludito</b>
+                            </label>
+                            <input type="text" id="bowl-name" name="name" class="form-control"
+                                placeholder="Michi/Lomito" required>
+                        </div>
+                    </form>
+                    <div class="row m-0 mt-3">
+                        <div class="row-6">
+                            <button id="reset-pet-bowl-data" class="btn btn-blue d-none" onclick="resetPetDataBowl()">
+                                Reiniciar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pattern Selection -->
+                <div id="pattern-container" class="row mb-2 bg-beige d-none">
                     <div class="row m-0">
                         <h2>Estampado</h2>
                     </div>
@@ -197,10 +276,60 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Custome Head Selection -->
+                <div id="custome-head-container" class="row mb-2 bg-beige d-none">
+                    <div class="row m-0">
+                        <h2>Gorro del Disfraz</h2>
+                    </div>
+                    <div id="custome-head-div" class="row m-0 justify-content-center g-3">
+                        <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'head')">
+                            <img alt="head-mariachi" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-head-mariachi.png">
+                        </div>
+                        <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'head')">
+                            <img alt="head-cold" class="img-fluid w-50 h-100" src="../img/products/customizable/customizable-head-cold-red.png">
+                        </div>
+                    </div>
+                    <div class="row m-0 mt-3">
+                        <div class="row-6">
+                            <button id="reset-head" class="btn btn-blue d-none" onclick="resetCustome('head')">
+                                Reiniciar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custome Body Selection -->
+                <div id="custome-body-container" class="row mb-2 bg-beige d-none">
+                    <div class="row m-0">
+                        <h2>Traje del Disfraz</h2>
+                    </div>
+                    <div id="custome-body-div" class="row m-0 justify-content-center g-3">
+                        <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
+                            <img alt="body-cape" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-body-cape.png">
+                        </div>
+                        <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
+                            <img alt="body-rider" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-body-rider.png">
+                        </div>
+                        <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
+                            <img alt="body-shark" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-body-shark-jacket.png">
+                        </div>
+                        <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
+                            <img alt="body-turtle" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-body-turtle-shell.png">
+                        </div>
+                    </div>
+                    <div class="row m-0 mt-3">
+                        <div class="row-6">
+                            <button id="reset-body" class="btn btn-blue d-none" onclick="resetCustome('body')">
+                                Reiniciar
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="container-fluid d-none" id="product-not-custom" action="./products.html">
+        <div class="container-fluid d-none" id="product-not-custom">
             <div class="col my-4 text-center">
                 <img id="product-img" class="img-fluid">
             </div>

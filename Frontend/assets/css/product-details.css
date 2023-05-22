@@ -15,6 +15,56 @@
   padding: calc(0.5rem + 1vw);
 }
 
+#product-quantity {
+  background-color: var(--gray);
+}
+
+/* Img styles */
+
+img {
+  object-fit: contain;
+}
+
+#product-custome-container {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+:root { /* Variables changed dinamically with js */
+  --head-size: 10vw;
+  --body-size: 13vw;
+  --head-top: 5%;
+  --head-right: 10%;
+  --body-top: 5%;
+  --body-right: 30%;
+}
+
+#product-head {
+  position: absolute;
+  top: var(--head-top);
+  right: var(--head-right);
+  width: var(--head-size);
+  height: var(--head-size);
+}
+
+#product-body {
+  position: absolute;
+  top: var(--body-top);
+  right: var(--body-right);
+  width: var(--body-size);
+  height: var(--body-size);
+}
+
+#product-custome {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: 21vw;
+  padding: 5vw 5vw 0 5vw;
+}
+
 /* Material Category */
 
 .is-selected {
@@ -46,7 +96,7 @@
 
 /* Color and theme categories */
 
-:root {
+:root { /* Variables changed dinamically with js */
   --color-picker: none; 
   --img-mask: none;
   --color-filter: none; 
@@ -81,4 +131,38 @@
   mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
+}
+
+/* Nameplate pet data styles */
+
+#product-nameplate-name,
+#product-nameplate-phone,
+#product-bowl-name {
+  position: relative;
+  text-align: center;
+  color: var(--gray);
+}
+
+#product-nameplate-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: calc(0.1rem + 3vw);
+}
+
+#product-bowl-name {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: calc(0.1rem + 4vw);
+}
+
+#product-nameplate-phone {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: calc(0.1rem + 2vw);
 }

@@ -43,6 +43,7 @@
                 "color": "blue",
                 "size": "normal",
                 "shape": "paw",
+                "pattern": "circles",
                 "petname": "firulais",
                 "petphone": "55123456"
             }
@@ -54,7 +55,15 @@
             "type": "head-mariachi",
             "price": 234.99,
             "imgUrl": "/assets/img/products/customizable/customizable-head-mariachi.png",
-            "stock": 30
+            "stock": 30,
+            "cssProperties": {
+                "dog-size": "10vw",
+                "dog-top": "3%",
+                "dog-right": "18%",
+                "cat-size": "10vw",
+                "cat-top": "15%",
+                "cat-right": "10%"
+            }
         },
         {
             "id": 5,
@@ -63,7 +72,15 @@
             "type": "body-shark",
             "price": 369,
             "imgUrl": "/assets/img/products/customizable/customizable-body-shark-jacket.png",
-            "stock": 26
+            "stock": 26,
+            "cssProperties": {
+                "dog-size": "17vw",
+                "dog-top": "10%",
+                "dog-right": "27%",
+                "cat-size": "17vw",
+                "cat-top": "15%",
+                "cat-right": "20%"
+            }
         },
         {
             "id": 6,
@@ -72,7 +89,15 @@
             "type": "head-cold",
             "price": 145,
             "imgUrl": "/assets/img/products/customizable/customizable-head-cold-red.png",
-            "stock": 33
+            "stock": 33,
+            "cssProperties": {
+                "dog-size": "8vw",
+                "dog-top": "17%",
+                "dog-right": "20%",
+                "cat-size": "8vw",
+                "cat-top": "25%",
+                "cat-right": "13%"
+            }
         },
         {
             "id": 7,
@@ -81,7 +106,15 @@
             "type": "body-rider",
             "price": 249.29,
             "imgUrl": "/assets/img/products/customizable/customizable-body-rider.png",
-            "stock": 27
+            "stock": 27,
+            "cssProperties": {
+                "dog-size": "12vw",
+                "dog-top": "15%",
+                "dog-right": "35%",
+                "cat-size": "12vw",
+                "cat-top": "20%",
+                "cat-right": "25%"
+            }
         },
         {
             "id": 8,
@@ -90,7 +123,15 @@
             "type": "body-cape",
             "price": 195,
             "imgUrl": "/assets/img/products/customizable/customizable-body-cape.png",
-            "stock": 39
+            "stock": 39,
+            "cssProperties": {
+                "dog-size": "17vw",
+                "dog-top": "0%",
+                "dog-right": "35%",
+                "cat-size": "17vw",
+                "cat-top": "9%",
+                "cat-right": "27%"
+            }
         },
         {
             "id": 9,
@@ -99,7 +140,15 @@
             "type": "body-turtle",
             "price": 224,
             "imgUrl": "/assets/img/products/customizable/customizable-body-turtle-shell.png",
-            "stock": 30
+            "stock": 30,
+            "cssProperties": {
+                "dog-size": "13vw",
+                "dog-top": "15%",
+                "dog-right": "37%",
+                "cat-size": "13vw",
+                "cat-top": "23%",
+                "cat-right": "30%"
+            }
         }, 
         {
             "id": 10,
@@ -128,6 +177,7 @@
                 "color": "blue",
                 "size": "normal",
                 "shape": "bone",
+                "pattern": "circles",
                 "petname": "cheems",
                 "petphone": "55123456"
             }
@@ -144,6 +194,7 @@
                 "color": "blue",
                 "size": "normal",
                 "shape": "circle-double",
+                "pattern": "circles",
                 "petname": "lomito",
                 "petphone": "55123456"
             }
@@ -160,6 +211,7 @@
                 "color": "blue",
                 "size": "normal",
                 "shape": "circle",
+                "pattern": "circles",
                 "petname": "max",
                 "petphone": "55123456"
             }
@@ -176,6 +228,7 @@
                 "color": "blue",
                 "size": "normal",
                 "shape": "star",
+                "pattern": "circles",
                 "petname": "doge",
                 "petphone": "55123456"
             }
