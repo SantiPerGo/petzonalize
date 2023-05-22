@@ -57,10 +57,10 @@
             "imgUrl": "/assets/img/products/customizable/customizable-head-mariachi.png",
             "stock": 30,
             "cssProperties": {
-                "dog-size": "10vw",
+                "dog-size": "9vw",
                 "dog-top": "3%",
                 "dog-right": "18%",
-                "cat-size": "10vw",
+                "cat-size": "9vw",
                 "cat-top": "15%",
                 "cat-right": "10%"
             }
@@ -74,10 +74,10 @@
             "imgUrl": "/assets/img/products/customizable/customizable-body-shark-jacket.png",
             "stock": 26,
             "cssProperties": {
-                "dog-size": "17vw",
+                "dog-size": "16vw",
                 "dog-top": "10%",
                 "dog-right": "27%",
-                "cat-size": "17vw",
+                "cat-size": "16vw",
                 "cat-top": "15%",
                 "cat-right": "20%"
             }
@@ -91,10 +91,10 @@
             "imgUrl": "/assets/img/products/customizable/customizable-head-cold-red.png",
             "stock": 33,
             "cssProperties": {
-                "dog-size": "8vw",
+                "dog-size": "7vw",
                 "dog-top": "17%",
                 "dog-right": "20%",
-                "cat-size": "8vw",
+                "cat-size": "7vw",
                 "cat-top": "25%",
                 "cat-right": "13%"
             }
@@ -108,10 +108,10 @@
             "imgUrl": "/assets/img/products/customizable/customizable-body-rider.png",
             "stock": 27,
             "cssProperties": {
-                "dog-size": "12vw",
+                "dog-size": "11vw",
                 "dog-top": "15%",
                 "dog-right": "35%",
-                "cat-size": "12vw",
+                "cat-size": "11vw",
                 "cat-top": "20%",
                 "cat-right": "25%"
             }
@@ -125,10 +125,10 @@
             "imgUrl": "/assets/img/products/customizable/customizable-body-cape.png",
             "stock": 39,
             "cssProperties": {
-                "dog-size": "17vw",
+                "dog-size": "16vw",
                 "dog-top": "0%",
                 "dog-right": "35%",
-                "cat-size": "17vw",
+                "cat-size": "16vw",
                 "cat-top": "9%",
                 "cat-right": "27%"
             }
@@ -142,10 +142,10 @@
             "imgUrl": "/assets/img/products/customizable/customizable-body-turtle-shell.png",
             "stock": 30,
             "cssProperties": {
-                "dog-size": "13vw",
+                "dog-size": "12vw",
                 "dog-top": "15%",
                 "dog-right": "37%",
-                "cat-size": "13vw",
+                "cat-size": "12vw",
                 "cat-top": "23%",
                 "cat-right": "30%"
             }
