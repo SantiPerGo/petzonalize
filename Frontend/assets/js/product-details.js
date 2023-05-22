@@ -90,6 +90,7 @@ $(document).ready(() => {
       } else {
         $("#product-custome").attr("src", product.imgUrl);
         $("#product-custome").attr("alt", product.name);
+        $("#pet-container").removeClass("d-none");
         $("#product-custome-container").removeClass("d-none");
         $("#custome-head-container").removeClass("d-none");
         $("#custome-body-container").removeClass("d-none");
@@ -169,6 +170,14 @@ const updateProductImg = selectedElement => {
 
   // Changing text colors
   updateText($(`#${$(selectedElement).attr("id")}-text`));
+};
+
+const updatePetImg = selectedElement => {
+  updateProductImg(selectedElement);
+
+  // Changing pet img
+  const imgUrl = $(selectedElement).children().attr("src");
+  $("#product-custome").attr("src", imgUrl);
 };
 
 const updateNotSelectedElements = selectedElement => {
@@ -283,8 +292,8 @@ buyButton.on('click', () => showQuantityButtons());
 returnButton.on('click', () => {
   if(getShoppingCartLength() >= 10) {
     buyButton.prop('disabled', true);
-    returnButton.prop('disabled', true);
     returnButton.text("¡Carrito Lleno!");
+    returnButton.on('click', () => window.location.href = 'products.html');
   } else       
     window.location.href = 'products.html';
 });
@@ -304,25 +313,24 @@ const showQuantityButtons = () => {
 
   if(shoppingCartLength >= 10) {
     buyButton.prop('disabled', true);
-    returnButton.prop('disabled', true);
     quantityGroup.addClass("d-none");
     buyButton.text("¡Carrito Lleno!");
     returnButton.text("Regresar");   
+    returnButton.on('click', () => window.location.href = 'products.html');
   }
 
   buyButton.off('click');
   buyButton.on('click', () => {
     buyButton.prop('disabled', true);
-    returnButton.prop('disabled', true);
     quantityGroup.addClass("d-none");
+    returnButton.text("Regresar");  
+    returnButton.on('click', () => window.location.href = 'products.html'); 
 
     if(shoppingCartLength < 10 && (shoppingCartLength + parseInt(productQuantity.val())) <= 10) {
       addProductsToCart(product, parseInt(productQuantity.val()));
       buyButton.text("¡Agregado al Carrito!");
-    } else {
+    } else 
       buyButton.text("¡Carrito Lleno!");
-      returnButton.text("Regresar");   
-    }
   });
 
   returnButton.off('click');
@@ -340,10 +348,10 @@ const showQuantityButtons = () => {
     returnButton.on('click', () => {
       if(shoppingCartLength >= 10) {
         buyButton.prop('disabled', true);
-        returnButton.prop('disabled', true);
         quantityGroup.addClass("d-none");
         buyButton.text("¡Carrito Lleno!");
-        returnButton.text("Regresar");      
+        returnButton.text("Regresar");  
+        returnButton.on('click', () => window.location.href = 'products.html');
       } else       
         window.location.href = 'products.html';
     });
