@@ -5,6 +5,7 @@ alertElement.hide();
 $(document).ready(() => {
 validateForm(editform);
 });
+
  //Obtener el json y cargarlo a local storage 
 
 fetch("/assets/json/products.json")
@@ -23,6 +24,8 @@ let price = document.getElementById("price");
 
 
 //obtener los datos del formulario
+function addProduct(){
+
 const refForm =document.forms["edit-form"];
 refForm.addEventListener(`submit`, event=>{
     event.preventDefault();
@@ -66,7 +69,15 @@ localStorage.setItem("products", actualProducts);
       setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
      
   }
-}); 
+})
+}; 
+
+// Boton reiniciar/borrar formulario
+function resetForm() {
+  var form = document.getElementById("edit-form");
+
+  form.reset();
+}
 
 // Boton cargar imagen
 const realFileBtn = document.getElementById("product-form-uploads");
@@ -118,3 +129,21 @@ uploadImg.addEventListener("change", function() {
         previewImage.setAttribute("src", "");
     }
 });
+
+
+/* const uploadBtn = document.getElementById("upload-image");
+const imagePreview = document.getElementById("imagePreview");
+const imgPrev = document.getElementById("imgPrev");
+const customText = document.getElementById("custom-text");
+const fileInput = document.getElementById("product-form-uploads");
+
+// Reset the image preview
+function resetImagePreview() {
+    imgPrev.src = "";
+    imagePreview.style.display = "none";
+    customText.textContent = "No se ha cargado una imagen.";
+    fileInput.value = ""; // Reset the file input
+}
+
+// Add event listener to the button
+uploadBtn.addEventListener("click", resetImagePreview); */

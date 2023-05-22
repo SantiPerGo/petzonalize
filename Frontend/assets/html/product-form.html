@@ -129,7 +129,7 @@
 
                                             <!-- Image Preview-->
                                             <div class="image-preview" id="imagePreview">
-                                                <img src="" alt="Image Preview" class="image-preview__image">
+                                                <img src="" alt="Image Preview" class="image-preview__image" id="imgPrev">
                                                 <span class="image-preview__default-text"><i class="bi bi-card-image"></i></span>
                                             </div>
                                         </div>
@@ -155,10 +155,10 @@
                                 <!----------- Buttons bottom --------->
                                 <div class="row justify-content-center">
                                     <div class="col-lg-5 col-md-5 col-sm-12 my-1 mx-1 d-flex justify-content-around">
-                                        <button id="" type="button" class="btn btn-purple my-2">Eliminar</button>
+                                        <button id="" type="button" class="btn btn-purple my-2" onclick="resetForm()">Eliminar</button>
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-12 my-1 mx- d-flex justify-content-around">
-                                        <button id="add" type="submit" class="btn btn-purple my-2">Añadir/Actualizar</button>
+                                        <button id="add" type="submit" class="btn btn-purple my-2" onclick="addProduct()">Añadir/Actualizar</button>
                                     </div>
                                 </div>
                             </form>
