@@ -80,10 +80,12 @@ $(document).ready(() => {
         if(product.category === "collar") {
           $("#collar-container").removeClass("d-none");
           updateSelectedElement(`${product.category}-${product.properties.material}`);
+          $(".collar-size").each((key, element) => $(element).removeClass("d-none"));
         } else if(product.category === "bowl") {
           $("#bowl-container").removeClass("d-none");
           $("#pet-bowl-data-container").removeClass("d-none");
           updateSelectedElement(`${product.category}-${product.properties.material}`);
+          $(".bowl-size").each((key, element) => $(element).removeClass("d-none"));
 
           if(product.properties.material === "ceramic")
             $("#product-bowl-name").css("top", "60%");
@@ -94,6 +96,7 @@ $(document).ready(() => {
           $("#shape-container").removeClass("d-none");
           $("#pet-data-container").removeClass("d-none");
           updateSelectedElement(`${product.category}-${product.properties.shape}`);
+          $(".nameplate-size").each((key, element) => $(element).removeClass("d-none"));
         }
       } else {
         $("#product-custome").attr("src", product.imgUrl);

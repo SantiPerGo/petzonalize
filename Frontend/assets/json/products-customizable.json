@@ -10,7 +10,7 @@
             "stock": 67,
             "properties": {
                 "color": "orange",
-                "size": "normal",
+                "size": "Pequeño - 25 cm a 38 cm - 1.5 cm de ancho",
                 "pattern": "circles",
                 "material": "nylon"
             }
@@ -25,7 +25,7 @@
             "stock": 136,
             "properties": {
                 "color": "yellow",
-                "size": "normal",
+                "size": "Pequeño - 250 ml",
                 "pattern": "hearts",
                 "petname": "firulais",
                 "material": "plastic"
@@ -41,7 +41,7 @@
             "stock": 376,
             "properties": {
                 "color": "blue",
-                "size": "normal",
+                "size": "Pequeño - 35 mm x 18 mm",
                 "shape": "paw",
                 "pattern": "circles",
                 "petname": "firulais",
@@ -160,7 +160,7 @@
             "stock": 67,
             "properties": {
                 "color": "blue",
-                "size": "normal",
+                "size": "Mediano - 32 cm a 48 cm - 2 cm de ancho",
                 "pattern": "circles",
                 "material": "synthetic-leather"
             }
@@ -175,7 +175,7 @@
             "stock": 323,
             "properties": {
                 "color": "blue",
-                "size": "normal",
+                "size": "Pequeño - 35 mm x 18 mm",
                 "shape": "bone",
                 "pattern": "circles",
                 "petname": "cheems",
@@ -192,7 +192,7 @@
             "stock": 299,
             "properties": {
                 "color": "blue",
-                "size": "normal",
+                "size": "Grande - 50 mm x 32 mm",
                 "shape": "circle-double",
                 "pattern": "circles",
                 "petname": "lomito",
@@ -209,7 +209,7 @@
             "stock": 311,
             "properties": {
                 "color": "blue",
-                "size": "normal",
+                "size": "Pequeño - 35 mm x 18 mm",
                 "shape": "circle",
                 "pattern": "circles",
                 "petname": "max",
@@ -226,7 +226,7 @@
             "stock": 288,
             "properties": {
                 "color": "blue",
-                "size": "normal",
+                "size": "Mediano - 38 mm x 25 mm",
                 "shape": "star",
                 "pattern": "circles",
                 "petname": "doge",
@@ -299,7 +299,7 @@
             "stock": 136,
             "properties": {
                 "color": "yellow",
-                "size": "normal",
+                "size": "Mediano - 500 ml",
                 "pattern": "fabric",
                 "petname": "neko",
                 "material": "ceramic"
