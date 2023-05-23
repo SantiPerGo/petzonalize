@@ -79,9 +79,11 @@ $(document).ready(() => {
 
         if(product.category === "collar") {
           $("#collar-container").removeClass("d-none");
+          updateSelectedElement(`${product.category}-${product.properties.material}`);
         } else if(product.category === "bowl") {
           $("#bowl-container").removeClass("d-none");
           $("#pet-bowl-data-container").removeClass("d-none");
+          updateSelectedElement(`${product.category}-${product.properties.material}`);
 
           if(product.properties.material === "ceramic")
             $("#product-bowl-name").css("top", "60%");
@@ -91,6 +93,7 @@ $(document).ready(() => {
           $("#product-nameplate-container").removeClass("d-none");
           $("#shape-container").removeClass("d-none");
           $("#pet-data-container").removeClass("d-none");
+          updateSelectedElement(`${product.category}-${product.properties.shape}`);
         }
       } else {
         $("#product-custome").attr("src", product.imgUrl);
@@ -99,6 +102,7 @@ $(document).ready(() => {
         $("#product-custome-container").removeClass("d-none");
         $("#custome-head-container").removeClass("d-none");
         $("#custome-body-container").removeClass("d-none");
+        updateSelectedElement(`${product.category}-${product.type}`);
       }
     } else {
       customProductForm.addClass("d-none");
@@ -192,6 +196,13 @@ const updatePetImg = selectedElement => {
   // Changing pet img
   const imgUrl = $(selectedElement).children().attr("src");
   $("#product-custome").attr("src", imgUrl);
+};
+
+const updateSelectedElement = elementId => {
+  const productContainer = $(`#${elementId}`);
+  productContainer.addClass("is-selected");
+  productContainer.removeClass("is-not-selected");
+  updateText($(`#${elementId}-text`));
 };
 
 const updateNotSelectedElements = selectedElement => {
