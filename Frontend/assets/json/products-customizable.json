@@ -36,7 +36,7 @@
             "name": "Plaquita con Forma de Pata",
             "category": "nameplate",
             "customizable": true,
-            "price": 119,
+            "price": 299.99,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-paw.png",
             "stock": 376,
             "properties": {
@@ -70,7 +70,7 @@
             "name": "Traje de Tiburón",
             "category": "custome",
             "type": "body-shark",
-            "price": 369,
+            "price": 269,
             "imgUrl": "/assets/img/products/customizable/customizable-body-shark-jacket.png",
             "stock": 26,
             "cssProperties": {
@@ -155,7 +155,7 @@
             "name": "Collar de Cuero Sintético",
             "category": "collar",
             "customizable": true,
-            "price": 179,
+            "price": 150,
             "imgUrl": "/assets/img/products/customizable/customizable-collar-leather.png",
             "stock": 67,
             "properties": {
@@ -170,7 +170,7 @@
             "name": "Plaquita con Forma de Hueso",
             "category": "nameplate",
             "customizable": true,
-            "price": 119,
+            "price": 255.99,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-bone.png",
             "stock": 323,
             "properties": {
@@ -187,7 +187,7 @@
             "name": "Plaquita con Forma de Círculo con Separación del Collar",
             "category": "nameplate",
             "customizable": true,
-            "price": 119,
+            "price": 225,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle-double.png",
             "stock": 299,
             "properties": {
@@ -204,7 +204,7 @@
             "name": "Plaquita con Forma de Círculo",
             "category": "nameplate",
             "customizable": true,
-            "price": 119,
+            "price": 219,
             "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle.png",
             "stock": 311,
             "properties": {
@@ -262,6 +262,7 @@
             "name": "Estampado de Círculos",
             "category": "pattern",
             "type": "circles",
+            "price": 19.99,
             "imgUrl": "/assets/img/products/customizable/customizable-pattern-circles.jpg"
         },
         {
@@ -269,6 +270,7 @@
             "name": "Estampado de Corazones",
             "category": "pattern",
             "type": "hearts",
+            "price": 29.73,
             "imgUrl": "/assets/img/products/customizable/customizable-pattern-hearts.png"
         },
         {
@@ -276,6 +278,7 @@
             "name": "Estampado de Tela",
             "category": "pattern",
             "type": "fabric",
+            "price": 39,
             "imgUrl": "/assets/img/products/customizable/customizable-pattern-fabric.jpg"
         },
         {
@@ -283,6 +286,7 @@
             "name": "Estampado de Cuadrados",
             "category": "pattern",
             "type": "squares",
+            "price": 59.12,
             "imgUrl": "/assets/img/products/customizable/customizable-pattern-squares.jpg"
         },
         {
@@ -290,7 +294,7 @@
             "name": "Plato de Comida de Cerámica",
             "category": "bowl",
             "customizable": true,
-            "price": 209.99,
+            "price": 259.99,
             "imgUrl": "/assets/img/products/customizable/customizable-bowl-ceramic.png",
             "stock": 136,
             "properties": {

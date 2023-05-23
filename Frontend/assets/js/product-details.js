@@ -173,12 +173,9 @@ const updateProductImg = selectedElement => {
   updateNotSelectedElements(selectedElement);
 
   // Changing product img
-  const imgUrl = $(selectedElement).children().attr("src");
+  const imgUrl = $(selectedElement).find("img").attr("src");
   $("#product-img").attr("src", imgUrl);
   $(":root").css("--img-mask", `url(${imgUrl})`);
-
-  // Changing text colors
-  updateText($(`#${$(selectedElement).attr("id")}-text`));
 };
 
 const updateBowlImg = selectedElement => {
@@ -202,7 +199,6 @@ const updateSelectedElement = elementId => {
   const productContainer = $(`#${elementId}`);
   productContainer.addClass("is-selected");
   productContainer.removeClass("is-not-selected");
-  updateText($(`#${elementId}-text`));
 };
 
 const updateNotSelectedElements = selectedElement => {
@@ -217,14 +213,16 @@ const updateNotSelectedElements = selectedElement => {
   $(selectedElement).removeClass("is-not-selected");
 };
 
-const updateText = selectedText => {
+const updateText = (...selectedTexts) => {
   jQuery(".is-selected-text").each((index, selectedText) => {
     $(selectedText).removeClass("is-selected-text");
     $(selectedText).addClass("is-not-selected-text");
   });
 
-  $(selectedText).addClass("is-selected-text");
-  $(selectedText).removeClass("is-not-selected-text");
+  selectedTexts.forEach(text => {
+    $(text).addClass("is-selected-text");
+    $(text).removeClass("is-not-selected-text");
+  });
 };
 
 const updateCustome = (selectedElement, id) => {

@@ -19,7 +19,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/product-details.css">
-    <link rel="stylesheet" href="../css/product-form.css">
 
     <title>Productos</title>
 </head>
@@ -85,20 +84,18 @@
                         <h2>Mascota</h2>
                     </div>
                     <div class="row m-0">
-                        <div class="row m-0">
-                            <div id="pet-dog-text" class="col-6 p-0">
-                                <p><b>Lomito</b></p>
-                            </div>
-                            <div id="pet-cat-text" class="col-6 p-0">
-                                <p><b>Michi</b></p>
-                            </div>
-                        </div>
                         <div class="row m-0 d-flex align-items-center justify-content-center">
                             <div id="pet-dog" class="col-6 m-0 p-0 is-not-selected" onclick="updatePetImg(this)">
+                                <div id="pet-dog-text" class="p-0">
+                                    <p class="my-1"><b>Lomito</b></p>
+                                </div>
                                 <img alt="" class="img-fluid"
                                     src="../img/products/customizable/customizable-pet-dog.png">
                             </div>
                             <div id="pet-cat" class="col-6 m-0 p-0 is-not-selected" onclick="updatePetImg(this)">
+                                <div id="pet-cat-text" class="p-0">
+                                    <p class="my-1"><b>Michi</b></p>
+                                </div>
                                 <img alt="" class="img-fluid"
                                     src="../img/products/customizable/customizable-pet-cat.png">
                             </div>
@@ -112,22 +109,26 @@
                         <h2>Material del Collar</h2>
                     </div>
                     <div class="row m-0">
-                        <div class="row m-0">
-                            <div id="collar-synthetic-leather-text" class="col-6 p-0">
-                                <p><b>Cuero Sintético</b></p>
-                            </div>
-                            <div id="collar-nylon-text" class="col-6 p-0">
-                                <p><b>Nylon</b></p>
-                            </div>
-                        </div>
                         <div class="row m-0 d-flex align-items-center justify-content-center">
                             <div id="collar-synthetic-leather" class="col-6 m-0 p-0 is-not-selected" onclick="updateProductImg(this)">
+                                <div id="collar-synthetic-leather-text" class="p-0">
+                                    <p class="my-1"><b>Cuero Sintético</b></p>
+                                </div>
                                 <img alt="" class="img-fluid"
                                     src="../img/products/customizable/customizable-collar-leather.png">
+                                    <div id="collar-synthetic-leather-price" class="p-0">
+                                        <p class="my-1"><b>$150</b></p>
+                                    </div>
                             </div>
                             <div id="collar-nylon" class="col-6 m-0 p-0 is-not-selected" onclick="updateProductImg(this)">
+                                <div id="collar-nylon-text" class="p-0">
+                                    <p class="my-1"><b>Nylon</b></p>
+                                </div>
                                 <img alt="" class="img-fluid"
                                     src="../img/products/customizable/customizable-collar-nylon.png">
+                                    <div id="collar-nylon-price" class="p-0">
+                                        <p class="my-1"><b>$179.99</b></p>
+                                    </div>
                             </div>
                         </div>
                     </div> 
@@ -139,22 +140,26 @@
                         <h2>Material del Plato</h2>
                     </div>
                     <div class="row m-0">
-                        <div class="row m-0">
-                            <div id="bowl-plastic-text" class="col-6 p-0">
-                                <p><b>Plástico</b></p>
-                            </div>
-                            <div id="bowl-ceramic-text" class="col-6 p-0">
-                                <p><b>Cerámica</b></p>
-                            </div>
-                        </div>
                         <div class="row m-0 d-flex align-items-center justify-content-center">
                             <div id="bowl-plastic" class="col-6 m-0 p-0 is-not-selected" onclick="updateBowlImg(this)">
+                                <div id="bowl-plastic-text" class="p-0">
+                                    <p class="my-1"><b>Plástico</b></p>
+                                </div>
                                 <img alt="" class="img-fluid"
                                     src="../img/products/customizable/customizable-bowl-plastic.png">
+                                    <div id="bowl-plastic-price" class="p-0">
+                                        <p class="my-1"><b>$209.99</b></p>
+                                    </div>
                             </div>
                             <div id="bowl-ceramic" class="col-6 m-0 p-0 is-not-selected" onclick="updateBowlImg(this)">
+                                <div id="bowl-ceramic-text" class="p-0">
+                                    <p class="my-1"><b>Cerámica</b></p>
+                                </div>
                                 <img alt="" class="img-fluid"
                                     src="../img/products/customizable/customizable-bowl-ceramic.png">
+                                    <div id="bowl-ceramic-price" class="p-0">
+                                        <p class="my-1"><b>$259.99</b></p>
+                                    </div>
                             </div>
                         </div>
                     </div> 
@@ -165,26 +170,56 @@
                     <div class="row m-0">
                         <h2>Forma</h2>
                     </div>
-                    <div class="row m-0 justify-content-center">
+                    <div class="row m-0 d-flex align-items-center justify-content-center">
                         <div id="nameplate-bone" class="col-4 p-0 is-not-selected" onclick="updateProductImg(this)">
+                            <div id="nameplate-bone-text" class="p-0 w-100">
+                                <p class="my-1"><b>Hueso</b></p>
+                            </div>
                             <img alt="" class="img-fluid"
                                 src="../img/products/customizable/customizable-nameplate-bone.png">
+                                <div id="nameplate-bone-price" class="p-0 w-100">
+                                    <p class="my-1"><b>$255.99</b></p>
+                                </div>
                         </div>
                         <div id="nameplate-paw" class="col-4 p-0 is-not-selected" onclick="updateProductImg(this)">
+                            <div id="nameplate-paw-text" class="p-0 w-100">
+                                <p class="my-1"><b>Patita</b></p>
+                            </div>
                             <img alt="" class="img-fluid"
                                 src="../img/products/customizable/customizable-nameplate-paw.png">
+                                <div id="nameplate-paw-price" class="p-0 w-100">
+                                    <p class="my-1"><b>$299.99</b></p>
+                                </div>
                         </div>
                         <div id="nameplate-star" class="col-4 p-0 is-not-selected" onclick="updateProductImg(this)">
+                            <div id="nameplate-star-text" class="p-0 w-100">
+                                <p class="my-1"><b>Estrella</b></p>
+                            </div>
                             <img alt="" class="img-fluid"
                                 src="../img/products/customizable/customizable-nameplate-star.png">
+                                <div id="nameplate-star-price" class="p-0 w-100">
+                                    <p class="my-1"><b>$288</b></p>
+                                </div>
                         </div>
                         <div id="nameplate-circle" class="col-4 p-0 is-not-selected" onclick="updateProductImg(this)">
+                            <div id="nameplate-circle-text" class="p-0 w-100">
+                                <p class="my-1"><b>Círculo</b></p>
+                            </div>
                             <img alt="" class="img-fluid"
                                 src="../img/products/customizable/customizable-nameplate-circle.png">
+                                <div id="nameplate-circle-price" class="p-0 w-100">
+                                    <p class="my-1"><b>$219</b></p>
+                                </div>
                         </div>
                         <div id="nameplate-circle-double" class="col-4 p-0 is-not-selected" onclick="updateProductImg(this)">
+                            <div id="nameplate-circle-double-text" class="p-0 w-100">
+                                <p class="my-1"><b>Círculo Doble</b></p>
+                            </div>
                             <img alt="" class="img-fluid"
                                 src="../img/products/customizable/customizable-nameplate-circle-double.png">
+                                <div id="nameplate-circle-double-price" class="p-0 w-100">
+                                    <p class="my-1"><b>$225</b></p>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -194,14 +229,14 @@
                     <div class="row m-0">
                         <h2>Tamaño</h2>
                     </div>
-                    <div class="row m-0 is-selected-text" onclick="updateText(this)">
-                        <p><b>Pequeño - 35 mm x 18 mm</b></p>
+                    <div class="row m-0 is-not-selected-text" onclick="updateText(this)">
+                        <p class="my-1"><b>Pequeño - 35 mm x 18 mm</b></p>
                     </div>
                     <div class="row m-0 is-not-selected-text" onclick="updateText(this)">
-                        <p><b>Mediano - 38 mm x 25 mm</b></p>
+                        <p class="my-1"><b>Mediano - 38 mm x 25 mm</b></p>
                     </div>
                     <div class="row m-0 is-not-selected-text" onclick="updateText(this)">
-                        <p><b>Grande - 50 mm x 32 mm</b></p>
+                        <p class="my-1"><b>Grande - 50 mm x 32 mm</b></p>
                     </div>
                 </div>
 
@@ -281,18 +316,42 @@
                     <div class="row m-0">
                         <h2>Estampado</h2>
                     </div>
-                    <div id="pattern-div" class="row m-0 justify-content-center g-3">
+                    <div id="pattern-div" class="row m-0 d-flex align-items-center justify-content-center g-3">
                         <div class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
-                            <img alt="" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-pattern-circles.jpg">
+                            <div id="pattern-circles-text" class="p-0 w-100">
+                                <p class="my-1"><b>Círculos</b></p>
+                            </div>
+                            <img alt="" class="img-fluid w-100" src="../img/products/customizable/customizable-pattern-circles.jpg">
+                            <div id="pattern-circles-price" class="p-0 w-100">
+                                <p class="my-1"><b>$19.99</b></p>
+                            </div>
                         </div>
                         <div class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
-                            <img alt="" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-pattern-hearts.png">
+                            <div id="pattern-hearts-text" class="p-0 w-100">
+                                <p class="my-1"><b>Corazones</b></p>
+                            </div>
+                            <img alt="" class="img-fluid w-100" src="../img/products/customizable/customizable-pattern-hearts.png">
+                            <div id="pattern-hearts-price" class="p-0 w-100">
+                                <p class="my-1"><b>$29.73</b></p>
+                            </div>
                         </div>
                         <div class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
-                            <img alt="" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-pattern-squares.jpg">
+                            <div id="pattern-squares-text" class="p-0 w-100">
+                                <p class="my-1"><b>Cuadrados</b></p>
+                            </div>
+                            <img alt="" class="img-fluid w-100" src="../img/products/customizable/customizable-pattern-squares.jpg">
+                            <div id="pattern-squares-price" class="p-0 w-100">
+                                <p class="my-1"><b>$59.12</b></p>
+                            </div>
                         </div>
                         <div class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
-                            <img alt="" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-pattern-fabric.jpg">
+                            <div id="pattern-fabric-text" class="p-0 w-100">
+                                <p class="my-1"><b>Tela</b></p>
+                            </div>
+                            <img alt="" class="img-fluid w-100" src="../img/products/customizable/customizable-pattern-fabric.jpg">
+                            <div id="pattern-fabric-price" class="p-0 w-100">
+                                <p class="my-1"><b>$39</b></p>
+                            </div>
                         </div>
                     </div>
                     <div class="row m-0 mt-3">
@@ -309,12 +368,24 @@
                     <div class="row m-0">
                         <h2>Gorro del Disfraz</h2>
                     </div>
-                    <div id="custome-head-div" class="row m-0 justify-content-center g-3">
+                    <div id="custome-head-div" class="row m-0 d-flex align-items-center justify-content-center g-3">
                         <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'head')">
-                            <img alt="head-mariachi" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-head-mariachi.png">
+                            <div id="head-mariachi-text" class="p-0 w-100">
+                                <p class="my-1"><b>Mariachi</b></p>
+                            </div>
+                            <img alt="head-mariachi" class="img-fluid w-100" src="../img/products/customizable/customizable-head-mariachi.png">
+                            <div id="head-mariachi-price" class="p-0 w-100">
+                                <p class="my-1"><b>$234.99</b></p>
+                            </div>
                         </div>
                         <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'head')">
-                            <img alt="head-cold" class="img-fluid w-50 h-100" src="../img/products/customizable/customizable-head-cold-red.png">
+                            <div id="head-cold-text" class="p-0 w-100">
+                                <p class="my-1"><b>Invierno</b></p>
+                            </div>
+                            <img alt="head-cold" class="img-fluid w-50" src="../img/products/customizable/customizable-head-cold-red.png">
+                            <div id="head-cold-price" class="p-0 w-100">
+                                <p class="my-1"><b>$145</b></p>
+                            </div>
                         </div>
                     </div>
                     <div class="row m-0 mt-3">
@@ -331,18 +402,42 @@
                     <div class="row m-0">
                         <h2>Traje del Disfraz</h2>
                     </div>
-                    <div id="custome-body-div" class="row m-0 justify-content-center g-3">
+                    <div id="custome-body-div" class="row m-0 d-flex align-items-center justify-content-center g-3">
                         <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
-                            <img alt="body-cape" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-body-cape.png">
+                            <div id="body-cape-text" class="p-0 w-100">
+                                <p class="my-1"><b>Capa</b></p>
+                            </div>
+                            <img alt="body-cape" class="img-fluid w-100" src="../img/products/customizable/customizable-body-cape.png">
+                            <div id="body-cape-price" class="p-0 w-100">
+                                <p class="my-1"><b>$195</b></p>
+                            </div>
                         </div>
                         <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
-                            <img alt="body-rider" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-body-rider.png">
+                            <div id="body-rider-text" class="p-0 w-100">
+                                <p class="my-1"><b>Jinete</b></p>
+                            </div>
+                            <img alt="body-rider" class="img-fluid w-100" src="../img/products/customizable/customizable-body-rider.png">
+                            <div id="body-rider-price" class="p-0 w-100">
+                                <p class="my-1"><b>$249.29</b></p>
+                            </div>
                         </div>
                         <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
-                            <img alt="body-shark" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-body-shark-jacket.png">
+                            <div id="body-shark-text" class="p-0 w-100">
+                                <p class="my-1"><b>Tiburón</b></p>
+                            </div>
+                            <img alt="body-shark" class="img-fluid w-100" src="../img/products/customizable/customizable-body-shark-jacket.png">
+                            <div id="body-shark-price" class="p-0 w-100">
+                                <p class="my-1"><b>$269</b></p>
+                            </div>
                         </div>
                         <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
-                            <img alt="body-turtle" class="img-fluid w-100 h-100" src="../img/products/customizable/customizable-body-turtle-shell.png">
+                            <div id="body-turtle-text" class="p-0 w-100">
+                                <p class="my-1"><b>Tortuga</b></p>
+                            </div>
+                            <img alt="body-turtle" class="img-fluid w-100" src="../img/products/customizable/customizable-body-turtle-shell.png">
+                            <div id="body-turtle-price" class="p-0 w-100">
+                                <p class="my-1"><b>$224</b></p>
+                            </div>
                         </div>
                     </div>
                     <div class="row m-0 mt-3">

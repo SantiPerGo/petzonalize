@@ -19,6 +19,10 @@
   background-color: var(--gray);
 }
 
+.container {
+  height: calc(100vh + 10vw);
+}
+
 /* Img styles */
 
 img {
@@ -68,17 +72,19 @@ img {
 /* Material Category */
 
 .is-selected {
+  color: var(--purple);
   border: 5px solid var(--purple);
+  border-radius: 1rem;
+}
+
+.is-not-selected:hover {
+  color: var(--blue);
+  border: 5px solid var(--blue);
   border-radius: 1rem;
 }
 
 .is-selected-text {
   color: var(--purple);
-}
-
-.is-not-selected:hover {
-  border: 5px solid var(--blue);
-  border-radius: 1rem;
 }
 
 .is-not-selected-text {
