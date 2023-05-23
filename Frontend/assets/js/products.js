@@ -338,6 +338,10 @@ const toggle = () => {
   // Showing or hiding filters
   slideElement.toggleClass("show");
 
+  $("#create-product").toggleClass("d-none");
+  $("#search-container").toggleClass("col-md-4 col-lg-6");
+  $("#search-container").toggleClass("col-md-8 col-lg-9");
+
   // Changing cards sizes
   toggleCards("col-xl-4", "col-xl-6");
   toggleCards("col-md-6", "col-md-12");
