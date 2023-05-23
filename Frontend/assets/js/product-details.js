@@ -82,6 +82,11 @@ $(document).ready(() => {
         } else if(product.category === "bowl") {
           $("#bowl-container").removeClass("d-none");
           $("#pet-bowl-data-container").removeClass("d-none");
+
+          if(product.properties.material === "ceramic")
+            $("#product-bowl-name").css("top", "60%");
+          else
+            $("#product-bowl-name").css("top", "80%");
         } else {
           $("#product-nameplate-container").removeClass("d-none");
           $("#shape-container").removeClass("d-none");
@@ -170,6 +175,15 @@ const updateProductImg = selectedElement => {
 
   // Changing text colors
   updateText($(`#${$(selectedElement).attr("id")}-text`));
+};
+
+const updateBowlImg = selectedElement => {
+  updateProductImg(selectedElement);
+
+  if(selectedElement.id === "bowl-ceramic")
+    $("#product-bowl-name").css("top", "60%");
+  else
+    $("#product-bowl-name").css("top", "80%");
 };
 
 const updatePetImg = selectedElement => {
