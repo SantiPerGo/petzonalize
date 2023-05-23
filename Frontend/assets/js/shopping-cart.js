@@ -97,7 +97,7 @@ const customProducts = (product) => {
          <!--------- Columna de Imagen Producto--------->
          <div class="col-12 col-lg-4 col-md-8 col-sm-12 product-image-container">
          <div class="">
-         <img class="productimage" src="${product.properties.material}" alt="">
+         <img class="productimage" src="${product.properties.material !== undefined ? product.properties.material : product.properties.shape}" alt="">
          </div>
          </div>
          <!------- Columna Informacion de Producto-------->
@@ -154,6 +154,7 @@ const customProducts = (product) => {
          <button type="button" class="button-icon addpiece" id="addpiece"><ion-icon id="addpiece" name="add-circle">
          </ion-icon>
          </button>
+         </div>
          </div>
          </div>
          </div>
