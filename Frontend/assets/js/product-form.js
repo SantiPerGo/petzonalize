@@ -18,27 +18,27 @@ fetch("/assets/json/products.json")
     localStorage.setItem("products", actualProducts);
 });
 //declarar elementos
-let name = document.getElementById("name");
+/* let name = document.getElementById("product-form-name");
 
-let price = document.getElementById("price");
+let price = document.getElementById("product-form-price"); */
 
 
 //obtener los datos del formulario
-function addProduct(){
+//function addProduct(){
 
 const refForm =document.forms["edit-form"];
 refForm.addEventListener(`submit`, event=>{
-    event.preventDefault();
+   event.preventDefault();
 
     console.log("en el click")
 
 
-const name=refForm.elements["name"].value;
-let stock=refForm.elements["stock"].value;
+const name=refForm.elements["product-form-name"].value;
+let stock=refForm.elements["product-form-quantity"].value;
 let getty = document.getElementById('product-form-uploads').files[0].name;
 getty= ("/assets/img/products/not customizable/"+getty)
 const category = document.getElementById("product-form-category").value;
-let price = refForm.elements["price"].value;
+let price = refForm.elements["product-form-price"].value;
 let pet;
 stock=Number(stock);
 price=Number(price);
@@ -68,9 +68,19 @@ localStorage.setItem("products", actualProducts);
       alertElement.slideDown(250);
       setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
      
+  }else{    
+    alertElement.removeClass("alert-success");
+    alertElement.removeClass("text-success");
+    alertElement.addClass("alert-danger");
+    alertElement.addClass("text-danger");
+    alertElement.text("¡Debes llenar todos los campos!");
+    alertElement.slideDown(250);
+    setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+ 
+
   }
 })
-}; 
+
 
 // Boton reiniciar/borrar formulario
 function resetForm() {
