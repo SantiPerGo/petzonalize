@@ -107,6 +107,24 @@
                                             </div>
                                         </div>
 
+                                        <!-- Tipo de mascota -->
+                                        <div class="form-group my-3 mx-3 justify-content-around">
+                                            <span for="customizable" class="form-label"><b>Tipo de mascota:</b></span>
+                                            <br>
+                                            <label>
+                                            <input type="radio" id="product-form-dog" name="properties" value="dog" />
+                                            <img src="../img/product-form/icon-dog.png"
+                                                class="icon is-not-selected" alt=""></label>
+                                            <label>
+                                            <input type="radio" id="product-form-cat" name="properties" value="cat" />
+                                            <img src="../img/product-form/icon-cat.png"
+                                                class="icon is-not-selected" alt=""></label>
+
+                                            <div class="invalid-feedback">
+                                                Selecciona un tipo para poder asignar propiedades del producto.
+                                            </div>
+                                        </div> 
+
                                     </div>
 
                                     <!------- Column Right ------>
@@ -130,25 +148,9 @@
                                             <!-- Image Preview-->
                                             <div class="image-preview" id="imagePreview">
                                                 <img src="" alt="Image Preview" class="image-preview__image">
-                                                <span class="image-preview__default-text"><i class="bi bi-card-image"></i></span>
+                                                <span class="image-preview__default-text"></span>
                                             </div>
-                                        </div>
-
-                                        <!-- Tipo de mascota -->
-                                        <div class="form-group my-3 mx-3 justify-content-around">
-                                            <label for="customizable" class="form-label"><b>Tipo de mascota:</b></label>
-                                            <br>
-                                            <input type="radio" id="product-form-dog" name="properties" value="dog" />
-                                            <label for="#"><img src="../img/product-form/icon-dog.png"
-                                                class="icon" alt=""></label>
-                                            <input type="radio" id="product-form-cat" name="properties" value="cat" />
-                                            <label for="#"><img src="../img/product-form/icon-cat.png"
-                                                class="icon" alt=""></label>
-
-                                            <div class="invalid-feedback">
-                                                Selecciona un tipo para poder asignar propiedades del producto.
-                                            </div>
-                                        </div>                                    
+                                        </div>                                   
 
                                     </div>
                                 </div>
@@ -158,7 +160,7 @@
                                         <button id="" type="button" class="btn btn-purple my-2">Eliminar</button>
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-12 my-1 mx- d-flex justify-content-around">
-                                        <button id="add" type="submit" class="btn btn-purple my-2">Añadir/Actualizar</button>
+                                        <button id="add" type="submit" class="btn btn-purple my-2">Guardar</button>
                                     </div>
                                 </div>
                             </form>
