@@ -10,7 +10,7 @@ const emptyCart = () => {
         </div>
         <div class="col col-12 mt-4">
             <div class="error-image-container mt-4">
-                <img src="../img/page-error-cat.png" alt="Gatito dice que tienes carrito Vacio">
+                <img src="../img/page-error-cat.png" alt="Gatito dice que tienes carrito Vacio" class="errorcat">
             </div>
         </div>
     </div>
