@@ -1,6 +1,10 @@
 const alertElement = $("#alert");
 const editform =$("#edit-form");
 alertElement.hide();
+const uploadImg = document.getElementById("product-form-uploads");
+const previewContainer = document.getElementById("imagePreview");
+const previewImage = previewContainer.querySelector(".image-preview__image");
+const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
 
 $(document).ready(() => {
 validateForm(editform);
@@ -29,7 +33,16 @@ if(produtToEdit != null) {
   $('#product-form-description').val(produtToEdit.description);
   $('#product-form-quantity').val(produtToEdit.stock);
   $('#product-form-price').val(produtToEdit.price);
-  //$('#product-form-uploads').val(produtToEdit.imgUrl);
+ let img = (produtToEdit.imgUrl)
+/*   let imagenStorage = document.getElementById("imgPrev");
+  imagenStorage.setAttribute(`src`,img)
+   */
+  previewDefaultText.style.display = "none";
+  previewImage.style.display = "block";
+
+  
+  previewImage.setAttribute("src", img);
+  console.log(img)
   $('#product-form-category').val(produtToEdit.category);
   if(produtToEdit.type=="dog"){
   document.querySelector('#product-form-dog').checked = true;
@@ -131,10 +144,10 @@ realFileBtn.addEventListener("change", function() {
 });
 
 // Mostrar imagen previa que se añadirá al producto
-const uploadImg = document.getElementById("product-form-uploads");
+/* const uploadImg = document.getElementById("product-form-uploads");
 const previewContainer = document.getElementById("imagePreview");
 const previewImage = previewContainer.querySelector(".image-preview__image");
-const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+const previewDefaultText = previewContainer.querySelector(".image-preview__default-text"); */
 
 uploadImg.addEventListener("change", function() {
     const file = this.files[0];
