@@ -201,6 +201,7 @@ const getShoppingCartLength = () => {
 const saveProductInStorage = product => {
   sessionStorage.setItem("product", JSON.stringify(product));
   window.location.href = "./product-details.html";
+  clearProductFilters();
 };
 
 const addProductsToCart = (product, quantity) => {
