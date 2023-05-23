@@ -17,14 +17,25 @@ fetch("/assets/json/products.json")
     let actualProducts=JSON.stringify(products);
     localStorage.setItem("products", actualProducts);
 });
+
+//Adiquirir elemento en session
+let produtToEdit = sessionStorage.getItem("product");
+
+if(produtToEdit != null) {
+  produtToEdit = JSON.parse(produtToEdit);
+
+  // Showing user data into the inputs
+  $('#product-form-name').val(produtToEdit.name);
+  $('#product-form-description').val(produtToEdit.description);
+  $('#product-form-quantity').val(produtToEdit.stock);
+  $('#product-form-price').val(produtToEdit.price);
+  //$('#product-form-uploads').val(produtToEdit.imgUrl);
+  $('#product-form-category').val(produtToEdit.category);
+  $('#product-form-dog').val(produtToEdit.type);
+  
+
+}
 //declarar elementos
-/* let name = document.getElementById("product-form-name");
-
-let price = document.getElementById("product-form-price"); */
-
-
-//obtener los datos del formulario
-//function addProduct(){
 
 const refForm =document.forms["edit-form"];
 refForm.addEventListener(`submit`, event=>{
@@ -57,6 +68,10 @@ productos=JSON.parse(productos);
 
 let id=productos.length+1;
 let i = productos.push({id:id, category:category, customizable:false, name:name, stock:stock, imgUrl:getty, price:price, type:pet});
+let productToSet={id:id, category:category, customizable:false, name:name, stock:stock, imgUrl:getty, price:price, type:pet};
+
+productToSet=JSON.stringify(productToSet);
+sessionStorage.setItem("product", productToSet);
 
 actualProducts=JSON.stringify(productos);
 localStorage.setItem("products", actualProducts);
