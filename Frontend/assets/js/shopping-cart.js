@@ -3,6 +3,12 @@ let userCartProducts = JSON.parse(localStorage.getItem("shopping-cart"));
 const notFountContainer = document.querySelector(".list-not-found");
 
 const emptyCart = () => {
+    const emptyCartButton = document.getElementById('empty-cart');
+    const createOrder = document.getElementById('create-order');
+
+    emptyCartButton.disabled = true;
+    createOrder.disabled = true;
+
     return `<div class="list-not-found mt-4">
     <div class="row justify-content-center">
         <div class="col col-12 mt-4">
