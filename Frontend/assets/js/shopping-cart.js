@@ -22,6 +22,149 @@ const emptyCart = () => {
     </div>
     </div>`;
 }
+//_---------------------Plantilla Productos No Personalizables -----------------
+const notCustomProducts = (product) => {
+    return `<div class="product-box product-${product.id} my-4 bg-beige">
+         <div class="row justify-content-center position-relative">
+         <div class="container-button-delete">
+         <button type="button" class="delete-product d-flex border-0 rounded-circle p-0" id="delete-product">
+         <img src="../img/shopping-cart/cross.svg" alt="">
+         </button>
+         </div>
+         <!--------- Columna de Imagen Producto--------->
+         <div class="col-12 col-lg-4 col-md-8 col-sm-12 product-image-container">
+         <div class="">
+         <img class="productimage" src="${product.imgUrl}" alt="">
+         </div>
+         </div>
+         <!------- Columna Informacion de Producto-------->
+         <div class="col-12 col-lg-8 col-md-8 col-sm-12">
+         <div class="row justify-content-center">
+         <div class="col-12 col-lg-12">
+         <h4>${product.name}</h4>
+         </div>
+         <div class="row col-lg-12 col-md-12 col-sm-12">
+         <div class=" descriptioncontainer">
+         <p class="description">${product.description}
+         </p>
+         <div class="description-gradient"></div>
+         </div>
+         <a href="#" class="ver-mas">Ver más</a>
+         </div>
+         <div class="col-12 col-lg-12">
+         <div class="row justify-content-center mt-3">
+         <div class="col-6 col-lg-6 col-sm-12">
+         <div class="w-100">
+         <p>Precio Individual: $<span>${product.price}</span></p>
+         </div>
+         </div>
+         <div class="col-6 col-lg-6 col-sm-12">
+         <div class="row justify-content-center">
+         <div class="col-12 py-0">
+         <div class="amountText">
+         <p class="my-0">Cantidad</p>
+         </div>  
+         </div>
+         <div class="col-12 text-center mt-0">
+         <div class="amountButtons cantidadproductos">
+         <button type="button" class="button-icon removepiece" id="removepiece"><ion-icon id="removepiece" name="remove-circle">
+         </ion-icon>
+         </button>
+         <p class="number-display" id="amount-product">${product.amount}</p>
+         <button type="button" class="button-icon addpiece" id="addpiece"><ion-icon id="addpiece" name="add-circle">
+         </ion-icon>
+         </button>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>     `;
+}
+//--------------- Plantilla Productos Personalizables ---------------
+const customProducts = (product) => {
+    return `<div class="product-box product-${product.id} my-4 bg-beige">
+         <div class="row justify-content-center position-relative">
+         <div class="container-button-delete">
+         <button type="button" class="delete-product d-flex border-0 rounded-circle p-0" id="delete-product">
+         <img src="../img/shopping-cart/cross.svg" alt="">
+         </button>
+         </div>
+         <!--------- Columna de Imagen Producto--------->
+         <div class="col-12 col-lg-4 col-md-8 col-sm-12 product-image-container">
+         <div class="">
+         <img class="productimage" src="${product.properties.material}" alt="">
+         </div>
+         </div>
+         <!------- Columna Informacion de Producto-------->
+         <div class="col-12 col-lg-8 col-md-8 col-sm-12">
+         <div class="row justify-content-center">
+         <div class="col-12 col-lg-12">
+         <h4>${product.name}</h4>
+         </div>
+         <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="description-customizable">
+                <div class="row justify-content-center">
+                    <div class="col col-6">
+                        <div class="col-color">
+                            <div class="rounded-circle mx-auto" style="height: 2.62em; width: 2.62em; background-color: ${product.properties.color}; ">
+                            </div>
+                            <p>Color</p>
+                        </div>
+                    </div>
+                    <div class="col col-6">
+                        <div class="col-material">
+                            <div class="rounded-circle mx-auto" style="height: 2.62em; width: 2.62em; overflow: hidden; ">
+                                <img width="100%" height="auto" src="${product.properties.pattern}" >
+                            </div>
+                            <p>Estampado</p>
+                        </div>
+                    </div>
+                    <div class="col col-12">
+                        <div class="col-size">
+                            <p>${product.properties.size}</p>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="col-12 col-lg-12">
+                <div class="row justify-content-center mt-3">
+                    <div class="col-6 col-lg-6 col-sm-12">
+                        <div class="w-100">
+                            <p>Precio Individual: $<span>${product.price}</span></p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-6 col-sm-12">
+                        <div class="row justify-content-center">
+                            <div class="col-12 py-0">
+                                <div class="amountText">
+                                    <p class="my-0">Cantidad</p>
+                                </div>  
+                            </div>
+                            <div class="col-12 text-center mt-0">
+                                <div class="amountButtons cantidadproductos">
+                                    <button type="button" class="button-icon removepiece" id="removepiece"><ion-icon id="removepiece" name="remove-circle">
+                                        </ion-icon>
+                                    </button>
+                                <p class="number-display" id="amount-product">${product.amount}</p>
+         <button type="button" class="button-icon addpiece" id="addpiece"><ion-icon id="addpiece" name="add-circle">
+         </ion-icon>
+         </button>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>     `;
+}
 
 /* Establecer el precio en 0.00 en el DOM al cargar la pagina */
 
@@ -32,69 +175,17 @@ totalPriceElement.textContent = totalPrice.toFixed(2);
 const printAllProductsFound = () =>{
     let products = ``;
     //------ Iteración de lista de productos --------------
-    for (let index = 1; index < userCartProducts.length; index++) {
-        // ----- Visualizacion de producto --------
-        products += `<div class="product-box product-${index} my-4 bg-beige">
-        <div class="row justify-content-center position-relative">
-        <div class="container-button-delete">
-        <button type="button" class="delete-product d-flex border-0 rounded-circle p-0" id="delete-product">
-        <img src="../img/shopping-cart/cross.svg" alt="">
-        </button>
-        </div>
-        <!--------- Columna de Imagen Producto--------->
-        <div class="col-12 col-lg-4 col-md-8 col-sm-12 product-image-container">
-        <div class="">
-        <img class="productimage" src="${userCartProducts[index].imgUrl}" alt="">
-        </div>
-        </div>
-        <!------- Columna Informacion de Producto-------->
-        <div class="col-12 col-lg-8 col-md-8 col-sm-12">
-        <div class="row justify-content-center">
-        <div class="col-12 col-lg-12">
-        <h4>${userCartProducts[index].name}</h4>
-        </div>
-        <div class="row col-lg-12 col-md-12 col-sm-12">
-        <div class=" descriptioncontainer">
-        <p class="description">${userCartProducts[index].description}
-        </p>
-        <div class="description-gradient"></div>
-        </div>
-        <a href="#" class="ver-mas">Ver más</a>
-        </div>
-        <div class="col-12 col-lg-12">
-        <div class="row justify-content-center mt-3">
-        <div class="col-6 col-lg-6 col-sm-12">
-        <div class="w-100">
-        <p>Precio Individual: $<span>${userCartProducts[index].price}</span></p>
-        </div>
-        </div>
-        <div class="col-6 col-lg-6 col-sm-12">
-        <div class="row justify-content-center">
-        <div class="col-12 py-0">
-        <div class="amountText">
-        <p class="my-0">Cantidad</p>
-        </div>  
-        </div>
-        <div class="col-12 text-center mt-0">
-        <div class="amountButtons cantidadproductos">
-        <button type="button" class="button-icon removepiece" id="removepiece"><ion-icon id="removepiece" name="remove-circle">
-        </ion-icon>
-        </button>
-        <p class="number-display" id="amount-product">${userCartProducts[index].amount}</p>
-        <button type="button" class="button-icon addpiece" id="addpiece"><ion-icon id="addpiece" name="add-circle">
-        </ion-icon>
-        </button>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>     `;
-    }
+    userCartProducts.forEach( (product, index) => {
+       if(index !== 0){
+         // ----- Visualizacion de producto --------
+        if(product.customizable == false){
+            products += notCustomProducts(product);
+        }
+        else if(product.customizable == true){
+            products += customProducts(product);
+        }
+       }
+    });
     return products;
 }
 //----------- Carga la pagina web ----------------------
