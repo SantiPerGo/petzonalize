@@ -34,9 +34,7 @@ if(produtToEdit != null) {
   $('#product-form-quantity').val(produtToEdit.stock);
   $('#product-form-price').val(produtToEdit.price);
  let img = (produtToEdit.imgUrl)
-/*   let imagenStorage = document.getElementById("imgPrev");
-  imagenStorage.setAttribute(`src`,img)
-   */
+
   previewDefaultText.style.display = "none";
   previewImage.style.display = "block";
 
