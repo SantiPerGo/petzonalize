@@ -24,14 +24,16 @@ let produtToEdit = sessionStorage.getItem("product");
 if(produtToEdit != null) {
   produtToEdit = JSON.parse(produtToEdit);
 
-  // Showing user data into the inputs
+  // Mostrar datos de sessionstorage
   $('#product-form-name').val(produtToEdit.name);
   $('#product-form-description').val(produtToEdit.description);
   $('#product-form-quantity').val(produtToEdit.stock);
   $('#product-form-price').val(produtToEdit.price);
   //$('#product-form-uploads').val(produtToEdit.imgUrl);
   $('#product-form-category').val(produtToEdit.category);
-  $('#product-form-dog').val(produtToEdit.type);
+  if(produtToEdit.type=="dog"){
+  document.querySelector('#product-form-dog').checked = true;
+  }else document.querySelector('#product-form-cat').checked = true;
   
 
 }
