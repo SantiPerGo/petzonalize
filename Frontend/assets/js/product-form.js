@@ -5,6 +5,7 @@ const uploadImg = document.getElementById("product-form-uploads");
 const previewContainer = document.getElementById("imagePreview");
 const previewImage = previewContainer.querySelector(".image-preview__image");
 const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+const customTxt = document.getElementById("custom-text");
 
 $(document).ready(() => {
 validateForm(editform);
@@ -37,10 +38,11 @@ if(produtToEdit != null) {
 
   previewDefaultText.style.display = "none";
   previewImage.style.display = "block";
-
+  const txt =document.getElementById("custom-text");
+  txt.className = `custom-textB`;
   
   previewImage.setAttribute("src", img);
-  console.log(img)
+  customTxt.innerHTML = img;
   $('#product-form-category').val(produtToEdit.category);
   if(produtToEdit.type=="dog"){
   document.querySelector('#product-form-dog').checked = true;
@@ -120,7 +122,7 @@ function resetForm() {
 // Boton cargar imagen
 const realFileBtn = document.getElementById("product-form-uploads");
 const customBtn = document.getElementById("upload-image");
-const customTxt = document.getElementById("custom-text");
+
 
 customBtn.addEventListener("click", function() {
   realFileBtn.click();
