@@ -9,7 +9,7 @@
 }
 
 .icon {
-  height: 80px;
+  height: 120px;
 }
 
 /* Scroll Section */
@@ -91,9 +91,9 @@
   font-size: calc(0.75rem + 0.75vw);
 }
 
-/*  input[type="radio"] {
+input[type="radio"] {
   display: none;
-}  */
+}
 
 .image-radio label {
   display: inline-block;
@@ -101,16 +101,12 @@
 }
 
 .image-radio input[type="radio"]:checked + img {
-  border: 2px solid blue;
+  border: 5px solid  var(--purple);
+  border-radius: 1rem;
 }
 
 
 .is-not-selected:hover {
   border: 5px solid var(--blue);
-  border-radius: 1rem;
-}
-
-.is-selected {
-  border: 5px solid var(--purple);
   border-radius: 1rem;
 }
