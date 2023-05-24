@@ -131,6 +131,177 @@
             "imgUrl": "/assets/img/products/not customizable/cat-health-petag-supplement-gel.png",
             "stock": 12,
             "type": "cat"
+        },
+        {
+            "id": 13,
+            "name": "Collar de Nylon",
+            "category": "collar",
+            "customizable": true,
+            "price": 179.99,
+            "imgUrl": "/assets/img/products/customizable/customizable-collar-nylon.png",
+            "stock": 67,
+            "properties": {
+                "color": "orange",
+                "size": "Pequeño - 25 cm a 38 cm - 1.5 cm de ancho",
+                "pattern": "circles",
+                "material": "nylon"
+            }
+        }, 
+        {
+            "id": 14,
+            "name": "Collar de Cuero Sintético",
+            "category": "collar",
+            "customizable": true,
+            "price": 150,
+            "imgUrl": "/assets/img/products/customizable/customizable-collar-leather.png",
+            "stock": 67,
+            "properties": {
+                "color": "blue",
+                "size": "Mediano - 32 cm a 48 cm - 2 cm de ancho",
+                "pattern": "circles",
+                "material": "synthetic-leather"
+            }
+        },
+        {
+            "id": 15,
+            "name": "Plato de Comida de Plástico",
+            "category": "bowl",
+            "customizable": true,
+            "price": 209.99,
+            "imgUrl": "/assets/img/products/customizable/customizable-bowl-plastic.png",
+            "stock": 136,
+            "properties": {
+                "color": "yellow",
+                "size": "Pequeño - 250 ml",
+                "pattern": "hearts",
+                "petname": "firulais",
+                "material": "plastic"
+            }
+        },
+        {
+            "id": 16,
+            "name": "Plato de Comida de Cerámica",
+            "category": "bowl",
+            "customizable": true,
+            "price": 259.99,
+            "imgUrl": "/assets/img/products/customizable/customizable-bowl-ceramic.png",
+            "stock": 136,
+            "properties": {
+                "color": "yellow",
+                "size": "Mediano - 500 ml",
+                "pattern": "fabric",
+                "petname": "neko",
+                "material": "ceramic"
+            }
+        },
+        {
+            "id": 17,
+            "name": "Plaquita con Forma de Pata",
+            "category": "nameplate",
+            "customizable": true,
+            "price": 299.99,
+            "imgUrl": "/assets/img/products/customizable/customizable-nameplate-paw.png",
+            "stock": 376,
+            "properties": {
+                "color": "blue",
+                "size": "Pequeño - 35 mm x 18 mm",
+                "shape": "paw",
+                "pattern": "circles",
+                "petname": "firulais",
+                "petphone": "55123456"
+            }
+        },
+        {
+            "id": 18,
+            "name": "Plaquita con Forma de Hueso",
+            "category": "nameplate",
+            "customizable": true,
+            "price": 255.99,
+            "imgUrl": "/assets/img/products/customizable/customizable-nameplate-bone.png",
+            "stock": 323,
+            "properties": {
+                "color": "blue",
+                "size": "Pequeño - 35 mm x 18 mm",
+                "shape": "bone",
+                "pattern": "circles",
+                "petname": "cheems",
+                "petphone": "55123456"
+            }
+        },
+        {
+            "id": 19,
+            "name": "Plaquita con Forma de Círculo con Separación del Collar",
+            "category": "nameplate",
+            "customizable": true,
+            "price": 225,
+            "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle-double.png",
+            "stock": 299,
+            "properties": {
+                "color": "blue",
+                "size": "Grande - 50 mm x 32 mm",
+                "shape": "circle-double",
+                "pattern": "circles",
+                "petname": "lomito",
+                "petphone": "55123456"
+            }
+        },
+        {
+            "id": 20,
+            "name": "Plaquita con Forma de Círculo",
+            "category": "nameplate",
+            "customizable": true,
+            "price": 219,
+            "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle.png",
+            "stock": 311,
+            "properties": {
+                "color": "blue",
+                "size": "Pequeño - 35 mm x 18 mm",
+                "shape": "circle",
+                "pattern": "circles",
+                "petname": "max",
+                "petphone": "55123456"
+            }
+        },
+        {
+            "id": 21,
+            "name": "Plaquita con Forma de Estrella",
+            "category": "nameplate",
+            "customizable": true,
+            "price": 119,
+            "imgUrl": "/assets/img/products/customizable/customizable-nameplate-star.png",
+            "stock": 288,
+            "properties": {
+                "color": "blue",
+                "size": "Mediano - 38 mm x 25 mm",
+                "shape": "star",
+                "pattern": "circles",
+                "petname": "doge",
+                "petphone": "55123456"
+            }
+        },
+        {
+            "id": 22,
+            "name": "Traje de Gato",
+            "category": "pet",
+            "customizable": true,
+            "type": "cat",
+            "imgUrl": "/assets/img/products/customizable/customizable-pet-cat.png",
+            "properties": {
+                "body": "body-turtle",
+                "head": "head-cold"
+            }
+        },
+        {
+            "id": 23,
+            "name": "Traje de Perro",
+            "category": "pet",
+            "customizable": true,
+            "type": "dog",
+            "imgUrl": "/assets/img/products/customizable/customizable-pet-dog.png",
+            "properties": {
+                "body": "body-shark",
+                "head": "head-mariachi"
+            }
         }
     ]
 }

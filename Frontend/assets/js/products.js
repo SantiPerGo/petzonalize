@@ -225,37 +225,26 @@ const addProductsToCart = (product, quantity) => {
 // *********************************************************************************
 
 const getProductsFromJson = async () => {
-  let productsLoaded = true, customProductsLoaded = true;
-  let products = [], customes = [];
+  let productsLoaded = true, customizablesLoaded = true;
+  let products = [], customizables = [];
 
   try {
     await $.getJSON("../json/products.json",
     productsJson => products = productsJson.products);
   } catch (error) {
-    console.log("Not customizable products error: ", error);
+    console.log("Not products error: ", error);
     productsLoaded = false;
   }
 
   try {
-    await $.getJSON("../json/products-customizable.json", productsJson => {
-        let productsArray = productsJson["products-customizable"];
-
-        customes = customes.concat(productsArray.filter(product =>
-          product.category === "custome"));
-
-        // Removing custome and pattern categories
-        productsArray = productsArray.filter(product =>
-            product.category !== "custome" &&
-            product.category !== "pattern");
-
-        products = products.concat(productsArray);
-      });
+    await $.getJSON("../json/customizables.json",
+    customizablesJson => customizables = customizablesJson.customizables);
   } catch (error) {
-    console.log("Customizable products error: ", error);
-    customProductsLoaded = false;
+    console.log("Not customizables error: ", error);
+    customizablesLoaded = false;
   }
 
-  return [products, customes, productsLoaded && customProductsLoaded];
+  return [products, customizables, productsLoaded && customizablesLoaded];
 };
 
 // *********************************************************************************
@@ -263,7 +252,7 @@ const getProductsFromJson = async () => {
 // *********************************************************************************
 
 const loadProducts = async intervalId => {
-  const [products, customes, productsHasLoaded] = await getProductsFromJson();
+  const [products, customizables, productsHasLoaded] = await getProductsFromJson();
 
   // Hiding loading animation
   $("#loading-anim").remove()
@@ -281,7 +270,7 @@ const loadProducts = async intervalId => {
   } else {
     createProductsCards(products);
     sessionStorage.setItem("products", JSON.stringify(products));
-    sessionStorage.setItem("customes", JSON.stringify(customes));
+    sessionStorage.setItem("customizables", JSON.stringify(customizables));
 
     // Getting filter if exists
     const petFilter = sessionStorage.getItem("pet-filter");
