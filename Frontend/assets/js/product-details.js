@@ -66,6 +66,7 @@ $(document).ready(() => {
       productForm.addClass("d-none");
 
       $("#product-name").text(product.name);
+      $("#product-price").text(product.price);
       $(":root").css("--img-mask", `url(${product.imgUrl})`);
 
       if(product.category === "collar" || product.category === "bowl" || product.category === "nameplate") {
@@ -99,6 +100,7 @@ $(document).ready(() => {
           $(".nameplate-size").each((key, element) => $(element).removeClass("d-none"));
         }
       } else {
+        $("#product-buy").prop('disabled', true);
         $("#product-custome").attr("src", product.imgUrl);
         $("#product-custome").attr("alt", product.name);
         $("#pet-container").removeClass("d-none");
@@ -123,14 +125,8 @@ $(document).ready(() => {
 });
 
 // *********************************************************************************
-// Category buttons functions
+// Reset buttons functions
 // *********************************************************************************
-
-const updatePattern = patternElement => {
-  updateNotSelectedElements(patternElement);
-  $(":root").css("--bg-image", `url(${$(patternElement).children().attr("src")})`);
-  $("#reset-pattern").removeClass("d-none");
-};
 
 const resetColorWheel = () => {
   colorWheel.reset();
@@ -144,7 +140,11 @@ const resetPattern = () => {
   const selectedElement = $("#pattern-div").find('[class*="is-selected"]');
   selectedElement.addClass("is-not-selected");
   selectedElement.removeClass("is-selected");
+  selectedElement.css("pointer-events", "auto");
   $("#reset-pattern").addClass("d-none");
+
+  // Changing product price
+  calculateProductPrice();
 };
 
 const resetPetData = () => {
@@ -160,15 +160,29 @@ const resetPetDataBowl = () => {
   $("#product-bowl-name").text("");
 }
 
-const resetInput = input => {
-  $(input).val("");
-  $(input).removeData("previousValue");
-  $(input).removeAttr("aria-invalid");
-  $(input).removeClass("valid");
-  $(input).removeClass("invalid");
-  $(input).removeClass("input-icon-valid");
-  $(input).removeClass("input-icon-invalid");
-  $(`#${input.id}-error`).remove();
+const resetCustome = id => {
+  $(`#product-${id}`).addClass("d-none");
+  $(`#reset-${id}`).addClass("d-none");
+  const selectedElement = $(`#custome-${id}-div`).find('[class*="is-selected"]');
+  selectedElement.addClass("is-not-selected");
+  selectedElement.removeClass("is-selected");
+  selectedElement.css("pointer-events", "auto");
+
+  // Changing product price
+  calculateProductPrice();
+};
+
+// *********************************************************************************
+// Update buttons functions
+// *********************************************************************************
+
+const updatePattern = patternElement => {
+  updateNotSelectedElements(patternElement);
+  $(":root").css("--bg-image", `url(${$(patternElement).find("img").attr("src")})`);
+  $("#reset-pattern").removeClass("d-none");
+
+  // Changing product price
+  calculateProductPrice();
 };
 
 const updateProductImg = selectedElement => {
@@ -179,6 +193,9 @@ const updateProductImg = selectedElement => {
   const imgUrl = $(selectedElement).find("img").attr("src");
   $("#product-img").attr("src", imgUrl);
   $(":root").css("--img-mask", `url(${imgUrl})`);
+
+  // Changing product price
+  calculateProductPrice();
 };
 
 const updateBowlImg = selectedElement => {
@@ -198,6 +215,47 @@ const updatePetImg = selectedElement => {
   $("#product-custome").attr("src", imgUrl);
 };
 
+const updateCustome = (selectedElement, id) => {
+  // Showing blue border on hover of not selected elements
+  updateNotSelectedElements(selectedElement);
+
+  // Changing product img
+  const imgUrl = $(selectedElement).find("img").attr("src");
+  $(`#product-${id}`).removeClass("d-none");
+  $(`#product-${id}`).attr("src", imgUrl);
+  $(`#reset-${id}`).removeClass("d-none");
+
+  const custome = searchCustomeInProducts(selectedElement.id);
+  if(custome.type.includes("head")) {
+    $(":root").css("--head-size", custome.cssProperties[`${product.type}-size`]);
+    $(":root").css("--head-top", custome.cssProperties[`${product.type}-top`]);
+    $(":root").css("--head-right", custome.cssProperties[`${product.type}-right`]);
+  } else {
+    $(":root").css("--body-size", custome.cssProperties[`${product.type}-size`]);
+    $(":root").css("--body-top", custome.cssProperties[`${product.type}-top`]);
+    $(":root").css("--body-right", custome.cssProperties[`${product.type}-right`]);
+  }
+
+  // Changing product price
+  calculateProductPrice();
+};
+
+const searchCustomeInProducts = type => {
+  const productsJson = sessionStorage.getItem("customes");
+
+  if(productsJson !== null) {
+    const products = JSON.parse(productsJson);
+    const custome = products.filter(product => product.type !== undefined && product.type === type);
+    return custome[0];
+  }
+
+  return null;
+};
+
+// *********************************************************************************
+// Common functions
+// *********************************************************************************
+
 const updateSelectedElement = elementId => {
   const productContainer = $(`#${elementId}`);
   productContainer.addClass("is-selected");
@@ -209,11 +267,13 @@ const updateNotSelectedElements = selectedElement => {
   $(selectedElement).parent().find(".is-selected").each((index, selectedElement) => {
     $(selectedElement).removeClass("is-selected");
     $(selectedElement).addClass("is-not-selected");
+    $(selectedElement).css("pointer-events", "auto");
   });
 
   // Showing purple border of selected element
   $(selectedElement).addClass("is-selected");
   $(selectedElement).removeClass("is-not-selected");
+  $(selectedElement).css("pointer-events", "none");
 };
 
 const updateText = (...selectedTexts) => {
@@ -228,47 +288,33 @@ const updateText = (...selectedTexts) => {
   });
 };
 
-const updateCustome = (selectedElement, id) => {
-  // Showing blue border on hover of not selected elements
-  updateNotSelectedElements(selectedElement);
+const calculateProductPrice = () => {
+  let totalPrice = 0;
 
-  // Changing product img
-  const imgUrl = $(selectedElement).children().attr("src");
-  $(`#product-${id}`).removeClass("d-none");
-  $(`#product-${id}`).attr("src", imgUrl);
-  $(`#reset-${id}`).removeClass("d-none");
+  $(".is-selected").each((key, selectedElement) => {
+    let price = $(selectedElement).find(`#${selectedElement.id}-price`).text()
+    price = parseFloat(price.trim().replace("$", ""));
+    totalPrice += isNaN(price) ? 0 : price;
+  });
 
-  const custome = searchCustomeInProducts(selectedElement);
-  if(custome.type.includes("head")) {
-    $(":root").css("--head-size", custome.cssProperties[`${product.type}-size`]);
-    $(":root").css("--head-top", custome.cssProperties[`${product.type}-top`]);
-    $(":root").css("--head-right", custome.cssProperties[`${product.type}-right`]);
-  } else {
-    $(":root").css("--body-size", custome.cssProperties[`${product.type}-size`]);
-    $(":root").css("--body-top", custome.cssProperties[`${product.type}-top`]);
-    $(":root").css("--body-right", custome.cssProperties[`${product.type}-right`]);
-  }
+  $("#product-price").text(totalPrice);
+  product.price = totalPrice;
+
+  if(totalPrice == 0) 
+    $("#product-buy").prop('disabled', true);
+  else
+    $("#product-buy").prop('disabled', false);
 };
 
-const resetCustome = id => {
-  $(`#product-${id}`).addClass("d-none");
-  $(`#reset-${id}`).addClass("d-none");
-  const selectedElement = $(`#custome-${id}-div`).find('[class*="is-selected"]');
-  selectedElement.addClass("is-not-selected");
-  selectedElement.removeClass("is-selected");
-};
-
-const searchCustomeInProducts = selectedElement => {
-  const productsJson = sessionStorage.getItem("customes");
-
-  if(products !== null) {
-    const products = JSON.parse(productsJson);
-    const custome = products.filter(product => product.type !== undefined &&
-      product.type === $(selectedElement).children().attr("alt"));
-    return custome[0];
-  }
-
-  return null;
+const resetInput = input => {
+  $(input).val("");
+  $(input).removeData("previousValue");
+  $(input).removeAttr("aria-invalid");
+  $(input).removeClass("valid");
+  $(input).removeClass("invalid");
+  $(input).removeClass("input-icon-valid");
+  $(input).removeClass("input-icon-invalid");
+  $(`#${input.id}-error`).remove();
 };
 
 // *********************************************************************************
@@ -313,7 +359,14 @@ const buyButton = $("#product-buy");
 const returnButton = $("#product-return");
 const quantityGroup = $("#quantity-group");
 
-buyButton.on('click', () => showQuantityButtons());
+buyButton.on('click', () => {
+  if($("#size-container").find(".is-selected-text")[0] === undefined) {
+    $("#alert").text("Debes elegir un tamaño antes de comprar el producto");
+    $("#alert").slideDown(250);
+    setTimeout(() => $("#alert").slideUp(250, () => $(this).remove()), 5000);
+  } else
+    showQuantityButtons();
+});
 
 returnButton.on('click', () => {
   if(getShoppingCartLength() >= 10) {
@@ -402,24 +455,24 @@ const addProductsToCart = (product, quantity) => {
   if(product.category === "collar" || product.category === "bowl" || product.category === "nameplate") {
     product.properties.color = colorWheel.color.hslaString;
     product.properties.size = $("#size-container").find(".is-selected-text").children().text();
-    product.properties.pattern = $("#pattern-div").find(".is-selected").children().attr("src");
+    product.properties.pattern = $("#pattern-div").find(".is-selected").find("img").attr("src");
 
     if(product.category === "collar")  {
-      product.imgUrl = $("#collar-container").find(".is-selected").children().attr("src");
-      product.properties.material = $("#collar-container").find(".is-selected").children().attr("src");
+      product.imgUrl = $("#collar-container").find(".is-selected").find("img").attr("src");
+      product.properties.material = $("#collar-container").find(".is-selected").find("img").attr("src");
     } else if(product.category === "bowl") {
-      product.imgUrl = $("#bowl-container").find(".is-selected").children().attr("src");
-      product.properties.material = $("#bowl-container").find(".is-selected").children().attr("src");
+      product.imgUrl = $("#bowl-container").find(".is-selected").find("img").attr("src");
+      product.properties.material = $("#bowl-container").find(".is-selected").find("img").attr("src");
       product.properties.petname = $("#bowl-name").val();
     } else if(product.category === "nameplate") {
-      product.imgUrl = $("#shape-container").find(".is-selected").children().attr("src");
-      product.properties.shape = $("#shape-container").find(".is-selected").children().attr("src");
+      product.imgUrl = $("#shape-container").find(".is-selected").find("img").attr("src");
+      product.properties.shape = $("#shape-container").find(".is-selected").find("img").attr("src");
       product.properties.petname = $("#name").val();
       product.properties.petphone = $("#phone").val();
     } 
   } else {
-    product.properties.body = $("#custome-body-div").find(".is-selected").children().attr("src");
-    product.properties.head = $("#custome-head-div").find(".is-selected").children().attr("src");
+    product.properties.body = $("#custome-body-div").find(".is-selected").find("img").attr("src");
+    product.properties.head = $("#custome-head-div").find(".is-selected").find("img").attr("src");
   }
 
   // Adding product to the cart

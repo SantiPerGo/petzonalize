@@ -26,6 +26,9 @@
 <body>
     <nav></nav>
 
+    <!-- Success Alert -->
+    <div id="alert" class="alert alert-danger m-0 text-danger text-center" role="alert"></div>
+
     <main>
         <div class="container d-flex" id="product-custom">
             
@@ -49,6 +52,9 @@
 
                     <div class="row m-0 mt-md-3 mt-lg-5">
                         <h1 id="product-name"></h1>
+                        <h2 class="mt-md-3 mt-lg-5">
+                            Total: $<span id="product-price">0</span>
+                        </h2>
                     </div>
                     
                     <div class="row mt-md-3 mt-lg-5 d-none" id="quantity-group">
@@ -335,38 +341,38 @@
                         <h2>Estampado</h2>
                     </div>
                     <div id="pattern-div" class="row m-0 d-flex align-items-center justify-content-center g-3">
-                        <div class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
+                        <div id="pattern-circles" class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
                             <div id="pattern-circles-text" class="p-0 w-100">
                                 <p class="my-1"><b>Círculos</b></p>
                             </div>
-                            <img alt="" class="img-fluid w-100" src="../img/products/customizable/customizable-pattern-circles.jpg">
+                            <img class="img-fluid w-100" src="../img/products/customizable/customizable-pattern-circles.jpg">
                             <div id="pattern-circles-price" class="p-0 w-100">
                                 <p class="my-1"><b>$19.99</b></p>
                             </div>
                         </div>
-                        <div class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
+                        <div id="pattern-hearts" class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
                             <div id="pattern-hearts-text" class="p-0 w-100">
                                 <p class="my-1"><b>Corazones</b></p>
                             </div>
-                            <img alt="" class="img-fluid w-100" src="../img/products/customizable/customizable-pattern-hearts.png">
+                            <img class="img-fluid w-100" src="../img/products/customizable/customizable-pattern-hearts.png">
                             <div id="pattern-hearts-price" class="p-0 w-100">
                                 <p class="my-1"><b>$29.73</b></p>
                             </div>
                         </div>
-                        <div class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
+                        <div id="pattern-squares" class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
                             <div id="pattern-squares-text" class="p-0 w-100">
                                 <p class="my-1"><b>Cuadrados</b></p>
                             </div>
-                            <img alt="" class="img-fluid w-100" src="../img/products/customizable/customizable-pattern-squares.jpg">
+                            <img class="img-fluid w-100" src="../img/products/customizable/customizable-pattern-squares.jpg">
                             <div id="pattern-squares-price" class="p-0 w-100">
                                 <p class="my-1"><b>$59.12</b></p>
                             </div>
                         </div>
-                        <div class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
+                        <div id="pattern-fabric" class="col-6 is-not-selected p-1" onclick="updatePattern(this)">
                             <div id="pattern-fabric-text" class="p-0 w-100">
                                 <p class="my-1"><b>Tela</b></p>
                             </div>
-                            <img alt="" class="img-fluid w-100" src="../img/products/customizable/customizable-pattern-fabric.jpg">
+                            <img class="img-fluid w-100" src="../img/products/customizable/customizable-pattern-fabric.jpg">
                             <div id="pattern-fabric-price" class="p-0 w-100">
                                 <p class="my-1"><b>$39</b></p>
                             </div>
@@ -387,20 +393,20 @@
                         <h2>Gorro del Disfraz</h2>
                     </div>
                     <div id="custome-head-div" class="row m-0 d-flex align-items-center justify-content-center g-3">
-                        <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'head')">
+                        <div id="head-mariachi" class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'head')">
                             <div id="head-mariachi-text" class="p-0 w-100">
                                 <p class="my-1"><b>Mariachi</b></p>
                             </div>
-                            <img alt="head-mariachi" class="img-fluid w-100" src="../img/products/customizable/customizable-head-mariachi.png">
+                            <img class="img-fluid w-100" src="../img/products/customizable/customizable-head-mariachi.png">
                             <div id="head-mariachi-price" class="p-0 w-100">
                                 <p class="my-1"><b>$234.99</b></p>
                             </div>
                         </div>
-                        <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'head')">
+                        <div id="head-cold" class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'head')">
                             <div id="head-cold-text" class="p-0 w-100">
                                 <p class="my-1"><b>Invierno</b></p>
                             </div>
-                            <img alt="head-cold" class="img-fluid w-50" src="../img/products/customizable/customizable-head-cold-red.png">
+                            <img class="img-fluid w-50" src="../img/products/customizable/customizable-head-cold-red.png">
                             <div id="head-cold-price" class="p-0 w-100">
                                 <p class="my-1"><b>$145</b></p>
                             </div>
@@ -421,38 +427,38 @@
                         <h2>Traje del Disfraz</h2>
                     </div>
                     <div id="custome-body-div" class="row m-0 d-flex align-items-center justify-content-center g-3">
-                        <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
+                        <div id="body-cape" class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
                             <div id="body-cape-text" class="p-0 w-100">
                                 <p class="my-1"><b>Capa</b></p>
                             </div>
-                            <img alt="body-cape" class="img-fluid w-100" src="../img/products/customizable/customizable-body-cape.png">
+                            <img class="img-fluid w-100" src="../img/products/customizable/customizable-body-cape.png">
                             <div id="body-cape-price" class="p-0 w-100">
                                 <p class="my-1"><b>$195</b></p>
                             </div>
                         </div>
-                        <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
+                        <div id="body-rider" class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
                             <div id="body-rider-text" class="p-0 w-100">
                                 <p class="my-1"><b>Jinete</b></p>
                             </div>
-                            <img alt="body-rider" class="img-fluid w-100" src="../img/products/customizable/customizable-body-rider.png">
+                            <img class="img-fluid w-100" src="../img/products/customizable/customizable-body-rider.png">
                             <div id="body-rider-price" class="p-0 w-100">
                                 <p class="my-1"><b>$249.29</b></p>
                             </div>
                         </div>
-                        <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
+                        <div id="body-shark" class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
                             <div id="body-shark-text" class="p-0 w-100">
                                 <p class="my-1"><b>Tiburón</b></p>
                             </div>
-                            <img alt="body-shark" class="img-fluid w-100" src="../img/products/customizable/customizable-body-shark-jacket.png">
+                            <img class="img-fluid w-100" src="../img/products/customizable/customizable-body-shark-jacket.png">
                             <div id="body-shark-price" class="p-0 w-100">
                                 <p class="my-1"><b>$269</b></p>
                             </div>
                         </div>
-                        <div class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
+                        <div id="body-turtle" class="col-6 is-not-selected p-1" onclick="updateCustome(this, 'body')">
                             <div id="body-turtle-text" class="p-0 w-100">
                                 <p class="my-1"><b>Tortuga</b></p>
                             </div>
-                            <img alt="body-turtle" class="img-fluid w-100" src="../img/products/customizable/customizable-body-turtle-shell.png">
+                            <img class="img-fluid w-100" src="../img/products/customizable/customizable-body-turtle-shell.png">
                             <div id="body-turtle-price" class="p-0 w-100">
                                 <p class="my-1"><b>$224</b></p>
                             </div>
