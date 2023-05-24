@@ -230,7 +230,7 @@
         },
         {
             "id": 19,
-            "name": "Plaquita con Forma de Círculo con Separación del Collar",
+            "name": "Plaquita con Forma de Círculo Doble",
             "category": "nameplate",
             "customizable": true,
             "price": 225,
@@ -281,26 +281,26 @@
         },
         {
             "id": 22,
-            "name": "Traje de Gato",
+            "name": "Traje de Michi",
             "category": "pet",
             "customizable": true,
             "type": "cat",
             "imgUrl": "/assets/img/products/customizable/customizable-pet-cat.png",
             "properties": {
-                "body": "body-turtle",
-                "head": "head-cold"
+                "body": "turtle",
+                "head": "cold"
             }
         },
         {
             "id": 23,
-            "name": "Traje de Perro",
+            "name": "Traje de Lomito",
             "category": "pet",
             "customizable": true,
             "type": "dog",
             "imgUrl": "/assets/img/products/customizable/customizable-pet-dog.png",
             "properties": {
-                "body": "body-shark",
-                "head": "head-mariachi"
+                "body": "shark",
+                "head": "mariachi"
             }
         }
     ]

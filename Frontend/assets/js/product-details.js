@@ -1,5 +1,7 @@
 // *********************************************************************************
+// *********************************************************************************
 // Getting product info from local storage and starting color picker
+// *********************************************************************************
 // *********************************************************************************
 
 // Starting color picker
@@ -72,6 +74,8 @@ $(document).ready(() => {
       $("#product-price").text(product.price);
       $(":root").css("--img-mask", `url(${product.imgUrl})`);
 
+      loadCategoriesData();
+
       if(product.category === "collar" || product.category === "bowl" || product.category === "nameplate") {
         $("#product-img-div").removeClass("d-none");
         $("#size-container").removeClass("d-none");
@@ -128,7 +132,74 @@ $(document).ready(() => {
 });
 
 // *********************************************************************************
+// *********************************************************************************
+// Function to load customizable images and prices
+// *********************************************************************************
+// *********************************************************************************
+
+const loadCategoriesData = () => {
+  // Loading product options like collars, bowls, nameplates or pets
+  const category = product.category;
+  let products = JSON.parse(sessionStorage.getItem("products"));
+  products = products.filter(product => product.category === category);
+
+  let customizables = JSON.parse(sessionStorage.getItem("customizables"));
+
+  if(category === "collar" || category === "bowl" || category === "nameplate") {
+    // load size and pattern
+    customizables = customizables.filter(customizable => customizable.category === "pattern");
+    customizables.forEach(customizable => loadProduct(customizable, customizable.type));
+
+    if(category === "collar") {
+      // load collar images and sizes
+      products.forEach(product => loadProduct(product, product.properties.material));
+    } else if(category === "bowl") {
+      // load bowl images and sizes 
+      products.forEach(product => loadProduct(product, product.properties.material));
+    } else {
+      // load nameplate images and sizes 
+      products.forEach(product => loadProduct(product, product.properties.shape));
+    }
+  } else {
+    // load pet, head and body images
+    customizables = customizables.filter(customizable =>
+      customizable.category === "custome-head" || customizable.category === "custome-body");
+    customizables.forEach(customizable => loadProduct(customizable, customizable.type));
+    products.forEach(product => loadProduct(product, product.type));
+  }
+  
+  // Removing default items 
+  $("#collar-template").remove();
+  $("#bowl-template").remove();
+  $("#nameplate-template").remove();
+  $("#pet-template").remove();
+  
+  $("#pattern-template").remove();
+  $("#custome-head-template").remove();
+  $("#custome-body-template").remove();
+};
+
+const loadProduct = (product, id) => {
+  const element = $(`#${product.category}-template`).clone().appendTo(`#row-${product.category}`);
+  $(element).attr("id", `${product.category}-${id}`);
+
+  const nameElement = element.find(`#${product.category}-template-text`);
+  $(nameElement).attr("id", `${product.category}-${id}-text`);
+  $(nameElement).text(product.name);
+ 
+  const priceElement = element.find(`#${product.category}-template-price`);
+  $(priceElement).attr("id", `${product.category}-${id}-price`);
+  $(priceElement).text(`$${product.price}`);
+
+  const imgElement = element.find("img");
+  $(imgElement).attr("src", product.imgUrl);
+  $(imgElement).attr("alt", product.name);
+};
+
+// *********************************************************************************
+// *********************************************************************************
 // Reset buttons functions
+// *********************************************************************************
 // *********************************************************************************
 
 const resetColorWheel = () => {
@@ -141,7 +212,7 @@ const resetColorWheel = () => {
 const resetPattern = () => {
   $(":root").css("--bg-image", "none");
   $(":root").css("--color-filter", "none");
-  const selectedElement = $("#pattern-div").find('[class*="is-selected"]');
+  const selectedElement = $("#row-pattern").find('[class*="is-selected"]');
   selectedElement.addClass("is-not-selected");
   selectedElement.removeClass("is-selected");
   selectedElement.css("pointer-events", "auto");
@@ -177,7 +248,9 @@ const resetCustome = id => {
 };
 
 // *********************************************************************************
+// *********************************************************************************
 // Update buttons functions
+// *********************************************************************************
 // *********************************************************************************
 
 const updatePattern = patternElement => {
@@ -216,7 +289,7 @@ const updatePetImg = selectedElement => {
   updateProductImg(selectedElement);
 
   // Changing pet img
-  const imgUrl = $(selectedElement).children().attr("src");
+  const imgUrl = $(selectedElement).find("img").attr("src");
   $("#product-custome").attr("src", imgUrl);
 };
 
@@ -230,8 +303,9 @@ const updateCustome = (selectedElement, id) => {
   $(`#product-${id}`).attr("src", imgUrl);
   $(`#reset-${id}`).removeClass("d-none");
 
-  const custome = searchCustomeInProducts(selectedElement.id);
-  if(custome.type.includes("head")) {
+  const type = selectedElement.id.replace(`custome-${id}-`, "");
+  const custome = searchCustomeInProducts(type);
+  if(custome.category.includes("head")) {
     $(":root").css("--head-size", custome.cssProperties[`${product.type}-size`]);
     $(":root").css("--head-top", custome.cssProperties[`${product.type}-top`]);
     $(":root").css("--head-right", custome.cssProperties[`${product.type}-right`]);
@@ -246,11 +320,12 @@ const updateCustome = (selectedElement, id) => {
 };
 
 const searchCustomeInProducts = type => {
-  const productsJson = sessionStorage.getItem("customes");
+  const customizablesJson = sessionStorage.getItem("customizables");
 
-  if(productsJson !== null) {
-    const products = JSON.parse(productsJson);
-    const custome = products.filter(product => product.type !== undefined && product.type === type);
+  if(customizablesJson !== null) {
+    const customizables = JSON.parse(customizablesJson);
+    const custome = customizables.filter(customizable => 
+      customizable.type !== undefined && customizable.type === type);
     return custome[0];
   }
 
@@ -258,7 +333,9 @@ const searchCustomeInProducts = type => {
 };
 
 // *********************************************************************************
+// *********************************************************************************
 // Common functions
+// *********************************************************************************
 // *********************************************************************************
 
 const updateSelectedElement = elementId => {
@@ -323,7 +400,9 @@ const resetInput = input => {
 };
 
 // *********************************************************************************
+// *********************************************************************************
 // Buy and return buttons
+// *********************************************************************************
 // *********************************************************************************
 
 const productQuantity = $("#product-quantity");
@@ -460,7 +539,7 @@ const addProductsToCart = (product, quantity) => {
   if(product.category === "collar" || product.category === "bowl" || product.category === "nameplate") {
     product.properties.color = colorWheel.color.hslaString;
     product.properties.size = $("#size-container").find(".is-selected-text").children().text();
-    product.properties.pattern = $("#pattern-div").find(".is-selected").find("img").attr("src");
+    product.properties.pattern = $("#row-pattern").find(".is-selected").find("img").attr("src");
 
     if(product.category === "collar")  {
       product.imgUrl = $("#collar-container").find(".is-selected").find("img").attr("src");
