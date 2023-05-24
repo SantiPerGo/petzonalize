@@ -97,7 +97,7 @@ const validateForm = form => {
             },
             description: {
                 required: "Debes ingresar la descripcion del producto",
-                minlength: "La descricion debe tener al menos 5 caracteres"
+                minlength: "La descripción debe tener al menos 5 caracteres"
             }
         },
         errorClass: "valid is-valid valid-feedback",
