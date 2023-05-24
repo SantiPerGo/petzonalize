@@ -50,8 +50,11 @@ $(document).ready(() => {
   // when the user has changed color in the color picker
   colorWheel.on('input:change', color => {
     $(":root").css("--color-picker", colorWheel.color.hslaString);
-    $(":root").css("--color-filter", `hue-rotate(${colorWheel.color.hue}deg) opacity(${colorWheel.color.alpha})`);
     $("#reset-color-wheel").removeClass("d-none");
+
+    if($("#pattern-container").find(".is-selected")[0] !== undefined)
+      $(":root").css("--color-filter",
+        `hue-rotate(${colorWheel.color.hue}deg) opacity(${colorWheel.color.alpha})`);
   })
 
   // Loading product data into the page
@@ -137,6 +140,7 @@ const resetColorWheel = () => {
 
 const resetPattern = () => {
   $(":root").css("--bg-image", "none");
+  $(":root").css("--color-filter", "none");
   const selectedElement = $("#pattern-div").find('[class*="is-selected"]');
   selectedElement.addClass("is-not-selected");
   selectedElement.removeClass("is-selected");
@@ -178,6 +182,7 @@ const resetCustome = id => {
 
 const updatePattern = patternElement => {
   updateNotSelectedElements(patternElement);
+  $(":root").css("--color-filter", `hue-rotate(${colorWheel.color.hue}deg) opacity(${colorWheel.color.alpha})`);
   $(":root").css("--bg-image", `url(${$(patternElement).find("img").attr("src")})`);
   $("#reset-pattern").removeClass("d-none");
 
