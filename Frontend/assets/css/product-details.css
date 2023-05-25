@@ -15,11 +15,12 @@
   padding: calc(0.5rem + 1vw);
 }
 
-#product-quantity {
+#product-quantity,
+#product-quantity-not-custom {
   background-color: var(--gray);
 }
 
-.container {
+.container-custom {
   height: calc(100vh + 10vw);
 }
 
@@ -31,6 +32,11 @@ img {
 
 .img-ratio {
   aspect-ratio: 3/2;
+}
+
+.img-not-custome {
+  width: 100%;
+  height: calc(15rem + 15vw);
 }
 
 #product-custome-container {

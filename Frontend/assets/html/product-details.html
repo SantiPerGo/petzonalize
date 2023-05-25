@@ -52,7 +52,7 @@
         </div>
 
         <!-- Custom product on desktop -->
-        <div class="container d-none d-md-flex" id="product-custom">
+        <div class="container container-custom d-none d-md-flex" id="product-custom">
             
             <!-- Imagen Producto -->
             <div id="original-hero-container" class="col d-flex align-items-center">
@@ -316,21 +316,43 @@
         </div>
 
         <!-- Productos no-petzonalizables -->
-        <div class="container d-flex d-none" id="product-not-custom">
+        <div class="container d-flex d-none my-5" id="product-not-custom">
             <!-- Imagen del producto -->
-            <div class="col d-flex align-items-center">
-                <div class="row text-center p-0 m-0">
-                    <img id="product-img-not-customizable" class="row">
+            <div class="col col-md-6 d-flex align-items-center">
+                <div class="row">
+                    <div class="row text-center p-0 m-0 d-flex align-items-center">
+                        <img id="product-img-not-customizable" class="img-not-custome">
+                        <h2 id="product-name" class="my-5"></h2>
+                    </div>
+    
+                    <div class="row m-0 mb-5 d-none" id="quantity-group-not-custom">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                              <button id="decrease-not-custom" class="input-group-text btn btn-blue" disabled>-</button>
+                            </div>
+    
+                            <input id="product-quantity-not-custom" type="text" class="form-control border-0 text-center" value="1" readonly>
+                            
+                            <div class="input-group-append">
+                              <button id="increase-not-custom" class="input-group-text btn btn-blue">+</button>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="row m-0">
+                        <div class="col-12 col-md-6 d-flex justify-content-center">
+                            <button class="btn btn-purple" id="product-buy-not-custom">Comprar</button>
+                        </div>
+                        <div class="col-12 col-md-6 d-flex justify-content-center">
+                            <button class="btn btn-blue" id="product-return-not-custom">Regresar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Información de producto -->
-            <div class="col scrollable-section text-center p-5">
-                <div class="row my-4">
-                    <h1 id="product-name"></h1>
-                </div>
-
-                <div class="row my-4">
+            <div class="col col-md-6 scrollable-section text-center px-5 d-flex align-items-center">
+                <div class="row mt-3">
                     <pre id="product-description"></pre>
                 </div>
             </div>

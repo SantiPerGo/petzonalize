@@ -535,7 +535,7 @@ const resetInput = input => {
 
 // *********************************************************************************
 // *********************************************************************************
-// Buy and return buttons
+// Custom Products Buy and return buttons
 // *********************************************************************************
 // *********************************************************************************
 
@@ -711,4 +711,135 @@ const updateProductProperties = quantity => {
   product.name = selectedElement.find(`#${selectedElement.attr("id")}-text`).text();
   product.imgUrl = selectedElement.find("img").attr("src");
   product["amount"] = quantity;
+};
+
+// *********************************************************************************
+// *********************************************************************************
+// Not Custom Products Buy and return buttons
+// *********************************************************************************
+// *********************************************************************************
+
+const productQuantityNotCustom = $("#product-quantity-not-custom");
+const increaseButtonNotCustom = $("#increase-not-custom");
+const decreaseButtonNotCustom = $("#decrease-not-custom");
+
+increaseButtonNotCustom.click(() => {
+  let value = parseInt(productQuantityNotCustom.val());
+
+  if(isNaN(value))
+    value = 1;
+  else {
+    value++;
+    decreaseButtonNotCustom.prop('disabled', false);
+
+    if((getShoppingCartLength() + value) >= 10)
+      increaseButtonNotCustom.prop('disabled', true);
+  } 
+
+  productQuantityNotCustom.val(value);
+});
+
+decreaseButtonNotCustom.click(() => {
+  let value = parseInt(productQuantityNotCustom.val());
+
+  if(isNaN(value) || (value <= 2)) {
+    value = 1;
+    decreaseButtonNotCustom.prop('disabled', true);
+  } else {
+    increaseButtonNotCustom.prop('disabled', false);
+    value--;
+  }
+
+  productQuantityNotCustom.val(value);
+});
+
+const buyButtonNotCustom = $("#product-buy-not-custom");
+const returnButtonNotCustom = $("#product-return-not-custom");
+const quantityGroupNotCustom = $("#quantity-group-not-custom");
+
+buyButtonNotCustom.on('click', () => showQuantityButtonsNotCustom());
+
+returnButtonNotCustom.on('click', () => {
+  if(getShoppingCartLength() >= 10) {
+    buyButton.prop('disabled', true);
+    returnButtonNotCustom.text("¡Carrito Lleno!");
+    returnButtonNotCustom.on('click', () => window.location.href = 'products.html');
+  } else       
+    window.location.href = 'products.html';
+});
+
+const showQuantityButtonsNotCustom = () => {
+  
+  quantityGroupNotCustom.removeClass("d-none");
+  buyButtonNotCustom.text("Aceptar");
+  returnButtonNotCustom.text("Cancelar");
+
+  const shoppingCartLength = getShoppingCartLength();
+
+  if(shoppingCartLength >= 9) {
+    increaseButtonNotCustom.prop('disabled', true);
+  } else
+    increaseButtonNotCustom.prop('disabled', false);
+
+  if(shoppingCartLength >= 10) {
+    buyButtonNotCustom.prop('disabled', true);
+    quantityGroupNotCustom.addClass("d-none");
+    buyButtonNotCustom.text("¡Carrito Lleno!");
+    returnButtonNotCustom.text("Regresar");   
+    returnButtonNotCustom.on('click', () => window.location.href = 'products.html');
+  }
+
+  buyButtonNotCustom.off('click');
+  buyButtonNotCustom.on('click', () => {
+    buyButtonNotCustom.prop('disabled', true);
+    quantityGroupNotCustom.addClass("d-none");
+    returnButtonNotCustom.text("Regresar");  
+    returnButtonNotCustom.on('click', () => window.location.href = 'products.html'); 
+
+    if(shoppingCartLength < 10 && (shoppingCartLength + parseInt(productQuantityNotCustom.val())) <= 10) {
+      addProductsToCartNotCustom(product, parseInt(productQuantityNotCustom.val()));
+      buyButtonNotCustom.text("¡Agregado al Carrito!");
+    } else 
+      buyButtonNotCustom.text("¡Carrito Lleno!");
+  });
+
+  returnButtonNotCustom.off('click');
+  returnButtonNotCustom.on('click', () => {
+    quantityGroupNotCustom.addClass("d-none");
+    productQuantityNotCustom.val("1");
+    buyButtonNotCustom.text("Comprar");
+    returnButtonNotCustom.text("Regresar");
+    decreaseButtonNotCustom.prop('disabled', true);
+
+    buyButtonNotCustom.off('click');
+    buyButtonNotCustom.on('click', () => showQuantityButtonsNotCustom());
+    
+    returnButtonNotCustom.off('click');
+    returnButtonNotCustom.on('click', () => {
+      if(shoppingCartLength >= 10) {
+        buyButtonNotCustom.prop('disabled', true);
+        quantityGroupNotCustom.addClass("d-none");
+        buyButtonNotCustom.text("¡Carrito Lleno!");
+        returnButtonNotCustom.text("Regresar");  
+        returnButtonNotCustom.on('click', () => window.location.href = 'products.html');
+      } else       
+        window.location.href = 'products.html';
+    });
+  });
+};
+
+const addProductsToCartNotCustom = (product, quantity) => {
+  const shoppingCart = localStorage.getItem("shopping-cart");
+  const products = shoppingCart !== null ? JSON.parse(shoppingCart) : [{total: 0}];
+
+  // Adding product with new property to the shopping cart
+  product["amount"] = quantity;
+  products.push(product);
+  products[0].total += quantity;
+
+  localStorage.setItem("shopping-cart", JSON.stringify(products));
+  
+  const shoppingCartCounter = $("#shopping-cart-counter");
+  shoppingCartCounter.text(products[0].total);
+  shoppingCartCounter.removeClass("d-none");
 };
