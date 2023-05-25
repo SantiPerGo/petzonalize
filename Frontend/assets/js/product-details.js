@@ -444,6 +444,8 @@ const calculateProductPrice = () => {
     totalPrice += isNaN(price) ? 0 : price;
   });
 
+  totalPrice = Math.round(totalPrice * 100.0) / 100.0;
+
   $("#product-price").text(totalPrice);
   product.price = totalPrice;
 
@@ -627,6 +629,7 @@ const addProductsToCart = (product, quantity) => {
   // Adding product to the cart
   products.push(product);
   products[0].total += quantity;
+  products[0].total = Math.round(products[0].total * 100.0) / 100.0;
 
   localStorage.setItem("shopping-cart", JSON.stringify(products));
   
