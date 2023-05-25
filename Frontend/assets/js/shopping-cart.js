@@ -87,6 +87,7 @@ const notCustomProducts = (product) => {
 }
 //--------------- Plantilla Productos Personalizables ---------------
 const customProducts = (product) => {
+    
     let outfits = ``;
     let patternAvailable = ``;
     let userCustoms = ``;
