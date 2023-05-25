@@ -143,16 +143,19 @@ const moveElementsInMobile = () => {
   if(product.category === "collar" || product.category === "bowl" || product.category === "nameplate") {
     if(product.category === "collar")
       containers.push($("#collar-container"));
-    else if(product.category === "bowl")
+    else if(product.category === "bowl") {
       containers.push($("#bowl-container"));
-    else
+      containers.push($("#pet-bowl-data-container"));
+    } else {
+      containers.push($("#pet-data-container"));
       containers.push($("#nameplate-container"));
+    }
 
     containers.push($("#size-container"));
     containers.push($("#color-container"));
     containers.push($("#pattern-container"));
   } else {
-    containers.push($("#product-custome-container"));
+    containers.push($("#pet-container"));
     containers.push($("#custome-head-container"));
     containers.push($("#custome-body-container"));
   }
