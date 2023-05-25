@@ -45,8 +45,13 @@ $(document).ready(() => {
 
   // Resizing color picker on window size change
   jQuery(window).resize(() => {
-    const currentWidth = jQuery(window).width();
-    colorWheel.resize(currentWidth/1.5);
+    if ($(window).width() < 768) {
+      const currentWidth = jQuery(window).width();
+      colorWheel.resize(currentWidth/1.5);
+    } else {
+      const currentWidth = jQuery(window).width();
+      colorWheel.resize(currentWidth/3.5);
+    }
   });
 
   // when the user has changed color in the color picker
@@ -157,10 +162,6 @@ const updateShoppingCartButtons = () => {
 };
 
 const moveElementsInMobile = () => {
-  // Resizing color wheel
-  const currentWidth = jQuery(window).width();
-  colorWheel.resize(currentWidth/3);
-
   // Choosing containers according actual product
   const containers = [];
   if(product.category === "collar" || product.category === "bowl" || product.category === "nameplate") {
@@ -186,6 +187,10 @@ const moveElementsInMobile = () => {
   $(".carousel-item").remove();
 
   if ($(window).width() < 768) {
+    // Resizing color wheel
+    const currentWidth = jQuery(window).width();
+    colorWheel.resize(currentWidth/1.5);
+
     $("#hero-container").appendTo('#mobile-container');
     $("#hero-container").addClass("mx-auto");
     
@@ -208,6 +213,10 @@ const moveElementsInMobile = () => {
     const firstCarouselItem = $(`#carousel-${product.category}-container`);
     firstCarouselItem.addClass("active");
   } else {
+    // Resizing color wheel
+    const currentWidth = jQuery(window).width();
+    colorWheel.resize(currentWidth/3.5);
+
     $("#hero-container").appendTo('#original-hero-container');
     $("#hero-container").removeClass("mx-auto");
     
