@@ -87,6 +87,23 @@ const notCustomProducts = (product) => {
 }
 //--------------- Plantilla Productos Personalizables ---------------
 const customProducts = (product) => {
+    let patternAvailable = ``;
+    let namePlateCustoms = ``;
+    if(product.properties.hasOwnProperty("pattern")){
+        patternAvailable = `<div class="rounded-circle mx-auto" style="height: 2.62em; width: 2.62em; overflow: hidden; ">
+                                <img width="100%" height="auto" src="${product.properties.pattern}" >
+                        </div>
+                        <p>Estampado</p>`;
+    }
+    else{
+        patternAvailable = `<div class="py-3"><p style="color: var(--purple);">Sin<br>Estampado</p></div>`;
+    }
+    
+    if(product.properties.hasOwnProperty("petname") && product.properties.hasOwnProperty("petphone")){
+        namePlateCustoms = `<p class="my-0">Nombre: ${product.properties.petname}</p>
+                            <p class="my-0">Teléfono: ${product.properties.petphone}</p>`; 
+    }
+    
     return `<div class="product-box product-${product.id} my-4 bg-beige">
          <div class="row justify-content-center position-relative">
          <div class="container-button-delete">
@@ -118,15 +135,13 @@ const customProducts = (product) => {
                     </div>
                     <div class="col col-6">
                         <div class="col-material">
-                            <div class="rounded-circle mx-auto" style="height: 2.62em; width: 2.62em; overflow: hidden; ">
-                                <img width="100%" height="auto" src="${product.properties.pattern}" >
-                            </div>
-                            <p>Estampado</p>
+                            ${patternAvailable}
                         </div>
                     </div>
                     <div class="col col-12">
                         <div class="col-size">
                             <p>${product.properties.size}</p>
+                            ${namePlateCustoms}
                         </div>
                     </div>                    
                 </div>
