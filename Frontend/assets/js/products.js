@@ -226,7 +226,7 @@ const addProductsToCart = (product, quantity) => {
 
 const getProductsFromJson = async () => {
   let productsLoaded = true, customizablesLoaded = true;
-  let products = [], customizables = [];
+  let products = [], customizables = [], sizes = [];
 
   try {
     await $.getJSON("../json/products.json",
@@ -238,13 +238,16 @@ const getProductsFromJson = async () => {
 
   try {
     await $.getJSON("../json/customizables.json",
-    customizablesJson => customizables = customizablesJson.customizables);
+    customizablesJson => {
+      customizables = customizablesJson.customizables;
+      sizes = customizablesJson.sizes;
+    });
   } catch (error) {
     console.log("Not customizables error: ", error);
     customizablesLoaded = false;
   }
 
-  return [products, customizables, productsLoaded && customizablesLoaded];
+  return [products, customizables, sizes, productsLoaded && customizablesLoaded];
 };
 
 // *********************************************************************************
@@ -252,7 +255,7 @@ const getProductsFromJson = async () => {
 // *********************************************************************************
 
 const loadProducts = async intervalId => {
-  const [products, customizables, productsHasLoaded] = await getProductsFromJson();
+  const [products, customizables, sizes, productsHasLoaded] = await getProductsFromJson();
 
   // Hiding loading animation
   $("#loading-anim").remove()
@@ -271,6 +274,7 @@ const loadProducts = async intervalId => {
     createProductsCards(products);
     sessionStorage.setItem("products", JSON.stringify(products));
     sessionStorage.setItem("customizables", JSON.stringify(customizables));
+    sessionStorage.setItem("sizes", JSON.stringify(sizes));
 
     // Getting filter if exists
     const petFilter = sessionStorage.getItem("pet-filter");

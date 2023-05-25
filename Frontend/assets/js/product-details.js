@@ -143,9 +143,16 @@ const loadCategoriesData = () => {
   let products = JSON.parse(sessionStorage.getItem("products"));
   products = products.filter(product => product.category === category);
 
+  // Loading customizables like customes and patterns
   let customizables = JSON.parse(sessionStorage.getItem("customizables"));
 
   if(category === "collar" || category === "bowl" || category === "nameplate") {
+    // load sizes
+    let sizes = JSON.parse(sessionStorage.getItem("sizes"));
+    sizes = sizes.filter(size => size.category === category)[0];
+    delete sizes["category"];
+    $.each(sizes, (key, size) => loadSize(key, size));
+    
     // load size and pattern
     customizables = customizables.filter(customizable => customizable.category === "pattern");
     customizables.forEach(customizable => loadProduct(customizable, customizable.type));
@@ -173,6 +180,7 @@ const loadCategoriesData = () => {
   $("#bowl-template").remove();
   $("#nameplate-template").remove();
   $("#pet-template").remove();
+  $("#size-template").remove();
   
   $("#pattern-template").remove();
   $("#custome-head-template").remove();
@@ -194,6 +202,15 @@ const loadProduct = (product, id) => {
   const imgElement = element.find("img");
   $(imgElement).attr("src", product.imgUrl);
   $(imgElement).attr("alt", product.name);
+};
+
+const loadSize = (key, size) => {
+  const element = $("#size-template").clone().appendTo("#row-size");
+  $(element).attr("id", `size-${key}`);
+
+  const nameElement = element.find(`#size-template-text`);
+  $(nameElement).attr("id", `size-${key}-text`);
+  $(nameElement).text(size);
 };
 
 // *********************************************************************************
