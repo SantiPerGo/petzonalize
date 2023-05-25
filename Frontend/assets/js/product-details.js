@@ -373,6 +373,9 @@ const updateNotSelectedElements = selectedElement => {
   $(selectedElement).addClass("is-selected");
   $(selectedElement).removeClass("is-not-selected");
   $(selectedElement).css("pointer-events", "none");
+
+  const productName = $(selectedElement).find(`#${$(selectedElement).attr('id')}-text`).text();
+  $("#product-name").text(productName);
 };
 
 const updateText = (...selectedTexts) => {
@@ -461,11 +464,14 @@ const returnButton = $("#product-return");
 const quantityGroup = $("#quantity-group");
 
 buyButton.on('click', () => {
-  if($("#size-container").find(".is-selected-text")[0] === undefined) {
-    $("#alert").text("Debes elegir un tamaño antes de comprar el producto");
-    $("#alert").slideDown(250);
-    setTimeout(() => $("#alert").slideUp(250, () => $(this).remove()), 5000);
-  } else
+  if(product.category === "collar" || product.category === "bowl"  || product.category === "nameplate") {
+    if($("#size-container").find(".is-selected-text")[0] === undefined) {
+      $("#alert").text("Debes elegir un tamaño antes de comprar el producto");
+      $("#alert").slideDown(250);
+      setTimeout(() => $("#alert").slideUp(250, () => $(this).remove()), 5000);
+    } else
+      showQuantityButtons();
+  } else 
     showQuantityButtons();
 });
 
@@ -550,8 +556,8 @@ const addProductsToCart = (product, quantity) => {
   const shoppingCart = localStorage.getItem("shopping-cart");
   const products = shoppingCart !== null ? JSON.parse(shoppingCart) : [{total: 0}];
 
-  // Adding product with new property to the shopping cart
-  product["amount"] = quantity;
+  // Updating some product properties
+  updateProductProperties(quantity);
 
   if(product.category === "collar" || product.category === "bowl" || product.category === "nameplate") {
     product.properties.color = colorWheel.color.hslaString;
@@ -559,21 +565,19 @@ const addProductsToCart = (product, quantity) => {
     product.properties.pattern = $("#row-pattern").find(".is-selected").find("img").attr("src");
 
     if(product.category === "collar")  {
-      product.imgUrl = $("#collar-container").find(".is-selected").find("img").attr("src");
-      product.properties.material = $("#collar-container").find(".is-selected").find("img").attr("src");
+      product.properties.material = $("#collar-container").find(".is-selected").attr('id').replace("collar-", "");
     } else if(product.category === "bowl") {
-      product.imgUrl = $("#bowl-container").find(".is-selected").find("img").attr("src");
-      product.properties.material = $("#bowl-container").find(".is-selected").find("img").attr("src");
+      product.properties.material = $("#bowl-container").find(".is-selected").attr('id').replace("bowl-", "");
       product.properties.petname = $("#bowl-name").val();
     } else if(product.category === "nameplate") {
-      product.imgUrl = $("#shape-container").find(".is-selected").find("img").attr("src");
-      product.properties.shape = $("#shape-container").find(".is-selected").find("img").attr("src");
+      product.properties.shape = $("#shape-container").find(".is-selected").attr('id').replace("shape-", "");
       product.properties.petname = $("#name").val();
       product.properties.petphone = $("#phone").val();
     } 
   } else {
-    product.properties.body = $("#custome-body-div").find(".is-selected").find("img").attr("src");
-    product.properties.head = $("#custome-head-div").find(".is-selected").find("img").attr("src");
+    product.type = $("#pet-container").find(".is-selected").attr('id').replace("pet-", "");
+    product.properties.body = $("#row-custome-body").find(".is-selected").find("img").attr("src");
+    product.properties.head = $("#row-custome-head").find(".is-selected").find("img").attr("src");
   }
 
   // Adding product to the cart
@@ -585,4 +589,12 @@ const addProductsToCart = (product, quantity) => {
   const shoppingCartCounter = $("#shopping-cart-counter");
   shoppingCartCounter.text(products[0].total);
   shoppingCartCounter.removeClass("d-none");
+};
+
+const updateProductProperties = quantity => {
+  const productContainer = $(`#${product.category}-container`);
+  const selectedElement = productContainer.find(".is-selected");
+  product.name = selectedElement.find(`#${selectedElement.attr("id")}-text`).text();
+  product.imgUrl = selectedElement.find("img").attr("src");
+  product["amount"] = quantity;
 };

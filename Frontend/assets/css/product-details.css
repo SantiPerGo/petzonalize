@@ -25,10 +25,12 @@
 
 /* Img styles */
 
-main img {
-  width: 100%;
-  aspect-ratio: 3/2;
+img {
   object-fit: contain;
+}
+
+.img-ratio {
+  aspect-ratio: 3/2;
 }
 
 #product-custome-container {
