@@ -67,6 +67,8 @@ $(document).ready(() => {
     const productForm = $("#product-not-custom");
 
     if (product.customizable === true){
+      productForm.removeClass("d-md-flex");
+
       $("#product-name").text(product.name);
       $("#product-price").text(product.price);
       $(":root").css("--img-mask", `url(${product.imgUrl})`);
@@ -126,12 +128,33 @@ $(document).ready(() => {
       productForm.find('[id*="product-img"]').attr("alt", product.name);
       productForm.find('[id*="product-name"]').text(product.name);
       productForm.find('[id*="product-description"]').text(product.description);
+
+      updateShoppingCartButtons()
+      $(window).resize(() => updateShoppingCartButtons());
     };
 
-    //sessionStorage.removeItem("product");
+    sessionStorage.removeItem("product");
   } else
     window.location.href = 'products.html';
 });
+
+const updateShoppingCartButtons = () => {
+  const buyNotCustomContainer = $("#buy-not-custom-container");
+  const returnNotCustomContainer = $("#return-not-custom-container");
+  const quantityContainer = $("#quantity-group-not-custom");
+  const desktopContainer = $("#container-desktop");
+  const mobileContainer = $("#container-mobile");
+
+  if ($(window).width() < 768) {
+    quantityContainer.appendTo(mobileContainer);
+    buyNotCustomContainer.appendTo(mobileContainer);
+    returnNotCustomContainer.appendTo(mobileContainer);
+  } else {
+    quantityContainer.appendTo(desktopContainer);
+    buyNotCustomContainer.appendTo(desktopContainer);
+    returnNotCustomContainer.appendTo(desktopContainer);
+  }
+};
 
 const moveElementsInMobile = () => {
   // Resizing color wheel

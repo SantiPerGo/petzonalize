@@ -175,6 +175,7 @@ img {
   transform: translate(-50%, -50%);
   font-size: calc(0.1rem + 2vw);
 }
+
 #product-description {
   font-family: 'Signika Negative', sans-serif;
   white-space: pre-wrap;
@@ -184,6 +185,7 @@ img {
   border-radius: 1rem;
   font-size: calc(0.75rem + 1vw);
 }
+
 #product-img-not-customizable {
   background-color: var(--beige);
   border: 0.25rem solid var(--brown);
