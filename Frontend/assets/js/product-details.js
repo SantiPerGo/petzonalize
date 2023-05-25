@@ -206,7 +206,10 @@ const moveElementsInMobile = () => {
       container.addClass("mx-auto");
 
       $(".is-not-selected").removeClass("col-6");
-      $(".is-not-selected").addClass("col");
+      $(".is-not-selected").addClass("col-12");
+      
+      $(".is-selected").removeClass("col-6");
+      $(".is-selected").addClass("col-12");
     });
     
     // Activating first carousel element
@@ -227,7 +230,10 @@ const moveElementsInMobile = () => {
       container.removeClass("mx-auto");
 
       $(".is-not-selected").addClass("col-6");
-      $(".is-not-selected").removeClass("col");
+      $(".is-not-selected").removeClass("col-12");
+
+      $(".is-selected").addClass("col-6");
+      $(".is-selected").removeClass("col-12");
     });
   }
 };
