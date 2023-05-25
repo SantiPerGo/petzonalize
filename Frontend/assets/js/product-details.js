@@ -238,7 +238,7 @@ const resetPetDataBowl = () => {
 const resetCustome = id => {
   $(`#product-${id}`).addClass("d-none");
   $(`#reset-${id}`).addClass("d-none");
-  const selectedElement = $(`#custome-${id}-div`).find('[class*="is-selected"]');
+  const selectedElement = $(`#row-custome-${id}`).find('[class*="is-selected"]');
   selectedElement.addClass("is-not-selected");
   selectedElement.removeClass("is-selected");
   selectedElement.css("pointer-events", "auto");
