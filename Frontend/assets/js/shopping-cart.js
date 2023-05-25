@@ -87,19 +87,28 @@ const notCustomProducts = (product) => {
 }
 //--------------- Plantilla Productos Personalizables ---------------
 const customProducts = (product) => {
-    
+    let customColor = ``;
     let outfits = ``;
     let patternAvailable = ``;
     let userCustoms = ``;
-    if(product.properties.hasOwnProperty("pattern")){
-        patternAvailable = `<div class="rounded-circle mx-auto" style="height: 2.62em; width: 2.62em; overflow: hidden; ">
-                                <img width="100%" height="auto" src="${product.properties.pattern}" >
-                        </div>
-                        <p>Estampado</p>`;
+    if(product.category == "pet"){
+        patternAvailable = ``;
+    }else{
+        if(product.properties.hasOwnProperty("pattern")){
+            patternAvailable = ` <div class="col-material">
+                                <div class="rounded-circle mx-auto" style="height: 2.62em; width: 2.62em; overflow: hidden; ">
+                                    <img width="100%" height="auto" src="${product.properties.pattern}" >
+                                </div>
+                                <p>Estampado</p>
+                                </div>`;
+        }
+        else{
+            patternAvailable = `<div class="col-material">
+                                     <div class="py-3"><p style="color: var(--purple);">Sin<br>Estampado</p></div>
+                                </div>`;
+        }
     }
-    else{
-        patternAvailable = `<div class="py-3"><p style="color: var(--purple);">Sin<br>Estampado</p></div>`;
-    }
+    
     if(product.properties.hasOwnProperty("petname")){
         userCustoms += `<p class="my-0">Nombre: ${product.properties.petname}</p>`;                      
     }
@@ -115,6 +124,13 @@ const customProducts = (product) => {
         outfits += `<div class="" style="height: 3.2em; width: 50%; overflow: hidden;">
         <img width="auto" height="100%" src="${product.properties.head}" >
     </div>`;
+    }
+    if(product.properties.hasOwnProperty("color")){
+        customColor = `<div class="col-color">
+                            <div class="rounded-circle mx-auto" style="height: 2.62em; width: 2.62em; background-color: ${product.properties.color}; ">
+                            </div>
+                            <p>Color</p>
+                        </div>`;
     }
 
     return `<div class="product-box product-${product.id} my-4 bg-beige">
@@ -139,17 +155,11 @@ const customProducts = (product) => {
          <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="description-customizable">
                 <div class="row justify-content-center">
-                    <div class="col col-6">
-                        <div class="col-color">
-                            <div class="rounded-circle mx-auto" style="height: 2.62em; width: 2.62em; background-color: ${product.properties.color}; ">
-                            </div>
-                            <p>Color</p>
-                        </div>
+                    <div class="col col-6 mx-auto" style="width: 50%">
+                        ${customColor}
                     </div>
-                    <div class="col col-6">
-                        <div class="col-material">
-                            ${patternAvailable}
-                        </div>
+                    <div class="col col-6 mx-auto" style="width: 50%">
+                        ${patternAvailable}
                     </div>
                     <div class="col col-12">
                         <div class="col-size">
