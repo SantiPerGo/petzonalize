@@ -227,7 +227,18 @@ function deleteShoppingCart() {
     productsListContainer.innerHTML = emptyCart();
 }
 
+/*Función para alert de compra realizada */
 
+let btnCompra = document.getElementById('create-order');
+btnCompra.addEventListener('click', function() {
+  showAlert();
+});
+
+function showAlert() {
+  var alerta = document.getElementById('alert');
+  alerta.innerHTML = '¡Gracias por su pedido! Por favor esté pendiente de su correo con los detalles. ✉️';
+  alerta.style.display = 'block';
+}
 
 //----------------------------------------------------------
 const descriptionParagraph = document.querySelectorAll('.descriptioncontainer');
