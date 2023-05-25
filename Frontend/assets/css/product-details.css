@@ -158,14 +158,14 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: calc(0.1rem + 3vw);
+  font-size: calc(0.5rem + 7vw);
 }
 
 #product-bowl-name {
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: calc(0.1rem + 4vw);
+  font-size: calc(0.5rem + 8vw);
 }
 
 #product-nameplate-phone {
@@ -173,7 +173,7 @@ img {
   top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: calc(0.1rem + 2vw);
+  font-size: calc(0.5rem + 6vw);
 }
 
 #product-description {
@@ -190,4 +190,19 @@ img {
   background-color: var(--beige);
   border: 0.25rem solid var(--brown);
   border-radius: 1rem; 
+}
+
+@media only screen and (min-width: 768px) {
+
+  #product-nameplate-name {
+    font-size: calc(0.1rem + 3vw);
+  }
+  
+  #product-bowl-name {
+    font-size: calc(0.1rem + 4vw);
+  }
+  
+  #product-nameplate-phone {
+    font-size: calc(0.1rem + 2vw);
+  }
 }

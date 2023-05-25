@@ -454,6 +454,7 @@ const reloadCustomeSizes = () => {
   // Resizing images
   let topHeadDifference, rightHeadDifference;
   let topBodyDifference, rightBodyDifference;
+  let headWindow, bodyWindow, bodyTop;
   if(product.type === "dog") {
     reloadSizeRatio("head", 2, 1.75);
     reloadSizeRatio("body", 1.5, 1.25);
@@ -461,6 +462,10 @@ const reloadCustomeSizes = () => {
     rightHeadDifference = -5;
     topBodyDifference = -15;
     rightBodyDifference = -5;
+
+    headWindow = 0.002 * $(window).width();
+    bodyWindow = 0.001 * $(window).width();
+    bodyHeadTop = 0.001 * $(window).width();
   } else  {
     reloadSizeRatio("head", 2, 1.75);
     reloadSizeRatio("body", 1.5, 1);
@@ -468,6 +473,10 @@ const reloadCustomeSizes = () => {
     rightHeadDifference = -10;
     topBodyDifference = -13;
     rightBodyDifference = -5;
+    
+    headWindow = 0.0015 * $(window).width();
+    bodyWindow = 0.001 * $(window).width();
+    bodyHeadTop = 0.001 * $(window).width();
   }
 
   let head = $("#row-custome-head").find(".is-selected")[0];
@@ -479,16 +488,17 @@ const reloadCustomeSizes = () => {
 
     let top = customeHead.cssProperties[`${product.type}-top`];
     let right = customeHead.cssProperties[`${product.type}-right`];
-    top = parseInt(top.replace("%", "")) + topHeadDifference;
-    right = parseInt(right.replace("%", "")) + rightHeadDifference;
   
     if ($(window).width() < 768) {
-      $(":root").css("--head-top", `${top}%`);
-      $(":root").css("--head-right", `${right}%`);
+      top = parseInt(top.replace("%", "")) + topHeadDifference;
+      right = parseInt(right.replace("%", "")) + rightHeadDifference;
     } else {
-      $(":root").css("--head-top", customeHead.cssProperties[`${product.type}-top`]);
-      $(":root").css("--head-right", customeHead.cssProperties[`${product.type}-right`]);
+      top = parseInt(top.replace("%", "")) + headWindow + bodyHeadTop;
+      right = parseInt(right.replace("%", "")) + headWindow;
     }
+    
+    $(":root").css("--head-top", `${top}%`);
+    $(":root").css("--head-right", `${right}%`);
   }
   
   if(body !== undefined) {
@@ -497,16 +507,17 @@ const reloadCustomeSizes = () => {
 
     let top = customeBody.cssProperties[`${product.type}-top`];
     let right = customeBody.cssProperties[`${product.type}-right`];
-    top = parseInt(top.replace("%", "")) + topBodyDifference;
-    right = parseInt(right.replace("%", "")) + rightBodyDifference;
 
     if ($(window).width() < 768) {
-      $(":root").css("--body-top", `${top}%`);
-      $(":root").css("--body-right", `${right}%`);
+      top = parseInt(top.replace("%", "")) + topBodyDifference;
+      right = parseInt(right.replace("%", "")) + rightBodyDifference;
     } else {
-      $(":root").css("--body-top", customeBody.cssProperties[`${product.type}-top`]);
-      $(":root").css("--body-right", customeBody.cssProperties[`${product.type}-right`]);
+      top = parseInt(top.replace("%", "")) + bodyWindow + bodyHeadTop;
+      right = parseInt(right.replace("%", "")) + bodyWindow;
     }
+
+    $(":root").css("--body-top", `${top}%`);
+    $(":root").css("--body-right", `${right}%`);
   }
 };
 
