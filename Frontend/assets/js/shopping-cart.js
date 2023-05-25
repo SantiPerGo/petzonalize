@@ -87,8 +87,9 @@ const notCustomProducts = (product) => {
 }
 //--------------- Plantilla Productos Personalizables ---------------
 const customProducts = (product) => {
+    let outfits = ``;
     let patternAvailable = ``;
-    let namePlateCustoms = ``;
+    let userCustoms = ``;
     if(product.properties.hasOwnProperty("pattern")){
         patternAvailable = `<div class="rounded-circle mx-auto" style="height: 2.62em; width: 2.62em; overflow: hidden; ">
                                 <img width="100%" height="auto" src="${product.properties.pattern}" >
@@ -98,12 +99,23 @@ const customProducts = (product) => {
     else{
         patternAvailable = `<div class="py-3"><p style="color: var(--purple);">Sin<br>Estampado</p></div>`;
     }
-    
-    if(product.properties.hasOwnProperty("petname") && product.properties.hasOwnProperty("petphone")){
-        namePlateCustoms = `<p class="my-0">Nombre: ${product.properties.petname}</p>
-                            <p class="my-0">Teléfono: ${product.properties.petphone}</p>`; 
+    if(product.properties.hasOwnProperty("petname")){
+        userCustoms += `<p class="my-0">Nombre: ${product.properties.petname}</p>`;                      
     }
-    
+    if(product.properties.hasOwnProperty("petphone")){
+        userCustoms += `<p class="my-0">Teléfono: ${product.properties.petphone}</p>`;
+    }
+    if(product.properties.hasOwnProperty("body")){
+        outfits += `<div class="" style="height: 3.2em; width: 50%; overflow: hidden;">
+                        <img width="auto" height="100%" src="${product.properties.body}" >
+                    </div>`;
+    }
+    if(product.properties.hasOwnProperty("head")){
+        outfits += `<div class="" style="height: 3.2em; width: 50%; overflow: hidden;">
+        <img width="auto" height="100%" src="${product.properties.head}" >
+    </div>`;
+    }
+
     return `<div class="product-box product-${product.id} my-4 bg-beige">
          <div class="row justify-content-center position-relative">
          <div class="container-button-delete">
@@ -114,7 +126,7 @@ const customProducts = (product) => {
          <!--------- Columna de Imagen Producto--------->
          <div class="col-12 col-lg-4 col-md-8 col-sm-12 product-image-container">
          <div class="">
-         <img class="productimage" src="${product.properties.material !== undefined ? product.properties.material : product.properties.shape}" alt="">
+         <img class="productimage" src="${product.imgUrl}" alt="">
          </div>
          </div>
          <!------- Columna Informacion de Producto-------->
@@ -140,8 +152,14 @@ const customProducts = (product) => {
                     </div>
                     <div class="col col-12">
                         <div class="col-size">
-                            <p>${product.properties.size}</p>
-                            ${namePlateCustoms}
+                            <p>${product.properties.hasOwnProperty("size") ? product.properties.size : " "}</p>
+                            ${userCustoms}
+                        </div>
+                    </div> 
+                    <div class="col col-12">
+                            ${outfits !== ''? `<p class="my-0">Extras</p>` : ` `}
+                        <div class="d-flex">
+                            ${outfits}
                         </div>
                     </div>                    
                 </div>
