@@ -161,6 +161,7 @@ const updateShoppingCartButtons = () => {
   }
 };
 
+let hasLoaded = false, isMobile = false;
 const moveElementsInMobile = () => {
   // Choosing containers according actual product
   const containers = [];
@@ -184,9 +185,17 @@ const moveElementsInMobile = () => {
     containers.push($("#custome-body-container"));
   }
 
-  $(".carousel-item").remove();
+  if( ($(window).width() < 768 && !isMobile) || 
+    ($(window).width() >= 768 && isMobile) ) {
+    hasLoaded = false;
+    $(".carousel-item").remove();
+  }
 
-  if ($(window).width() < 768) {
+  if ($(window).width() < 768 && !hasLoaded) {
+    console.log("loaded mobile")
+    hasLoaded = true;
+    isMobile = true;
+
     // Resizing color wheel
     const currentWidth = jQuery(window).width();
     colorWheel.resize(currentWidth/1.5);
@@ -215,7 +224,11 @@ const moveElementsInMobile = () => {
     // Activating first carousel element
     const firstCarouselItem = $(`#carousel-${product.category}-container`);
     firstCarouselItem.addClass("active");
-  } else {
+  } else if(!hasLoaded) {
+    console.log("loaded desktop")
+    hasLoaded = true;
+    isMobile = false;
+
     // Resizing color wheel
     const currentWidth = jQuery(window).width();
     colorWheel.resize(currentWidth/3.5);
