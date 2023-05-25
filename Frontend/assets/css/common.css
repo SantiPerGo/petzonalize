@@ -61,7 +61,8 @@ footer {
     color: var(--brown);
 }
 
-.nav-link:hover, .nav-link:active, .active {
+/* .active */
+.nav-link:hover, .nav-link:active {
     color: var(--blue) !important;
 }
 

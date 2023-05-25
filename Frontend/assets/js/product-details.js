@@ -46,7 +46,7 @@ $(document).ready(() => {
   // Resizing color picker on window size change
   jQuery(window).resize(() => {
     const currentWidth = jQuery(window).width();
-    colorWheel.resize(currentWidth/4);
+    colorWheel.resize(currentWidth/1.5);
   });
 
   // when the user has changed color in the color picker
@@ -67,13 +67,12 @@ $(document).ready(() => {
     const productForm = $("#product-not-custom");
 
     if (product.customizable === true){
-      customProductForm.removeClass("d-none");
-      productForm.addClass("d-none");
-
       $("#product-name").text(product.name);
       $("#product-price").text(product.price);
       $(":root").css("--img-mask", `url(${product.imgUrl})`);
 
+      moveElementsInMobile();
+      $(window).resize(() => moveElementsInMobile());
       loadCategoriesData();
 
       if(product.category === "collar" || product.category === "bowl" || product.category === "nameplate") {
@@ -119,7 +118,8 @@ $(document).ready(() => {
         $(window).resize(() => reloadCustomeSizes());
       }
     } else {
-      customProductForm.addClass("d-none");
+      customProductForm.removeClass("d-md-block");
+      $("#product-custom-carousel").addClass("d-none");
       productForm.removeClass("d-none");
 
       productForm.find('[id*="product-img"]').attr("src", product.imgUrl);
@@ -132,6 +132,70 @@ $(document).ready(() => {
   } else
     window.location.href = 'products.html';
 });
+
+const moveElementsInMobile = () => {
+  // Resizing color wheel
+  const currentWidth = jQuery(window).width();
+  colorWheel.resize(currentWidth/3);
+
+  // Choosing containers according actual product
+  const containers = [];
+  if(product.category === "collar" || product.category === "bowl" || product.category === "nameplate") {
+    if(product.category === "collar")
+      containers.push($("#collar-container"));
+    else if(product.category === "bowl")
+      containers.push($("#bowl-container"));
+    else
+      containers.push($("#nameplate-container"));
+
+    containers.push($("#size-container"));
+    containers.push($("#color-container"));
+    containers.push($("#pattern-container"));
+  } else {
+    containers.push($("#product-custome-container"));
+    containers.push($("#custome-head-container"));
+    containers.push($("#custome-body-container"));
+  }
+
+  $(".carousel-item").remove();
+
+  if ($(window).width() < 768) {
+    $("#hero-container").appendTo('#mobile-container');
+    $("#hero-container").addClass("mx-auto");
+    
+    // Loading categories in the carousel
+    containers.forEach(container => {
+      const carouselItem = $("#carousel-template").clone().appendTo('#carousel-container');
+      carouselItem.removeClass("d-none");
+      carouselItem.addClass("carousel-item");
+      carouselItem.attr("id", `carousel-${container.attr("id")}`);
+      
+      container.appendTo(carouselItem);
+      container.addClass("w-75");
+      container.addClass("mx-auto");
+
+      $(".is-not-selected").removeClass("col-6");
+      $(".is-not-selected").addClass("col");
+    });
+    
+    // Activating first carousel element
+    const firstCarouselItem = $(`#carousel-${product.category}-container`);
+    firstCarouselItem.addClass("active");
+  } else {
+    $("#hero-container").appendTo('#original-hero-container');
+    $("#hero-container").removeClass("mx-auto");
+    
+    // Loading categories in the carousel
+    containers.forEach(container => {
+      container.appendTo('#original-container');
+      container.removeClass("w-75");
+      container.removeClass("mx-auto");
+
+      $(".is-not-selected").addClass("col-6");
+      $(".is-not-selected").removeClass("col");
+    });
+  }
+};
 
 // *********************************************************************************
 // *********************************************************************************
