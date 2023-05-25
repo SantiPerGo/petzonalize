@@ -101,7 +101,7 @@ $(document).ready(() => {
             $("#product-bowl-name").css("top", "80%");
         } else {
           $("#product-nameplate-container").removeClass("d-none");
-          $("#shape-container").removeClass("d-none");
+          $("#nameplate-container").removeClass("d-none");
           $("#pet-data-container").removeClass("d-none");
           updateSelectedElement(`${product.category}-${product.properties.shape}`);
           $(".nameplate-size").each((key, element) => $(element).removeClass("d-none"));
@@ -615,7 +615,7 @@ const addProductsToCart = (product, quantity) => {
       product.properties.material = $("#bowl-container").find(".is-selected").attr('id').replace("bowl-", "");
       product.properties.petname = $("#bowl-name").val();
     } else if(product.category === "nameplate") {
-      product.properties.shape = $("#shape-container").find(".is-selected").attr('id').replace("shape-", "");
+      product.properties.shape = $("#nameplate-container").find(".is-selected").attr('id').replace("shape-", "");
       product.properties.petname = $("#name").val();
       product.properties.petphone = $("#phone").val();
     } 
