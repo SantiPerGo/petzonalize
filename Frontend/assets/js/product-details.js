@@ -115,6 +115,8 @@ $(document).ready(() => {
         $("#custome-head-container").removeClass("d-none");
         $("#custome-body-container").removeClass("d-none");
         updateSelectedElement(`${product.category}-${product.type}`);
+
+        $(window).resize(() => reloadCustomeSizes());
       }
     } else {
       customProductForm.addClass("d-none");
@@ -308,6 +310,8 @@ const updatePetImg = selectedElement => {
   // Changing pet img
   const imgUrl = $(selectedElement).find("img").attr("src");
   $("#product-custome").attr("src", imgUrl);
+
+  reloadCustomeSizes();
 };
 
 const updateCustome = (selectedElement, id) => {
@@ -320,20 +324,40 @@ const updateCustome = (selectedElement, id) => {
   $(`#product-${id}`).attr("src", imgUrl);
   $(`#reset-${id}`).removeClass("d-none");
 
-  const type = selectedElement.id.replace(`custome-${id}-`, "");
-  const custome = searchCustomeInProducts(type);
-  if(custome.category.includes("head")) {
-    $(":root").css("--head-size", custome.cssProperties[`${product.type}-size`]);
-    $(":root").css("--head-top", custome.cssProperties[`${product.type}-top`]);
-    $(":root").css("--head-right", custome.cssProperties[`${product.type}-right`]);
-  } else {
-    $(":root").css("--body-size", custome.cssProperties[`${product.type}-size`]);
-    $(":root").css("--body-top", custome.cssProperties[`${product.type}-top`]);
-    $(":root").css("--body-right", custome.cssProperties[`${product.type}-right`]);
-  }
+  reloadCustomeSizes();
 
   // Changing product price
   calculateProductPrice();
+};
+
+const reloadCustomeSizes = () => {
+  product.type = $("#pet-container").find(".is-selected").attr('id').replace("pet-", "");
+  
+  // Resizing images
+  if(product.type === "dog") {
+    reloadSizeRatio("head", 2, 1.75);
+    reloadSizeRatio("body", 1.5, 1.25);
+  } else  {
+    reloadSizeRatio("head", 2, 1.75);
+    reloadSizeRatio("body", 1.5, 1);
+  }
+
+  let head = $("#row-custome-head").find(".is-selected")[0];
+  let body = $("#row-custome-body").find(".is-selected")[0];
+
+  if(head !== undefined) {
+    head = head.id.replace("custome-head-", "");
+    const customeHead = searchCustomeInProducts(head);
+    $(":root").css("--head-top", customeHead.cssProperties[`${product.type}-top`]);
+    $(":root").css("--head-right", customeHead.cssProperties[`${product.type}-right`]);
+  }
+  
+  if(body !== undefined) {
+    body = body.id.replace("custome-body-", "");
+    const customeBody = searchCustomeInProducts(body);
+    $(":root").css("--body-top", customeBody.cssProperties[`${product.type}-top`]);
+    $(":root").css("--body-right", customeBody.cssProperties[`${product.type}-right`]);
+  }
 };
 
 const searchCustomeInProducts = type => {
@@ -347,6 +371,27 @@ const searchCustomeInProducts = type => {
   }
 
   return null;
+};
+
+const reloadSizeRatio = (id, ratio, ratioHeight) => {
+  const productImg = $("#product-custome");
+  const productWidth = productImg.width();
+  const productHeight = productImg.height();
+  const img = $(`#product-${id}`);
+
+  img.width("");
+  img.height("");
+
+  let {width, height} = calculateAspectRatioFit(img.width(),
+    img.height()/ratioHeight, productWidth/ratio, productHeight/ratio);
+
+  img.width(width);
+  img.height(height);
+};
+
+const calculateAspectRatioFit = (srcWidth, srcHeight, maxWidth, maxHeight) => {
+  var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+  return { width: srcWidth*ratio, height: srcHeight*ratio };
 };
 
 // *********************************************************************************
@@ -575,7 +620,6 @@ const addProductsToCart = (product, quantity) => {
       product.properties.petphone = $("#phone").val();
     } 
   } else {
-    product.type = $("#pet-container").find(".is-selected").attr('id').replace("pet-", "");
     product.properties.body = $("#row-custome-body").find(".is-selected").find("img").attr("src");
     product.properties.head = $("#row-custome-head").find(".is-selected").find("img").attr("src");
   }
