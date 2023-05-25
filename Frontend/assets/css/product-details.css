@@ -29,6 +29,10 @@ img {
   object-fit: contain;
 }
 
+.img-ratio {
+  aspect-ratio: 3/2;
+}
+
 #product-custome-container {
   position: relative;
   top: 0;
@@ -36,8 +40,6 @@ img {
 }
 
 :root { /* Variables changed dinamically with js */
-  --head-size: 10vw;
-  --body-size: 13vw;
   --head-top: 5%;
   --head-right: 10%;
   --body-top: 5%;
@@ -48,16 +50,12 @@ img {
   position: absolute;
   top: var(--head-top);
   right: var(--head-right);
-  width: var(--head-size);
-  height: var(--head-size);
 }
 
 #product-body {
   position: absolute;
   top: var(--body-top);
   right: var(--body-right);
-  width: var(--body-size);
-  height: var(--body-size);
 }
 
 #product-custome {

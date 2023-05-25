@@ -9,12 +9,10 @@
             "imgUrl": "/assets/img/products/customizable/customizable-head-mariachi.png",
             "stock": 30,
             "cssProperties": {
-                "dog-size": "9vw",
-                "dog-top": "3%",
-                "dog-right": "18%",
-                "cat-size": "9vw",
-                "cat-top": "15%",
-                "cat-right": "10%"
+                "dog-top": "17%",
+                "dog-right": "10%",
+                "cat-top": "27%",
+                "cat-right": "5%"
             }
         },
         {
@@ -26,12 +24,10 @@
             "imgUrl": "/assets/img/products/customizable/customizable-head-cold-red.png",
             "stock": 33,
             "cssProperties": {
-                "dog-size": "7vw",
-                "dog-top": "17%",
-                "dog-right": "20%",
-                "cat-size": "7vw",
-                "cat-top": "25%",
-                "cat-right": "13%"
+                "dog-top": "15%",
+                "dog-right": "15%",
+                "cat-top": "20%",
+                "cat-right": "5%"
             }
         },
         {
@@ -43,12 +39,10 @@
             "imgUrl": "/assets/img/products/customizable/customizable-body-shark-jacket.png",
             "stock": 26,
             "cssProperties": {
-                "dog-size": "16vw",
-                "dog-top": "10%",
-                "dog-right": "27%",
-                "cat-size": "16vw",
-                "cat-top": "15%",
-                "cat-right": "20%"
+                "dog-top": "25%",
+                "dog-right": "25%",
+                "cat-top": "25%",
+                "cat-right": "18%"
             }
         },
         {
@@ -60,11 +54,9 @@
             "imgUrl": "/assets/img/products/customizable/customizable-body-rider.png",
             "stock": 27,
             "cssProperties": {
-                "dog-size": "11vw",
                 "dog-top": "15%",
-                "dog-right": "35%",
-                "cat-size": "11vw",
-                "cat-top": "20%",
+                "dog-right": "30%",
+                "cat-top": "15%",
                 "cat-right": "25%"
             }
         },
@@ -77,11 +69,9 @@
             "imgUrl": "/assets/img/products/customizable/customizable-body-cape.png",
             "stock": 39,
             "cssProperties": {
-                "dog-size": "16vw",
-                "dog-top": "0%",
-                "dog-right": "35%",
-                "cat-size": "16vw",
-                "cat-top": "9%",
+                "dog-top": "20%",
+                "dog-right": "30%",
+                "cat-top": "25%",
                 "cat-right": "27%"
             }
         },
@@ -94,11 +84,9 @@
             "imgUrl": "/assets/img/products/customizable/customizable-body-turtle-shell.png",
             "stock": 30,
             "cssProperties": {
-                "dog-size": "12vw",
-                "dog-top": "15%",
-                "dog-right": "37%",
-                "cat-size": "12vw",
-                "cat-top": "23%",
+                "dog-top": "25%",
+                "dog-right": "30%",
+                "cat-top": "30%",
                 "cat-right": "30%"
             }
         },
@@ -133,6 +121,26 @@
             "type": "squares",
             "price": 59.12,
             "imgUrl": "/assets/img/products/customizable/customizable-pattern-squares.jpg"
+        }
+    ],
+    "sizes": [
+        {
+            "category": "bowl",
+            "small": "Pequeño - 250 ml",
+            "medium": "Mediano - 500 ml",
+            "big": "Grande - 1000 ml"
+        },
+        {
+            "category": "nameplate",
+            "small": "Pequeña - 35 mm x 18 mm",
+            "medium": "Mediana - 38 mm x 25 mm",
+            "big": "Grande - 50 mm x 32 mm"
+        },
+        {
+            "category": "collar",
+            "small": "Pequeño - 25 cm a 38 cm - 1.5cm de ancho",
+            "medium": "Mediano - 32 cm a 48 cm - 2 cm de ancho",
+            "big": "Grande - 39 cm a 59 cm - 2.5 cm de ancho"
         }
     ]
 }

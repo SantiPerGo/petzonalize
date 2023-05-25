@@ -115,6 +115,8 @@ $(document).ready(() => {
         $("#custome-head-container").removeClass("d-none");
         $("#custome-body-container").removeClass("d-none");
         updateSelectedElement(`${product.category}-${product.type}`);
+
+        $(window).resize(() => reloadCustomeSizes());
       }
     } else {
       customProductForm.addClass("d-none");
@@ -143,9 +145,16 @@ const loadCategoriesData = () => {
   let products = JSON.parse(sessionStorage.getItem("products"));
   products = products.filter(product => product.category === category);
 
+  // Loading customizables like customes and patterns
   let customizables = JSON.parse(sessionStorage.getItem("customizables"));
 
   if(category === "collar" || category === "bowl" || category === "nameplate") {
+    // load sizes
+    let sizes = JSON.parse(sessionStorage.getItem("sizes"));
+    sizes = sizes.filter(size => size.category === category)[0];
+    delete sizes["category"];
+    $.each(sizes, (key, size) => loadSize(key, size));
+    
     // load size and pattern
     customizables = customizables.filter(customizable => customizable.category === "pattern");
     customizables.forEach(customizable => loadProduct(customizable, customizable.type));
@@ -173,6 +182,7 @@ const loadCategoriesData = () => {
   $("#bowl-template").remove();
   $("#nameplate-template").remove();
   $("#pet-template").remove();
+  $("#size-template").remove();
   
   $("#pattern-template").remove();
   $("#custome-head-template").remove();
@@ -194,6 +204,15 @@ const loadProduct = (product, id) => {
   const imgElement = element.find("img");
   $(imgElement).attr("src", product.imgUrl);
   $(imgElement).attr("alt", product.name);
+};
+
+const loadSize = (key, size) => {
+  const element = $("#size-template").clone().appendTo("#row-size");
+  $(element).attr("id", `size-${key}`);
+
+  const nameElement = element.find(`#size-template-text`);
+  $(nameElement).attr("id", `size-${key}-text`);
+  $(nameElement).text(size);
 };
 
 // *********************************************************************************
@@ -238,7 +257,7 @@ const resetPetDataBowl = () => {
 const resetCustome = id => {
   $(`#product-${id}`).addClass("d-none");
   $(`#reset-${id}`).addClass("d-none");
-  const selectedElement = $(`#custome-${id}-div`).find('[class*="is-selected"]');
+  const selectedElement = $(`#row-custome-${id}`).find('[class*="is-selected"]');
   selectedElement.addClass("is-not-selected");
   selectedElement.removeClass("is-selected");
   selectedElement.css("pointer-events", "auto");
@@ -291,6 +310,8 @@ const updatePetImg = selectedElement => {
   // Changing pet img
   const imgUrl = $(selectedElement).find("img").attr("src");
   $("#product-custome").attr("src", imgUrl);
+
+  reloadCustomeSizes();
 };
 
 const updateCustome = (selectedElement, id) => {
@@ -303,20 +324,40 @@ const updateCustome = (selectedElement, id) => {
   $(`#product-${id}`).attr("src", imgUrl);
   $(`#reset-${id}`).removeClass("d-none");
 
-  const type = selectedElement.id.replace(`custome-${id}-`, "");
-  const custome = searchCustomeInProducts(type);
-  if(custome.category.includes("head")) {
-    $(":root").css("--head-size", custome.cssProperties[`${product.type}-size`]);
-    $(":root").css("--head-top", custome.cssProperties[`${product.type}-top`]);
-    $(":root").css("--head-right", custome.cssProperties[`${product.type}-right`]);
-  } else {
-    $(":root").css("--body-size", custome.cssProperties[`${product.type}-size`]);
-    $(":root").css("--body-top", custome.cssProperties[`${product.type}-top`]);
-    $(":root").css("--body-right", custome.cssProperties[`${product.type}-right`]);
-  }
+  reloadCustomeSizes();
 
   // Changing product price
   calculateProductPrice();
+};
+
+const reloadCustomeSizes = () => {
+  product.type = $("#pet-container").find(".is-selected").attr('id').replace("pet-", "");
+  
+  // Resizing images
+  if(product.type === "dog") {
+    reloadSizeRatio("head", 2, 1.75);
+    reloadSizeRatio("body", 1.5, 1.25);
+  } else  {
+    reloadSizeRatio("head", 2, 1.75);
+    reloadSizeRatio("body", 1.5, 1);
+  }
+
+  let head = $("#row-custome-head").find(".is-selected")[0];
+  let body = $("#row-custome-body").find(".is-selected")[0];
+
+  if(head !== undefined) {
+    head = head.id.replace("custome-head-", "");
+    const customeHead = searchCustomeInProducts(head);
+    $(":root").css("--head-top", customeHead.cssProperties[`${product.type}-top`]);
+    $(":root").css("--head-right", customeHead.cssProperties[`${product.type}-right`]);
+  }
+  
+  if(body !== undefined) {
+    body = body.id.replace("custome-body-", "");
+    const customeBody = searchCustomeInProducts(body);
+    $(":root").css("--body-top", customeBody.cssProperties[`${product.type}-top`]);
+    $(":root").css("--body-right", customeBody.cssProperties[`${product.type}-right`]);
+  }
 };
 
 const searchCustomeInProducts = type => {
@@ -330,6 +371,27 @@ const searchCustomeInProducts = type => {
   }
 
   return null;
+};
+
+const reloadSizeRatio = (id, ratio, ratioHeight) => {
+  const productImg = $("#product-custome");
+  const productWidth = productImg.width();
+  const productHeight = productImg.height();
+  const img = $(`#product-${id}`);
+
+  img.width("");
+  img.height("");
+
+  let {width, height} = calculateAspectRatioFit(img.width(),
+    img.height()/ratioHeight, productWidth/ratio, productHeight/ratio);
+
+  img.width(width);
+  img.height(height);
+};
+
+const calculateAspectRatioFit = (srcWidth, srcHeight, maxWidth, maxHeight) => {
+  var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+  return { width: srcWidth*ratio, height: srcHeight*ratio };
 };
 
 // *********************************************************************************
@@ -356,6 +418,9 @@ const updateNotSelectedElements = selectedElement => {
   $(selectedElement).addClass("is-selected");
   $(selectedElement).removeClass("is-not-selected");
   $(selectedElement).css("pointer-events", "none");
+
+  const productName = $(selectedElement).find(`#${$(selectedElement).attr('id')}-text`).text();
+  $("#product-name").text(productName);
 };
 
 const updateText = (...selectedTexts) => {
@@ -444,11 +509,14 @@ const returnButton = $("#product-return");
 const quantityGroup = $("#quantity-group");
 
 buyButton.on('click', () => {
-  if($("#size-container").find(".is-selected-text")[0] === undefined) {
-    $("#alert").text("Debes elegir un tamaño antes de comprar el producto");
-    $("#alert").slideDown(250);
-    setTimeout(() => $("#alert").slideUp(250, () => $(this).remove()), 5000);
-  } else
+  if(product.category === "collar" || product.category === "bowl"  || product.category === "nameplate") {
+    if($("#size-container").find(".is-selected-text")[0] === undefined) {
+      $("#alert").text("Debes elegir un tamaño antes de comprar el producto");
+      $("#alert").slideDown(250);
+      setTimeout(() => $("#alert").slideUp(250, () => $(this).remove()), 5000);
+    } else
+      showQuantityButtons();
+  } else 
     showQuantityButtons();
 });
 
@@ -533,8 +601,8 @@ const addProductsToCart = (product, quantity) => {
   const shoppingCart = localStorage.getItem("shopping-cart");
   const products = shoppingCart !== null ? JSON.parse(shoppingCart) : [{total: 0}];
 
-  // Adding product with new property to the shopping cart
-  product["amount"] = quantity;
+  // Updating some product properties
+  updateProductProperties(quantity);
 
   if(product.category === "collar" || product.category === "bowl" || product.category === "nameplate") {
     product.properties.color = colorWheel.color.hslaString;
@@ -542,21 +610,18 @@ const addProductsToCart = (product, quantity) => {
     product.properties.pattern = $("#row-pattern").find(".is-selected").find("img").attr("src");
 
     if(product.category === "collar")  {
-      product.imgUrl = $("#collar-container").find(".is-selected").find("img").attr("src");
-      product.properties.material = $("#collar-container").find(".is-selected").find("img").attr("src");
+      product.properties.material = $("#collar-container").find(".is-selected").attr('id').replace("collar-", "");
     } else if(product.category === "bowl") {
-      product.imgUrl = $("#bowl-container").find(".is-selected").find("img").attr("src");
-      product.properties.material = $("#bowl-container").find(".is-selected").find("img").attr("src");
+      product.properties.material = $("#bowl-container").find(".is-selected").attr('id').replace("bowl-", "");
       product.properties.petname = $("#bowl-name").val();
     } else if(product.category === "nameplate") {
-      product.imgUrl = $("#shape-container").find(".is-selected").find("img").attr("src");
-      product.properties.shape = $("#shape-container").find(".is-selected").find("img").attr("src");
+      product.properties.shape = $("#shape-container").find(".is-selected").attr('id').replace("shape-", "");
       product.properties.petname = $("#name").val();
       product.properties.petphone = $("#phone").val();
     } 
   } else {
-    product.properties.body = $("#custome-body-div").find(".is-selected").find("img").attr("src");
-    product.properties.head = $("#custome-head-div").find(".is-selected").find("img").attr("src");
+    product.properties.body = $("#row-custome-body").find(".is-selected").find("img").attr("src");
+    product.properties.head = $("#row-custome-head").find(".is-selected").find("img").attr("src");
   }
 
   // Adding product to the cart
@@ -568,4 +633,12 @@ const addProductsToCart = (product, quantity) => {
   const shoppingCartCounter = $("#shopping-cart-counter");
   shoppingCartCounter.text(products[0].total);
   shoppingCartCounter.removeClass("d-none");
+};
+
+const updateProductProperties = quantity => {
+  const productContainer = $(`#${product.category}-container`);
+  const selectedElement = productContainer.find(".is-selected");
+  product.name = selectedElement.find(`#${selectedElement.attr("id")}-text`).text();
+  product.imgUrl = selectedElement.find("img").attr("src");
+  product["amount"] = quantity;
 };
