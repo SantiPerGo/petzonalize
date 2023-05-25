@@ -401,12 +401,22 @@ const reloadCustomeSizes = () => {
   product.type = $("#pet-container").find(".is-selected").attr('id').replace("pet-", "");
   
   // Resizing images
+  let topHeadDifference, rightHeadDifference;
+  let topBodyDifference, rightBodyDifference;
   if(product.type === "dog") {
     reloadSizeRatio("head", 2, 1.75);
     reloadSizeRatio("body", 1.5, 1.25);
+    topHeadDifference = -15;
+    rightHeadDifference = -5;
+    topBodyDifference = -15;
+    rightBodyDifference = -5;
   } else  {
     reloadSizeRatio("head", 2, 1.75);
     reloadSizeRatio("body", 1.5, 1);
+    topHeadDifference = -13;
+    rightHeadDifference = -10;
+    topBodyDifference = -13;
+    rightBodyDifference = -5;
   }
 
   let head = $("#row-custome-head").find(".is-selected")[0];
@@ -415,15 +425,37 @@ const reloadCustomeSizes = () => {
   if(head !== undefined) {
     head = head.id.replace("custome-head-", "");
     const customeHead = searchCustomeInProducts(head);
-    $(":root").css("--head-top", customeHead.cssProperties[`${product.type}-top`]);
-    $(":root").css("--head-right", customeHead.cssProperties[`${product.type}-right`]);
+
+    let top = customeHead.cssProperties[`${product.type}-top`];
+    let right = customeHead.cssProperties[`${product.type}-right`];
+    top = parseInt(top.replace("%", "")) + topHeadDifference;
+    right = parseInt(right.replace("%", "")) + rightHeadDifference;
+  
+    if ($(window).width() < 768) {
+      $(":root").css("--head-top", `${top}%`);
+      $(":root").css("--head-right", `${right}%`);
+    } else {
+      $(":root").css("--head-top", customeHead.cssProperties[`${product.type}-top`]);
+      $(":root").css("--head-right", customeHead.cssProperties[`${product.type}-right`]);
+    }
   }
   
   if(body !== undefined) {
     body = body.id.replace("custome-body-", "");
     const customeBody = searchCustomeInProducts(body);
-    $(":root").css("--body-top", customeBody.cssProperties[`${product.type}-top`]);
-    $(":root").css("--body-right", customeBody.cssProperties[`${product.type}-right`]);
+
+    let top = customeBody.cssProperties[`${product.type}-top`];
+    let right = customeBody.cssProperties[`${product.type}-right`];
+    top = parseInt(top.replace("%", "")) + topBodyDifference;
+    right = parseInt(right.replace("%", "")) + rightBodyDifference;
+
+    if ($(window).width() < 768) {
+      $(":root").css("--body-top", `${top}%`);
+      $(":root").css("--body-right", `${right}%`);
+    } else {
+      $(":root").css("--body-top", customeBody.cssProperties[`${product.type}-top`]);
+      $(":root").css("--body-right", customeBody.cssProperties[`${product.type}-right`]);
+    }
   }
 };
 
