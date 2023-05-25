@@ -118,7 +118,7 @@ $(document).ready(() => {
         $(window).resize(() => reloadCustomeSizes());
       }
     } else {
-      customProductForm.removeClass("d-md-block");
+      customProductForm.removeClass("d-md-flex");
       $("#product-custom-carousel").addClass("d-none");
       productForm.removeClass("d-none");
 
@@ -128,7 +128,7 @@ $(document).ready(() => {
       productForm.find('[id*="product-description"]').text(product.description);
     };
 
-    // sessionStorage.removeItem("product");
+    //sessionStorage.removeItem("product");
   } else
     window.location.href = 'products.html';
 });
@@ -147,8 +147,8 @@ const moveElementsInMobile = () => {
       containers.push($("#bowl-container"));
       containers.push($("#pet-bowl-data-container"));
     } else {
-      containers.push($("#pet-data-container"));
       containers.push($("#nameplate-container"));
+      containers.push($("#pet-data-container"));
     }
 
     containers.push($("#size-container"));
