@@ -29,3 +29,46 @@
 .no-margin {
     margin: 0 !important;
 }
+
+.carousel-caption {
+    padding-bottom: 0rem;
+}
+
+.carousel-caption h5,
+    .carousel-caption p {
+        margin-bottom: 0.5rem; /* Adjust the margin as desired */
+    }
+    
+    .carousel-caption a {
+        margin: 0 1rem; /* Adjust the horizontal margin as desired */
+    }
+
+.custom-icon {
+    font-size: 2rem; 
+    padding-bottom: 0rem;
+    color: #ffffff;
+}
+
+.carousel-caption i:hover {
+    font-size: 2.5rem; 
+}
+
+@media (max-width: 670px) {
+    .carousel-caption {
+        font-size: 14px; 
+    }
+    
+    .carousel-caption h5 {
+        font-size: 14px; 
+        padding-bottom: 0rem;
+    }
+
+    .custom-icon {
+        font-size: 1.5rem; 
+        padding-bottom: 0rem;
+    }
+
+    .carousel-caption a {
+        margin-bottom: 0 0rem;
+    }
+}
