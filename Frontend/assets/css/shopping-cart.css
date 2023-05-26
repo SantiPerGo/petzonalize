@@ -143,3 +143,21 @@ ion-icon {
           height: 300px;
       }
   }
+
+  /* Contenedor de los botones */
+
+  
+  /* Tamaño del contenedor de botones */
+  .buttons-container{
+    max-width: 400px;
+    max-height: 500px;
+    
+  }
+
+  @media (max-width: 768px) {
+    .buttons-container {
+      max-width: 350px;
+      max-height: 450px;
+      margin: 0 auto;
+      }
+    }
