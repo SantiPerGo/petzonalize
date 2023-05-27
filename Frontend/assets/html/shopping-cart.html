@@ -33,12 +33,12 @@
 
     <main class="container-fluid">
         <!---------------- formulario usuario no registrado------------------------>
-        <div class="row justify-content-center not-register-form-container">
-            <div class="col col-lg-6 p-4">
+        <div class="row justify-content-center not-register-form-container pop--hidden">
+            <div class="col col-lg-8 p-4">
 
-                <div id="not-register-form-container" class="bg-beige mt-4">
+                <div class="bg-beige mt-2 not-registered-user-box">
                     <div class="container-button-delete">
-                        <button type="button" class="close-order-form d-flex border-0 rounded-circle p-0" id="close-order-form">
+                        <button type="button" class="d-flex border-0 rounded-circle p-0" id="close-window-form">
                             <img src="../img/shopping-cart/cross.svg" alt="">
                         </button>
                     </div>
@@ -49,34 +49,40 @@
                             <h1>Datos de contacto</h1>
                         </div>
 
-                        <div class="text-start my-3 mx-3">
-                            <label for="input-name-order" class="form-label"><b>Nombre:</b></label>
-                            <input type="text" class="form-control" id="input-name-order"
-                                placeholder="Nombre Apellido" name="name" required>
+                       <div class="row justify-content-center">
+                        <div class="col col-sm-12 col-lg-6">
+                            <div class="text-start my-3 mx-3">
+                                <label for="input-name-order" class="form-label"><b>Nombre:</b></label>
+                                <input type="text" class="form-control" id="input-name-order"
+                                    placeholder="Nombre Apellido" name="name" required>
+                            </div>
+    
+                            <div class="text-start my-3 mx-3">
+    
+                                <label for="input-phone-order" class="form-label"><b>Teléfono:</b></label>
+                                <input type="number" class="form-control" id="input-phone-order"
+                                    placeholder="52 00 00 00 00" name="phone" required>
+                            </div>
                         </div>
-
-                        <div class="text-start my-3 mx-3">
-
-                            <label for="input-phone-order" class="form-label"><b>Teléfono:</b></label>
-                            <input type="number" class="form-control" id="input-phone-order"
-                                placeholder="52 00 00 00 00" name="phone" required>
+                        <div class="col col-sm-12 col-lg-6">
+                            <div class="text-start my-3 mx-3">
+                                <label for="input-email-order" class="form-label"><b>Correo Electrónico:</b></label>
+                                <input type="email" class="form-control" id="input-email-order"
+                                    placeholder="example@email.com" name="email" required>
+                            </div>
+     
+                            <div class="text-start my-3 mx-3">
+                                <label for="input-address-order" class="form-label"><b>Dirección:</b></label>
+                                <input type="text" class="form-control" id="input-address-order"
+                                    placeholder="standford 34N N.Y." name="address" required>
+                            </div>
                         </div>
+                       </div>
 
-                        <div class="text-start my-3 mx-3">
-                            <label for="input-email-order" class="form-label"><b>Correo Electrónico:</b></label>
-                            <input type="email" class="form-control" id="input-email-order"
-                                placeholder="example@email.com" name="email" required>
-                        </div>
-
-                        <div class="text-start my-3 mx-3">
-                            <label for="input-address-order" class="form-label"><b>Dirección:</b></label>
-                            <input type="text" class="form-control" id="input-address-order"
-                                placeholder="Nombre Apellido" name="name" required>
-                        </div>
 
                         <!-- Buttons of register -->
-                        <div class="row gy-3 mt-1 mt-md-3">
-                            <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+                        <div class="row gy-3 mt-md-3">
+                            <div class="col col-sm-12 col-lg-12">
                                 <div class="px-auto d-flex">
                                     <button id="create-order-btn" type="submit" class="btn btn-purple mx-auto h-100">Crear Pedido</button>
                                 </div>
@@ -119,7 +125,7 @@
                                 <div class="col-sm-12 col-lg-12">
                                     <div class="row justify-content-center">
                                         <div class="col col-lg-12 col-md-12 col-sm-6 mx-0 my-1 info">
-                                            <button id="create-order" class="btn btn-blue">Crear Orden</button>
+                                            <button id="open-create-order" class="btn btn-blue">Crear Orden</button>
 
                                         </div>
                                         <div class="col col-lg-12 col-md-12 col-sm-6 mx-0 my-1 col-md-6 info">
@@ -144,6 +150,7 @@
 
     <!-- Loading Navbar and Footer with Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <script src="/assets/js/common.js"></script>
     <script src="../js/shopping-cart.js"></script>
 

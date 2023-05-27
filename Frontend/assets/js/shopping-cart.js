@@ -1,13 +1,17 @@
 const productsListContainer = document.getElementById("products-list");
 let userCartProducts = JSON.parse(localStorage.getItem("shopping-cart"));
 const notFountContainer = document.querySelector(".list-not-found");
+const notRegisteredForm = $("#not-registered-form");
+const btnCreateOrder = document.getElementById("create-order-btn");
+const btnOpenWindowOrder = document.getElementById("open-create-order");
+const btnCloseWindowOrder = document.getElementById("close-window-form");
+const formOrderContainer = document.querySelector(".not-register-form-container");
 
 const emptyCart = () => {
     const emptyCartButton = document.getElementById('empty-cart');
-    const createOrder = document.getElementById('create-order');
 
     emptyCartButton.disabled = true;
-    createOrder.disabled = true;
+    btnOpenWindowOrder .disabled = true;
 
     return `<div class="list-not-found mt-4">
     <div class="row justify-content-center">
@@ -271,18 +275,6 @@ function deleteShoppingCart() {
     productsListContainer.innerHTML = emptyCart();
 }
 
-/*Función para alert de compra realizada */
-
-let btnCompra = document.getElementById('create-order');
-btnCompra.addEventListener('click', function() {
-  showAlert();
-});
-
-function showAlert() {
-  var alerta = document.getElementById('alert');
-  alerta.innerHTML = '¡Gracias por su pedido! Por favor esté pendiente de su correo con los detalles. ✉️';
-  alerta.style.display = 'block';
-}
 
 //----------------------------------------------------------
 const descriptionParagraph = document.querySelectorAll('.descriptioncontainer');
@@ -401,3 +393,95 @@ deleteProduct.forEach((deleteIconProduct, index) => {
         document.location.reload();
     });
 });
+
+
+//------------------- Form not registered user --------------------
+$(document).ready(()=>{
+    validateForm(notRegisteredForm);
+});
+
+//---------------- Formulario escucha boton, valida y crea la orden -------
+notRegisteredForm.submit(submitButton => {
+    submitButton.preventDefault();
+
+    if(notRegisteredForm.valid()){
+        createUserOrder();
+    }
+});
+
+// ----------------Funcionalidades de Formulario de Orden ----------------
+const hiddenWindowOrder = () =>{
+    formOrderContainer.classList.add("pop--hidden");
+    formOrderContainer.classList.remove("pop--unhidden");
+}
+
+btnCloseWindowOrder.addEventListener('click', ()=>{
+    hiddenWindowOrder();
+});
+
+//--------------  Carga datos de usuario logeado ------
+const setInputs = (userData) => {
+    const name = $("#input-name-order");
+    const email = $("#input-email-order");
+    const phone = $("#input-phone-order");
+    const address = $("#input-address-order");
+
+    name.val(userData.name);
+    email.val(userData.email);
+    phone.val(userData.phone);
+    address.val("");
+}
+
+//-------------- Carga formulario de compra --------------
+btnOpenWindowOrder.addEventListener('click', function() {
+    formOrderContainer.classList.remove("pop--hidden");
+    formOrderContainer.classList.add("pop--unhidden");
+
+    let userLogged = localStorage.getItem("users-logged-in");
+    if(userLogged != null){
+        let userData = JSON.parse(localStorage.getItem("users-logged-in"));
+        setInputs(userData);
+    }
+});
+
+
+//--------------- Mensaje de pedido creado ---------------------
+  function showAlert() {
+    var alerta = document.getElementById('alert');
+    alerta.innerHTML = '¡Gracias por su pedido! Por favor esté pendiente de su correo con los detalles. ✉️';
+    alerta.style.display = 'block';
+  }
+
+//------------- Crear orden -------------
+const clearInputs = (name, email, phone, address) =>{
+    name.val("");
+    email.val("");
+    phone.val("");
+    address.val("");
+}
+
+//--------------- Funcion para crear Objeto de compra cuando presione boton Crear Orden ---------
+const createUserOrder = () => {
+    const name = $("#input-name-order");
+    const email = $("#input-email-order");
+    const phone = $("#input-phone-order");
+    const address = $("#input-address-order");
+
+    const userOrder = {
+        user: {
+            "name": name.val(),
+            "email": email.val(),
+            "phone": phone.val(),
+            "address": address.val() 
+        },
+        products: userCartProducts
+    };
+
+    console.log(userOrder)
+    sessionStorage.setItem("purchase-order", JSON.stringify(userOrder));
+
+    clearInputs(name, email, phone, address);
+    showAlert();
+    deleteShoppingCart();
+    hiddenWindowOrder();
+} 

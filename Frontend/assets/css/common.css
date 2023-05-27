@@ -83,6 +83,10 @@ footer {
     font-size: calc(0.5rem + 0.5vw);
 }
 
+.not-register-form-container{
+    font-size: calc(1rem + 0.5vw);
+}
+
 @media (max-width: 767.98px) {
     .shopping-cart .shopping-cart-counter {
         top: calc(12.5rem + 10vw);

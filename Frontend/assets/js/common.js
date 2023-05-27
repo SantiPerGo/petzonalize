@@ -23,6 +23,10 @@ const validateForm = form => {
                 minlength: 3,
                 required: true
             },
+            address: {
+                minlength: 6,
+                required: true
+            },
             email: {
                 minlength: 5,
                 required: true,
@@ -63,6 +67,10 @@ const validateForm = form => {
             name: {
                 required: "Debes ingresar tu nombre",
                 minlength: "Tu nombre debe tener al menos 3 letras"
+            },
+            address: {
+                required: "Debes ingresar una dirección",
+                minlength: "Tu dirección debe tener Calle, N°Casa, Colonia y Codigo Postal"
             },
             email: {
                 required: "Debes ingresar tu correo",
