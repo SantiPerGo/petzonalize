@@ -161,16 +161,16 @@ const customProducts = (product) => {
                 <div class="row justify-content-center">
                     <div class="col col-6 mx-auto" style="width: 50%">
                         ${customColor}
-                    </div>
+                            </div>
                     <div class="col col-6 mx-auto" style="width: 50%">
                         ${patternAvailable}
-                    </div>
+                        </div>
                     <div class="col col-12">
                         <div class="col-size">
                             <p>${product.properties.hasOwnProperty("size") ? product.properties.size : " "}</p>
                             ${userCustoms}
                         </div>
-                    </div> 
+                    </div>
                     <div class="col col-12">
                             ${outfits !== ''? `<p class="my-0">Extras</p>` : ` `}
                         <div class="d-flex">
@@ -447,9 +447,13 @@ btnOpenWindowOrder.addEventListener('click', function() {
 
 //--------------- Mensaje de pedido creado ---------------------
   function showAlert() {
-    var alerta = document.getElementById('alert');
-    alerta.innerHTML = '¡Gracias por su pedido! Por favor esté pendiente de su correo con los detalles. ✉️';
+    let alerta = document.getElementById('alert');
+    alerta.innerHTML = '¡Gracias por tu pedido! Favor de estar pendiente de tu correo donde recibirás los detalles. ✉️';
     alerta.style.display = 'block';
+
+    setTimeout(function() {
+        alerta.style.display = 'none';
+      }, 4000);
   }
 
 //------------- Crear orden -------------
