@@ -9,83 +9,28 @@
 }
 
 .icon {
-  height: 120px;
+  height: calc(2rem + 5vw);
 }
-
-/* Scroll Section */
-.container {
-  height: 100vh;
-}
-
-.fixed-section {
-  width: 300px;
-  height: 100vh;
-  background-color: #f1f1f1;
-}
-
-.scrollable-section {
-  flex: 1;
-  overflow-y: scroll;
-}
-
-/* Ocultar barras de navegación al hacer scroll */
-.scrollable-section::-webkit-scrollbar {
-  display: none;
-}
-
-.scrollable-section {
-  scrollbar-width: none;
-}
-
-/* Contenedores Productos Personalizables */
-/* #material-container{
-    visibility: hidden;
-
-}
- */
-
- #material{
-    background-color: var(--beige);
-    border: 0.25rem solid var(--brown);
-    border-radius: 1rem;
- }
-
 
 .image-preview {
-  position: relative;
-  width: 100%;
-  max-width: 900px; 
-  padding-top: 100%;
-  overflow: hidden;
-  border: 2px solid #BDA692;
+  border: 0.25rem solid var(--brown);
+  border-radius: 1rem;
+  height: calc(10rem + 25vw);
 }
 
 .image-preview__image{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: none;
+  object-fit: contain;
 }
 
-.custom-text{
+.custom-text {
   color: var(--brown);
-}
-.custom-textB{
-  color: black;
-}
-
-@media (max-width: 580px) {
-  .column {
-    width: 400px;
-  }
 }
 
 /* Select */
+
 #product-form-category {
   transition: all 0.25s;
-  background-color: white;
   border: 0.25rem solid var(--brown);
   border-radius: 0.75rem;
   font-size: calc(0.75rem + 0.75vw);
@@ -95,18 +40,21 @@ input[type="radio"] {
   display: none;
 }
 
-.image-radio label {
-  display: inline-block;
-  cursor: pointer;
+.image-radio input[type="radio"]:checked + label {
+  filter: brightness(1000%) grayscale(100%) opacity(0.1)
+    drop-shadow(0 0 0 var(--purple)) drop-shadow(0 0 0 var(--purple)) 
+    drop-shadow(0 0 0 var(--purple)) drop-shadow(0 0 0 var(--purple))
+    drop-shadow(0 0 0 var(--purple));
 }
 
-.image-radio input[type="radio"]:checked + img {
-  border: 5px solid  var(--purple);
-  border-radius: 1rem;
+.is-not-selected {
+    transition: all 0.25s;
 }
-
 
 .is-not-selected:hover {
-  border: 5px solid var(--blue);
-  border-radius: 1rem;
+    transform: scale(1.1);
+}
+
+.is-not-selected:active {
+    transform: scale(1);
 }
