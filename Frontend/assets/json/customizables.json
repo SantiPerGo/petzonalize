@@ -9,10 +9,10 @@
             "imgUrl": "/assets/img/products/customizable/customizable-head-mariachi.png",
             "stock": 30,
             "cssProperties": {
-                "dog-top": "17%",
-                "dog-right": "10%",
-                "cat-top": "27%",
-                "cat-right": "5%"
+                "dogTop": "17%",
+                "dogRight": "10%",
+                "catTop": "27%",
+                "catRight": "5%"
             }
         },
         {
@@ -24,10 +24,10 @@
             "imgUrl": "/assets/img/products/customizable/customizable-head-cold-red.png",
             "stock": 33,
             "cssProperties": {
-                "dog-top": "15%",
-                "dog-right": "15%",
-                "cat-top": "20%",
-                "cat-right": "5%"
+                "dogTop": "15%",
+                "dogRight": "15%",
+                "catTop": "20%",
+                "catRight": "5%"
             }
         },
         {
@@ -39,10 +39,10 @@
             "imgUrl": "/assets/img/products/customizable/customizable-body-shark-jacket.png",
             "stock": 26,
             "cssProperties": {
-                "dog-top": "25%",
-                "dog-right": "25%",
-                "cat-top": "25%",
-                "cat-right": "18%"
+                "dogTop": "25%",
+                "dogRight": "25%",
+                "catTop": "25%",
+                "catRight": "18%"
             }
         },
         {
@@ -54,10 +54,10 @@
             "imgUrl": "/assets/img/products/customizable/customizable-body-rider.png",
             "stock": 27,
             "cssProperties": {
-                "dog-top": "15%",
-                "dog-right": "30%",
-                "cat-top": "15%",
-                "cat-right": "25%"
+                "dogTop": "15%",
+                "dogRight": "30%",
+                "catTop": "15%",
+                "catRight": "25%"
             }
         },
         {
@@ -69,10 +69,10 @@
             "imgUrl": "/assets/img/products/customizable/customizable-body-cape.png",
             "stock": 39,
             "cssProperties": {
-                "dog-top": "20%",
-                "dog-right": "30%",
-                "cat-top": "25%",
-                "cat-right": "27%"
+                "dogTop": "20%",
+                "dogRight": "30%",
+                "catTop": "25%",
+                "catRight": "27%"
             }
         },
         {
@@ -84,10 +84,10 @@
             "imgUrl": "/assets/img/products/customizable/customizable-body-turtle-shell.png",
             "stock": 30,
             "cssProperties": {
-                "dog-top": "25%",
-                "dog-right": "30%",
-                "cat-top": "30%",
-                "cat-right": "30%"
+                "dogTop": "25%",
+                "dogRight": "30%",
+                "catTop": "30%",
+                "catRight": "30%"
             }
         },
         {

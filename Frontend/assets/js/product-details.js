@@ -486,8 +486,8 @@ const reloadCustomeSizes = () => {
     head = head.id.replace("custome-head-", "");
     const customeHead = searchCustomeInProducts(head);
 
-    let top = customeHead.cssProperties[`${product.type}-top`];
-    let right = customeHead.cssProperties[`${product.type}-right`];
+    let top = customeHead.cssProperties[`${product.type}Top`];
+    let right = customeHead.cssProperties[`${product.type}Right`];
   
     if ($(window).width() < 768) {
       top = parseInt(top.replace("%", "")) + topHeadDifference;
@@ -505,8 +505,8 @@ const reloadCustomeSizes = () => {
     body = body.id.replace("custome-body-", "");
     const customeBody = searchCustomeInProducts(body);
 
-    let top = customeBody.cssProperties[`${product.type}-top`];
-    let right = customeBody.cssProperties[`${product.type}-right`];
+    let top = customeBody.cssProperties[`${product.type}Top`];
+    let right = customeBody.cssProperties[`${product.type}Right`];
 
     if ($(window).width() < 768) {
       top = parseInt(top.replace("%", "")) + topBodyDifference;
