@@ -1,11 +1,15 @@
 package org.petzonalize.backend.entity;
 
+import java.util.Date;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,29 +19,19 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="products")
-public class Product {
+@Entity(name="orders_has_products")
+public class OrderHasProduct {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private String name;
-
-    private String description;
-
-    private String category;
-
-    private boolean customizable;
-
-    private double price;
-
-    private String imgUrl;
-
-    private int stock;
-
-    private String type;
+    
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "id")
-    private ProductProperties properties;
+    private Product product;
+    
+    private int amount;
 }
