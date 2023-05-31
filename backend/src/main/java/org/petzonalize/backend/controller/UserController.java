@@ -32,13 +32,13 @@ public class UserController {
     	return userService.createUser(user);
 	}
     
-    @DeleteMapping(value = "{email}", produces = "application/json")
-    public ResponseEntity<String> deleteUser(@PathVariable final String email) {
-        return userService.deleteUser(email);
+    @DeleteMapping(value = "{id}", produces = "application/json")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        return userService.deleteUser(id);
     }
     
     @PutMapping(produces = "application/json")
-    public ResponseEntity<User> updateUser(@RequestBody final User user){
+    public ResponseEntity<User> updateUser(@RequestBody User user){
         return userService.updateUser(user);
     }
 }

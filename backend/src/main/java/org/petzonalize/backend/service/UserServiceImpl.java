@@ -38,15 +38,14 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public ResponseEntity<String> deleteUser(String email) {
-		System.out.println(email);
-		userRepository.deleteByEmail(email);
+	public ResponseEntity<String> deleteUser(Long id){
+        userRepository.deleteById(id);
         return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<User> updateUser(User user) {
-		Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
+        Optional<User> optionalUser = userRepository.findById(user.getId());
 		
 		if(optionalUser.isPresent()) {
             user.setId(optionalUser.get().getId());
