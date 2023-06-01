@@ -21,7 +21,7 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 	
-	@Value("classpath:data/users.json")
+	@Value("classpath:static/data/users.json")
 	Resource usersJsonFile;
 
 	@Bean

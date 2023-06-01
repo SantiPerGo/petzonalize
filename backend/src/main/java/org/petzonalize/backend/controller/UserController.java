@@ -22,23 +22,34 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-    @GetMapping(produces = "application/json")
+    @GetMapping
     public ResponseEntity<List<User>> getUsers() {
     	return userService.getUsers();
     }
 	
-    @PostMapping(produces = "application/json")
+    @PostMapping
 	public ResponseEntity<User> createUser(@RequestBody final User user) {
     	return userService.createUser(user);
 	}
     
-    @DeleteMapping(value = "{id}", produces = "application/json")
+    @DeleteMapping(value = "{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         return userService.deleteUser(id);
     }
     
-    @PutMapping(produces = "application/json")
+    @PutMapping
     public ResponseEntity<User> updateUser(@RequestBody User user){
         return userService.updateUser(user);
     }
+    
+//    @GetMapping("{id}") //localhost:8080/api/customers/2
+//	public ResponseEntity<?> getCustomerById(@PathVariable("id") long idCustomer) {
+//		try {
+//			return new ResponseEntity<CustomerDto>(
+//					customerService.getCustomerById(idCustomer), 
+//					HttpStatus.OK);													
+//		} catch (IllegalStateException e) {
+//			return new ResponseEntity<String>(e.getMessage() , HttpStatus.NOT_FOUND );
+//		}
+//	}
 }

@@ -19,12 +19,22 @@ public class ProductProperties {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     private String color;
-
+    
     private String size;
-
-    private String shape;
-
-    private String petphone;
+    
+	private String material;
+	
+	private String petname;
+	
+	private String pattern;
+	
+	private String petphone;
+	
+	private String shape;
+	
+	private String body;
+	
+	private String head;
 }
