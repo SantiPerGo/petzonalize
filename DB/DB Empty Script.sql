@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `petzonalize`.`customizables` (
   `type` VARCHAR(20) NOT NULL,
   `price` DECIMAL(10,2) NOT NULL,
   `imgUrl` VARCHAR(150) NOT NULL,
-  `stock` INT NOT NULL,
+  `stock` INT NULL,
   `css_property_id` INT NULL,
   PRIMARY KEY (`customizable_id`),
   INDEX `fk_css_property_idx` (`css_property_id` ASC) VISIBLE,

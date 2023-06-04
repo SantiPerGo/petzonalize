@@ -1,8 +1,4 @@
-USE petzonalize;
-
-SELECT * FROM petzonalize.css_properties;
-
--- customizables 
+-- css properties of customizables 
 -- ID 1
 INSERT INTO css_properties (`dogTop`, `dogRight`, `catTop`, `catRight`)
 	VALUES ('17%', '10%', '27%', '5%' );
