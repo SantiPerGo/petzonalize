@@ -25,27 +25,27 @@ public class User {
 
 	@NotNull
 	@Size(max = 50)
-	@NotBlank(message = "Name is obligatory")
+	@NotBlank(message = "User name string is obligatory")
     private String name;
 
 	@Email
 	@NotNull
 	@Size(max = 50)
-	@NotBlank(message = "Email is obligatory")
+	@NotBlank(message = "User email string is obligatory")
     private String email;
 
 	@NotNull
 	@Size(min = 10, max = 10)
-	@NotBlank(message = "Phone is obligatory")
+	@NotBlank(message = "User phone string is obligatory")
     private String phone;
 
 	@NotNull
 	@Size(min = 8, max = 20)
-	@NotBlank(message = "Password is obligatory")
+	@NotBlank(message = "User password string is obligatory")
     private String password;
 
 	@NotNull
 	@Size(max = 20)
-	@NotBlank(message = "Privileges is obligatory")
+	@NotBlank(message = "User privileges string is obligatory")
     private String privileges;
 }

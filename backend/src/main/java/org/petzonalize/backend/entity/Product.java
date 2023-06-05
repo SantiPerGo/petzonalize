@@ -22,7 +22,7 @@ public class Product {
 
 	@NotNull
 	@Size(max = 200)
-	@NotBlank(message = "Name is obligatory")
+	@NotBlank(message = "Product name string is obligatory")
     private String name;
 
 	@Size(max = 1000)
@@ -30,17 +30,17 @@ public class Product {
 
 	@NotNull
 	@Size(max = 20)
-	@NotBlank(message = "Category is obligatory")
+	@NotBlank(message = "Product category string is obligatory")
     private String category;
 
-	@NotNull(message = "Customizable is obligatory")
+	@NotNull(message = "Product customizable boolean is obligatory")
     private boolean customizable;
 
     private double price;
 
 	@NotNull
 	@Size(max = 150)
-	@NotBlank(message = "Image url is obligatory")
+	@NotBlank(message = "Product image url string is obligatory")
     private String imgUrl;
 
     private int stock;

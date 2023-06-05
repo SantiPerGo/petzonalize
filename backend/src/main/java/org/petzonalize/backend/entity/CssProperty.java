@@ -20,22 +20,22 @@ public class CssProperty {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-	@NotNull(message = "Dog top is obligatory")
+	@NotNull(message = "Css property dog top string is obligatory")
 	@Size(min = 2, max = 10)
 	@Column(name = "dog_top")
     private String dogTop;
 
-	@NotNull(message = "Dog right is obligatory")
+	@NotNull(message = "Css property dog right string is obligatory")
 	@Size(min = 2, max = 10)
 	@Column(name = "dog_right")
     private String dogRight;
 
-	@NotNull(message = "Cat top is obligatory")
+	@NotNull(message = "Css property cat top string is obligatory")
 	@Size(min = 2, max = 10)
 	@Column(name = "cat_top")
     private String catTop;
 
-	@NotNull(message = "Cat right is obligatory")
+	@NotNull(message = "Css property cat right string is obligatory")
 	@Size(min = 2, max = 10)
 	@Column(name = "cat_right")
     private String catRight;

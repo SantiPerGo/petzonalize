@@ -22,22 +22,22 @@ public class ProductSize {
 	private Long id;
 
 	@NotNull
-	@NotBlank(message = "Category is obligatory")
+	@NotBlank(message = "Size category string is obligatory")
 	@Size(max = 20)
     private String category;
 
 	@NotNull
-	@NotBlank(message = "Small is obligatory")
+	@NotBlank(message = "Size small string is obligatory")
 	@Size(max = 100)
     private String small;
 
 	@NotNull
-	@NotBlank(message = "Medium is obligatory")
+	@NotBlank(message = "Size medium string is obligatory")
 	@Size(max = 100)
     private String medium;
 
 	@NotNull
-	@NotBlank(message = "Big is obligatory")
+	@NotBlank(message = "Size big string is obligatory")
 	@Size(max = 100)
     private String big;
 }

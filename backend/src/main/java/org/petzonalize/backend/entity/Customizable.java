@@ -24,25 +24,25 @@ public class Customizable {
 
 	@NotNull
 	@Size(max = 200)
-	@NotBlank(message = "Name is obligatory")
+	@NotBlank(message = "Customizable name string is obligatory")
     private String name;
 
 	@NotNull
 	@Size(max = 20)
-	@NotBlank(message = "Category is obligatory")
+	@NotBlank(message = "Customizable category string is obligatory")
     private String category;
 
 	@NotNull
 	@Size(max = 20)
-	@NotBlank(message = "Type is obligatory")
+	@NotBlank(message = "Customizable type string is obligatory")
     private String type;
 
-	@NotNull(message = "Price is obligatory")
+	@NotNull(message = "Customizable price double is obligatory")
     private double price;
 
 	@NotNull
 	@Size(max = 150)
-	@NotBlank(message = "Image url is obligatory")
+	@NotBlank(message = "Customizable image url string is obligatory")
     private String imgUrl;
 
     private int stock;
