@@ -1,0 +1,22 @@
+{
+	"sizes": [
+        {
+            "category": "bowl",
+            "small": "Pequeño - 250 ml",
+            "medium": "Mediano - 500 ml",
+            "big": "Grande - 1000 ml"
+        },
+        {
+            "category": "nameplate",
+            "small": "Pequeña - 35 mm x 18 mm",
+            "medium": "Mediana - 38 mm x 25 mm",
+            "big": "Grande - 50 mm x 32 mm"
+        },
+        {
+            "category": "collar",
+            "small": "Pequeño - 25 cm a 38 cm - 1.5cm de ancho",
+            "medium": "Mediano - 32 cm a 48 cm - 2 cm de ancho",
+            "big": "Grande - 39 cm a 59 cm - 2.5 cm de ancho"
+        }
+    ]
+}

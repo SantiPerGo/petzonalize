@@ -1,5 +1,7 @@
 package org.petzonalize.backend.service;
 
-public interface ProductService {
+import org.springframework.http.ResponseEntity;
 
+public interface ProductService {
+    ResponseEntity<?> getProducts();
 }
