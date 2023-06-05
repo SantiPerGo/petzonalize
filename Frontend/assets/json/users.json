@@ -1,85 +1,82 @@
-{
-    "users":[
-        {
-            "id": 1,
-            "name": "Juan Fernando Reyes Sánchez",
-            "email": "juanreyssan@gmail.com",
-            "phone":"525519673129" ,
-            "password": "password",
-            "privileges": "admin"
-        },
-        {
-            "id": 2,
-            "name": "Amaya Hernández Barrera",
-            "email": "mayitabar98@gmail.com",
-            "phone":"525517909516" ,
-            "password": "guestguest",
-            "privileges": "client"
-        },
-        {
-            "id": 3,
-            "name": "María Guadalupe Castellanos Córdoba",
-            "email": "lupita_osito32@gmail.com",
-            "phone":"525580528301" ,
-            "password": "qwertyuiop",
-            "privileges": "admin"
-        },
-        {
-            "id": 4,
-            "name": "Darío González Pichardo",
-            "email": "darioastronautagp@gmail.com",
-            "phone":"525527839796",
-            "password": "col12345",
-            "privileges": "client"
-        },
-        {
-            "id": 5,
-            "name": "Manuel Rodríguez González",
-            "email": "manu93rzgz@gmail.com",
-            "phone":"525518090880" ,
-            "password": "megustaelarroz18",
-            "privileges": "admin"
-        },
-        {
-            "id": 6,
-            "name": "Alexis Peralta Muñoz",
-            "email": "alpemu_electro22@gmail.com",
-            "phone":"525542481533",
-            "password": "alexisperalta22",
-            "privileges": "client"
-        },
-        {
-            "id": 7,
-            "name": "Cristina Espinoza Leyva",
-            "email": "kristyespinoza921@gmail.com",
-            "phone":"525573406189",
-            "password": "footballkristy92",
-            "privileges": "admin"
-        },
-        {
-            "id": 8,
-            "name": "Isidro Juárez Velázquez",
-            "email": "juarezsd29473@gmail.com",
-            "phone":"525569771680",
-            "password": "dragonisidro123",
-            "privileges": "client"
-        },
-        {
-            "id": 9,
-            "name": "Juana Sánchez Armenta",
-            "email": "jusanarmenti21@gmail.com",
-            "phone":"525569753092",
-            "password": "princessjuanita77",
-            "privileges": "admin"
-        },
-        {
-            "id": 10,
-            "name": "Sandra Castillo Pérez",
-            "email": "sandraexploradora21@gmail.com",
-            "phone":"525546483824",
-            "password": "passw0rdstarwars21",
-            "privileges": "client"
-        }
-
-    ]
-}
+[
+    {
+        "id": 1,
+        "name": "Juan Fernando Reyes Sánchez",
+        "email": "juanreyssan@gmail.com",
+        "phone":"525519673129" ,
+        "password": "password",
+        "privileges": "admin"
+    },
+    {
+        "id": 2,
+        "name": "Amaya Hernández Barrera",
+        "email": "mayitabar98@gmail.com",
+        "phone":"525517909516" ,
+        "password": "guestguest",
+        "privileges": "client"
+    },
+    {
+        "id": 3,
+        "name": "María Guadalupe Castellanos Córdoba",
+        "email": "lupita_osito32@gmail.com",
+        "phone":"525580528301" ,
+        "password": "qwertyuiop",
+        "privileges": "admin"
+    },
+    {
+        "id": 4,
+        "name": "Darío González Pichardo",
+        "email": "darioastronautagp@gmail.com",
+        "phone":"525527839796",
+        "password": "col12345",
+        "privileges": "client"
+    },
+    {
+        "id": 5,
+        "name": "Manuel Rodríguez González",
+        "email": "manu93rzgz@gmail.com",
+        "phone":"525518090880" ,
+        "password": "megustaelarroz18",
+        "privileges": "admin"
+    },
+    {
+        "id": 6,
+        "name": "Alexis Peralta Muñoz",
+        "email": "alpemu_electro22@gmail.com",
+        "phone":"525542481533",
+        "password": "alexisperalta22",
+        "privileges": "client"
+    },
+    {
+        "id": 7,
+        "name": "Cristina Espinoza Leyva",
+        "email": "kristyespinoza921@gmail.com",
+        "phone":"525573406189",
+        "password": "footballkristy92",
+        "privileges": "admin"
+    },
+    {
+        "id": 8,
+        "name": "Isidro Juárez Velázquez",
+        "email": "juarezsd29473@gmail.com",
+        "phone":"525569771680",
+        "password": "dragonisidro123",
+        "privileges": "client"
+    },
+    {
+        "id": 9,
+        "name": "Juana Sánchez Armenta",
+        "email": "jusanarmenti21@gmail.com",
+        "phone":"525569753092",
+        "password": "princessjuanita77",
+        "privileges": "admin"
+    },
+    {
+        "id": 10,
+        "name": "Sandra Castillo Pérez",
+        "email": "sandraexploradora21@gmail.com",
+        "phone":"525546483824",
+        "password": "passw0rdstarwars21",
+        "privileges": "client"
+    }
+]

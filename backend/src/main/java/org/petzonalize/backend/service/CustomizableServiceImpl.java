@@ -19,7 +19,7 @@ public class CustomizableServiceImpl implements CustomizableService {
 	public ResponseEntity<?> getCustomizables() {
         List<Customizable> customizablesList = customizableRepository.findAll();
 		
-        if(customizablesList.size() > 0)
+        if(customizablesList.size() == 0)
 			return new ResponseEntity<>(
             		"There are no customizables to send as an answer", HttpStatus.NOT_FOUND);
         else

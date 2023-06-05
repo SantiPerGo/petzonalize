@@ -10,18 +10,21 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name="users")
 public class User {
 	@Id
 	@Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
 	@NotNull
 	@Size(max = 50)
@@ -35,7 +38,7 @@ public class User {
     private String email;
 
 	@NotNull
-	@Size(min = 10, max = 10)
+	@Size(min = 8, max = 15)
 	@NotBlank(message = "User phone string is obligatory")
     private String phone;
 

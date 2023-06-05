@@ -8,18 +8,21 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name="sizes")
 public class ProductSize {
 	@Id
 	@Column(name = "size_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
 	@NotNull
 	@NotBlank(message = "Size category string is obligatory")

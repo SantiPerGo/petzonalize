@@ -10,17 +10,21 @@ import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name="customizables")
 public class Customizable {
     @Id
 	@Column(name = "customizable_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
 	@NotNull
 	@Size(max = 200)
@@ -42,12 +46,14 @@ public class Customizable {
 
 	@NotNull
 	@Size(max = 150)
+	@Column(name = "img_url")
 	@NotBlank(message = "Customizable image url string is obligatory")
     private String imgUrl;
 
-    private int stock;
+	@Column(nullable = true)
+    private Integer stock;
 
     @ManyToOne
-    @JoinColumn(name = "css_property_id")
+    @JoinColumn(name = "css_property_id", nullable = true)
     private CssProperty cssProperty;
 }

@@ -1,9 +1,11 @@
 package org.petzonalize.backend.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.petzonalize.backend.entity.User;
+import org.petzonalize.backend.entity.UserNoPassword;
 import org.petzonalize.backend.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public ResponseEntity<String> deleteUser(Long id){
+	public ResponseEntity<String> deleteUser(int id){
 		Optional<User> optionalUser = userRepository.findById(id);
 		
 		if(optionalUser.isPresent())
@@ -71,10 +73,26 @@ public class UserServiceImpl implements UserService {
 	public ResponseEntity<?> getUsers() {
         List<User> usersList = userRepository.findAll();
 		
-        if(usersList.size() > 0)
+        if(usersList.size() == 0)
 			return new ResponseEntity<>(
             		"There are no users to send as an answer", HttpStatus.NOT_FOUND);
-        else
-        	return new ResponseEntity<>(usersList, HttpStatus.OK);
+        else {
+            List<UserNoPassword> usersNoPasswordList = new ArrayList<>();
+            
+            // Removing password from response
+            for (User user : usersList) {
+            	UserNoPassword userNoPassword = UserNoPassword.builder()
+            			.id(user.getId())
+                        .name(user.getName())
+                        .email(user.getEmail())
+                        .phone(user.getPhone())
+                        .privileges(user.getPrivileges())
+                        .build();
+            	
+            	usersNoPasswordList.add(userNoPassword);
+            }
+            
+        	return new ResponseEntity<>(usersNoPasswordList, HttpStatus.OK);
+        }
 	}
 }

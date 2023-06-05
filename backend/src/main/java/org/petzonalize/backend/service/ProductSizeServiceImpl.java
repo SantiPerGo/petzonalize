@@ -19,7 +19,7 @@ public class ProductSizeServiceImpl implements ProductSizeService {
 	public ResponseEntity<?> getSizes() {
         List<ProductSize> sizesList = productSizeRepository.findAll();
 		
-        if(sizesList.size() > 0)
+        if(sizesList.size() == 0)
 			return new ResponseEntity<>(
             		"There are no sizes to send as an answer", HttpStatus.NOT_FOUND);
         else
