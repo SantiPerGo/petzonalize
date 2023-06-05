@@ -14,7 +14,7 @@ public class CustomizableController {
 	private CustomizableService customizableService;
 		
     @GetMapping
-    public ResponseEntity<?> getUsers() {
+    public ResponseEntity<?> getCustomizables() {
     	return customizableService.getCustomizables();
     }
 }

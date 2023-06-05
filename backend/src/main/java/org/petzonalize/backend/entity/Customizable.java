@@ -37,8 +37,7 @@ public class Customizable {
 	@NotBlank(message = "Type is obligatory")
     private String type;
 
-	@NotNull
-	@NotBlank(message = "Price is obligatory")
+	@NotNull(message = "Price is obligatory")
     private double price;
 
 	@NotNull
@@ -50,5 +49,5 @@ public class Customizable {
 
     @ManyToOne
     @JoinColumn(name = "css_property_id")
-    private CssProperty cssProperties;
+    private CssProperty cssProperty;
 }

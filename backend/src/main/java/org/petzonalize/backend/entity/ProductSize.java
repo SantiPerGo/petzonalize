@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -22,18 +22,22 @@ public class ProductSize {
 	private Long id;
 
 	@NotNull
+	@NotBlank(message = "Category is obligatory")
 	@Size(max = 20)
     private String category;
 
 	@NotNull
+	@NotBlank(message = "Small is obligatory")
 	@Size(max = 100)
     private String small;
 
 	@NotNull
+	@NotBlank(message = "Medium is obligatory")
 	@Size(max = 100)
     private String medium;
 
 	@NotNull
+	@NotBlank(message = "Big is obligatory")
 	@Size(max = 100)
     private String big;
 }
