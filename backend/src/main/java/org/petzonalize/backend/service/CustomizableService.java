@@ -1,5 +1,7 @@
 package org.petzonalize.backend.service;
 
-public interface CustomizableService {
+import org.springframework.http.ResponseEntity;
 
+public interface CustomizableService {
+    ResponseEntity<?> getCustomizables();
 }
