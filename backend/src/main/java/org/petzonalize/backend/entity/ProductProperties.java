@@ -5,36 +5,43 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.Size;
+
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity(name="product_properties")
 public class ProductProperties {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
+	@Size(max = 50)
     private String color;
-    
+
+	@Size(max = 50)
     private String size;
-    
-	private String material;
-	
-	private String petname;
-	
+
+	@Size(max = 20)
 	private String pattern;
 	
+	@Size(max = 20)
+	private String material;
+
+	@Size(max = 100)
+	private String petname;
+
+	@Size(min = 10, max = 10)
 	private String petphone;
-	
+
+	@Size(max = 20)
 	private String shape;
-	
+
+	@Size(max = 50)
 	private String body;
-	
+
+	@Size(max = 50)
 	private String head;
 }
