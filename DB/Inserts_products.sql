@@ -69,3 +69,51 @@ INSERT INTO products (category, customizable, price, stock, type, description, i
 		"Sistema Inmunológico y Salud ósea: Este poderoso suplemento es para apoyar a gatos de 4 meses o más. Soporte Inmunológico para Gatos: Los nutrientes apoyan el sistema inmunológico y la energía, perfecto para gatos activos.\n\nExcelente Adición a la Dieta Diaria: Las vitaminas con excelente sabor mantendrán a los gatos vibrantes y alegres todos los días.\n\nFácil de Administrar: El sabor altamente apetitoso de pollo ayuda a los gatos a obtener un pelaje brillante, suave y grueso.\n\nExcelente Solución de Cuidado: PetAg ofrece productos de alta calidad para dueños y profesionales de animales." ,
 		"/assets/img/products/not customizable/cat-health-petag-supplement-gel.png",
 		"Suplemento en gel de vitaminas y minerales PetAg - Soporte inmunitario para gatos -Contiene vitamina D y Zinc");
+
+-- Customizable products
+-- Starting in id = 13
+
+INSERT INTO products (name, category, customizable, price, stock, product_property_id, imgUrl)
+	value("Collar de Nylon", "collar", true, 179.99, 67, 1,
+		"/assets/img/products/customizable/customizable-collar-nylon.png");
+        
+INSERT INTO products (name, category, customizable, price, stock, product_property_id, imgUrl)
+	value("Collar de Cuero Sintético", "collar", true, 150, 67, 2,
+		"/assets/img/products/customizable/customizable-collar-leather.png");
+        
+INSERT INTO products (name, category, customizable, price, stock, product_property_id, imgUrl)
+	value("Plato de Comida de Plástico", "bowl", true, 209.99, 136, 3,
+		"/assets/img/products/customizable/customizable-bowl-plastic.png");
+
+INSERT INTO products (name, category, customizable, price, stock, product_property_id, imgUrl)
+	value("Plato de Comida de Cerámica", "bowl", true, 259.99, 136, 4,
+		"/assets/img/products/customizable/customizable-bowl-ceramic.png");
+        
+INSERT INTO products (name, category, customizable, price, stock, product_property_id, imgUrl)
+	value("Plaquita con Forma de Pata", "nameplate", true, 299.99, 376, 5,
+		"/assets/img/products/customizable/customizable-nameplate-paw.png");
+        
+INSERT INTO products (name, category, customizable, price, stock, product_property_id, imgUrl)
+	value("Plaquita con Forma de Hueso", "nameplate", true, 255.99, 323, 6,
+		"/assets/img/products/customizable/customizable-nameplate-bone.png");
+        
+INSERT INTO products (name, category, customizable, price, stock, product_property_id, imgUrl)
+	value("Plaquita con Forma de Círculo Doble", "nameplate", true, 255, 299, 7,
+		"/assets/img/products/customizable/customizable-nameplate-circle-double.png");
+        
+INSERT INTO products (name, category, customizable, price, stock, product_property_id, imgUrl)
+	value("Plaquita con Forma de Círculo", "nameplate", true, 219, 311, 8,
+		"/assets/img/products/customizable/customizable-nameplate-circle.png");
+        
+INSERT INTO products (name, category, customizable, price, stock, product_property_id, imgUrl)
+	value("Plaquita con Forma de Estrella", "nameplate", true, 119, 288, 9,
+		"/assets/img/products/customizable/customizable-nameplate-star.png");
+        
+INSERT INTO products (name, category, customizable, type, product_property_id, imgUrl)
+	value("Traje de Michi", "pet", true, "cat", 10,
+		"/assets/img/products/customizable/customizable-pet-cat.png");
+        
+INSERT INTO products (name, category, customizable, type, product_property_id, imgUrl)
+	value("Traje de Lomito", "pet", true, "dog", 11,
+		"/assets/img/products/customizable/customizable-pet-dog.png");
+        
