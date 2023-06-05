@@ -1,5 +1,6 @@
 package org.petzonalize.backend.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,11 +15,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity(name="customizables")
 public class Customizable {
     @Id
+	@Column(name = "customizable_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -35,6 +35,6 @@ public class Customizable {
     private int stock;
 
     @ManyToOne
-    @JoinColumn(name = "cssProperties_id")
+    @JoinColumn(name = "css_property_id")
     private CssProperties cssProperties;
 }
