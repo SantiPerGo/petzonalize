@@ -39,5 +39,5 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "id")
-    private ProductProperties properties;
+    private ProductProperty properties;
 }

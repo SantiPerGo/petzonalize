@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 @Builder
 @Entity(name="product_properties")
-public class ProductProperties {
+public class ProductProperty {
     @Id
 	@Column(name = "product_property_id")
     @GeneratedValue(strategy = GenerationType.AUTO)

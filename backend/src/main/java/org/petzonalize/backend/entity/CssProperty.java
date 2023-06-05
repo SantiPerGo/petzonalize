@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 @Builder
 @Entity(name="css_properties")
-public class CssProperties {
+public class CssProperty {
     @Id
 	@Column(name = "css_property_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

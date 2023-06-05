@@ -8,10 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Builder
@@ -36,5 +34,5 @@ public class Customizable {
 
     @ManyToOne
     @JoinColumn(name = "css_property_id")
-    private CssProperties cssProperties;
+    private CssProperty cssProperties;
 }
