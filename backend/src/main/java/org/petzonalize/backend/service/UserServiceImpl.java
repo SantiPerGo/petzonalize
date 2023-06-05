@@ -18,11 +18,13 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     
 	@Override
-	public ResponseEntity<User> createUser(User user) {
+	public ResponseEntity<?> createUser(User user) {
 		Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
 		
 		if(optionalUser.isPresent())
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(
+            		"User with email '" + user.getEmail() + "' doesn't exist",
+            		HttpStatus.NOT_FOUND);
 		else {
             User newUser = User.builder()
                     .name(user.getName())
@@ -32,19 +34,28 @@ public class UserServiceImpl implements UserService {
                     .privileges("client")
                     .build();
 
-            return new ResponseEntity<>(userRepository.saveAndFlush(newUser), HttpStatus.OK);
+            return new ResponseEntity<>(
+            		userRepository.saveAndFlush(newUser), HttpStatus.CREATED);
 		}
 	}
 
 	@Transactional
 	@Override
 	public ResponseEntity<String> deleteUser(Long id){
-        userRepository.deleteById(id);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+		Optional<User> optionalUser = userRepository.findById(id);
+		
+		if(optionalUser.isPresent())
+			return new ResponseEntity<>(
+            		"User with id '" + id + "' doesn't exist", HttpStatus.NOT_FOUND);
+		else {
+	        userRepository.deleteById(id);
+	        return new ResponseEntity<>(
+	        		"User with id '" + id + "' successfully removed!", HttpStatus.OK);
+		}
 	}
 
 	@Override
-	public ResponseEntity<User> updateUser(User user) {
+	public ResponseEntity<?> updateUser(User user) {
         Optional<User> optionalUser = userRepository.findById(user.getId());
 		
 		if(optionalUser.isPresent()) {
@@ -52,11 +63,18 @@ public class UserServiceImpl implements UserService {
             user.setPrivileges(optionalUser.get().getPrivileges());
             return new ResponseEntity<>(userRepository.saveAndFlush(user), HttpStatus.OK);
 		} else 
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(
+            		"User with id '" + user.getId() + "' doesn't exist", HttpStatus.NOT_FOUND);
 	}
 
 	@Override
-	public ResponseEntity<List<User>> getUsers() {
-        return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
+	public ResponseEntity<?> getUsers() {
+        List<User> usersList = userRepository.findAll();
+		
+        if(usersList.size() > 0)
+			return new ResponseEntity<>(
+            		"There are no users to send as an answer", HttpStatus.NOT_FOUND);
+        else
+        	return new ResponseEntity<>(usersList, HttpStatus.OK);
 	}
 }

@@ -1,7 +1,5 @@
 package org.petzonalize.backend.controller;
 
-import java.util.List;
-
 import org.petzonalize.backend.entity.User;
 import org.petzonalize.backend.service.UserService;
 
@@ -23,12 +21,12 @@ public class UserController {
 	private UserService userService;
 	
     @GetMapping
-    public ResponseEntity<List<User>> getUsers() {
+    public ResponseEntity<?> getUsers() {
     	return userService.getUsers();
     }
 	
     @PostMapping
-	public ResponseEntity<User> createUser(@RequestBody final User user) {
+	public ResponseEntity<?> createUser(@RequestBody final User user) {
     	return userService.createUser(user);
 	}
     
@@ -38,18 +36,7 @@ public class UserController {
     }
     
     @PutMapping
-    public ResponseEntity<User> updateUser(@RequestBody User user){
+    public ResponseEntity<?> updateUser(@RequestBody User user){
         return userService.updateUser(user);
     }
-    
-//    @GetMapping("{id}") //localhost:8080/api/customers/2
-//	public ResponseEntity<?> getCustomerById(@PathVariable("id") long idCustomer) {
-//		try {
-//			return new ResponseEntity<CustomerDto>(
-//					customerService.getCustomerById(idCustomer), 
-//					HttpStatus.OK);													
-//		} catch (IllegalStateException e) {
-//			return new ResponseEntity<String>(e.getMessage() , HttpStatus.NOT_FOUND );
-//		}
-//	}
 }
