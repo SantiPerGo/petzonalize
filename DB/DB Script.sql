@@ -24,10 +24,10 @@ DROP TABLE IF EXISTS `css_properties`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `css_properties` (
   `css_property_id` int NOT NULL AUTO_INCREMENT,
-  `dogTop` varchar(10) NOT NULL,
-  `dogRight` varchar(10) NOT NULL,
-  `catTop` varchar(10) NOT NULL,
-  `catRight` varchar(10) NOT NULL,
+  `dog_top` varchar(10) NOT NULL,
+  `dog_right` varchar(10) NOT NULL,
+  `cat_top` varchar(10) NOT NULL,
+  `cat_right` varchar(10) NOT NULL,
   PRIMARY KEY (`css_property_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -204,4 +204,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-04 21:18:08
+-- Dump completed on 2023-06-04 22:34:22

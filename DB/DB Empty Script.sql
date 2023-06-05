@@ -75,10 +75,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `petzonalize`.`css_properties` (
   `css_property_id` INT NOT NULL AUTO_INCREMENT,
-  `dogTop` VARCHAR(10) NOT NULL,
-  `dogRight` VARCHAR(10) NOT NULL,
-  `catTop` VARCHAR(10) NOT NULL,
-  `catRight` VARCHAR(10) NOT NULL,
+  `dog_top` VARCHAR(10) NOT NULL,
+  `dog_right` VARCHAR(10) NOT NULL,
+  `cat_top` VARCHAR(10) NOT NULL,
+  `cat_right` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`css_property_id`))
 ENGINE = InnoDB;
 
