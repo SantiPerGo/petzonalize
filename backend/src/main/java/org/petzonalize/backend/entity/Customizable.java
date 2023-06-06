@@ -21,33 +21,38 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name="customizables")
 public class Customizable {
+	private final String notNull = "cannot be null or empty";
+	
     @Id
 	@Column(name = "customizable_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
 	@NotNull
-	@Size(max = 200)
-	@NotBlank(message = "Customizable name string is obligatory")
+	@Size(max = 200,
+		message = "Customizable name cannot be longer than 200 characters")
+	@NotBlank(message = "Customizable name (string)" + notNull)
     private String name;
 
 	@NotNull
-	@Size(max = 20)
-	@NotBlank(message = "Customizable category string is obligatory")
+	@Size(max = 20,
+		message = "Customizable category cannot be longer than 20 characters")
+	@NotBlank(message = "Customizable category (string)" + notNull)
     private String category;
 
 	@NotNull
-	@Size(max = 20)
-	@NotBlank(message = "Customizable type string is obligatory")
+	@Size(max = 20, message = "Customizable type cannot be longer than 20 characters")
+	@NotBlank(message = "Customizable type (string)" + notNull)
     private String type;
 
-	@NotNull(message = "Customizable price double is obligatory")
+	@NotNull(message = "Customizable price (double)" + notNull)
     private double price;
 
 	@NotNull
-	@Size(max = 150)
+	@Size(max = 150,
+		message = "Customizable image url cannot be longer than 150 characters")
 	@Column(name = "img_url")
-	@NotBlank(message = "Customizable image url string is obligatory")
+	@NotBlank(message = "Customizable image url (string)" + notNull)
     private String imgUrl;
 
 	@Column(nullable = true)

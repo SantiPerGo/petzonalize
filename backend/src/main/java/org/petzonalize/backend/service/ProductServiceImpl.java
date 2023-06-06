@@ -1,5 +1,6 @@
 package org.petzonalize.backend.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 
 @Service("productService")
 public class ProductServiceImpl implements ProductService {
@@ -38,8 +42,18 @@ public class ProductServiceImpl implements ProductService {
                     .productProperty(product.getProductProperty())
                     .build();
 
-            return new ResponseEntity<>(
-            		productRepository.saveAndFlush(newProduct), HttpStatus.CREATED);
+            try {
+                return new ResponseEntity<>(
+                		productRepository.saveAndFlush(newProduct), HttpStatus.CREATED);
+            } catch(ConstraintViolationException cve) {
+            	ArrayList<String> exceptionsList = new ArrayList<>();
+            	
+            	for(ConstraintViolation<?> violation: cve.getConstraintViolations())
+            		exceptionsList.add("error-" + violation.getPropertyPath()
+            			+ ": " + violation.getMessage());
+            	
+                return new ResponseEntity<>(exceptionsList, HttpStatus.BAD_REQUEST);
+            }
 		}
 	}
 
@@ -62,14 +76,25 @@ public class ProductServiceImpl implements ProductService {
 	public ResponseEntity<?> updateProduct(Product product) {
         Optional<Product> optionalProduct = productRepository.findById(product.getId());
 		
-		if(optionalProduct.isPresent()) {
-            product.setId(optionalProduct.get().getId());
-            return new ResponseEntity<>(productRepository.saveAndFlush(product),
-            		HttpStatus.OK);
-		} else 
+		if(!optionalProduct.isPresent())
 			return new ResponseEntity<>(
-            		"Product with id '" + product.getId() + "' doesn't exist",
-            		HttpStatus.NOT_FOUND);
+            	"Product with id '" + product.getId() + "' doesn't exist", HttpStatus.NOT_FOUND);
+		else {
+            product.setId(optionalProduct.get().getId());
+            
+			try {
+	            return new ResponseEntity<>(productRepository.saveAndFlush(product),
+	            		HttpStatus.OK);
+            } catch(ConstraintViolationException violationEx) {
+            	ArrayList<String> exceptionsList = new ArrayList<>();
+            	
+            	for(ConstraintViolation<?> violation: violationEx.getConstraintViolations())
+            		exceptionsList.add("error-" + violation.getPropertyPath()
+            			+ ": " + violation.getMessage());
+            	
+                return new ResponseEntity<>(exceptionsList, HttpStatus.BAD_REQUEST);
+            } 
+		}
 	}
 
 	@Override

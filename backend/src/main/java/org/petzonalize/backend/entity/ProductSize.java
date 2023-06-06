@@ -19,28 +19,30 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name="sizes")
 public class ProductSize {
+	private final String notNull = "(string) cannot be null or empty";
+	
 	@Id
 	@Column(name = "size_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@NotNull
-	@NotBlank(message = "Size category string is obligatory")
-	@Size(max = 20)
+	@NotBlank(message = "Size category " + notNull)
+	@Size(max = 20, message = "Product size category cannot be longer than 20 characters")
     private String category;
 
 	@NotNull
-	@NotBlank(message = "Size small string is obligatory")
-	@Size(max = 100)
+	@NotBlank(message = "Size small " + notNull)
+	@Size(max = 100, message = "Product size small cannot be longer than 100 characters")
     private String small;
 
 	@NotNull
-	@NotBlank(message = "Size medium string is obligatory")
-	@Size(max = 100)
+	@NotBlank(message = "Size medium " + notNull)
+	@Size(max = 100, message = "Product size medium cannot be longer than 100 characters")
     private String medium;
 
 	@NotNull
-	@NotBlank(message = "Size big string is obligatory")
-	@Size(max = 100)
+	@NotBlank(message = "Size big " + notNull)
+	@Size(max = 100, message = "Product size big cannot be longer than 100 characters")
     private String big;
 }

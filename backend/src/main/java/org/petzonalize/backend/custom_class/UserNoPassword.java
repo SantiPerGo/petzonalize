@@ -1,4 +1,4 @@
-package org.petzonalize.backend.custom;
+package org.petzonalize.backend.custom_class;
 
 import lombok.Builder;
 import lombok.Data;

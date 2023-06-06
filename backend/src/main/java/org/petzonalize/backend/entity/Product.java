@@ -21,41 +21,43 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name="products")
 public class Product {
+	private final String notNull = "cannot be null or empty";
+	
     @Id
 	@Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
 	@NotNull
-	@Size(max = 200)
-	@NotBlank(message = "Product name string is obligatory")
+	@Size(max = 200, message = "Product name cannot be longer than 200 characters")
+	@NotBlank(message = "Product name (string)" + notNull)
     private String name;
 
-	@Size(max = 1000)
+	@Size(max = 1000, message = "Product description cannot be longer than 1000 characters")
 	@Column(nullable = true)
     private String description;
 
 	@NotNull
-	@Size(max = 20)
-	@NotBlank(message = "Product category string is obligatory")
+	@Size(max = 20, message = "Product category cannot be longer than 20 characters")
+	@NotBlank(message = "Product category (string)" + notNull)
     private String category;
 
-	@NotNull(message = "Product customizable boolean is obligatory")
+	@NotNull(message = "Product customizable (boolean)" + notNull)
     private boolean customizable;
 	
 	@Column(nullable = true)
     private Double price;
 
 	@NotNull
-	@Size(max = 150)
+	@Size(max = 150, message = "Product image url cannot be longer than 150 characters")
 	@Column(name = "img_url")
-	@NotBlank(message = "Product image url string is obligatory")
+	@NotBlank(message = "Product image url (string)" + notNull)
     private String imgUrl;
 
 	@Column(nullable = true)
     private Integer stock;
 
-	@Size(max = 20)
+	@Size(max = 20, message = "Product type cannot be longer than 20 characters")
 	@Column(nullable = true)
     private String type;
 

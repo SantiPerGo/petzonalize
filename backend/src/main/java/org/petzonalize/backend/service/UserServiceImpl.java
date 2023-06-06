@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.petzonalize.backend.custom.UserNoPassword;
+import org.petzonalize.backend.custom_class.UserNoPassword;
 import org.petzonalize.backend.entity.User;
 import org.petzonalize.backend.repository.UserRepository;
 
@@ -13,6 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -36,8 +39,18 @@ public class UserServiceImpl implements UserService {
                     .privileges("client")
                     .build();
 
-            return new ResponseEntity<>(
-            		userRepository.saveAndFlush(newUser), HttpStatus.CREATED);
+            try {
+            	return new ResponseEntity<>(
+                		userRepository.saveAndFlush(newUser), HttpStatus.CREATED);
+            } catch(ConstraintViolationException cve) {
+            	ArrayList<String> exceptionsList = new ArrayList<>();
+            	
+            	for(ConstraintViolation<?> violation: cve.getConstraintViolations())
+            		exceptionsList.add("error-" + violation.getPropertyPath()
+            			+ ": " + violation.getMessage());
+            	
+                return new ResponseEntity<>(exceptionsList, HttpStatus.BAD_REQUEST);
+            }
 		}
 	}
 
@@ -60,14 +73,25 @@ public class UserServiceImpl implements UserService {
 	public ResponseEntity<?> updateUser(User user) {
         Optional<User> optionalUser = userRepository.findById(user.getId());
 		
-		if(optionalUser.isPresent()) {
+		if(!optionalUser.isPresent())
+			return new ResponseEntity<>(
+            	"User with id '" + user.getId() + "' doesn't exist", HttpStatus.NOT_FOUND);
+		else {
             user.setId(optionalUser.get().getId());
             user.setPrivileges(optionalUser.get().getPrivileges());
-            return new ResponseEntity<>(userRepository.saveAndFlush(user), HttpStatus.OK);
-		} else 
-			return new ResponseEntity<>(
-            		"User with id '" + user.getId() + "' doesn't exist",
-            		HttpStatus.NOT_FOUND);
+            
+            try {
+                return new ResponseEntity<>(userRepository.saveAndFlush(user), HttpStatus.OK);
+            } catch(ConstraintViolationException violationEx) {
+            	ArrayList<String> exceptionsList = new ArrayList<>();
+            	
+            	for(ConstraintViolation<?> violation: violationEx.getConstraintViolations())
+            		exceptionsList.add("error-" + violation.getPropertyPath()
+            			+ ": " + violation.getMessage());
+            	
+                return new ResponseEntity<>(exceptionsList, HttpStatus.BAD_REQUEST);
+            } 
+		}
 	}
 
 	@Override

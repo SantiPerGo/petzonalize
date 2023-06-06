@@ -21,34 +21,38 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name="users")
 public class User {
+	private final String notNull = "(string) cannot be null or empty";
+	
 	@Id
 	@Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@NotNull
-	@Size(max = 50)
-	@NotBlank(message = "User name string is obligatory")
+	@Size(max = 50, message = "Username cannot be longer than 50 characters")
+	@NotBlank(message = "Username " + notNull)
     private String name;
 
 	@Email
 	@NotNull
-	@Size(max = 50)
-	@NotBlank(message = "User email string is obligatory")
+	@Size(max = 50, message = "User email cannot be longer than 50 characters")
+	@NotBlank(message = "User email" + notNull)
     private String email;
 
 	@NotNull
-	@Size(min = 8, max = 15)
-	@NotBlank(message = "User phone string is obligatory")
+	@Size(min = 8, max = 15,
+		message = "User phone cannot be less than 8 or longer than 20 characters")
+	@NotBlank(message = "User phone" + notNull)
     private String phone;
 
 	@NotNull
-	@Size(min = 8, max = 20)
-	@NotBlank(message = "User password string is obligatory")
+	@Size(min = 8, max = 20,
+		message = "User password cannot be less than 8 or longer than 20 characters")
+	@NotBlank(message = "User password" + notNull)
     private String password;
 
 	@NotNull
-	@Size(max = 20)
-	@NotBlank(message = "User privileges string is obligatory")
+	@Size(max = 20, message = "User privileges cannot be longer than 20 characters")
+	@NotBlank(message = "User privileges" + notNull)
     private String privileges;
 }
