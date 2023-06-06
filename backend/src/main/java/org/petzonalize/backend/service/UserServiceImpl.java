@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.petzonalize.backend.custom.UserNoPassword;
 import org.petzonalize.backend.entity.User;
-import org.petzonalize.backend.entity.UserNoPassword;
 import org.petzonalize.backend.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
 		
 		if(optionalUser.isPresent())
             return new ResponseEntity<>(
-            		"User with email '" + user.getEmail() + "' doesn't exist",
-            		HttpStatus.NOT_FOUND);
+            		"User with email '" + user.getEmail() + "' already exists",
+            		HttpStatus.BAD_REQUEST);
 		else {
             User newUser = User.builder()
                     .name(user.getName())
@@ -66,7 +66,8 @@ public class UserServiceImpl implements UserService {
             return new ResponseEntity<>(userRepository.saveAndFlush(user), HttpStatus.OK);
 		} else 
 			return new ResponseEntity<>(
-            		"User with id '" + user.getId() + "' doesn't exist", HttpStatus.NOT_FOUND);
+            		"User with id '" + user.getId() + "' doesn't exist",
+            		HttpStatus.NOT_FOUND);
 	}
 
 	@Override

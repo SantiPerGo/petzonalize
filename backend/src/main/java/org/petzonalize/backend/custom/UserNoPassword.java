@@ -1,4 +1,4 @@
-package org.petzonalize.backend.entity;
+package org.petzonalize.backend.custom;
 
 import lombok.Builder;
 import lombok.Data;
