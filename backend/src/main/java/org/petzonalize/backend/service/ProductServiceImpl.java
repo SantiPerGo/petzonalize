@@ -39,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
                     .imgUrl(product.getImgUrl())
                     .stock(product.getStock())
                     .type(product.getType())
-                    .productProperty(product.getProductProperty())
+                    .properties(product.getProperties())
                     .build();
 
             try {
