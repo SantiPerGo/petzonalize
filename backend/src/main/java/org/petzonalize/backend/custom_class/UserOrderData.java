@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 @Builder
 public class UserOrderData {
-	private final String notNull = "(string) cannot be null or empty";
+	private static final String notNull = "(string) cannot be null or empty";
 	
 	@NotNull
 	@Size(max = 50, message = "Username cannot be longer than 50 characters")

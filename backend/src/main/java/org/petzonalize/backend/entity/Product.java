@@ -7,7 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -22,8 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name="products")
 public class Product {
-	@Transient
-	private final String notNull = "cannot be null or empty";
+	private static final String notNull = "cannot be null or empty";
 	
     @Id
 	@Column(name = "product_id")
@@ -32,7 +30,7 @@ public class Product {
 
 	@NotNull
 	@Size(max = 200, message = "Product name cannot be longer than 200 characters")
-	@NotBlank(message = "Product name (string)" + notNull)
+	@NotBlank(message = "Product name (string) " + notNull)
     private String name;
 
 	@Size(max = 1000, message = "Product description cannot be longer than 1000 characters")
@@ -41,10 +39,10 @@ public class Product {
 
 	@NotNull
 	@Size(max = 20, message = "Product category cannot be longer than 20 characters")
-	@NotBlank(message = "Product category (string)" + notNull)
+	@NotBlank(message = "Product category (string) " + notNull)
     private String category;
 
-	@NotNull(message = "Product customizable (boolean)" + notNull)
+	@NotNull(message = "Product customizable (boolean) " + notNull)
     private boolean customizable;
 	
 	@Column(nullable = true)
@@ -53,7 +51,7 @@ public class Product {
 	@NotNull
 	@Size(max = 150, message = "Product image url cannot be longer than 150 characters")
 	@Column(name = "img_url")
-	@NotBlank(message = "Product image url (string)" + notNull)
+	@NotBlank(message = "Product image url (string) " + notNull)
     private String imgUrl;
 
 	@Column(nullable = true)

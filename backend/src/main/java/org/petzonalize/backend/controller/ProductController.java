@@ -1,5 +1,6 @@
 package org.petzonalize.backend.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.petzonalize.backend.entity.Product;
@@ -20,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+
 @RestController
 @RequestMapping("/products")
 @CrossOrigin(origins="*")
@@ -28,9 +32,20 @@ public class ProductController {
 	private ProductService productService;
 	
 	@ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<String> handleNotReadableException(HttpMessageNotReadableException ex) {
+    public ResponseEntity<String> handleNotReadableEx(HttpMessageNotReadableException ex) {
         return new ResponseEntity<>("Error: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
+	
+	@ExceptionHandler(ConstraintViolationException.class)
+	public ResponseEntity<ArrayList<String>> handleViolationEx(ConstraintViolationException ex)  {
+		ArrayList<String> exceptionsList = new ArrayList<>();
+    	
+    	for(ConstraintViolation<?> violation: ex.getConstraintViolations())
+    		exceptionsList.add("error-" + violation.getPropertyPath()
+    			+ ": " + violation.getMessage());
+    	
+        return new ResponseEntity<>(exceptionsList, HttpStatus.BAD_REQUEST);
+	}
 		
     @GetMapping
     public ResponseEntity<?> getProducts() {
@@ -52,8 +67,8 @@ public class ProductController {
         return productService.updateProduct(product);
     }
 	
-    @PutMapping("buy")
-	public ResponseEntity<?> buyProducts(@RequestBody final List<Product> products) {
+    @PutMapping("/buy")
+	public ResponseEntity<?> buyProducts(@RequestBody List<Product> products) {
     	return productService.buyProducts(products);
 	}
 }

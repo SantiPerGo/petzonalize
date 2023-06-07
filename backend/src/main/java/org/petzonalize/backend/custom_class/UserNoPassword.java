@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 @Builder
 public class UserNoPassword {
-	private final String notNull = "(string) cannot be null or empty";
+	private static final String notNull = "(string) cannot be null or empty";
 	
 	@Id
 	@Column(name = "user_id")

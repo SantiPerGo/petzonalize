@@ -1,6 +1,5 @@
 package org.petzonalize.backend.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,9 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
 
 @Service("productService")
 public class ProductServiceImpl implements ProductService {
@@ -42,22 +38,12 @@ public class ProductServiceImpl implements ProductService {
                     .properties(product.getProperties())
                     .build();
 
-            try {
-                return new ResponseEntity<>(
-                		productRepository.saveAndFlush(newProduct), HttpStatus.CREATED);
-            } catch(ConstraintViolationException cve) {
-            	ArrayList<String> exceptionsList = new ArrayList<>();
-            	
-            	for(ConstraintViolation<?> violation: cve.getConstraintViolations())
-            		exceptionsList.add("error-" + violation.getPropertyPath()
-            			+ ": " + violation.getMessage());
-            	
-                return new ResponseEntity<>(exceptionsList, HttpStatus.BAD_REQUEST);
-            }
+            return new ResponseEntity<>(
+                productRepository.saveAndFlush(newProduct), HttpStatus.CREATED);
+
 		}
 	}
 
-	@Transactional
 	@Override
 	public ResponseEntity<String> deleteProduct(int id){
 		Optional<Product> optionalProduct = productRepository.findById(id);
@@ -81,19 +67,7 @@ public class ProductServiceImpl implements ProductService {
             	"Product with id '" + product.getId() + "' doesn't exist", HttpStatus.NOT_FOUND);
 		else {
             product.setId(optionalProduct.get().getId());
-            
-			try {
-	            return new ResponseEntity<>(productRepository.saveAndFlush(product),
-	            		HttpStatus.OK);
-            } catch(ConstraintViolationException violationEx) {
-            	ArrayList<String> exceptionsList = new ArrayList<>();
-            	
-            	for(ConstraintViolation<?> violation: violationEx.getConstraintViolations())
-            		exceptionsList.add("error-" + violation.getPropertyPath()
-            			+ ": " + violation.getMessage());
-            	
-                return new ResponseEntity<>(exceptionsList, HttpStatus.BAD_REQUEST);
-            } 
+            return new ResponseEntity<>(productRepository.saveAndFlush(product), HttpStatus.OK);
 		}
 	}
 
@@ -110,7 +84,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Transactional
 	@Override
-	public ResponseEntity<?> buyProducts(List<Product> products) {
+	public ResponseEntity<?> buyProducts(List<Product> products) {	    	
 		for(Product product : products) {
 	        Optional<Product> optionalProduct = productRepository.findById(product.getId());
 	        
@@ -119,18 +93,7 @@ public class ProductServiceImpl implements ProductService {
 						product.getId() + "' doesn't exist", HttpStatus.NOT_FOUND);
 			else {
 	            product.setId(optionalProduct.get().getId());
-	            
-				try {
-					productRepository.saveAndFlush(product);
-	            } catch(ConstraintViolationException violationEx) {
-	            	ArrayList<String> exceptionsList = new ArrayList<>();
-	            	
-	            	for(ConstraintViolation<?> violation: violationEx.getConstraintViolations())
-	            		exceptionsList.add("error-" + violation.getPropertyPath()
-	            			+ ": " + violation.getMessage());
-	            	
-	                return new ResponseEntity<>(exceptionsList, HttpStatus.BAD_REQUEST);
-	            } 
+				productRepository.saveAndFlush(product);
 			}
 		}
 		

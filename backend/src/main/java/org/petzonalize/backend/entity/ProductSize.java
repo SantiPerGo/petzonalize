@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -20,8 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name="sizes")
 public class ProductSize {
-	@Transient
-	private final String notNull = "(string) cannot be null or empty";
+	private static final String notNull = "(string) cannot be null or empty";
 	
 	@Id
 	@Column(name = "size_id")
