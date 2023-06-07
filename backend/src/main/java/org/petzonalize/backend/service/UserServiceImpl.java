@@ -1,5 +1,7 @@
 package org.petzonalize.backend.service;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,10 +21,16 @@ import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+
 @Service("userService")
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TemplateEngine templateEngine;
     
     private final EmailService emailService;
 
@@ -138,14 +146,19 @@ public class UserServiceImpl implements UserService {
 		else {
 			Optional<User> optionalUser = userRepository.findByEmail(email);
 			
-			if(optionalUser.isPresent())
+			if(!optionalUser.isPresent())
 				return new ResponseEntity<>(
 	            		"User with id '" + email + "' doesn't exist", HttpStatus.NOT_FOUND);
 			else {
-		        String subject = "Petzonalize - Account Password Recuperation";
-		        String content = "<h1>Hello, This is an email using Elastic Email!</h1>";
+		        String subject = "Petzonalize - Recuperación de Contraseña";
+		        
+		        // Loading HTML with Thymeleaf
+		        Context context = new Context();
+                context.setVariable("email", email);
+                context.setVariable("password", optionalUser.get().getPassword());
+                String htmlContent = templateEngine.process("password_recovery", context);
 
-				emailService.sendEmail(email, subject, content);
+				emailService.sendEmail(email, subject, htmlContent);
 		        return new ResponseEntity<>("User password sent to email!", HttpStatus.OK);
 			}
 		}

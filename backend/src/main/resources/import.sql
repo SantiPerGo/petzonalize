@@ -1,4 +1,5 @@
 -- users
+INSERT INTO users (`name`, `email`, `phone`, `password`, `privileges`) VALUES ("Santi PerGo", "tuprofedog@gmail.com", "5530827907" , "TuProfeDog", "admin");
 INSERT INTO users (`name`, `email`, `phone`, `password`, `privileges`) VALUES ("Juan Fernando Reyes Sánchez", "juanreyssan@gmail.com", "525519673129" , "password", "admin");
 INSERT INTO users (`name`, `email`, `phone`, `password`, `privileges`) VALUES ("Amaya Hernández Barrera", "mayitabar98@gmail.com", "525517909516" , "guestguest", "client");
 INSERT INTO users (`name`, `email`, `phone`, `password`, `privileges`) VALUES ("María Guadalupe Castellanos Córdoba", "lupita_osito32@gmail.com", "525580528301" , "qwertyuiop", "admin");

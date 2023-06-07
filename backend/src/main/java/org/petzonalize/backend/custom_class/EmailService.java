@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 
+import java.nio.charset.StandardCharsets;
+
 @Component
 public class EmailService {
     private final JavaMailSender mailSender;
@@ -26,7 +28,10 @@ public class EmailService {
         	helper.setFrom(senderEmail);
             helper.setTo(to);
             helper.setSubject(subject);
-            helper.setText(content, true); // Enable HTML content
+	            
+	         // Enable HTML content
+            message.setText(content, StandardCharsets.UTF_8.toString(), "html");
+            
             mailSender.send(message);
         } catch (MessagingException e) {
             // Handle the exception appropriately
