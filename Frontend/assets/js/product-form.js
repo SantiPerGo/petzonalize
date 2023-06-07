@@ -7,7 +7,8 @@ const previewImage = previewContainer.querySelector(".image-preview__image");
 const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
 const customTxt = document.getElementById("custom-text");
 const txt = document.getElementById("custom-text");
-
+const method="POST";
+const page = "#";
 $(document).ready(() => { 
   validateForm(editform);
 
@@ -17,6 +18,8 @@ $(document).ready(() => {
   if(produtToEdit != null) {
     produtToEdit = JSON.parse(produtToEdit);
     sessionStorage.removeItem("product");
+    method="PUT";
+    page="../html/products.html";
 
     // Mostrar datos de sessionstorage
     $('#product-form-name').val(produtToEdit.name);
@@ -67,7 +70,7 @@ editform.submit(submitButton => {
   async function postData(url, data) {
   
       let response = await fetch(url, {
-          method: "POST",
+          method: method,
           body: JSON.stringify(data),
           headers: {"Content-type": "application/json; charset=UTF-8"}
       })
@@ -85,6 +88,7 @@ editform.submit(submitButton => {
       alertElement.text("¡Producto añadido con Éxito!");
       alertElement.slideDown(250);
       setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+      window.location.href =page;
   }else{    
     alertElement.removeClass("alert-success");
     alertElement.removeClass("text-success");
