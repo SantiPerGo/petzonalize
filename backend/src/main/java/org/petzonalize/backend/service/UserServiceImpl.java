@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.petzonalize.backend.custom_class.EmailService;
+import org.petzonalize.backend.custom_class.LoginRequest;
 import org.petzonalize.backend.custom_class.UserNoPassword;
 import org.petzonalize.backend.entity.User;
 import org.petzonalize.backend.repository.UserRepository;
@@ -67,7 +68,7 @@ public class UserServiceImpl implements UserService {
 	public ResponseEntity<String> deleteUser(int id){
 		Optional<User> optionalUser = userRepository.findById(id);
 		
-		if(optionalUser.isPresent())
+		if(!optionalUser.isPresent())
 			return new ResponseEntity<>(
             		"User with id '" + id + "' doesn't exist", HttpStatus.NOT_FOUND);
 		else {
@@ -131,17 +132,37 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public ResponseEntity<?> recoverPassword(String email) {
-		Optional<User> optionalUser = userRepository.findByEmail(email);
-		
-		if(optionalUser.isPresent())
-			return new ResponseEntity<>(
-            		"User with id '" + email + "' doesn't exist", HttpStatus.NOT_FOUND);
+		if(email.isBlank())
+			return new ResponseEntity<>("User email (string) cannot be null or empty",
+				HttpStatus.BAD_REQUEST);
 		else {
-	        String subject = "Petzonalize - Account Password Recuperation";
-	        String content = "<h1>Hello, This is an email using Elastic Email!</h1>";
+			Optional<User> optionalUser = userRepository.findByEmail(email);
+			
+			if(optionalUser.isPresent())
+				return new ResponseEntity<>(
+	            		"User with id '" + email + "' doesn't exist", HttpStatus.NOT_FOUND);
+			else {
+		        String subject = "Petzonalize - Account Password Recuperation";
+		        String content = "<h1>Hello, This is an email using Elastic Email!</h1>";
 
-			emailService.sendEmail(email, subject, content);
-	        return new ResponseEntity<>("User password sent to email!", HttpStatus.OK);
+				emailService.sendEmail(email, subject, content);
+		        return new ResponseEntity<>("User password sent to email!", HttpStatus.OK);
+			}
+		}
+	}
+	
+	@Override
+	public ResponseEntity<?> login(LoginRequest loginRequest) {
+		Optional<User> optionalUser = userRepository.findByEmail(loginRequest.getEmail());
+		
+		if(!optionalUser.isPresent())
+			return new ResponseEntity<>("User with email '" + loginRequest.getEmail()
+				+ "' doesn't exist", HttpStatus.NOT_FOUND);
+		else {
+			if(optionalUser.get().getPassword().equals(loginRequest.getPassword()))
+				return new ResponseEntity<>("User credentials are correct!", HttpStatus.OK);
+			else
+				return new ResponseEntity<>("User password incorrect!", HttpStatus.BAD_REQUEST);
 		}
 	}
 }

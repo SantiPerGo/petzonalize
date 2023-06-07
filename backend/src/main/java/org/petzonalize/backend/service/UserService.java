@@ -1,5 +1,6 @@
 package org.petzonalize.backend.service;
 
+import org.petzonalize.backend.custom_class.LoginRequest;
 import org.petzonalize.backend.entity.User;
 
 import org.springframework.http.ResponseEntity;
@@ -10,4 +11,5 @@ public interface UserService {
 	ResponseEntity<String> deleteUser(int id);
 	ResponseEntity<?> updateUser(User user);
 	ResponseEntity<?> recoverPassword(String email);
+	ResponseEntity<?> login(LoginRequest loginRequest);
 }

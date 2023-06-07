@@ -1,5 +1,6 @@
 package org.petzonalize.backend.controller;
 
+import org.petzonalize.backend.custom_class.LoginRequest;
 import org.petzonalize.backend.entity.User;
 import org.petzonalize.backend.service.UserService;
 
@@ -40,7 +41,7 @@ public class UserController {
     	return userService.createUser(user);
 	}
     
-    @DeleteMapping(value = "{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<String> deleteUser(@PathVariable int id) {
         return userService.deleteUser(id);
     }
@@ -50,8 +51,13 @@ public class UserController {
         return userService.updateUser(user);
     }
     
-    @PostMapping(value = "{email}")
+    @GetMapping("{email}")
 	public ResponseEntity<?> recoverPassword(@PathVariable String email) {
     	return userService.recoverPassword(email);
+	}
+    
+    @PostMapping("login")
+	public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+    	return userService.login(loginRequest);
 	}
 }

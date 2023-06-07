@@ -48,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
 	public ResponseEntity<String> deleteProduct(int id){
 		Optional<Product> optionalProduct = productRepository.findById(id);
 		
-		if(optionalProduct.isPresent())
+		if(!optionalProduct.isPresent())
 			return new ResponseEntity<>(
             		"Product with id '" + id + "' doesn't exist", HttpStatus.NOT_FOUND);
 		else {
