@@ -49,4 +49,9 @@ public class UserController {
     public ResponseEntity<?> updateUser(@RequestBody User user){
         return userService.updateUser(user);
     }
+    
+    @PostMapping(value = "{email}")
+	public ResponseEntity<?> recoverPassword(@PathVariable String email) {
+    	return userService.recoverPassword(email);
+	}
 }

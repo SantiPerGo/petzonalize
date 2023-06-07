@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.petzonalize.backend.custom_class.EmailService;
 import org.petzonalize.backend.custom_class.UserNoPassword;
 import org.petzonalize.backend.entity.User;
 import org.petzonalize.backend.repository.UserRepository;
@@ -21,6 +22,13 @@ import jakarta.validation.ConstraintViolationException;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
+    
+    private final EmailService emailService;
+
+    @Autowired
+    public UserServiceImpl(EmailService emailService) {
+        this.emailService = emailService;
+    }
     
 	@Override
 	public ResponseEntity<?> createUser(User user) {
@@ -119,5 +127,21 @@ public class UserServiceImpl implements UserService {
             
         	return new ResponseEntity<>(usersNoPasswordList, HttpStatus.OK);
         }
+	}
+	
+	@Override
+	public ResponseEntity<?> recoverPassword(String email) {
+		Optional<User> optionalUser = userRepository.findByEmail(email);
+		
+		if(optionalUser.isPresent())
+			return new ResponseEntity<>(
+            		"User with id '" + email + "' doesn't exist", HttpStatus.NOT_FOUND);
+		else {
+	        String subject = "Petzonalize - Account Password Recuperation";
+	        String content = "<h1>Hello, This is an email using Elastic Email!</h1>";
+
+			emailService.sendEmail(email, subject, content);
+	        return new ResponseEntity<>("User password sent to email!", HttpStatus.OK);
+		}
 	}
 }

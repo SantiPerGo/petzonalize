@@ -9,4 +9,5 @@ public interface UserService {
 	ResponseEntity<?> createUser(User user);
 	ResponseEntity<String> deleteUser(int id);
 	ResponseEntity<?> updateUser(User user);
+	ResponseEntity<?> recoverPassword(String email);
 }
