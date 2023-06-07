@@ -13,17 +13,67 @@ const recoverContainer = document.getElementById("recover-container");
 
 const alertElement = $("#alert");
 
-$(document).ready(() => {
+
+// *********************************************************************************
+// Show in console SIRIA
+// *********************************************************************************
+
+fetch('https://petzonalize.up.railway.app/users')
+  .then(response => response.json())
+  .then(users => {
+    console.log(users);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+
+// ORIGINAL
+
+ $(document).ready(() => {
+    // Forms validation
+    validateForm(signUpForm);
+    validateForm(loginForm);
+    validateForm(recoverForm);
+    
+    // Verifying if user exists
+    let user = localStorage.getItem("users-logged-in");
+    if(user != null)
+    window.location.href = 'profile.html';
+});
+
+// *********************************************************************************
+// Verify if user exists with Backend (NOT STILL APPLIED)
+// *********************************************************************************
+
+/* $(document).ready(() => {
     // Forms validation
     validateForm(signUpForm);
     validateForm(loginForm);
     validateForm(recoverForm);
 
     // Verifying if user exists
-    let user = localStorage.getItem("users-logged-in");
-    if(user != null)
-        window.location.href = 'profile.html';
-});
+    if (user != null) {
+        // Make an HTTP request to retrieve the user data
+        fetch("https://petzonalize.up.railway.app/users")
+            .then(response => response.json())
+            .then(users => {
+                // Check if the user exists in the response data
+                if (users.includes(user)) {
+                    // User exists, redirect to profile.html
+                    window.location.href = 'profile.html';
+                } else {
+                    // User does not exist, handle the case accordingly
+                    console.log('User does not exist');
+                }
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the request
+                console.error('Error:', error);
+            });
+    }
+}); */
+
 
 //--------- Limpiar campos --------------
 const clearInputs = () => {
@@ -149,7 +199,6 @@ const checkLoginUser = (email, password, usersDatabase) =>{
         return false;
 }
 
-//------------ Guardar Usuarios ----------
 const creatingUserAccount = () => {
     const name = document.getElementById("input-name-register").value;
     const email = document.getElementById("input-email-register").value;
@@ -164,7 +213,28 @@ const creatingUserAccount = () => {
         "privileges": "client" 
     };
 
-    localStorage.setItem("users-logged-in", JSON.stringify(user));
-    window.location.href = 'profile.html';
-    console.log("Cuenta creada");
-} 
+// *********************************************************************************
+// Make a POST request to create the user account
+// *********************************************************************************
+
+    fetch("https://petzonalize.up.railway.app/users", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+    })
+    .then(response => {
+        if (response.ok) {
+            localStorage.setItem("users-logged-in", JSON.stringify(user));
+            window.location.href = 'profile.html';
+            console.log("Cuenta creada");
+        } else {
+            console.error("Failed to create account. Status: " + response.status);
+        }
+    })
+    .catch(error => {
+        console.error("Not user registered:", error);
+
+    });
+}
