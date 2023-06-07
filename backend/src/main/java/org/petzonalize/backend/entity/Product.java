@@ -63,5 +63,5 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "product_property_id", nullable = true)
-    private ProductProperty productProperty;
+    private ProductProperty properties;
 }

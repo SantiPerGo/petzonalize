@@ -60,5 +60,5 @@ public class Customizable {
 
     @ManyToOne
     @JoinColumn(name = "css_property_id", nullable = true)
-    private CssProperty cssProperty;
+    private CssProperty cssProperties;
 }
