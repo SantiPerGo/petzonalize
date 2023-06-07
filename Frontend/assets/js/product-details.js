@@ -271,6 +271,7 @@ const loadCategoriesData = () => {
     let sizes = JSON.parse(sessionStorage.getItem("sizes"));
     sizes = sizes.filter(size => size.category === category)[0];
     delete sizes["category"];
+    delete sizes["id"];
     $.each(sizes, (key, size) => loadSize(key, size));
     
     // load size and pattern
