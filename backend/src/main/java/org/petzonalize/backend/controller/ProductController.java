@@ -1,8 +1,8 @@
 package org.petzonalize.backend.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import org.petzonalize.backend.custom_class.BuyProductsWrapper;
 import org.petzonalize.backend.entity.Product;
 import org.petzonalize.backend.service.ProductService;
 
@@ -68,7 +68,7 @@ public class ProductController {
     }
 	
     @PutMapping("/buy")
-	public ResponseEntity<?> buyProducts(@RequestBody List<Product> products) {
-    	return productService.buyProducts(products);
+	public ResponseEntity<?> buyProducts(@RequestBody BuyProductsWrapper wrapper) {
+    	return productService.buyProducts(wrapper.getUser(), wrapper.getProducts());
 	}
 }

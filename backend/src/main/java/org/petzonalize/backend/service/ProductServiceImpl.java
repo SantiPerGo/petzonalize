@@ -3,6 +3,7 @@ package org.petzonalize.backend.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.petzonalize.backend.custom_class.UserOrderData;
 import org.petzonalize.backend.entity.Product;
 import org.petzonalize.backend.repository.ProductRepository;
 
@@ -84,7 +85,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Transactional
 	@Override
-	public ResponseEntity<?> buyProducts(List<Product> products) {	    	
+	public ResponseEntity<?> buyProducts(UserOrderData user, List<Product> products) {	
 		for(Product product : products) {
 	        Optional<Product> optionalProduct = productRepository.findById(product.getId());
 	        
@@ -96,6 +97,8 @@ public class ProductServiceImpl implements ProductService {
 				productRepository.saveAndFlush(product);
 			}
 		}
+		
+		// TODO: Send email with the products to the user
 		
 		return new ResponseEntity<>("Products updated succesfully!", HttpStatus.OK);
 	}
