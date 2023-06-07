@@ -1,5 +1,7 @@
 package org.petzonalize.backend.controller;
 
+import java.util.List;
+
 import org.petzonalize.backend.entity.Product;
 import org.petzonalize.backend.service.ProductService;
 
@@ -49,4 +51,9 @@ public class ProductController {
     public ResponseEntity<?> updateProduct(@RequestBody Product product){
         return productService.updateProduct(product);
     }
+	
+    @PutMapping("buy")
+	public ResponseEntity<?> buyProducts(@RequestBody final List<Product> products) {
+    	return productService.buyProducts(products);
+	}
 }

@@ -107,4 +107,33 @@ public class ProductServiceImpl implements ProductService {
         else
         	return new ResponseEntity<>(productsList, HttpStatus.OK);
 	}
+
+	@Transactional
+	@Override
+	public ResponseEntity<?> buyProducts(List<Product> products) {
+		for(Product product : products) {
+	        Optional<Product> optionalProduct = productRepository.findById(product.getId());
+	        
+	        if(!optionalProduct.isPresent())
+				return new ResponseEntity<>("Product with id '" +
+						product.getId() + "' doesn't exist", HttpStatus.NOT_FOUND);
+			else {
+	            product.setId(optionalProduct.get().getId());
+	            
+				try {
+					productRepository.saveAndFlush(product);
+	            } catch(ConstraintViolationException violationEx) {
+	            	ArrayList<String> exceptionsList = new ArrayList<>();
+	            	
+	            	for(ConstraintViolation<?> violation: violationEx.getConstraintViolations())
+	            		exceptionsList.add("error-" + violation.getPropertyPath()
+	            			+ ": " + violation.getMessage());
+	            	
+	                return new ResponseEntity<>(exceptionsList, HttpStatus.BAD_REQUEST);
+	            } 
+			}
+		}
+		
+		return new ResponseEntity<>("Products updated succesfully!", HttpStatus.OK);
+	}
 }
