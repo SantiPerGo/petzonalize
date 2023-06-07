@@ -246,7 +246,7 @@ const getProductsFromJson = async () => {
       });
   } catch (error) {
     console.log("Not customizables error: ", error);
-    customizablesLoaded &= false;
+    customizablesLoaded = false;
   }
 
   // Obtaining customizables sizes by Get Method
@@ -258,7 +258,7 @@ const getProductsFromJson = async () => {
       });
   } catch (error) {
     console.log("Not sizes error: ", error);
-    customizablesLoaded &= false;
+    customizablesLoaded = false;
   }
 
 
