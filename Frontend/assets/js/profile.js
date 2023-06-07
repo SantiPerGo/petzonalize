@@ -97,6 +97,35 @@ const updateLocalStorage = (id, input) => {
   const user = JSON.parse(localStorage.getItem("users-logged-in"));
   user[id] = input.val();
   localStorage.setItem("users-logged-in", JSON.stringify(user));
+
+  // Llamar a la función updateUserData con los datos actualizados
+  updateUserData(user);
+};
+
+const updateUserData = (userData) => {
+  const url = "https://petzonalize.up.railway.app/users";
+  const requestData = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userData),
+  };
+
+  fetch(url, requestData)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Error al realizar la solicitud");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Datos actualizados:", data);
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud:", error);
+      console.log("JSON almacenado localmente:", userData);
+    });
 };
 
 // *********************************************************************************
@@ -124,3 +153,4 @@ const confirmDeleteAccount = () => {
   sessionStorage.setItem("eliminated-account", "¡Cuenta Eliminada con Éxito!");
   window.location.href = '../../index.html';
 };
+
