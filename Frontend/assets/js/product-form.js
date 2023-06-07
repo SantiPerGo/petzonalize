@@ -1,5 +1,6 @@
 const alertElement = $("#alert");
 const editform =$("#edit-form");
+const add = $("#add");
 const uploadImg = document.getElementById("product-form-uploads");
 const previewContainer = document.getElementById("imagePreview");
 const previewImage = previewContainer.querySelector(".image-preview__image");
@@ -38,19 +39,47 @@ $(document).ready(() => {
       document.querySelector('#product-form-cat').checked = true;
   }
 });
+// metodo post
+
+// Example POST method implementation:
 
 //declarar elementos
+
 
 editform.submit(submitButton => {
   submitButton.preventDefault();
 
-  const name = refForm.elements["product-form-name"].value;
-  const stock = Number(refForm.elements["product-form-quantity"].value);
+  console.log("Botodn guardar")
+
+  const name = document.getElementById("product-form-name").value;
+  const description = document.getElementById("product-form-description").value;
+  const stock = Number(document.getElementById("product-form-quantity").value);
   const category = document.getElementById("product-form-category").value;
-  const price = Number(refForm.elements["product-form-price"].value);
+  const price = Number(document.getElementById("product-form-price").value);
   const pet = document.getElementById('product-form-dog').checked ? "dog" : "cat";
   let getty = document.getElementById('product-form-uploads').files[0].name;
   getty= ("/assets/img/products/not customizable/"+getty);
+
+  let data= { name:name, description:description, category:category, notNull: "cannot be null or empty",
+  customizable:false, price:price, imgUrl:"getty", stock:stock, type:pet, properties:null};
+  console.log(data);
+
+  async function postData(url, data) {
+  
+      let response = await fetch(url, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {"Content-type": "application/json; charset=UTF-8"}
+      })
+  
+      response = await response.json();
+  
+      console.log(response)
+  }
+  
+  postData("https://petzonalize.up.railway.app/products", data).then((data) => {
+    console.log(data); // JSON data parsed by `data.json()` call
+  });
 
   if(editform.valid())  {
       alertElement.text("¡Producto añadido con Éxito!");
