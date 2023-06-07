@@ -231,7 +231,10 @@ const getProductsFromJson = async () => {
   // Obtaining products by Get Method
   try {
     await $.getJSON("http://petzonalize.up.railway.app/products",
-      productsJson => products = productsJson);
+      (productsJson)=>{
+        products = productsJson;
+        console.log(products);
+      });
   } catch (error) {
     console.log("Not products error: ", error);
     productsLoaded = false;
