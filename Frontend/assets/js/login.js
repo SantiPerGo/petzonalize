@@ -134,27 +134,25 @@ signUpForm.submit(submitButton => {
 recoverForm.submit(submitButton => {
     submitButton.preventDefault();
 
-    const recoverEmail = $("#recover-email-login").val().trim();
-    console.log(recoverEmail);
-   
-   if(recoverForm.valid()) {
-        fetch("https://petzonalize.up.railway.app/users/login", {
-            method: "POST",
-            body: JSON.stringify(user),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-            })
-        .then(alertElement.text("Se ha enviado la contraseña a tu correo"),
-            .then(alertElement.slideDown(250));
-            setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+    const email = $("#recover-email-login").val().trim()
 
-            alertElement.addClass("alert-success");
-            alertElement.addClass("text-success");
-            alertElement.removeClass("alert-danger");
-            alertElement.removeClass("text-danger");
-        )}/*  else {
-        alertElement.text("Correo incorrectos");
-    } */
-    });
+    if(recoverForm.valid()) {
+        fetch("https://petzonalize.up.railway.app/users/" + email)
+            .then(response => {
+                if(response.ok){
+                alertElement.text("Se ha enviado la contraseña a tu correo");
+                alertElement.slideDown(250);
+                setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+
+                alertElement.addClass("alert-success");
+                alertElement.addClass("text-success");
+                alertElement.removeClass("alert-danger");
+                alertElement.removeClass("text-danger");
+            } else {
+                console.error("Not user registered");
+            }}
+    )} 
+});
 
 // ------ Escucha cuando el usuario inicie sesion -----
 loginForm.submit(submitButton => {
@@ -167,6 +165,8 @@ loginForm.submit(submitButton => {
         email: $("#input-email-login").val().trim(),
         password: $("#input-password-login").val().trim()
     }
+    console.log(user);
+
     if(loginForm.valid())
         fetch("https://petzonalize.up.railway.app/users/login", {
             method: "POST",
@@ -174,10 +174,15 @@ loginForm.submit(submitButton => {
             headers: {"Content-type": "application/json; charset=UTF-8"}
         })
             .then(usersResponse =>{
-                if( checkLoginUser(email, password, usersResponse) ){
-                    const userObtained = getUserFromDataBase(email, password, usersResponse);
+                if( usersResponse.ok) {
+                console.log("Hola mundo");
+                console.log(usersResponse);
+                
+
+
+                    /* const userObtained = getUserFromDataBase(email, password, usersResponse);
                     window.location.href = 'profile.html';
-                    console.log("Sesion iniciada");
+                    console.log("Sesion iniciada"); */
                 }
                 else {
                     alertElement.text("Correo o contraseña incorrectos");
@@ -193,7 +198,7 @@ loginForm.submit(submitButton => {
 });
 
 //----------- Obtener Usuario -----------
-const getUserFromDataBase = (email, password, usersDatabase) =>{
+/* const getUserFromDataBase = (email, password, usersDatabase) =>{
     let userFound = {};
 
     if(usersDatabase)
@@ -204,21 +209,22 @@ const getUserFromDataBase = (email, password, usersDatabase) =>{
         });
 
     return userFound;
-}
+} */
 
 //-----------Comprobar Contraseña -----------
-const checkLoginUser = (email, password, usersDatabase) =>{
+/* const checkLoginUser = (email, password, usersDatabase) =>{
     if(usersDatabase)
         return usersDatabase.users.some( registeredUser => registeredUser.email == email && registeredUser.password === password );
     else
         return false;
-}
+} */
 
 const creatingUserAccount = () => {
     const name = document.getElementById("input-name-register").value;
     const email = document.getElementById("input-email-register").value;
     const phone = document.getElementById("input-phone-register").value;
     const password = document.getElementById("input-signup-password").value;
+}
 
     const user = {
         "name": name,
@@ -226,7 +232,7 @@ const creatingUserAccount = () => {
         "phone": phone,
         "password": password,
         "privileges": "client" 
-    };
+};
 
 // *********************************************************************************
 // Make a POST request to create the user account
@@ -252,4 +258,3 @@ const creatingUserAccount = () => {
         console.error("Not user registered:", error);
 
     });
-}
