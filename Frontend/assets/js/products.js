@@ -230,7 +230,7 @@ const getProductsFromJson = async () => {
 
   // Obtaining products by Get Method
   try {
-    await $.getJSON("http://petzonalize.up.railway.app/products",
+    await $.getJSON("https://petzonalize.up.railway.app/products",
       (productsJson)=>{
         products = productsJson;
         console.log(products);
@@ -254,7 +254,7 @@ const getProductsFromJson = async () => {
 
   // Obtaining customizables sizes by Get Method
   try {
-    await $.getJSON("http://petzonalize.up.railway.app/sizes",
+    await $.getJSON("https://petzonalize.up.railway.app/sizes",
       sizesJson => {
         console.log(sizesJson);
         sizes = sizesJson;
