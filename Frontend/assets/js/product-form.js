@@ -47,13 +47,35 @@ $(document).ready(() => {
   
         let response = await fetch(url, {
             method: "DELETE",
+        }) .then(response => {
+          
+          //console.log(response.status); 
+          //console.log(response.statusText); 
+          
+          return response;
+        
+        })
+        .then(data => {
+          
+          if(data.status==200){
+            window.location.href="../html/products.html";
+          }else{
+            alertElement.removeClass("text-success");
+            alertElement.addClass("alert-danger");
+            alertElement.addClass("text-danger");
+            alertElement.text("¡No se encontró ningun producto con ese id!");
+            alertElement.slideDown(250);
+            setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+          }
+        
+        })
+        .catch(error => {
+      
+      
         })
       
-        response = await response.json();
-      
-
       }
-      url=("https://petzonalize.up.railway.app/products/"+24);
+      url=("https://petzonalize.up.railway.app/products/"+produtToEdit.id);
       deleter.addEventListener(`click`, ()=>{
       deletion(url)
       console.log("deleter")
@@ -105,6 +127,10 @@ editform.submit(submitButton => {
   });
 
   if(editform.valid())  {
+      alertElement.removeClass("alert-danger");
+      alertElement.removeClass("text-danger");
+      alertElement.addClass("alert-success");
+      alertElement.addClass("text-success");
       alertElement.text("¡Producto añadido con Éxito!");
       alertElement.slideDown(250);
       setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
@@ -126,13 +152,35 @@ async function deletion(url) {
   
   let response = await fetch(url, {
       method: "DELETE",
+  }) .then(response => {
+    
+    //console.log(response.status); 
+    //console.log(response.statusText); 
+    
+    return response;
+  
+  })
+  .then(data => {
+    
+    if(data.status==200){
+      window.location.href="../html/products.html";
+    }else{
+      alertElement.removeClass("text-success");
+      alertElement.addClass("alert-danger");
+      alertElement.addClass("text-danger");
+      alertElement.text("¡No se encontró ningun producto con ese id!");
+      alertElement.slideDown(250);
+      setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+    }
+  
+  })
+  .catch(error => {
+
+
   })
 
-  response = await response.json();
-
-
 }
-url=("https://petzonalize.up.railway.app/products/"+26);
+url=("https://petzonalize.up.railway.app/products/"+38);
 deleter.addEventListener(`click`, ()=>{
 deletion(url)
 console.log("deleter")
