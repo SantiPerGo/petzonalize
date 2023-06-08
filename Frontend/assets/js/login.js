@@ -165,7 +165,6 @@ loginForm.submit(submitButton => {
         email: $("#input-email-login").val().trim(),
         password: $("#input-password-login").val().trim()
     }
-    console.log(user);
 
     if(loginForm.valid())
         fetch("https://petzonalize.up.railway.app/users/login", {
@@ -173,27 +172,21 @@ loginForm.submit(submitButton => {
             body: JSON.stringify(user),
             headers: {"Content-type": "application/json; charset=UTF-8"}
         })
+            .then(response => response.json())
             .then(usersResponse =>{
-                if( usersResponse.ok) {
-                console.log("Hola mundo");
-                console.log(usersResponse);
-                
-
-
-                    /* const userObtained = getUserFromDataBase(email, password, usersResponse);
-                    window.location.href = 'profile.html';
-                    console.log("Sesion iniciada"); */
-                }
-                else {
-                    alertElement.text("Correo o contraseña incorrectos");
-                    alertElement.slideDown(250);
-                    setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-
-                    alertElement.removeClass("alert-success");
-                    alertElement.removeClass("text-success");
-                    alertElement.addClass("alert-danger");
-                    alertElement.addClass("text-danger");
-                }
+                localStorage.setItem(`user`, JSON.stringify(usersResponse));
+                window.location.href = 'profile.html';
+                console.log("Sesion iniciada");   
+            })
+            .catch(error =>{
+                alertElement.text("Correo o contraseña incorrectos");
+                alertElement.slideDown(250);
+                setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+    
+                alertElement.removeClass("alert-success");
+                alertElement.removeClass("text-success");
+                alertElement.addClass("alert-danger");
+                alertElement.addClass("text-danger");
             })
 });
 
