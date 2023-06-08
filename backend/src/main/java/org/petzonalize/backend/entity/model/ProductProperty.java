@@ -1,5 +1,7 @@
 package org.petzonalize.backend.entity.model;
 
+import org.petzonalize.backend.entity.messages.ProductPropertyMessages;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
