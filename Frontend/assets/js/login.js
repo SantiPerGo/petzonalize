@@ -13,6 +13,35 @@ const recoverContainer = document.getElementById("recover-container");
 
 const alertElement = $("#alert");
 
+//-------------- Cambio de Vista -------------------
+buttonToSignUp.addEventListener('click', ()=>{
+    loginContainer.classList.add("d-none");
+    signupContainer.classList.remove("d-none");
+    recoverContainer.classList.add("d-none");
+    clearInputs();
+});
+
+buttonToLogin.addEventListener('click', ()=>{
+    loginContainer.classList.remove("d-none");
+    signupContainer.classList.add("d-none");
+    recoverContainer.classList.add("d-none");
+    clearInputs();
+});
+
+toRecoverPassword.addEventListener('click', ()=>{
+    loginContainer.classList.add("d-none");
+    signupContainer.classList.add("d-none");
+    recoverContainer.classList.remove("d-none");
+    clearInputs();
+});
+
+buttonBackToLogin.addEventListener('click', ()=>{
+    loginContainer.classList.remove("d-none");
+    signupContainer.classList.add("d-none");
+    recoverContainer.classList.add("d-none");
+    clearInputs();
+});
+
 
 // *********************************************************************************
 // Show in console SIRIA
@@ -105,17 +134,27 @@ signUpForm.submit(submitButton => {
 recoverForm.submit(submitButton => {
     submitButton.preventDefault();
 
-    if(recoverForm.valid()) {
-        alertElement.text("Se ha enviado la contraseña a tu correo");
-        alertElement.slideDown(250);
-        setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+    const recoverEmail = $("#recover-email-login").val().trim();
+    console.log(recoverEmail);
+   
+   if(recoverForm.valid()) {
+        fetch("https://petzonalize.up.railway.app/users/login", {
+            method: "POST",
+            body: JSON.stringify(user),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+            })
+        .then(alertElement.text("Se ha enviado la contraseña a tu correo"),
+            .then(alertElement.slideDown(250));
+            setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
 
-        alertElement.addClass("alert-success");
-        alertElement.addClass("text-success");
-        alertElement.removeClass("alert-danger");
-        alertElement.removeClass("text-danger");
-    }
-});
+            alertElement.addClass("alert-success");
+            alertElement.addClass("text-success");
+            alertElement.removeClass("alert-danger");
+            alertElement.removeClass("text-danger");
+        )}/*  else {
+        alertElement.text("Correo incorrectos");
+    } */
+    });
 
 // ------ Escucha cuando el usuario inicie sesion -----
 loginForm.submit(submitButton => {
@@ -128,8 +167,6 @@ loginForm.submit(submitButton => {
         email: $("#input-email-login").val().trim(),
         password: $("#input-password-login").val().trim()
     }
-
-    console.log(user);
     if(loginForm.valid())
         fetch("https://petzonalize.up.railway.app/users/login", {
             method: "POST",
@@ -155,35 +192,6 @@ loginForm.submit(submitButton => {
             })
 });
 
-//-------------- Cambio de Vista -------------------
-buttonToSignUp.addEventListener('click', ()=>{
-    loginContainer.classList.add("d-none");
-    signupContainer.classList.remove("d-none");
-    recoverContainer.classList.add("d-none");
-    clearInputs();
-});
-
-buttonToLogin.addEventListener('click', ()=>{
-    loginContainer.classList.remove("d-none");
-    signupContainer.classList.add("d-none");
-    recoverContainer.classList.add("d-none");
-    clearInputs();
-});
-
-toRecoverPassword.addEventListener('click', ()=>{
-    loginContainer.classList.add("d-none");
-    signupContainer.classList.add("d-none");
-    recoverContainer.classList.remove("d-none");
-    clearInputs();
-});
-
-buttonBackToLogin.addEventListener('click', ()=>{
-    loginContainer.classList.remove("d-none");
-    signupContainer.classList.add("d-none");
-    recoverContainer.classList.add("d-none");
-    clearInputs();
-});
-
 //----------- Obtener Usuario -----------
 const getUserFromDataBase = (email, password, usersDatabase) =>{
     let userFound = {};
@@ -197,7 +205,6 @@ const getUserFromDataBase = (email, password, usersDatabase) =>{
 
     return userFound;
 }
-
 
 //-----------Comprobar Contraseña -----------
 const checkLoginUser = (email, password, usersDatabase) =>{
