@@ -26,39 +26,39 @@ public class ProductProperty implements ProductPropertyMessages {
     private int id;
 
 	@Column(nullable = true)
-	@Size(max = 50, message = "Product property color cannot be longer than 50 characters")
+	@Size(max = PRODUCT_COLOR_MAX, message = PRODUCT_COLOR_MESSAGE)
     private String color;
 
 	@Column(nullable = true)
-	@Size(max = 50, message = "Product property size cannot be longer than 50 characters")
+	@Size(max = PRODUCT_SIZE_MAX, message = PRODUCT_SIZE_MESSAGE)
     private String size;
 
 	@Column(nullable = true)
-	@Size(max = 20, message = "Product property pattern cannot be longer than 20 characters")
+	@Size(max = PRODUCT_PATTERN_MAX, message = PRODUCT_PATTERN_MESSAGE)
 	private String pattern;
 
 	@Column(nullable = true)
-	@Size(max = 20, message = "Product property material cannot be longer than 20 characters")
+	@Size(max = PRODUCT_MATERIAL_MAX, message = PRODUCT_MATERIAL_MESSAGE)
 	private String material;
 
 	@Column(nullable = true)
-	@Size(max = 100, message = "Product property petname cannot be longer than 100 characters")
+	@Size(max = PRODUCT_PETNAME_MAX, message = PRODUCT_PETNAME_MESSAGE)
 	private String petname;
 
 	@Column(nullable = true)
-	@Size(min = 8, max = 15,
-		message = "Product property petphone cannot be less than 8 or longer than 20 characters")
+	@Size(min = PRODUCT_PETPHONE_MIN, max = PRODUCT_PETPHONE_MAX,
+		message = PRODUCT_PETPHONE_MESSAGE)
 	private String petphone;
 
 	@Column(nullable = true)
-	@Size(max = 20, message = "Product property shape cannot be longer than 20 characters")
+	@Size(max = PRODUCT_SHAPE_MAX, message = PRODUCT_SHAPE_MESSAGE)
 	private String shape;
 
 	@Column(nullable = true)
-	@Size(max = 50, message = "Product property body cannot be longer than 50 characters")
+	@Size(max = PRODUCT_BODY_MAX, message = PRODUCT_BODY_MESSAGE)
 	private String body;
 
 	@Column(nullable = true)
-	@Size(max = 50, message = "Product property head cannot be longer than 50 characters")
+	@Size(max = PRODUCT_HEAD_MAX, message = PRODUCT_HEAD_MESSAGE)
 	private String head;
 }
