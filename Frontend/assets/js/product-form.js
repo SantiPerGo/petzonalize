@@ -9,6 +9,17 @@ const customTxt = document.getElementById("custom-text");
 const txt = document.getElementById("custom-text");
 const deleter = document.getElementById("remove");
 
+let usuario =    {
+  id: 1,
+  name: "Juan Fernando Reyes Sánchez",
+  email: "juanreyssan@gmail.com",
+  phone:"525519673129" ,
+  password: "password",
+  privileges: "admin"
+}
+usuario=JSON.stringify(usuario)
+sessionStorage.setItem("users-logged-in",usuario)
+
 const method="POST";
 const page = "#";
 $(document).ready(() => { 
@@ -58,6 +69,7 @@ $(document).ready(() => {
         .then(data => {
           
           if(data.status==200){
+            sessionStorage.setItem("alert", 8 )
             window.location.href="../html/products.html";
           }else{
             alertElement.removeClass("text-success");
@@ -163,6 +175,7 @@ async function deletion(url) {
   .then(data => {
     
     if(data.status==200){
+      sessionStorage.setItem("alert", 8 )
       window.location.href="../html/products.html";
     }else{
       alertElement.removeClass("text-success");
@@ -180,7 +193,7 @@ async function deletion(url) {
   })
 
 }
-url=("https://petzonalize.up.railway.app/products/"+38);
+url=("https://petzonalize.up.railway.app/products/"+43);
 deleter.addEventListener(`click`, ()=>{
 deletion(url)
 console.log("deleter")
