@@ -7,6 +7,8 @@ const previewImage = previewContainer.querySelector(".image-preview__image");
 const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
 const customTxt = document.getElementById("custom-text");
 const txt = document.getElementById("custom-text");
+const deleter = document.getElementById("remove");
+
 const method="POST";
 const page = "#";
 $(document).ready(() => { 
@@ -40,6 +42,24 @@ $(document).ready(() => {
       document.querySelector('#product-form-dog').checked = true;
     else
       document.querySelector('#product-form-cat').checked = true;
+
+      async function deletion(url) {
+  
+        let response = await fetch(url, {
+            method: "DELETE",
+        })
+      
+        response = await response.json();
+      
+
+      }
+      url=("https://petzonalize.up.railway.app/products/"+24);
+      deleter.addEventListener(`click`, ()=>{
+      deletion(url)
+      console.log("deleter")
+      
+      })
+    
   }
 });
 // metodo post
@@ -63,7 +83,7 @@ editform.submit(submitButton => {
   let getty = document.getElementById('product-form-uploads').files[0].name;
   getty= ("/assets/img/products/not customizable/"+getty);
 
-  let data= { name:name, description:description, category:category, notNull: "cannot be null or empty",
+  let data= { name:name, description:description, category:category,
   customizable:false, price:price, imgUrl:"getty", stock:stock, type:pet, properties:null};
   console.log(data);
 
@@ -102,6 +122,26 @@ editform.submit(submitButton => {
 
 // Boton reiniciar/borrar formulario
 const resetForm = () => editform.reset();
+async function deletion(url) {
+  
+  let response = await fetch(url, {
+      method: "DELETE",
+  })
+
+  response = await response.json();
+
+
+}
+url=("https://petzonalize.up.railway.app/products/"+26);
+deleter.addEventListener(`click`, ()=>{
+deletion(url)
+console.log("deleter")
+
+})
+
+
+
+
 
 // Boton cargar imagen
 const realFileBtn = document.getElementById("product-form-uploads");
