@@ -1,4 +1,6 @@
-package org.petzonalize.backend.entity;
+package org.petzonalize.backend.entity.model;
+
+import org.petzonalize.backend.entity.messages.CustomizableMessages;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -9,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -22,7 +25,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name="customizables")
-public class Customizable {
+public class Customizable implements CustomizableMessages {
+	@Transient
 	@JsonIgnore
 	private static final String notNull = "cannot be null or empty";
 	

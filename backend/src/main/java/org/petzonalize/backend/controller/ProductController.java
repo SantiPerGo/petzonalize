@@ -1,8 +1,8 @@
 package org.petzonalize.backend.controller;
 
 
-import org.petzonalize.backend.custom_class.BuyProductsWrapper;
-import org.petzonalize.backend.entity.Product;
+import org.petzonalize.backend.custom.BuyProductsWrapper;
+import org.petzonalize.backend.entity.model.Product;
 import org.petzonalize.backend.service.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;

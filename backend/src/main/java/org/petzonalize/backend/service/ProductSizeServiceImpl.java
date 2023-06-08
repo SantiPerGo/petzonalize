@@ -2,7 +2,7 @@ package org.petzonalize.backend.service;
 
 import java.util.List;
 
-import org.petzonalize.backend.entity.ProductSize;
+import org.petzonalize.backend.entity.model.ProductSize;
 import org.petzonalize.backend.repository.ProductSizeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

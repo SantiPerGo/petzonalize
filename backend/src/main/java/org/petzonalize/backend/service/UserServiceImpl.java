@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.petzonalize.backend.custom_class.EmailService;
-import org.petzonalize.backend.custom_class.LoginRequest;
-import org.petzonalize.backend.custom_class.UserNoPassword;
-import org.petzonalize.backend.entity.User;
+import org.petzonalize.backend.custom.EmailService;
+import org.petzonalize.backend.custom.LoginRequest;
+import org.petzonalize.backend.custom.UserNoPassword;
+import org.petzonalize.backend.entity.model.User;
 import org.petzonalize.backend.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
         this.emailService = emailService;
     }
     
+    // TODO: return user without password
 	@Override
 	public ResponseEntity<?> createUser(User user) {
 		Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
@@ -143,8 +144,9 @@ public class UserServiceImpl implements UserService {
 			return new ResponseEntity<>("User with email '" + loginRequest.getEmail()
 				+ "' doesn't exist", HttpStatus.NOT_FOUND);
 		else {
+			// TODO: return user without password
 			if(optionalUser.get().getPassword().equals(loginRequest.getPassword()))
-				return new ResponseEntity<>("User credentials are correct!", HttpStatus.OK);
+				return new ResponseEntity<>(optionalUser.get(), HttpStatus.OK);
 			else
 				return new ResponseEntity<>("User password incorrect!", HttpStatus.BAD_REQUEST);
 		}

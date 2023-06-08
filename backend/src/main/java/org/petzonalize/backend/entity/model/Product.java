@@ -1,6 +1,6 @@
-package org.petzonalize.backend.entity;
+package org.petzonalize.backend.entity.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.petzonalize.backend.entity.messages.ProductMessages;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,46 +22,43 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name="products")
-public class Product {
-	@JsonIgnore
-	private static final String notNull = "cannot be null or empty";
-	
+public class Product implements ProductMessages {	
     @Id
 	@Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-	@NotNull
-	@Size(max = 200, message = "Product name cannot be longer than 200 characters")
-	@NotBlank(message = "Product name (string) " + notNull)
+	@NotNull(message = PRODUCT_NAME_NULL)
+	@Size(max = PRODUCT_NAME_MAX, message = PRODUCT_NAME_SIZE)
+	@NotBlank(message = PRODUCT_NAME_NULL)
     private String name;
 
-	@Size(max = 1000, message = "Product description cannot be longer than 1000 characters")
 	@Column(nullable = true)
+	@Size(max = PRODUCT_DESC_MAX, message = PRODUCT_DESC_SIZE)
     private String description;
 
-	@NotNull
-	@Size(max = 20, message = "Product category cannot be longer than 20 characters")
-	@NotBlank(message = "Product category (string) " + notNull)
+	@NotNull(message = PRODUCT_CATEGORY_NULL)
+	@Size(max = PRODUCT_CATEGORY_MAX, message = PRODUCT_CATEGORY_SIZE)
+	@NotBlank(message = PRODUCT_CATEGORY_NULL)
     private String category;
 
-	@NotNull(message = "Product customizable (boolean) " + notNull)
+	@NotNull(message = PRODUCT_CUSTOM_NULL)
     private boolean customizable;
 	
 	@Column(nullable = true)
     private Double price;
 
-	@NotNull
-	@Size(max = 150, message = "Product image url cannot be longer than 150 characters")
 	@Column(name = "img_url")
-	@NotBlank(message = "Product image url (string) " + notNull)
+	@NotNull(message = PRODUCT_IMG_NULL)
+	@Size(max = PRODUCT_IMG_MAX, message = PRODUCT_IMG_SIZE)
+	@NotBlank(message = PRODUCT_IMG_NULL)
     private String imgUrl;
 
 	@Column(nullable = true)
     private Integer stock;
 
-	@Size(max = 20, message = "Product type cannot be longer than 20 characters")
 	@Column(nullable = true)
+	@Size(max = PRODUCT_TYPE_MAX, message = PRODUCT_TYPE_SIZE)
     private String type;
 
     @ManyToOne

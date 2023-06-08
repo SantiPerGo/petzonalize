@@ -1,4 +1,6 @@
-package org.petzonalize.backend.entity;
+package org.petzonalize.backend.entity.model;
+
+import org.petzonalize.backend.entity.messages.ProductSizeMessages;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -7,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -15,12 +18,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// TODO: Complete swagger documentation
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name="sizes")
-public class ProductSize {
+public class ProductSize implements ProductSizeMessages {
+	// TODO: Verify DB not to store variable
+	@Transient
 	@JsonIgnore
 	private static final String notNull = "(string) cannot be null or empty";
 	

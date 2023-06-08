@@ -1,8 +1,8 @@
-package org.petzonalize.backend.custom_class;
+package org.petzonalize.backend.custom;
 
 import java.util.List;
 
-import org.petzonalize.backend.entity.Product;
+import org.petzonalize.backend.entity.model.Product;
 
 import lombok.Builder;
 import lombok.Data;

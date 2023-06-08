@@ -1,4 +1,4 @@
-package org.petzonalize.backend.custom_class;
+package org.petzonalize.backend.custom;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;

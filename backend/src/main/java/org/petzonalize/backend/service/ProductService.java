@@ -2,8 +2,8 @@ package org.petzonalize.backend.service;
 
 import java.util.List;
 
-import org.petzonalize.backend.custom_class.UserOrderData;
-import org.petzonalize.backend.entity.Product;
+import org.petzonalize.backend.custom.UserOrderData;
+import org.petzonalize.backend.entity.model.Product;
 import org.springframework.http.ResponseEntity;
 
 public interface ProductService {

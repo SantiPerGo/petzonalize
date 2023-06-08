@@ -3,8 +3,8 @@ package org.petzonalize.backend.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.petzonalize.backend.custom_class.UserOrderData;
-import org.petzonalize.backend.entity.Product;
+import org.petzonalize.backend.custom.UserOrderData;
+import org.petzonalize.backend.entity.model.Product;
 import org.petzonalize.backend.repository.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,7 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
     
+    // TODO: Allow to send and receive images
 	@Override
 	public ResponseEntity<?> createProduct(Product product) {
 		Optional<Product> optionalProduct = productRepository.findByName(product.getName());
@@ -85,6 +86,8 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ResponseEntity<?> buyProducts(UserOrderData user, List<Product> products) {	
+		// TODO: Substract amount property of original products 
+		
 		productRepository.saveAllAndFlush(products);
 		
 		// TODO: Send email with the products to the user

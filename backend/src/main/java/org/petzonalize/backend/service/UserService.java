@@ -1,8 +1,7 @@
 package org.petzonalize.backend.service;
 
-import org.petzonalize.backend.custom_class.LoginRequest;
-import org.petzonalize.backend.entity.User;
-
+import org.petzonalize.backend.custom.LoginRequest;
+import org.petzonalize.backend.entity.model.User;
 import org.springframework.http.ResponseEntity;
 
 public interface UserService {

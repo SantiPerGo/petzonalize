@@ -1,7 +1,7 @@
 package org.petzonalize.backend.controller;
 
-import org.petzonalize.backend.custom_class.LoginRequest;
-import org.petzonalize.backend.entity.User;
+import org.petzonalize.backend.custom.LoginRequest;
+import org.petzonalize.backend.entity.model.User;
 import org.petzonalize.backend.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;

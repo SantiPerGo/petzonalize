@@ -1,4 +1,4 @@
-package org.petzonalize.backend.custom_class;
+package org.petzonalize.backend.custom;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
