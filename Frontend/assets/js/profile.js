@@ -138,19 +138,63 @@ const deleteAccount = () => {
 };
 
 const cancelDeleteAccount = () => {
-  $("#delete-buttons").addClass("d-none");
-  $("#buttons").removeClass("d-none");
-};
+   fetch("https://petzonalize.up.railway.app/users", {
+    method: "GET",
+   })
+      .then(response => response.json())
+      .then(data => {
 
-const closeSession = () => {
-  localStorage.removeItem("users-logged-in");
-  sessionStorage.setItem("closed-session", "¡Cuenta Cerrada con Éxito!");
-  window.location.href = '../../index.html';
-};
+        delete data["users-logged-in"];
+
+        return fetch("https://petzonalize.up.railway.app/users", {
+          method: "PUT",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+      })
+      .then(response => {
+        if (response.ok) {
+          localStorage.removeItem("users-logged-in");
+          sessionStorage.setItem("closed-session", "¡Cuenta Cerrada con Éxito");
+          window.location.href = "../../index.html";
+        } else {
+          console.error("Error al cerrar la sesión.");
+        }
+      })
+      .catch(error => {
+        console.error("Error", error);
+      });
+    };
 
 const confirmDeleteAccount = () => {
-  localStorage.removeItem("users-logged-in");
-  sessionStorage.setItem("eliminated-account", "¡Cuenta Eliminada con Éxito!");
-  window.location.href = '../../index.html';
+  fetch("https://petzonalize.up.railway.app/users", {
+    method: "GET",
+  })
+    .then(response => response.json())
+    .then(data => {
+      delete data["users-logged-in"];
+
+      return fetch("https://petzonalize.up.railway.app/users",{
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+    })
+    .then(response => {
+      if (response.ok) {
+        localStorage.removeItem("users-logged-in");
+        sessionStorage.setItem("eliminated-account", "¡Cuenta Eliminada con Éxito!");
+        window.location.href = '../../index.html';
+      } else {
+        console.error("Error al eliminar la cuenta.");
+      }
+    })
+    .catch(error => {
+      console.error("Error", error);
+    });
 };
 
