@@ -33,9 +33,9 @@ public class UserController {
     	return userService.createUser(user);
 	}
     
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable int id) {
-        return userService.deleteUser(id);
+    @DeleteMapping
+    public ResponseEntity<String> deleteUser(@RequestBody UserLogin userLogin) {
+        return userService.deleteUser(userLogin);
     }
     
     @PutMapping

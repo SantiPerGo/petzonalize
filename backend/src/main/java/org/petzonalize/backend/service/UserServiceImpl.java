@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import jakarta.transaction.Transactional;
+
 @Service("userService")
 public class UserServiceImpl implements UserService {	
     @Autowired
@@ -55,17 +57,21 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Transactional
 	@Override
-	public ResponseEntity<String> deleteUser(int id){
-		Optional<User> optionalUser = userRepository.findById(id);
+	public ResponseEntity<String> deleteUser(UserLogin userLogin){
+		Optional<User> optionalUser = userRepository.findByEmail(userLogin.getEmail());
 		
 		if(!optionalUser.isPresent())
 			return new ResponseEntity<>(
-            		"User with id '" + id + "' doesn't exist", HttpStatus.NOT_FOUND);
+            		"User with email '" + userLogin.getEmail() + "' doesn't exist", HttpStatus.NOT_FOUND);
 		else {
-	        userRepository.deleteById(id);
-	        return new ResponseEntity<>(
-	        		"User with id '" + id + "' successfully removed!", HttpStatus.OK);
+			if(optionalUser.get().getPassword().equals(userLogin.getPassword())) {
+				userRepository.deleteByEmail(userLogin.getEmail());
+		        return new ResponseEntity<>(
+		        	"User with email '" + userLogin.getEmail() + "' successfully removed!", HttpStatus.OK);
+			} else
+				return new ResponseEntity<>("User password incorrect!", HttpStatus.BAD_REQUEST);
 		}
 	}
 
