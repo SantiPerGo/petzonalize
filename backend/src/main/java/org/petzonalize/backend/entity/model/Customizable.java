@@ -51,8 +51,8 @@ public class Customizable implements CustomizableMessages {
 	@NotNull(message = CUSTOMIZABLE_IMG_NULL)
 	@Size(max = CUSTOMIZABLE_IMG_MAX,
 		message = CUSTOMIZABLE_IMG_SIZE)
-	@Column(name = "img_url")
 	@NotBlank(message = CUSTOMIZABLE_IMG_NULL)
+	@Column(name = "img_url")
     private String imgUrl;
 
 	@Column(nullable = true)
