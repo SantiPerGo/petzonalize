@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.petzonalize.backend.custom.EmailService;
-import org.petzonalize.backend.custom.LoginRequest;
+import org.petzonalize.backend.custom.UserLogin;
 import org.petzonalize.backend.custom.UserNoPassword;
 import org.petzonalize.backend.entity.model.User;
 import org.petzonalize.backend.repository.UserRepository;
@@ -137,15 +137,15 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public ResponseEntity<?> login(LoginRequest loginRequest) {
-		Optional<User> optionalUser = userRepository.findByEmail(loginRequest.getEmail());
+	public ResponseEntity<?> login(UserLogin userLogin) {
+		Optional<User> optionalUser = userRepository.findByEmail(userLogin.getEmail());
 		
 		if(!optionalUser.isPresent())
-			return new ResponseEntity<>("User with email '" + loginRequest.getEmail()
+			return new ResponseEntity<>("User with email '" + userLogin.getEmail()
 				+ "' doesn't exist", HttpStatus.NOT_FOUND);
 		else {
 			// TODO: return user without password
-			if(optionalUser.get().getPassword().equals(loginRequest.getPassword()))
+			if(optionalUser.get().getPassword().equals(userLogin.getPassword()))
 				return new ResponseEntity<>(optionalUser.get(), HttpStatus.OK);
 			else
 				return new ResponseEntity<>("User password incorrect!", HttpStatus.BAD_REQUEST);

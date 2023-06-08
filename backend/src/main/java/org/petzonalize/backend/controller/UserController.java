@@ -1,6 +1,6 @@
 package org.petzonalize.backend.controller;
 
-import org.petzonalize.backend.custom.LoginRequest;
+import org.petzonalize.backend.custom.UserLogin;
 import org.petzonalize.backend.entity.model.User;
 import org.petzonalize.backend.service.UserService;
 
@@ -49,7 +49,7 @@ public class UserController {
 	}
     
     @PostMapping("login")
-	public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-    	return userService.login(loginRequest);
+	public ResponseEntity<?> login(@RequestBody UserLogin userLogin) {
+    	return userService.login(userLogin);
 	}
 }

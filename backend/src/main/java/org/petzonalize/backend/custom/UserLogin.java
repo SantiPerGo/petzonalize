@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class LoginRequest {
+public class UserLogin {
 	@JsonIgnore
 	private static final String notNull = "(string) cannot be null or empty";
 	
