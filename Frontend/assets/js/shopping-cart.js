@@ -482,7 +482,17 @@ const createUserOrder = () => {
     };
 
     console.log(userOrder)
-    sessionStorage.setItem("purchase-order", JSON.stringify(userOrder));
+    //sessionStorage.setItem("purchase-order", JSON.stringify(userOrder));
+
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(userOrder), // Enviando orden a end-Point /Buy de Backend
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => console.log('Message:', response));
 
     clearInputs(name, email, phone, address);
     showAlert();
