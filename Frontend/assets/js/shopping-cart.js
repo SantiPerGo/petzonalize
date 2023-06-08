@@ -471,6 +471,9 @@ const createUserOrder = () => {
     const phone = $("#input-phone-order");
     const address = $("#input-address-order");
     const urlOrder = 'https://petzonalize.up.railway.app/products/buy';
+    
+    const finalOrderProducts = JSON.parse(JSON.stringify(userCartProducts))
+    finalOrderProducts.shift();
     const userOrder = {
         user: {
             "name": name.val(),
@@ -478,11 +481,11 @@ const createUserOrder = () => {
             "phone": phone.val(),
             "address": address.val() 
         },
-        products: userCartProducts
+        products: finalOrderProducts
     };
 
     console.log(userOrder)
-    //sessionStorage.setItem("purchase-order", JSON.stringify(userOrder));
+    //sessionStorage.setItem("purchase-order", JSON.stringify(finalOrderProducts));
 
     fetch(urlOrder, {
         method: 'PUT',
