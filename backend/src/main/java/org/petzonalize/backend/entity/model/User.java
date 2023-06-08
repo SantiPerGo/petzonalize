@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -50,9 +52,7 @@ public class User implements UserMessages {
 	@NotBlank(message = USER_PASSWORD_NULL)
     private String password;
 
-	@NotNull
-	@NotNull(message = USER_PRIVILEGES_NULL)
-	@Size(max = USER_PRIVILEGES_MAX, message = USER_PRIVILEGES_SIZE)
-	@NotBlank(message = USER_PRIVILEGES_NULL)
-    private String privileges;
+	@ManyToOne
+    @JoinColumn(name = "privilege_id")
+    private Privilege privileges;
 }

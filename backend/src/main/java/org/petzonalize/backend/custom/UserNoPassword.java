@@ -1,9 +1,13 @@
 package org.petzonalize.backend.custom;
 
+import org.petzonalize.backend.entity.model.Privilege;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -38,8 +42,7 @@ public class UserNoPassword {
 	@NotBlank(message = "User phone" + notNull)
     private String phone;
 
-	@NotNull
-	@Size(max = 20, message = "User privileges cannot be longer than 20 characters")
-	@NotBlank(message = "User privileges" + notNull)
-    private String privileges;
+	@ManyToOne
+    @JoinColumn(name = "privilege_id")
+    private Privilege privileges;
 }

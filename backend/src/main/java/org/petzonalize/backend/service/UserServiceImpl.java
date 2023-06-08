@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
                     .email(user.getEmail())
                     .phone(user.getPhone())
                     .password(user.getPassword())
-                    .privileges("client")
+                    .privileges(user.getPrivileges())
                     .build();
 
         	return new ResponseEntity<>(
