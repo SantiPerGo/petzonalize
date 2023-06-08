@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
 		if(optionalProduct.isPresent())
             return new ResponseEntity<>(
             		"Product with name '" + product.getName() + "' already exists",
-            		HttpStatus.BAD_REQUEST);
+            		HttpStatus.CONFLICT);
 		else {
             Product newProduct = Product.builder()
                     .name(product.getName())

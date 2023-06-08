@@ -14,15 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
-
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 @Service("userService")
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {	
     @Autowired
     private UserRepository userRepository;
 
@@ -43,7 +39,7 @@ public class UserServiceImpl implements UserService {
 		if(optionalUser.isPresent())
             return new ResponseEntity<>(
             		"User with email '" + user.getEmail() + "' already exists",
-            		HttpStatus.BAD_REQUEST);
+            		HttpStatus.CONFLICT);
 		else {
             User newUser = User.builder()
                     .name(user.getName())
