@@ -1,5 +1,7 @@
 package org.petzonalize.backend.custom;
 
+import org.petzonalize.backend.entity.messages.UserMessages;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,28 +11,28 @@ import lombok.Data;
 
 @Data
 @Builder
-public class UserOrderData {
-	private static final String notNull = "(string) cannot be null or empty";
-	
-	@NotNull
-	@Size(max = 50, message = "Username cannot be longer than 50 characters")
-	@NotBlank(message = "Username " + notNull)
+public class UserOrderData implements UserMessages {
+    private static final String notNull = "(string) cannot be null or empty";
+
+    @NotNull
+    @Size(max = USERNAME_MAX, message = USERNAME_SIZE )
+    @NotBlank(message = USERNAME_NULL)
     private String name;
 
-	@Email
-	@NotNull
-	@Size(max = 50, message = "User email cannot be longer than 50 characters")
-	@NotBlank(message = "User email" + notNull)
+    @Email
+    @NotNull
+    @Size(max = USER_EMAIL_MAX, message = USER_EMAIL_SIZE)
+    @NotBlank(message = USER_EMAIL_NULL)
     private String email;
 
-	@NotNull
-	@Size(min = 8, max = 15,
-		message = "User phone cannot be less than 8 or longer than 20 characters")
-	@NotBlank(message = "User phone" + notNull)
+    @NotNull
+    @Size(min = USER_PHONE_MIN, max = USER_PHONE_MAX,
+        message = USER_PHONE_SIZE)
+    @NotBlank(message = USER_PHONE_NULL)
     private String phone;
 
-	@NotNull
-	@Size(max = 100, message = "User address cannot be longer than 100 characters")
-	@NotBlank(message = "User address" + notNull)
+    @NotNull
+    @Size(max = USER_ADDRESS_MAX, message = USER_ADDRESS_SIZE)
+    @NotBlank(message = USER_ADDRESS_NULL)
     private String address;
 }

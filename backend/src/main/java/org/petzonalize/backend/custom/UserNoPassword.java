@@ -1,6 +1,7 @@
 package org.petzonalize.backend.custom;
 
 import org.petzonalize.backend.entity.model.Privilege;
+import org.petzonalize.backend.entity.messages.UserMessages;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class UserNoPassword {
+public class UserNoPassword implements UserMessages {
 	private static final String notNull = "(string) cannot be null or empty";
 	
 	@Id
@@ -26,20 +27,20 @@ public class UserNoPassword {
 	private int id;
 
 	@NotNull
-	@Size(max = 50, message = "Username cannot be longer than 50 characters")
-	@NotBlank(message = "Username " + notNull)
+	@Size(max = USERNAME_MAX, message = USERNAME_SIZE)
+	@NotBlank(message = USERNAME_NULL)
     private String name;
 
 	@Email
 	@NotNull
-	@Size(max = 50, message = "User email cannot be longer than 50 characters")
-	@NotBlank(message = "User email" + notNull)
+	@Size(max = USER_EMAIL_MAX, message = USER_EMAIL_SIZE)
+	@NotBlank(message = USER_EMAIL_NULL)
     private String email;
 
 	@NotNull
-	@Size(min = 8, max = 15,
-		message = "User phone cannot be less than 8 or longer than 20 characters")
-	@NotBlank(message = "User phone" + notNull)
+	@Size(min = USER_PHONE_MIN, max = USER_PHONE_MAX,
+		message = USER_PHONE_SIZE)
+	@NotBlank(message = USER_PHONE_NULL)
     private String phone;
 
 	@ManyToOne

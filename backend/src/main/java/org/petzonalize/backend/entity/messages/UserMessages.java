@@ -20,4 +20,8 @@ public interface UserMessages {
 	int USER_PRIVILEGES_MAX = 20;
     String USER_PRIVILEGES_NULL = "User privileges (string) cannot be null or empty";
     String USER_PRIVILEGES_SIZE = "User privileges cannot be longer than 20 characters";
+    
+    int USER_ADDRESS_MAX = 100;
+    String USER_ADDRESS_NULL = "User address (string) cannot be null or empty";
+    String USER_ADDRESS_SIZE = "User address cannot be longer than 100 characters";
 }

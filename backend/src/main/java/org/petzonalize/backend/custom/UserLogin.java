@@ -1,5 +1,7 @@
 package org.petzonalize.backend.custom;
 
+import org.petzonalize.backend.entity.messages.UserMessages;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.validation.constraints.Email;
@@ -11,19 +13,19 @@ import lombok.Data;
 
 @Data
 @Builder
-public class UserLogin {
+public class UserLogin implements UserMessages {
 	@JsonIgnore
 	private static final String notNull = "(string) cannot be null or empty";
 	
 	@Email
 	@NotNull
-	@Size(max = 50, message = "User email cannot be longer than 50 characters")
-	@NotBlank(message = "User email" + notNull)
+	@Size(max = USER_EMAIL_MAX, message = USER_EMAIL_SIZE)
+	@NotBlank(message = USER_EMAIL_NULL)
     private String email;
 	
 	@NotNull
-	@Size(min = 8, max = 20,
-		message = "User password cannot be less than 8 or longer than 20 characters")
-	@NotBlank(message = "User password" + notNull)
+	@Size(min = USER_PASSWORD_MIN, max = USER_PASSWORD_MAX,
+		message = USER_PASSWORD_SIZE)
+	@NotBlank(message = USER_PASSWORD_NULL)
     private String password;
 }
