@@ -1,0 +1,126 @@
+{
+    "customizables": [
+        {
+            "id": 1,
+            "name": "Sombrero de Mariachi",
+            "category": "custome-head",
+            "type": "mariachi",
+            "price": 234.99,
+            "imgUrl": "/assets/img/products/customizable/customizable-head-mariachi.png",
+            "stock": 30,
+            "cssProperties": {
+                "dogTop": "17%",
+                "dogRight": "10%",
+                "catTop": "27%",
+                "catRight": "5%"
+            }
+        },
+        {
+            "id": 2,
+            "name": "Sombrero Color Rojo para el Frío",
+            "category": "custome-head",
+            "type": "cold",
+            "price": 145,
+            "imgUrl": "/assets/img/products/customizable/customizable-head-cold-red.png",
+            "stock": 33,
+            "cssProperties": {
+                "dogTop": "15%",
+                "dogRight": "15%",
+                "catTop": "20%",
+                "catRight": "5%"
+            }
+        },
+        {
+            "id": 3,
+            "name": "Traje de Tiburón",
+            "category": "custome-body",
+            "type": "shark",
+            "price": 269,
+            "imgUrl": "/assets/img/products/customizable/customizable-body-shark-jacket.png",
+            "stock": 26,
+            "cssProperties": {
+                "dogTop": "25%",
+                "dogRight": "25%",
+                "catTop": "25%",
+                "catRight": "18%"
+            }
+        },
+        {
+            "id": 4,
+            "name": "Traje con Jinete",
+            "category": "custome-body",
+            "type": "rider",
+            "price": 249.29,
+            "imgUrl": "/assets/img/products/customizable/customizable-body-rider.png",
+            "stock": 27,
+            "cssProperties": {
+                "dogTop": "15%",
+                "dogRight": "30%",
+                "catTop": "15%",
+                "catRight": "25%"
+            }
+        },
+        {
+            "id": 5,
+            "name": "Capa Roja",
+            "category": "custome-body",
+            "type": "cape",
+            "price": 195,
+            "imgUrl": "/assets/img/products/customizable/customizable-body-cape.png",
+            "stock": 39,
+            "cssProperties": {
+                "dogTop": "20%",
+                "dogRight": "30%",
+                "catTop": "25%",
+                "catRight": "27%"
+            }
+        },
+        {
+            "id": 6,
+            "name": "Caparazón de Tortuga",
+            "category": "custome-body",
+            "type": "turtle",
+            "price": 224,
+            "imgUrl": "/assets/img/products/customizable/customizable-body-turtle-shell.png",
+            "stock": 30,
+            "cssProperties": {
+                "dogTop": "25%",
+                "dogRight": "30%",
+                "catTop": "30%",
+                "catRight": "30%"
+            }
+        },
+        {
+            "id": 7,
+            "name": "Estampado de Círculos",
+            "category": "pattern",
+            "type": "circles",
+            "price": 19.99,
+            "imgUrl": "/assets/img/products/customizable/customizable-pattern-circles.jpg"
+        },
+        {
+            "id": 8,
+            "name": "Estampado de Corazones",
+            "category": "pattern",
+            "type": "hearts",
+            "price": 29.73,
+            "imgUrl": "/assets/img/products/customizable/customizable-pattern-hearts.png"
+        },
+        {
+            "id": 9,
+            "name": "Estampado de Tela",
+            "category": "pattern",
+            "type": "fabric",
+            "price": 39,
+            "imgUrl": "/assets/img/products/customizable/customizable-pattern-fabric.jpg"
+        },
+        {
+            "id": 10,
+            "name": "Estampado de Cuadrados",
+            "category": "pattern",
+            "type": "squares",
+            "price": 59.12,
+            "imgUrl": "/assets/img/products/customizable/customizable-pattern-squares.jpg"
+        }
+    ]
+}

@@ -2,8 +2,6 @@ package org.petzonalize.backend.entity.model;
 
 import org.petzonalize.backend.entity.messages.CustomizableMessages;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -25,41 +22,37 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name="customizables")
-public class Customizable implements CustomizableMessages {
-	@Transient
-	@JsonIgnore
-	private static final String notNull = "cannot be null or empty";
-	
+public class Customizable implements CustomizableMessages {	
     @Id
 	@Column(name = "customizable_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-	@NotNull
-	@Size(max = 200,
-		message = "Customizable name cannot be longer than 200 characters")
-	@NotBlank(message = "Customizable name (string)" + notNull)
+	@NotNull(message = CUSTOMIZABLE_NAME_NULL)
+	@Size(max = CUSTOMIZABLE_NAME_MAX,
+		message =CUSTOMIZABLE_NAME_SIZE)
+	@NotBlank(message = CUSTOMIZABLE_NAME_NULL)
     private String name;
 
-	@NotNull
-	@Size(max = 20,
-		message = "Customizable category cannot be longer than 20 characters")
-	@NotBlank(message = "Customizable category (string)" + notNull)
+	@NotNull(message = CUSTOMIZABLE_CATEGORY_NULL)
+	@Size(max = CUSTOMIZABLE_CATEGORY_MAX,
+		message = CUSTOMIZABLE_CATEGORY_SIZE)
+	@NotBlank(message = CUSTOMIZABLE_CATEGORY_NULL)
     private String category;
 
-	@NotNull
-	@Size(max = 20, message = "Customizable type cannot be longer than 20 characters")
-	@NotBlank(message = "Customizable type (string)" + notNull)
+	@NotNull(message = CUSTOMIZABLE_TYPE_NULL)
+	@Size(max = CUSTOMIZABLE_TYPE_MAX, message = CUSTOMIZABLE_TYPE_SIZE)
+	@NotBlank(message = CUSTOMIZABLE_TYPE_NULL)
     private String type;
 
-	@NotNull(message = "Customizable price (double)" + notNull)
+	@NotNull(message = CUSTOMIZABLE_PRICE_NULL)
     private double price;
 
-	@NotNull
-	@Size(max = 150,
-		message = "Customizable image url cannot be longer than 150 characters")
+	@NotNull(message = CUSTOMIZABLE_IMG_NULL)
+	@Size(max = CUSTOMIZABLE_IMG_MAX,
+		message = CUSTOMIZABLE_IMG_SIZE)
 	@Column(name = "img_url")
-	@NotBlank(message = "Customizable image url (string)" + notNull)
+	@NotBlank(message = CUSTOMIZABLE_IMG_NULL)
     private String imgUrl;
 
 	@Column(nullable = true)
