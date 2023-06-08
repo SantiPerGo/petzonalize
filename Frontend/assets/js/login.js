@@ -121,16 +121,24 @@ recoverForm.submit(submitButton => {
 loginForm.submit(submitButton => {
     submitButton.preventDefault();
 
-    const email = $("#input-email-login").val();
-    const password = $("#input-password-login").val();
+    const email = $("#input-email-login").val().trim();
+    const password = $("#input-password-login").val().trim();
 
+    const user = {
+        email: $("#input-email-login").val().trim(),
+        password: $("#input-password-login").val().trim()
+    }
+
+    console.log(user);
     if(loginForm.valid())
-        fetch("/assets/json/users.json")
-            .then(res => res.json())
+        fetch("https://petzonalize.up.railway.app/users/login", {
+            method: "POST",
+            body: JSON.stringify(user),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
             .then(usersResponse =>{
                 if( checkLoginUser(email, password, usersResponse) ){
                     const userObtained = getUserFromDataBase(email, password, usersResponse);
-                    localStorage.setItem("users-logged-in", JSON.stringify(userObtained));
                     window.location.href = 'profile.html';
                     console.log("Sesion iniciada");
                 }
