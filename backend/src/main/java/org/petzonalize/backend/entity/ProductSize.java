@@ -1,5 +1,7 @@
 package org.petzonalize.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name="sizes")
 public class ProductSize {
+	@JsonIgnore
 	private static final String notNull = "(string) cannot be null or empty";
 	
 	@Id

@@ -1,5 +1,7 @@
 package org.petzonalize.backend.controller;
 
+import java.util.ArrayList;
+
 import org.petzonalize.backend.custom_class.LoginRequest;
 import org.petzonalize.backend.entity.User;
 import org.petzonalize.backend.service.UserService;
@@ -19,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+
 @RestController
 @RequestMapping("/users")
 @CrossOrigin(origins="*")
@@ -30,6 +35,17 @@ public class UserController {
     public ResponseEntity<String> handleNotReadableException(HttpMessageNotReadableException ex) {
         return new ResponseEntity<>("Error: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
+	
+	@ExceptionHandler(ConstraintViolationException.class)
+	public ResponseEntity<ArrayList<String>> handleViolationEx(ConstraintViolationException ex)  {
+		ArrayList<String> exceptionsList = new ArrayList<>();
+    	
+    	for(ConstraintViolation<?> violation: ex.getConstraintViolations())
+    		exceptionsList.add("error-" + violation.getPropertyPath()
+    			+ ": " + violation.getMessage());
+    	
+        return new ResponseEntity<>(exceptionsList, HttpStatus.BAD_REQUEST);
+	}
 	
     @GetMapping
     public ResponseEntity<?> getUsers() {
@@ -56,7 +72,7 @@ public class UserController {
     	return userService.recoverPassword(email);
 	}
     
-    @PostMapping("login")
+    @GetMapping("login")
 	public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
     	return userService.login(loginRequest);
 	}

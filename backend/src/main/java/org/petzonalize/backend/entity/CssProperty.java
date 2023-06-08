@@ -1,5 +1,7 @@
 package org.petzonalize.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +21,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name="css_properties")
 public class CssProperty {
+	@JsonIgnore
 	private static final String notNull = "(string) cannot be null or empty";
+	@JsonIgnore
 	private static final String sizeLimit = "cannot be less than 2 or longer than 10 characters";
 	
     @Id

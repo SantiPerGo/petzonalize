@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service("productService")
 public class ProductServiceImpl implements ProductService {
@@ -45,6 +44,7 @@ public class ProductServiceImpl implements ProductService {
 		}
 	}
 
+	// TODO: Delete with email and password
 	@Override
 	public ResponseEntity<String> deleteProduct(int id){
 		Optional<Product> optionalProduct = productRepository.findById(id);
@@ -83,20 +83,9 @@ public class ProductServiceImpl implements ProductService {
         	return new ResponseEntity<>(productsList, HttpStatus.OK);
 	}
 
-	@Transactional
 	@Override
 	public ResponseEntity<?> buyProducts(UserOrderData user, List<Product> products) {	
-		for(Product product : products) {
-	        Optional<Product> optionalProduct = productRepository.findById(product.getId());
-	        
-	        if(!optionalProduct.isPresent())
-				return new ResponseEntity<>("Product with id '" +
-						product.getId() + "' doesn't exist", HttpStatus.NOT_FOUND);
-			else {
-	            product.setId(optionalProduct.get().getId());
-				productRepository.saveAndFlush(product);
-			}
-		}
+		productRepository.saveAllAndFlush(products);
 		
 		// TODO: Send email with the products to the user
 		

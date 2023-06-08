@@ -1,7 +1,5 @@
 package org.petzonalize.backend.service;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -56,22 +53,11 @@ public class UserServiceImpl implements UserService {
                     .privileges("client")
                     .build();
 
-            try {
-            	return new ResponseEntity<>(
-                		userRepository.saveAndFlush(newUser), HttpStatus.CREATED);
-            } catch(ConstraintViolationException cve) {
-            	ArrayList<String> exceptionsList = new ArrayList<>();
-            	
-            	for(ConstraintViolation<?> violation: cve.getConstraintViolations())
-            		exceptionsList.add("error-" + violation.getPropertyPath()
-            			+ ": " + violation.getMessage());
-            	
-                return new ResponseEntity<>(exceptionsList, HttpStatus.BAD_REQUEST);
-            }
+        	return new ResponseEntity<>(
+            	userRepository.saveAndFlush(newUser), HttpStatus.CREATED);
 		}
 	}
 
-	@Transactional
 	@Override
 	public ResponseEntity<String> deleteUser(int id){
 		Optional<User> optionalUser = userRepository.findById(id);
@@ -96,18 +82,7 @@ public class UserServiceImpl implements UserService {
 		else {
             user.setId(optionalUser.get().getId());
             user.setPrivileges(optionalUser.get().getPrivileges());
-            
-            try {
-                return new ResponseEntity<>(userRepository.saveAndFlush(user), HttpStatus.OK);
-            } catch(ConstraintViolationException violationEx) {
-            	ArrayList<String> exceptionsList = new ArrayList<>();
-            	
-            	for(ConstraintViolation<?> violation: violationEx.getConstraintViolations())
-            		exceptionsList.add("error-" + violation.getPropertyPath()
-            			+ ": " + violation.getMessage());
-            	
-                return new ResponseEntity<>(exceptionsList, HttpStatus.BAD_REQUEST);
-            } 
+            return new ResponseEntity<>(userRepository.saveAndFlush(user), HttpStatus.OK);
 		}
 	}
 
