@@ -26,32 +26,33 @@ import lombok.NoArgsConstructor;
 @Entity(name="sizes")
 public class ProductSize implements ProductSizeMessages {
 	// TODO: Verify DB not to store variable
-	@Transient
-	@JsonIgnore
-	private static final String notNull = "(string) cannot be null or empty";
+	//@Transient
+	//@JsonIgnore
+	//private static final String notNull = "(string) cannot be null or empty";
 	
 	@Id
 	@Column(name = "size_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@NotNull
-	@NotBlank(message = "Size category " + notNull)
-	@Size(max = 20, message = "Product size category cannot be longer than 20 characters")
+	@NotNull(message = SIZE_CATEGORY_NULL)
+	@NotBlank(message = SIZE_CATEGORY_NULL)
+	@Size(max = PRODUCT_SIZE_CATEGORY_MAX, message = PRODUCT_SIZE_CATEGORY_LENGTH)
     private String category;
 
-	@NotNull
-	@NotBlank(message = "Size small " + notNull)
-	@Size(max = 100, message = "Product size small cannot be longer than 100 characters")
+	@NotNull(message = PRODUCT_SIZE_SMALL_NULL)
+	@NotBlank(message = PRODUCT_SIZE_SMALL_NULL)
+	@Size(max = PRODUCT_SIZE_LENGTH, message = PRODUCT_SIZE_SMALL_LENGTH)
     private String small;
 
-	@NotNull
-	@NotBlank(message = "Size medium " + notNull)
-	@Size(max = 100, message = "Product size medium cannot be longer than 100 characters")
+	@NotNull(message = PRODUCT_SIZE_MEDIUM_NULL)
+	@NotBlank(message = PRODUCT_SIZE_MEDIUM_NULL)
+	@Size(max = PRODUCT_SIZE_LENGTH, message = PRODUCT_SIZE_MEDIUM_LENGTH)
     private String medium;
 
-	@NotNull
-	@NotBlank(message = "Size big " + notNull)
-	@Size(max = 100, message = "Product size big cannot be longer than 100 characters")
+	@NotNull(message = PRODUCT_SIZE_BIG_NULL)
+	@NotBlank(message = PRODUCT_SIZE_BIG_NULL)
+	@Size(max = PRODUCT_SIZE_LENGTH, message = PRODUCT_SIZE_BIG_LENGTH)
     private String big;
 }
+
