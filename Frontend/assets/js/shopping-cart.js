@@ -470,7 +470,7 @@ const createUserOrder = () => {
     const email = $("#input-email-order");
     const phone = $("#input-phone-order");
     const address = $("#input-address-order");
-    const urlOrder = 'http://localhost:8080/products/buy';
+    const urlOrder = 'https://petzonalize.up.railway.app/products/buy';
     const userOrder = {
         user: {
             "name": name.val(),
