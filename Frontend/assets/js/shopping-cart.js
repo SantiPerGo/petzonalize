@@ -470,7 +470,7 @@ const createUserOrder = () => {
     const email = $("#input-email-order");
     const phone = $("#input-phone-order");
     const address = $("#input-address-order");
-
+    const urlOrder = 'http://localhost:8080/products/buy';
     const userOrder = {
         user: {
             "name": name.val(),
@@ -484,8 +484,8 @@ const createUserOrder = () => {
     console.log(userOrder)
     //sessionStorage.setItem("purchase-order", JSON.stringify(userOrder));
 
-    fetch(url, {
-        method: 'POST',
+    fetch(urlOrder, {
+        method: 'PUT',
         body: JSON.stringify(userOrder), // Enviando orden a end-Point /Buy de Backend
         headers:{
           'Content-Type': 'application/json'
