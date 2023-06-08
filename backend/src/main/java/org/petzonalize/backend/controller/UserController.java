@@ -72,7 +72,7 @@ public class UserController {
     	return userService.recoverPassword(email);
 	}
     
-    @GetMapping("login")
+    @PostMapping("login")
 	public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
     	return userService.login(loginRequest);
 	}
