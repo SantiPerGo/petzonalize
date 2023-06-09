@@ -15,6 +15,18 @@ INSERT INTO users (`name`, `email`, `phone`, `password`, `privilege_id`, `addres
 INSERT INTO users (`name`, `email`, `phone`, `password`, `privilege_id`, `address`) VALUES ("Juana Sánchez Armenta", "jusanarmenti21@gmail.com", "525569753092", "princessjuanita77", 1, "159 Fir St, Beijing, China");
 INSERT INTO users (`name`, `email`, `phone`, `password`, `privilege_id`, `address`) VALUES ("Sandra Castillo Pérez", "sandraexploradora21@gmail.com", "525546483824", "passw0rdstarwars21", 2, "357 Palm St, Sydney, Australia");
 
+-- orders
+INSERT INTO orders (`user_id`) VALUES (1);
+INSERT INTO orders (`user_id`) VALUES (2);
+INSERT INTO orders (`user_id`) VALUES (3);
+INSERT INTO orders (`user_id`) VALUES (4);
+INSERT INTO orders (`user_id`) VALUES (5);
+INSERT INTO orders (`user_id`) VALUES (6);
+INSERT INTO orders (`user_id`) VALUES (7);
+INSERT INTO orders (`user_id`) VALUES (8);
+INSERT INTO orders (`user_id`) VALUES (9);
+INSERT INTO orders (`user_id`) VALUES (10);
+
 -- sizes
 INSERT INTO sizes (`category`, `small`, `medium`, `big`) VALUES ("bowl", "Pequeño - 250 ml", "Mediano - 500 ml", "Grande - 1000 ml");
 INSERT INTO sizes (`category`, `small`, `medium`, `big`) VALUES ("nameplate", "Pequeña - 35 mm x 18 mm", "Mediana - 38 mm x 25 mm", "Grande - 50 mm x 32 mm");

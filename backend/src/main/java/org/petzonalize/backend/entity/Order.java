@@ -1,8 +1,6 @@
 package org.petzonalize.backend.entity;
 
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,6 +29,7 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 	
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date purchaseDate;
+	@Column(insertable = false, updatable = false,
+			columnDefinition = "timestamp default CURRENT_TIMESTAMP")
+    private Timestamp purchaseDate;
 }

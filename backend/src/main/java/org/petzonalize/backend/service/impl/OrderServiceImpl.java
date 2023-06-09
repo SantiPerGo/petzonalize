@@ -1,6 +1,5 @@
 package org.petzonalize.backend.service.impl;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,7 +66,6 @@ public class OrderServiceImpl implements OrderService {
 		
     	Order order = Order.builder()
 			.user(user)
-			.purchaseDate(new Date())
 			.build();
     	
 		// Creating order
