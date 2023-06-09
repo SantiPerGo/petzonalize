@@ -1,6 +1,6 @@
-package org.petzonalize.backend.entity.messages;
+package org.petzonalize.backend.constant;
 
-public interface ProductPropertyMessages {
+public interface ProductPropertyConstants {
     int PRODUCT_COLOR_MAX = 50;
     String PRODUCT_COLOR_MESSAGE = "Product property color (string) cannot be longer than 50 characters";
     

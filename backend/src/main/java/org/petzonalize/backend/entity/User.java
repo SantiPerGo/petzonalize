@@ -1,6 +1,6 @@
 package org.petzonalize.backend.entity;
 
-import org.petzonalize.backend.entity.messages.UserMessages;
+import org.petzonalize.backend.constant.UserConstants;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name="users")
-public class User implements UserMessages {	
+public class User implements UserConstants {	
 	@Id
 	@Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

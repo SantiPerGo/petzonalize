@@ -1,6 +1,6 @@
-package org.petzonalize.backend.entity.messages;
+package org.petzonalize.backend.constant;
 
-public interface ProductSizeMessages {
+public interface ProductSizeConstants {
     int PRODUCT_SIZE_CATEGORY_MAX = 20;
     String PRODUCT_SIZE_CATEGORY_NULL = "Size category (string) cannot be null or empty ";
     String PRODUCT_SIZE_CATEGORY_LENGTH = "Product size category cannot be longer than 20 characters";

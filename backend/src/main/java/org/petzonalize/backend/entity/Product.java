@@ -1,6 +1,6 @@
 package org.petzonalize.backend.entity;
 
-import org.petzonalize.backend.entity.messages.ProductMessages;
+import org.petzonalize.backend.constant.ProductConstants;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name="products")
-public class Product implements ProductMessages {	
+public class Product implements ProductConstants {	
     @Id
 	@Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

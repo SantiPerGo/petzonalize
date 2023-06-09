@@ -1,7 +1,7 @@
 package org.petzonalize.backend.dto;
 
+import org.petzonalize.backend.constant.ProductConstants;
 import org.petzonalize.backend.entity.ProductProperty;
-import org.petzonalize.backend.entity.messages.ProductMessages;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductDTO implements ProductMessages {	
+public class ProductDTO implements ProductConstants {	
     @Id
 	@Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

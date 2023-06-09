@@ -1,6 +1,6 @@
 package org.petzonalize.backend.entity;
 
-import org.petzonalize.backend.entity.messages.ProductPropertyMessages;
+import org.petzonalize.backend.constant.ProductPropertyConstants;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name="product_properties")
-public class ProductProperty implements ProductPropertyMessages {
+public class ProductProperty implements ProductPropertyConstants {
     @Id
 	@Column(name = "product_property_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

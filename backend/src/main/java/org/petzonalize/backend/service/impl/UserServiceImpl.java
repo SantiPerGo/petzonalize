@@ -5,7 +5,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.petzonalize.backend.dto.UserDTO;
+import org.petzonalize.backend.entity.Privilege;
 import org.petzonalize.backend.entity.User;
+import org.petzonalize.backend.entity.UserHasPrivilege;
+import org.petzonalize.backend.repository.PrivilegeRepository;
+import org.petzonalize.backend.repository.UserHasPrivilegeRepository;
 import org.petzonalize.backend.repository.UserRepository;
 import org.petzonalize.backend.service.UserService;
 import org.petzonalize.backend.utils.EmailService;
@@ -23,6 +27,12 @@ import jakarta.transaction.Transactional;
 public class UserServiceImpl implements UserService {	
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private PrivilegeRepository privilegeRepository;
+
+    @Autowired
+    private UserHasPrivilegeRepository userHasPrivilegeRepository;
     
     @Autowired
     private FirebaseHandler firebaseHandler;
@@ -45,16 +55,37 @@ public class UserServiceImpl implements UserService {
             		"User with email '" + user.getEmail() + "' already exists",
             		HttpStatus.CONFLICT);
 		else {
+			Privilege clientPrivilege =
+				privilegeRepository.findByPrivilege("client").get();
+					
             User newUser = User.builder()
                 .name(user.getName())
                 .email(user.getEmail())
                 .phone(user.getPhone())
                 .password(user.getPassword())
-                .privileges(user.getPrivileges())
+                .privileges(clientPrivilege)
                 .build();
 
-        	return new ResponseEntity<>(
-            	userRepository.saveAndFlush(newUser), HttpStatus.CREATED);
+            userRepository.saveAndFlush(newUser);
+            
+        	UserHasPrivilege userHasPrivilege = UserHasPrivilege.builder()
+    			.user(newUser)
+    			.privilege(clientPrivilege)
+    			.build();
+        	
+        	userHasPrivilegeRepository.saveAndFlush(userHasPrivilege);
+        	
+        	// TODO: user no password dto
+        	
+        	User userNoPassword = User.builder()
+    			.id(newUser.getId())
+                .name(newUser.getName())
+                .email(newUser.getEmail())
+                .phone(newUser.getPhone())
+                .privileges(newUser.getPrivileges())
+                .build();
+        	
+        	return new ResponseEntity<>(userNoPassword, HttpStatus.CREATED);
 		}
 	}
 
@@ -86,7 +117,17 @@ public class UserServiceImpl implements UserService {
 		else {
             user.setId(optionalUser.get().getId());
             user.setPrivileges(optionalUser.get().getPrivileges());
-            return new ResponseEntity<>(userRepository.saveAndFlush(user), HttpStatus.OK);
+            userRepository.saveAndFlush(user);
+
+        	User userNoPassword = User.builder()
+    			.id(user.getId())
+                .name(user.getName())
+                .email(user.getEmail())
+                .phone(user.getPhone())
+                .privileges(user.getPrivileges())
+                .build();
+            
+            return new ResponseEntity<>(userNoPassword, HttpStatus.OK);
 		}
 	}
 
@@ -155,10 +196,19 @@ public class UserServiceImpl implements UserService {
 			return new ResponseEntity<>("User with email '" + userLogin.getEmail()
 				+ "' doesn't exist", HttpStatus.NOT_FOUND);
 		else {
-			// TODO: return user without password
-			if(optionalUser.get().getPassword().equals(userLogin.getPassword()))
-				return new ResponseEntity<>(optionalUser.get(), HttpStatus.OK);
-			else
+			if(optionalUser.get().getPassword().equals(userLogin.getPassword())) {
+            	User user = optionalUser.get();
+            	
+				User userNoPassword = User.builder()
+        			.id(user.getId())
+                    .name(user.getName())
+                    .email(user.getEmail())
+                    .phone(user.getPhone())
+                    .privileges(user.getPrivileges())
+                    .build();
+            	
+				return new ResponseEntity<>(userNoPassword, HttpStatus.OK);
+			} else
 				return new ResponseEntity<>("User password incorrect!", HttpStatus.BAD_REQUEST);
 		}
 	}

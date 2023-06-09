@@ -25,9 +25,9 @@ public class UserHasPrivilege {
 
 	@ManyToOne
     @JoinColumn(name = "user_id")
-    private User order;
+    private User user;
 	
 	@ManyToOne
     @JoinColumn(name = "privilege_id")
-    private Privilege product;
+    private Privilege privilege;
 }

@@ -1,6 +1,6 @@
-package org.petzonalize.backend.entity.messages;
+package org.petzonalize.backend.constant;
 
-public interface ProductMessages {
+public interface ProductConstants {
 	int PRODUCT_NAME_MAX = 200;
 	String PRODUCT_NAME_NULL = "Product name (string) cannot be null or empty";
     String PRODUCT_NAME_SIZE = "Product name (string) cannot be longer than 200 characters";

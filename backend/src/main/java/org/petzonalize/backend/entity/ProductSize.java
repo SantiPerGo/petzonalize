@@ -1,6 +1,6 @@
 package org.petzonalize.backend.entity;
 
-import org.petzonalize.backend.entity.messages.ProductSizeMessages;
+import org.petzonalize.backend.constant.ProductSizeConstants;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name="sizes")
-public class ProductSize implements ProductSizeMessages {	
+public class ProductSize implements ProductSizeConstants {	
 	@Id
 	@Column(name = "size_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

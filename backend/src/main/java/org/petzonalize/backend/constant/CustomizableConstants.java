@@ -1,6 +1,6 @@
-package org.petzonalize.backend.entity.messages;
+package org.petzonalize.backend.constant;
 
-public interface CustomizableMessages {
+public interface CustomizableConstants {
 	int CUSTOMIZABLE_NAME_MAX = 200;
 	String CUSTOMIZABLE_NAME_NULL = "Customizable name (string) cannot be null or empty";
     String CUSTOMIZABLE_NAME_SIZE = "Customizable name (string) cannot be longer than 200 characters";

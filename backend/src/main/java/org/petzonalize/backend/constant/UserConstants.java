@@ -1,6 +1,6 @@
-package org.petzonalize.backend.entity.messages;
+package org.petzonalize.backend.constant;
 
-public interface UserMessages {	
+public interface UserConstants {	
 	int USERNAME_MAX = 50;
 	String USERNAME_NULL = "Username (string) cannot be null or empty";
     String USERNAME_SIZE = "Username cannot be longer than 50 characters";

@@ -1,6 +1,6 @@
 package org.petzonalize.backend.entity;
 
-import org.petzonalize.backend.entity.messages.CssPropertyMessages;
+import org.petzonalize.backend.constant.CssPropertyConstants;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name="css_properties")
-public class CssProperty implements CssPropertyMessages {	
+public class CssProperty implements CssPropertyConstants {	
     @Id
 	@Column(name = "css_property_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

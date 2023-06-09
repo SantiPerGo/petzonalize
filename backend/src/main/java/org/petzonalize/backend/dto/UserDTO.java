@@ -1,6 +1,6 @@
 package org.petzonalize.backend.dto;
 
-import org.petzonalize.backend.entity.messages.UserMessages;
+import org.petzonalize.backend.constant.UserConstants;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class UserDTO implements UserMessages {	
+public class UserDTO implements UserConstants {	
 	@Email
 	@NotNull
 	@Size(max = USER_EMAIL_MAX, message = USER_EMAIL_SIZE)

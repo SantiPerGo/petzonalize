@@ -1,6 +1,6 @@
 package org.petzonalize.backend.entity;
 
-import org.petzonalize.backend.entity.messages.CustomizableMessages;
+import org.petzonalize.backend.constant.CustomizableConstants;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name="customizables")
-public class Customizable implements CustomizableMessages {	
+public class Customizable implements CustomizableConstants {	
     @Id
 	@Column(name = "customizable_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,6 @@
 package org.petzonalize.backend.entity;
 
-import org.petzonalize.backend.entity.messages.UserMessages;
+import org.petzonalize.backend.constant.UserConstants;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name="privileges")
-public class Privilege implements UserMessages {
+public class Privilege implements UserConstants {
 	@Id
 	@Column(name = "privilege_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

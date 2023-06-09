@@ -1,7 +1,7 @@
 package org.petzonalize.backend.entity;
 
 
-import org.petzonalize.backend.entity.messages.OrderMessages;
+import org.petzonalize.backend.constant.OrderConstants;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name="orders_has_products")
-public class OrderHasProduct implements OrderMessages {	
+public class OrderHasProduct implements OrderConstants {	
 	@Id
 	@Column(name = "orders_has_products_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
