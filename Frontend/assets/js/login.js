@@ -174,7 +174,7 @@ loginForm.submit(submitButton => {
         })
             .then(response => response.json())
             .then(usersResponse =>{
-                localStorage.setItem(`user`, JSON.stringify(usersResponse));
+                localStorage.setItem(`users-logged-in`, JSON.stringify(usersResponse));
                 window.location.href = 'profile.html';
                 console.log("Sesion iniciada");   
             })
