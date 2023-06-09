@@ -1,7 +1,7 @@
 package org.petzonalize.backend.controller;
 
-import org.petzonalize.backend.custom.UserLogin;
-import org.petzonalize.backend.entity.model.User;
+import org.petzonalize.backend.dto.UserDTO;
+import org.petzonalize.backend.entity.User;
 import org.petzonalize.backend.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class UserController {
 	}
     
     @DeleteMapping
-    public ResponseEntity<String> deleteUser(@RequestBody UserLogin userLogin) {
+    public ResponseEntity<String> deleteUser(@RequestBody UserDTO userLogin) {
         return userService.deleteUser(userLogin);
     }
     
@@ -49,7 +49,7 @@ public class UserController {
 	}
     
     @PostMapping("login")
-	public ResponseEntity<?> login(@RequestBody UserLogin userLogin) {
+	public ResponseEntity<?> login(@RequestBody UserDTO userLogin) {
     	return userService.login(userLogin);
 	}
 }

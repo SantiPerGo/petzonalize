@@ -1,7 +1,7 @@
 package org.petzonalize.backend.controller;
 
 
-import org.petzonalize.backend.entity.model.Product;
+import org.petzonalize.backend.entity.Product;
 import org.petzonalize.backend.service.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class ProductController {
 	}
     
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable int id) {
+    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
         return productService.deleteProduct(id);
     }
     
