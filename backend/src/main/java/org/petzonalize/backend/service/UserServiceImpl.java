@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.petzonalize.backend.custom.EmailService;
+import org.petzonalize.backend.custom.FirebaseHandler;
 import org.petzonalize.backend.custom.UserLogin;
 import org.petzonalize.backend.entity.model.User;
 import org.petzonalize.backend.repository.UserRepository;
@@ -22,6 +23,9 @@ import jakarta.transaction.Transactional;
 public class UserServiceImpl implements UserService {	
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private FirebaseHandler firebaseHandler;
 
     @Autowired
     private TemplateEngine templateEngine;
@@ -128,9 +132,12 @@ public class UserServiceImpl implements UserService {
 			else {
 		        String subject = "Petzonalize - Recuperación de Contraseña";
 		        
+		        List<String> imageUrls = firebaseHandler.getImagesFromFirebaseStorage();
+		        String imageUrl = firebaseHandler.getImageUrlByName(imageUrls, "Logo.png");
+		        
 		        // Loading HTML with Thymeleaf
 		        Context context = new Context();
-                context.setVariable("imgName", "Logo.png");
+                context.setVariable("imgUrl", imageUrl);
                 context.setVariable("email", email);
                 context.setVariable("password", optionalUser.get().getPassword());
                 String htmlContent = templateEngine.process("password_recovery", context);

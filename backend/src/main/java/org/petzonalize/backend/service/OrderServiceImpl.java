@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.petzonalize.backend.custom.EmailService;
+import org.petzonalize.backend.custom.FirebaseHandler;
 import org.petzonalize.backend.custom.ProductOrder;
 import org.petzonalize.backend.entity.model.Order;
 import org.petzonalize.backend.entity.model.OrderHasProduct;
@@ -36,6 +37,9 @@ public class OrderServiceImpl implements OrderService {
     
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private FirebaseHandler firebaseHandler;
 
     @Autowired
     private TemplateEngine templateEngine;
@@ -70,6 +74,7 @@ public class OrderServiceImpl implements OrderService {
 		orderRepository.saveAndFlush(order);
 		
 		double total = 0; 
+		int totalAmount = 0;
 		
 		for(ProductOrder productOrder : products) {
 			Optional<Product> optionalProduct =
@@ -88,6 +93,7 @@ public class OrderServiceImpl implements OrderService {
 					
 					// Updating order total cost
 					total += (productOrder.getPrice() * amount);
+					totalAmount += amount;
 					
 					OrderHasProduct orderHasProduct = OrderHasProduct.builder()
 						.order(order)
@@ -107,31 +113,26 @@ public class OrderServiceImpl implements OrderService {
 		}
 
         String subject = "Petzonalize - ¡Gracias por tu Compra!";
+    	List<String> imageUrls = firebaseHandler.getImagesFromFirebaseStorage();
+        String logoUrl = firebaseHandler.getImageUrlByName(imageUrls, "Logo.png");
         
-        // Creating image paths
-        products.forEach(product ->
-        	product.setImgUrl(getImageNameFromPath(product.getImgUrl()))
-        );
+        // Getting images urls
+        products.forEach(product -> {
+	        product.setImgUrl(firebaseHandler.getImageUrlByName(imageUrls, 
+		        firebaseHandler.getImageNameFromPath(product.getImgUrl()))
+    		);
+        });
         
         // Loading HTML with Thymeleaf
         Context context = new Context();
-        context.setVariable("imgName", "Logo.png");
+        context.setVariable("logoUrl", logoUrl);
         context.setVariable("products", products);
         context.setVariable("total", total);
+        context.setVariable("totalAmount", totalAmount);
         String htmlContent = templateEngine.process("order_recipe", context);
 
 		emailService.sendEmail(user.getEmail(), subject, htmlContent);
 		
 		return new ResponseEntity<>("Order purchase recipe sent to email!", HttpStatus.OK);
 	}
-    
-
-    // Extract the image name from the path
-    private String getImageNameFromPath(String imagePath) {
-        int lastSlashIndex = imagePath.lastIndexOf("/products");
-        if (lastSlashIndex != -1 && lastSlashIndex < imagePath.length() - 1) 
-            return imagePath.substring(lastSlashIndex + 1);
-        else 
-            return imagePath;
-    }
 }

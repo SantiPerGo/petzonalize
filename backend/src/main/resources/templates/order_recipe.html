@@ -40,12 +40,9 @@
                 margin-bottom: 1rem;
             }
 
-            .margin-3 {
-                margin: 5rem 0;
-            }
-
             img {
-                width: 50%;
+                width: auto;
+                height: 50%;
             }
 
             .fs-1 {
@@ -63,17 +60,22 @@
             .fs-5 {
                 font-size: 2rem;
             }
-
+            
             hr {
                 border-top: 0.5rem dashed #BDA692;
                 border-bottom: none;
+            }
+            
+            #logo {
+                width: 100%;
+                height: auto;
             }
         </style>
     </head>
     <body>
         <header class="margin">
             <a href="https://petzonalize.netlify.app/" target="_blank">
-                <img th:src="@{~/static/img/__${imgName}__}" th:alt="${imgName}">
+                <img id="logo" th:src="${logoUrl}">
             </a>
         </header>
 
@@ -91,9 +93,9 @@
                 
             <div th:each="product : ${products}">
             	<hr>
-            
+            	
                 <p class="fs-5 margin">
-                    <img th:src="@{~/static/img/__${product.imgUrl}__}" th:alt="${product.imgUrl}">
+                    <img th:src="${product.imgUrl}">
                 </p>
                 <p class="fs-5 margin">
                     Nombre: <b th:text="${product.name}">X</b>
@@ -105,15 +107,19 @@
                     Cantidad: <b th:text="${product.amount}">X</b>
                 </p>
                 <p class="fs-5 margin">
-                    Costo: <b>$</b><b th:text="${product.price}">X</b>
+                    Costo por Unidad: <b>$</b><b th:text="${product.price}">X</b>
                 </p>
             </div>
             
             <div>
                 <hr>
-
+                
                 <p class="fs-2 text-purple margin">
-                    Costo Total: <b>$</b><b th:text="${total}">X</b>
+            		Total de Artículos: <b th:text="${totalAmount}">X</b>
+                </p>
+                
+                <p class="fs-2 text-purple margin">
+            		Costo Total: <b>$</b><b th:text="${total}">X</b>
                 </p>
 
                 <hr>
