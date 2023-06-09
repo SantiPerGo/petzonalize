@@ -437,7 +437,7 @@ btnOpenWindowOrder.addEventListener('click', function() {
     formOrderContainer.classList.remove("pop--hidden");
     formOrderContainer.classList.add("pop--unhidden");
 
-    let userLogged = localStorage.getItem("user");
+    let userLogged = localStorage.getItem("users-logged-in");
     if(userLogged != null){
         let userData = JSON.parse(localStorage.getItem("user"));
         setInputs(userData);
