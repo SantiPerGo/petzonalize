@@ -2,6 +2,7 @@ package org.petzonalize.backend.custom;
 
 import java.util.ArrayList;
 
+import org.hibernate.TransientPropertyValueException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -28,4 +29,9 @@ public class ExceptionsHandler {
     	
         return new ResponseEntity<>(exceptionsList, HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(TransientPropertyValueException.class)
+    public ResponseEntity<String> handleTransientException(TransientPropertyValueException ex) {
+        return new ResponseEntity<>("Error: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }

@@ -1,6 +1,5 @@
 package org.petzonalize.backend.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +13,7 @@ import org.petzonalize.backend.entity.model.User;
 import org.petzonalize.backend.repository.OrderHasProductRepository;
 import org.petzonalize.backend.repository.OrderRepository;
 import org.petzonalize.backend.repository.ProductRepository;
+import org.petzonalize.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +33,9 @@ public class OrderServiceImpl implements OrderService {
     
     @Autowired
     private ProductRepository productRepository;
+    
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private TemplateEngine templateEngine;
@@ -45,12 +48,24 @@ public class OrderServiceImpl implements OrderService {
     
     @Transactional
 	@Override
-	public ResponseEntity<?> orderProducts(User user, List<ProductOrder> products) {
-		Order order = Order.builder()
+	public ResponseEntity<?> orderProducts(User customer, List<ProductOrder> products) {
+    	Optional<User> optionalUser = userRepository.findByEmail(customer.getEmail());
+		
+    	User user;
+    	
+    	// If user doesn't exist, we have to create it
+    	if(optionalUser.isPresent())
+    		user = optionalUser.get();
+    	else {
+    		user = customer;
+    		userRepository.saveAndFlush(user);
+    	}    	
+		
+    	Order order = Order.builder()
 			.user(user)
 			.purchaseDate(new Date())
 			.build();
-		
+    	
 		// Creating order
 		orderRepository.saveAndFlush(order);
 		
@@ -100,13 +115,14 @@ public class OrderServiceImpl implements OrderService {
         
         // Loading HTML with Thymeleaf
         Context context = new Context();
+        context.setVariable("imgName", "Logo.png");
         context.setVariable("products", products);
         context.setVariable("total", total);
         String htmlContent = templateEngine.process("order_recipe", context);
 
 		emailService.sendEmail(user.getEmail(), subject, htmlContent);
 		
-		return new ResponseEntity<>("Products updated succesfully!", HttpStatus.OK);
+		return new ResponseEntity<>("Order purchase recipe sent to email!", HttpStatus.OK);
 	}
     
 
