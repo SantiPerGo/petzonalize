@@ -429,7 +429,7 @@ const setInputs = (userData) => {
     name.val(userData.name);
     email.val(userData.email);
     phone.val(userData.phone);
-    address.val("");
+    address.val(userData.address);
 }
 
 //-------------- Carga formulario de compra --------------
@@ -437,9 +437,9 @@ btnOpenWindowOrder.addEventListener('click', function() {
     formOrderContainer.classList.remove("pop--hidden");
     formOrderContainer.classList.add("pop--unhidden");
 
-    let userLogged = localStorage.getItem("users-logged-in");
+    let userLogged = localStorage.getItem("user");
     if(userLogged != null){
-        let userData = JSON.parse(localStorage.getItem("users-logged-in"));
+        let userData = JSON.parse(localStorage.getItem("user"));
         setInputs(userData);
     }
 });
@@ -475,27 +475,26 @@ const createUserOrder = () => {
     const finalOrderProducts = JSON.parse(JSON.stringify(userCartProducts))
     finalOrderProducts.shift();
     const userOrder = {
-        user: {
+        "user": {
             "name": name.val(),
             "email": email.val(),
             "phone": phone.val(),
             "address": address.val() 
         },
-        products: finalOrderProducts
+        "products": finalOrderProducts
     };
-
+    
     console.log(userOrder)
     //sessionStorage.setItem("purchase-order", JSON.stringify(finalOrderProducts));
 
     fetch(urlOrder, {
-        method: 'PUT',
+        method: 'POST',
         body: JSON.stringify(userOrder), // Enviando orden a end-Point /Buy de Backend
         headers:{
           'Content-Type': 'application/json'
         }
-      }).then(res => res.json())
+      }).then(response => console.log('Message:', response))
       .catch(error => console.error('Error:', error))
-      .then(response => console.log('Message:', response));
 
     clearInputs(name, email, phone, address);
     showAlert();
