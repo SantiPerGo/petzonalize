@@ -42,11 +42,7 @@ buttonBackToLogin.addEventListener('click', ()=>{
     clearInputs();
 });
 
-
-// *********************************************************************************
-// Show in console SIRIA
-// *********************************************************************************
-
+//----------------Show in console list of users registered---------------------
 fetch('https://petzonalize.up.railway.app/users')
   .then(response => response.json())
   .then(users => {
@@ -56,9 +52,7 @@ fetch('https://petzonalize.up.railway.app/users')
     console.error('Error:', error);
   });
 
-
-// ORIGINAL
-
+// ------------Look if there's a user registered in local storage
  $(document).ready(() => {
     // Forms validation
     validateForm(signUpForm);
@@ -70,39 +64,6 @@ fetch('https://petzonalize.up.railway.app/users')
     if(user != null)
     window.location.href = 'profile.html';
 });
-
-// *********************************************************************************
-// Verify if user exists with Backend (NOT STILL APPLIED)
-// *********************************************************************************
-
-/* $(document).ready(() => {
-    // Forms validation
-    validateForm(signUpForm);
-    validateForm(loginForm);
-    validateForm(recoverForm);
-
-    // Verifying if user exists
-    if (user != null) {
-        // Make an HTTP request to retrieve the user data
-        fetch("https://petzonalize.up.railway.app/users")
-            .then(response => response.json())
-            .then(users => {
-                // Check if the user exists in the response data
-                if (users.includes(user)) {
-                    // User exists, redirect to profile.html
-                    window.location.href = 'profile.html';
-                } else {
-                    // User does not exist, handle the case accordingly
-                    console.log('User does not exist');
-                }
-            })
-            .catch(error => {
-                // Handle any errors that occurred during the request
-                console.error('Error:', error);
-            });
-    }
-}); */
-
 
 //--------- Limpiar campos --------------
 const clearInputs = () => {
@@ -121,38 +82,6 @@ const resetInput = input => {
     $(input).removeClass("input-icon-invalid");
     $(`#${input.id}-error`).remove();
 };
-
-// ----- Escucha cuando el usuario se registre ------
-signUpForm.submit(submitButton => {
-    submitButton.preventDefault();
-
-    if(signUpForm.valid())
-        creatingUserAccount();
-});
-
-// ----- Escucha cuando el usuario recupera contraseña ------
-recoverForm.submit(submitButton => {
-    submitButton.preventDefault();
-
-    const email = $("#recover-email-login").val().trim()
-
-    if(recoverForm.valid()) {
-        fetch("https://petzonalize.up.railway.app/users/" + email)
-            .then(response => {
-                if(response.ok){
-                alertElement.text("Se ha enviado la contraseña a tu correo");
-                alertElement.slideDown(250);
-                setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-
-                alertElement.addClass("alert-success");
-                alertElement.addClass("text-success");
-                alertElement.removeClass("alert-danger");
-                alertElement.removeClass("text-danger");
-            } else {
-                console.error("Not user registered");
-            }}
-    )} 
-});
 
 // ------ Escucha cuando el usuario inicie sesion -----
 loginForm.submit(submitButton => {
@@ -190,47 +119,61 @@ loginForm.submit(submitButton => {
             })
 });
 
-//----------- Obtener Usuario -----------
-/* const getUserFromDataBase = (email, password, usersDatabase) =>{
-    let userFound = {};
+// ----- Escucha cuando el usuario recupera contraseña ------
+recoverForm.submit(submitButton => {
+    submitButton.preventDefault();
 
-    if(usersDatabase)
-        usersDatabase.users.some( registeredUser => {
-            const isUser = registeredUser.email == email && registeredUser.password === password;
-            userFound = registeredUser;
-            return isUser;
-        });
+    const email = $("#recover-email-login").val().trim()
 
-    return userFound;
-} */
+    if(recoverForm.valid()) {
+        fetch("https://petzonalize.up.railway.app/users/" + email)
+            .then(response => {
+                if(response.ok){
+                alertElement.text("Se ha enviado la contraseña a tu correo");
+                alertElement.slideDown(250);
+                setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
 
-//-----------Comprobar Contraseña -----------
-/* const checkLoginUser = (email, password, usersDatabase) =>{
-    if(usersDatabase)
-        return usersDatabase.users.some( registeredUser => registeredUser.email == email && registeredUser.password === password );
-    else
-        return false;
-} */
+                alertElement.addClass("alert-success");
+                alertElement.addClass("text-success");
+                alertElement.removeClass("alert-danger");
+                alertElement.removeClass("text-danger");
+            } else {
+                console.error("Not user registered");  
+                alertElement.text("Por favor verifica si el correo es el suscrito a nuestra página");  
+                alertElement.slideDown(250);
+                setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);            
+            }}
+    )} 
+});
 
+// ----- Escucha cuando el usuario se registre ------
+signUpForm.submit(submitButton => {
+    submitButton.preventDefault();
+
+    if(signUpForm.valid())
+        creatingUserAccount();
+});
+
+//------------Make a POST request to create the user account
 const creatingUserAccount = () => {
     const name = document.getElementById("input-name-register").value;
     const email = document.getElementById("input-email-register").value;
+    const address = document.getElementById("input-address-register").value;
     const phone = document.getElementById("input-phone-register").value;
     const password = document.getElementById("input-signup-password").value;
-}
 
     const user = {
         "name": name,
+        "address": address,
         "email": email,
         "phone": phone,
         "password": password,
-        "privileges": "client" 
-};
-
-// *********************************************************************************
-// Make a POST request to create the user account
-// *********************************************************************************
-
+        "privileges": {
+            "id": 2,
+            "privilege": "client"
+        } 
+    };
+    
     fetch("https://petzonalize.up.railway.app/users", {
         method: "POST",
         headers: {
@@ -249,5 +192,7 @@ const creatingUserAccount = () => {
     })
     .catch(error => {
         console.error("Not user registered:", error);
-
+        
     });
+    
+}
