@@ -137,7 +137,7 @@ const deleteAccount = () => {
   $("#buttons").addClass("d-none");
 };
 
-const cancelDeleteAccount = () => {
+/* const cancelDeleteAccount = () => {
    fetch("https://petzonalize.up.railway.app/users", {
     method: "GET",
    })
@@ -166,7 +166,7 @@ const cancelDeleteAccount = () => {
       .catch(error => {
         console.error("Error", error);
       });
-    };
+    }; */
 
 const confirmDeleteAccount = () => {
   fetch("https://petzonalize.up.railway.app/users", {
@@ -197,4 +197,14 @@ const confirmDeleteAccount = () => {
       console.error("Error", error);
     });
 };
+
+function showDeleteForm() {
+  let deleteContainer = document.getElementById('delete-user-container');
+  deleteContainer.classList.remove('pop--hidden');
+}
+
+function cancelDeleteAccount() {
+  let deleteContainer = document.getElementById('delete-user-container');
+  deleteContainer.classList.add('pop--hidden');
+}
 

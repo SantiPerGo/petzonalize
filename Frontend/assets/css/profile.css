@@ -48,3 +48,21 @@ h2 {
     display: flex;
     justify-items: center;
 }
+
+.pop--hidden{
+    display: none;
+  }
+
+
+  .pop--unhidden{
+    display: flex;
+  }
+
+  #delete-user-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(4px);
+    z-index: 10;
+} 
