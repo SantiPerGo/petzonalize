@@ -8,6 +8,8 @@ import org.petzonalize.backend.entity.Order;
 import org.petzonalize.backend.entity.OrderHasProduct;
 import org.petzonalize.backend.entity.Product;
 import org.petzonalize.backend.entity.User;
+import org.petzonalize.backend.mapper.OrderHasProductMapper;
+import org.petzonalize.backend.mapper.OrderMapper;
 import org.petzonalize.backend.repository.OrderHasProductRepository;
 import org.petzonalize.backend.repository.OrderRepository;
 import org.petzonalize.backend.repository.ProductRepository;
@@ -61,12 +63,11 @@ public class OrderServiceImpl implements OrderService {
     		user = optionalUser.get();
     	else {
     		user = customer;
+    		user.setId(0L);
     		userRepository.saveAndFlush(user);
     	}    	
 		
-    	Order order = Order.builder()
-			.user(user)
-			.build();
+    	Order order = OrderMapper.mapToOrder(user);
     	
 		// Creating order
 		orderRepository.saveAndFlush(order);
@@ -93,10 +94,8 @@ public class OrderServiceImpl implements OrderService {
 					total += (productOrder.getPrice() * amount);
 					totalAmount += amount;
 					
-					OrderHasProduct orderHasProduct = OrderHasProduct.builder()
-						.order(order)
-						.product(product)
-						.build();
+					OrderHasProduct orderHasProduct =
+							OrderHasProductMapper.mapToOrderHasProduct(order, product);
 					
 					// Creating connection between order and product
 					orderHasProductRepository.saveAndFlush(orderHasProduct);
@@ -114,7 +113,7 @@ public class OrderServiceImpl implements OrderService {
     	List<String> imageUrls = firebaseHandler.getImagesFromFirebaseStorage();
         String logoUrl = firebaseHandler.getImageUrlByName(imageUrls, "Logo.png");
         
-        // Getting images urls
+        // Getting images urls        
         products.forEach(product -> {
 	        product.setImgUrl(firebaseHandler.getImageUrlByName(imageUrls, 
 		        firebaseHandler.getImageNameFromPath(product.getImgUrl()))

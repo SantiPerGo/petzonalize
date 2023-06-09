@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.petzonalize.backend.dto.UserDto;
 import org.petzonalize.backend.entity.Privilege;
 import org.petzonalize.backend.entity.User;
-import org.petzonalize.backend.entity.UserHasPrivilege;
+import org.petzonalize.backend.mapper.UserHasPrivilegeMapper;
 import org.petzonalize.backend.mapper.UserMapper;
 import org.petzonalize.backend.repository.PrivilegeRepository;
 import org.petzonalize.backend.repository.UserHasPrivilegeRepository;
@@ -46,7 +46,6 @@ public class UserServiceImpl implements UserService {
         this.emailService = emailService;
     }
     
-    // TODO: return user without password
 	@Override
 	public ResponseEntity<?> createUser(User user) {
 		Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
@@ -60,15 +59,13 @@ public class UserServiceImpl implements UserService {
 				privilegeRepository.findByPrivilege("client").get();
 					
 			User newUser = UserMapper.mapToUserWithPrivilege(user, clientPrivilege);
-            
+            newUser.setId(0L);
+			
 			userRepository.saveAndFlush(newUser);
-            
-        	UserHasPrivilege userHasPrivilege = UserHasPrivilege.builder()
-    			.user(newUser)
-    			.privilege(clientPrivilege)
-    			.build();
         	
-        	userHasPrivilegeRepository.saveAndFlush(userHasPrivilege);
+        	userHasPrivilegeRepository.saveAndFlush(
+    			UserHasPrivilegeMapper.mapToUserHasPrivilege(newUser, clientPrivilege)
+			);
         	        	
         	return new ResponseEntity<>(
         			UserMapper.mapToUserWithoutPassword(newUser),
