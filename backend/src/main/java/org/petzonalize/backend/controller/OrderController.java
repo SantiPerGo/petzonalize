@@ -1,6 +1,6 @@
 package org.petzonalize.backend.controller;
 
-import org.petzonalize.backend.dto.OrderWrapperDTO;
+import org.petzonalize.backend.dto.OrderWrapperDto;
 import org.petzonalize.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class OrderController {
 	private OrderService orderService;
 	
     @PostMapping
-	public ResponseEntity<?> orderProducts(@RequestBody OrderWrapperDTO wrapper) {
+	public ResponseEntity<?> orderProducts(@RequestBody OrderWrapperDto wrapper) {
     	return orderService.orderProducts(wrapper.getUser(), wrapper.getProducts());
 	}
 }

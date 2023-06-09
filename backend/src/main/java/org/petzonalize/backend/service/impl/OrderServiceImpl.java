@@ -3,7 +3,7 @@ package org.petzonalize.backend.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import org.petzonalize.backend.dto.ProductDTO;
+import org.petzonalize.backend.dto.ProductDto;
 import org.petzonalize.backend.entity.Order;
 import org.petzonalize.backend.entity.OrderHasProduct;
 import org.petzonalize.backend.entity.Product;
@@ -51,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
     
     @Transactional
 	@Override
-	public ResponseEntity<?> orderProducts(User customer, List<ProductDTO> products) {
+	public ResponseEntity<?> orderProducts(User customer, List<ProductDto> products) {
     	Optional<User> optionalUser = userRepository.findByEmail(customer.getEmail());
 		
     	User user;
@@ -74,7 +74,7 @@ public class OrderServiceImpl implements OrderService {
 		double total = 0; 
 		int totalAmount = 0;
 		
-		for(ProductDTO productOrder : products) {
+		for(ProductDto productOrder : products) {
 			Optional<Product> optionalProduct =
 				productRepository.findById(productOrder.getId());
 			

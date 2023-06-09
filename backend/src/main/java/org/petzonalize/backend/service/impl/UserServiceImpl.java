@@ -1,13 +1,14 @@
 package org.petzonalize.backend.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-import org.petzonalize.backend.dto.UserDTO;
+import org.petzonalize.backend.dto.UserDto;
 import org.petzonalize.backend.entity.Privilege;
 import org.petzonalize.backend.entity.User;
 import org.petzonalize.backend.entity.UserHasPrivilege;
+import org.petzonalize.backend.mapper.UserMapper;
 import org.petzonalize.backend.repository.PrivilegeRepository;
 import org.petzonalize.backend.repository.UserHasPrivilegeRepository;
 import org.petzonalize.backend.repository.UserRepository;
@@ -58,15 +59,9 @@ public class UserServiceImpl implements UserService {
 			Privilege clientPrivilege =
 				privilegeRepository.findByPrivilege("client").get();
 					
-            User newUser = User.builder()
-                .name(user.getName())
-                .email(user.getEmail())
-                .phone(user.getPhone())
-                .password(user.getPassword())
-                .privileges(clientPrivilege)
-                .build();
-
-            userRepository.saveAndFlush(newUser);
+			User newUser = UserMapper.mapToUserWithPrivilege(user, clientPrivilege);
+            
+			userRepository.saveAndFlush(newUser);
             
         	UserHasPrivilege userHasPrivilege = UserHasPrivilege.builder()
     			.user(newUser)
@@ -74,24 +69,16 @@ public class UserServiceImpl implements UserService {
     			.build();
         	
         	userHasPrivilegeRepository.saveAndFlush(userHasPrivilege);
-        	
-        	// TODO: user no password dto
-        	
-        	User userNoPassword = User.builder()
-    			.id(newUser.getId())
-                .name(newUser.getName())
-                .email(newUser.getEmail())
-                .phone(newUser.getPhone())
-                .privileges(newUser.getPrivileges())
-                .build();
-        	
-        	return new ResponseEntity<>(userNoPassword, HttpStatus.CREATED);
+        	        	
+        	return new ResponseEntity<>(
+        			UserMapper.mapToUserWithoutPassword(newUser),
+        			HttpStatus.CREATED);
 		}
 	}
 
 	@Transactional
 	@Override
-	public ResponseEntity<String> deleteUser(UserDTO userLogin){
+	public ResponseEntity<String> deleteUser(UserDto userLogin){
 		Optional<User> optionalUser = userRepository.findByEmail(userLogin.getEmail());
 		
 		if(!optionalUser.isPresent())
@@ -118,16 +105,10 @@ public class UserServiceImpl implements UserService {
             user.setId(optionalUser.get().getId());
             user.setPrivileges(optionalUser.get().getPrivileges());
             userRepository.saveAndFlush(user);
-
-        	User userNoPassword = User.builder()
-    			.id(user.getId())
-                .name(user.getName())
-                .email(user.getEmail())
-                .phone(user.getPhone())
-                .privileges(user.getPrivileges())
-                .build();
             
-            return new ResponseEntity<>(userNoPassword, HttpStatus.OK);
+            return new ResponseEntity<>(
+        		UserMapper.mapToUserWithoutPassword(user),
+        		HttpStatus.OK);
 		}
 	}
 
@@ -139,20 +120,10 @@ public class UserServiceImpl implements UserService {
 			return new ResponseEntity<>(
             		"There are no users to send as an answer", HttpStatus.NOT_FOUND);
         else {
-            List<User> usersNoPasswordList = new ArrayList<>();
-            
-            // Removing password from response
-            for (User user : usersList) {
-            	User userNoPassword = User.builder()
-        			.id(user.getId())
-                    .name(user.getName())
-                    .email(user.getEmail())
-                    .phone(user.getPhone())
-                    .privileges(user.getPrivileges())
-                    .build();
-            	
-            	usersNoPasswordList.add(userNoPassword);
-            }
+        	// Removing password from response with Stream
+            List<User> usersNoPasswordList = usersList.stream()
+        		.map(user -> UserMapper.mapToUserWithoutPassword(user))
+        		.collect(Collectors.toList());
             
         	return new ResponseEntity<>(usersNoPasswordList, HttpStatus.OK);
         }
@@ -189,26 +160,18 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public ResponseEntity<?> login(UserDTO userLogin) {
+	public ResponseEntity<?> login(UserDto userLogin) {
 		Optional<User> optionalUser = userRepository.findByEmail(userLogin.getEmail());
 		
 		if(!optionalUser.isPresent())
 			return new ResponseEntity<>("User with email '" + userLogin.getEmail()
 				+ "' doesn't exist", HttpStatus.NOT_FOUND);
 		else {
-			if(optionalUser.get().getPassword().equals(userLogin.getPassword())) {
-            	User user = optionalUser.get();
-            	
-				User userNoPassword = User.builder()
-        			.id(user.getId())
-                    .name(user.getName())
-                    .email(user.getEmail())
-                    .phone(user.getPhone())
-                    .privileges(user.getPrivileges())
-                    .build();
-            	
-				return new ResponseEntity<>(userNoPassword, HttpStatus.OK);
-			} else
+			if(optionalUser.get().getPassword().equals(userLogin.getPassword()))           	
+				return new ResponseEntity<>(
+					UserMapper.mapToUserWithoutPassword(optionalUser.get()),
+					HttpStatus.OK);
+			else
 				return new ResponseEntity<>("User password incorrect!", HttpStatus.BAD_REQUEST);
 		}
 	}

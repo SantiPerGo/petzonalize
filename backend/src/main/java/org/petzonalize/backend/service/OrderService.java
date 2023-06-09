@@ -2,7 +2,7 @@ package org.petzonalize.backend.service;
 
 import java.util.List;
 
-import org.petzonalize.backend.dto.ProductDTO;
+import org.petzonalize.backend.dto.ProductDto;
 import org.petzonalize.backend.entity.User;
 import org.springframework.http.ResponseEntity;
 
@@ -13,5 +13,5 @@ public interface OrderService {
      * @param products The list of products to be ordered
      * @return Response entity with a success message or an error message
      */
-    ResponseEntity<?> orderProducts(User user, List<ProductDTO> products);
+    ResponseEntity<?> orderProducts(User user, List<ProductDto> products);
 }
