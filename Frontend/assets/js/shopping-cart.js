@@ -470,7 +470,7 @@ const createUserOrder = () => {
     const email = $("#input-email-order");
     const phone = $("#input-phone-order");
     const address = $("#input-address-order");
-    const urlOrder = 'https://petzonalize.up.railway.app/products/buy';
+    const urlOrder = 'https://petzonalize.up.railway.app/orders';
     
     const finalOrderProducts = JSON.parse(JSON.stringify(userCartProducts))
     finalOrderProducts.shift();
