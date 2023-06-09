@@ -128,7 +128,7 @@ public class OrderServiceImpl implements OrderService {
 
     // Extract the image name from the path
     private String getImageNameFromPath(String imagePath) {
-        int lastSlashIndex = imagePath.lastIndexOf("/");
+        int lastSlashIndex = imagePath.lastIndexOf("/products");
         if (lastSlashIndex != -1 && lastSlashIndex < imagePath.length() - 1) 
             return imagePath.substring(lastSlashIndex + 1);
         else 
