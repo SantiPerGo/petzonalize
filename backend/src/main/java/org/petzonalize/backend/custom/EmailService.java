@@ -34,10 +34,6 @@ public class EmailService {
 	         // Enable HTML content
             message.setText(content, StandardCharsets.UTF_8.toString(), "html");
                         
-	        // Load the image as a resource
-	        ClassPathResource imageResource = new ClassPathResource("static/img/Logo.png");
-	        helper.addInline("logoImage", imageResource);
-         
             mailSender.send(message);
         } catch (MessagingException e) {
             // Handle the exception appropriately
