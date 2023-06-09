@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="Website icon" href="https://drive.google.com/uc?export=download&id=1sQKrrPaWqAgnQfWLZVNwWzVZKVvAPDM_" />
-        <title>Recuperación de Contraseña</title>
+        <title>Recibo de Compra</title>
 
         <style>
             body {
@@ -29,12 +29,6 @@
 
             a {
                 text-decoration: none;
-            }
-
-            .lines {
-                border: 0.25rem dashed #BDA692;
-                border-radius: 2rem;
-                padding: 1rem 2rem;
             }
 
             .margin {
@@ -70,28 +64,60 @@
             .fs-5 {
                 font-size: 2rem;
             }
+
+            hr {
+                border-top: 0.5rem dashed #BDA692;
+                border-bottom: none;
+            }
         </style>
     </head>
     <body>
         <header class="margin">
             <a href="https://petzonalize.netlify.app/" target="_blank">
-                <img th:src="@{~/static/img/__${imgName}__}">
+                <img src="https://drive.google.com/uc?export=download&id=1bA5vzrUJAYajJz0rEuzYmyp6NsRD_ctW" alt="Petzonalize Logo">
             </a>
         </header>
 
         <main>
             <div>
                 <h1 class="fs-1 text-blue"><b>
-                    Recuperación de Contraseña
+                    ¡Gracias por tu Compra!
                 </b></h1>
             </div>
             <div class="margin">
                 <p class="fs-4">
-                    La contraseña correspondiente al correo electrónico <b th:text="${email}"></b> es:
+                    Recuerda ir a completar el pago a tu sucursal más cercana. El recibo de tu orden con id <b>ID</b> es:
                 </p>
             </div>
+            
+            <hr>
+                
+            <div th:each="product : ${products}">
+                <p class="fs-5 margin">
+                    <img th:src="@{|/img/${product.imgUrl}|}" th:alt="${product.imgUrl}">
+                </p>
+                <p class="fs-5 margin">
+                    Nombre: <b th:text="${product.name}">X</b>
+                </p>
+                <p class="fs-5 margin">
+                    Categoría: <b th:text="${product.category}">X</b>
+                </p>
+                <p class="fs-5 margin">
+                    Cantidad: <b th:text="${product.amount}">X</b>
+                </p>
+                <p class="fs-5 margin">
+                    Costo: <b>$</b><b th:text="${product.price}">X</b>
+                </p>
+            </div>
+            
             <div>
-                <p class="fs-2 text-purple margin-3"><b class="lines" th:text="${password}"></b></p>
+                <hr>
+
+                <p class="fs-2 text-purple margin">
+                    Costo Total: <b>$</b><b th:text="${total}">X</b>
+                </p>
+
+                <hr>
             </div>
         </main>
 
@@ -106,7 +132,7 @@
             </div>
             <div>
                 <p class="fs-5 text-brown"><b>
-                    Si no solicitaste la recuperación de contraseña, puedes ignorar este mensaje
+                    Si deseas cancelar la compra, debes comunicarte con nosotros lo antes posible
                 </b></p>
             </div>
         </footer>

@@ -20,4 +20,7 @@ public interface ProductMessages {
     
 	int PRODUCT_TYPE_MAX = 20;
     String PRODUCT_TYPE_SIZE = "Product type (string) cannot be longer than 20 characters";
+
+
+	String PRODUCT_AMOUNT_NULL = "Product amount (integer) cannot be null or empty";
 }

@@ -3,7 +3,6 @@ package org.petzonalize.backend.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.petzonalize.backend.custom.UserOrderData;
 import org.petzonalize.backend.entity.model.Product;
 import org.petzonalize.backend.repository.ProductRepository;
 
@@ -45,7 +44,6 @@ public class ProductServiceImpl implements ProductService {
 		}
 	}
 
-	// TODO: Delete with email and password
 	@Override
 	public ResponseEntity<String> deleteProduct(int id){
 		Optional<Product> optionalProduct = productRepository.findById(id);
@@ -82,16 +80,5 @@ public class ProductServiceImpl implements ProductService {
             		"There are no products to send as an answer", HttpStatus.NOT_FOUND);
         else
         	return new ResponseEntity<>(productsList, HttpStatus.OK);
-	}
-
-	@Override
-	public ResponseEntity<?> buyProducts(UserOrderData user, List<Product> products) {	
-		// TODO: Substract amount property of original products 
-		
-		productRepository.saveAllAndFlush(products);
-		
-		// TODO: Send email with the products to the user
-		
-		return new ResponseEntity<>("Products updated succesfully!", HttpStatus.OK);
 	}
 }

@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.petzonalize.backend.custom.EmailService;
 import org.petzonalize.backend.custom.UserLogin;
-import org.petzonalize.backend.custom.UserNoPassword;
 import org.petzonalize.backend.entity.model.User;
 import org.petzonalize.backend.repository.UserRepository;
 
@@ -26,9 +25,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private TemplateEngine templateEngine;
-    
     private final EmailService emailService;
-
+    
     @Autowired
     public UserServiceImpl(EmailService emailService) {
         this.emailService = emailService;
@@ -45,12 +43,12 @@ public class UserServiceImpl implements UserService {
             		HttpStatus.CONFLICT);
 		else {
             User newUser = User.builder()
-                    .name(user.getName())
-                    .email(user.getEmail())
-                    .phone(user.getPhone())
-                    .password(user.getPassword())
-                    .privileges(user.getPrivileges())
-                    .build();
+                .name(user.getName())
+                .email(user.getEmail())
+                .phone(user.getPhone())
+                .password(user.getPassword())
+                .privileges(user.getPrivileges())
+                .build();
 
         	return new ResponseEntity<>(
             	userRepository.saveAndFlush(newUser), HttpStatus.CREATED);
@@ -97,17 +95,17 @@ public class UserServiceImpl implements UserService {
 			return new ResponseEntity<>(
             		"There are no users to send as an answer", HttpStatus.NOT_FOUND);
         else {
-            List<UserNoPassword> usersNoPasswordList = new ArrayList<>();
+            List<User> usersNoPasswordList = new ArrayList<>();
             
             // Removing password from response
             for (User user : usersList) {
-            	UserNoPassword userNoPassword = UserNoPassword.builder()
-            			.id(user.getId())
-                        .name(user.getName())
-                        .email(user.getEmail())
-                        .phone(user.getPhone())
-                        .privileges(user.getPrivileges())
-                        .build();
+            	User userNoPassword = User.builder()
+        			.id(user.getId())
+                    .name(user.getName())
+                    .email(user.getEmail())
+                    .phone(user.getPhone())
+                    .privileges(user.getPrivileges())
+                    .build();
             	
             	usersNoPasswordList.add(userNoPassword);
             }
@@ -132,6 +130,7 @@ public class UserServiceImpl implements UserService {
 		        
 		        // Loading HTML with Thymeleaf
 		        Context context = new Context();
+                context.setVariable("imgName", "Logo.png");
                 context.setVariable("email", email);
                 context.setVariable("password", optionalUser.get().getPassword());
                 String htmlContent = templateEngine.process("password_recovery", context);

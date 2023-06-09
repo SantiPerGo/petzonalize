@@ -46,13 +46,17 @@ public class User implements UserMessages {
 	@NotBlank(message = USER_PHONE_NULL)
     private String phone;
 
-	@NotNull(message = USER_PASSWORD_NULL)
 	@Size(min = USER_PASSWORD_MIN, max = USER_PASSWORD_MAX,
 		message = USER_PASSWORD_SIZE)
-	@NotBlank(message = USER_PASSWORD_NULL)
+	@Column(nullable = true)
     private String password;
+	
+    @NotNull(message = USER_ADDRESS_NULL)
+    @Size(max = USER_ADDRESS_MAX, message = USER_ADDRESS_SIZE)
+    @NotBlank(message = USER_ADDRESS_NULL)
+    private String address;
 
 	@ManyToOne
-    @JoinColumn(name = "privilege_id")
+    @JoinColumn(name = "privilege_id", nullable = true)
     private Privilege privileges;
 }

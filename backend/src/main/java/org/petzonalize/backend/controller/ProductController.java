@@ -1,7 +1,6 @@
 package org.petzonalize.backend.controller;
 
 
-import org.petzonalize.backend.custom.BuyProductsWrapper;
 import org.petzonalize.backend.entity.model.Product;
 import org.petzonalize.backend.service.ProductService;
 
@@ -43,9 +42,4 @@ public class ProductController {
     public ResponseEntity<?> updateProduct(@RequestBody Product product){
         return productService.updateProduct(product);
     }
-	
-    @PutMapping("/buy")
-	public ResponseEntity<?> buyProducts(@RequestBody BuyProductsWrapper wrapper) {
-    	return productService.buyProducts(wrapper.getUser(), wrapper.getProducts());
-	}
 }
