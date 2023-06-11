@@ -20,10 +20,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="orders_has_products")
+@Entity(name="order_has_product")
 public class OrderHasProduct implements OrderConstants {	
 	@Id
-	@Column(name = "orders_has_products_id")
+	@Column(name = "order_has_product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	

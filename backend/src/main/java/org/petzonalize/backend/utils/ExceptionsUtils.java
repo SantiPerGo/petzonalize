@@ -13,7 +13,7 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 
 @ControllerAdvice
-public class ExceptionsHandler {
+public class ExceptionsUtils {
 	@ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<String> handleNotReadableException(HttpMessageNotReadableException ex) {
         return new ResponseEntity<>("Error: " + ex.getMessage(), HttpStatus.BAD_REQUEST);

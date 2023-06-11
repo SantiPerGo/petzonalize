@@ -10,11 +10,11 @@ import jakarta.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
 
 @Component
-public class EmailService {
+public class EmailUtils {
     private final JavaMailSender mailSender;
     private final String senderEmail = "tuprofedog@gmail.com";
 
-    public EmailService(JavaMailSender mailSender) {
+    public EmailUtils(JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
 

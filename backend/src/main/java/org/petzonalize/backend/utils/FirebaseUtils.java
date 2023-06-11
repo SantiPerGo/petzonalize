@@ -10,7 +10,7 @@ import com.google.cloud.storage.Bucket;
 import com.google.firebase.cloud.StorageClient;
 
 @Service
-public class FirebaseHandler {
+public class FirebaseUtils {
 	public List<String> getImagesFromFirebaseStorage() {
         List<String> imageUrls = new ArrayList<>();
 
@@ -30,11 +30,10 @@ public class FirebaseHandler {
     }
 	
 	public String getImageUrlByName(List<String> imageUrls, String imageName) {
-	    for (String imageUrl : imageUrls) {
-	        if (imageUrl.contains(imageName)) {
+	    for (String imageUrl : imageUrls) 
+	        if (imageUrl.contains(imageName))
 	            return imageUrl;
-	        }
-	    }
+
 	    return null;
 	}
 	
