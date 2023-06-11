@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class UserDto implements UserConstants {	
+public class UserDTO implements UserConstants {	
 	@Email
 	@NotNull
 	@Size(max = USER_EMAIL_MAX, message = USER_EMAIL_SIZE)

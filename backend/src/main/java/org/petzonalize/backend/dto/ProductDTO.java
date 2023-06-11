@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductDto implements ProductConstants {	
+public class ProductDTO implements ProductConstants {	
     @Id
 	@Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

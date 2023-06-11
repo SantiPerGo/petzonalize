@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class OrderWrapperDto {
+public class OrderWrapperDTO {
 	private User user;
 	private List<ProductDto> products;
 }
