@@ -137,38 +137,9 @@ const deleteAccount = () => {
   $("#buttons").addClass("d-none");
 };
 
-/* const cancelDeleteAccount = () => {
-   fetch("https://petzonalize.up.railway.app/users", {
-    method: "GET",
-   })
-      .then(response => response.json())
-      .then(data => {
 
-        delete data["users-logged-in"];
 
-        return fetch("https://petzonalize.up.railway.app/users", {
-          method: "PUT",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json"
-          }
-        });
-      })
-      .then(response => {
-        if (response.ok) {
-          localStorage.removeItem("users-logged-in");
-          sessionStorage.setItem("closed-session", "¡Cuenta Cerrada con Éxito");
-          window.location.href = "../../index.html";
-        } else {
-          console.error("Error al cerrar la sesión.");
-        }
-      })
-      .catch(error => {
-        console.error("Error", error);
-      });
-    }; */
-
-const confirmDeleteAccount = () => {
+/* const confirmDeleteAccount = () => {
   fetch("https://petzonalize.up.railway.app/users", {
     method: "GET",
   })
@@ -196,7 +167,7 @@ const confirmDeleteAccount = () => {
     .catch(error => {
       console.error("Error", error);
     });
-};
+}; */
 
 
 //Añadí estas funciones a partir de aquí
@@ -222,3 +193,19 @@ function closeSession() {
   // Redirigir hacia el index
   window.location.href = '../../index.html'; 
 }
+
+
+//De momento esta función solo hace esto, es decir lo mismo que la de cerrar sesión
+function confirmDeleteAccount() {
+  // Borrar el valor del 'users-logged-in' del localStorage
+  localStorage.removeItem('users-logged-in');
+  
+  // Redirigir hacia el index
+  window.location.href = '../../index.html';
+}
+
+
+
+
+
+
