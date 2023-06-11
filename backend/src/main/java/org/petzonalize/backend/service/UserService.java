@@ -23,7 +23,7 @@ public interface UserService {
      * @param userLogin The user's login details (email and password)
      * @return Response entity with a success message or an error message
      */
-    ResponseEntity<String> deleteUser(UserLoginDto userLogin);
+    ResponseEntity<?> deleteUser(UserLoginDto userLogin);
 
     /**
      * Updates an existing user.

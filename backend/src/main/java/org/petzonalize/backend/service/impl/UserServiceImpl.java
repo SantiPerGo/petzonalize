@@ -17,6 +17,7 @@ import org.petzonalize.backend.repository.UserHasPrivilegeRepository;
 import org.petzonalize.backend.repository.UserRepository;
 import org.petzonalize.backend.service.UserService;
 import org.petzonalize.backend.utils.EmailUtils;
+import org.petzonalize.backend.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,8 +54,8 @@ public class UserServiceImpl implements UserService {
 		Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
 		
 		if(optionalUser.isPresent())
-            return new ResponseEntity<>(
-            		"User with email '" + user.getEmail() + "' already exists",
+			return ResponseUtils.mapToJsonResponse(
+					"User with email '" + user.getEmail() + "' already exists",
             		HttpStatus.CONFLICT);
 		else {
 			Privilege clientPrivilege =
@@ -74,19 +75,22 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public ResponseEntity<String> deleteUser(UserLoginDto userLogin){
+	public ResponseEntity<?> deleteUser(UserLoginDto userLogin){
 		Optional<User> optionalUser = userRepository.findByEmail(userLogin.getEmail());
 		
 		if(!optionalUser.isPresent())
-			return new ResponseEntity<>(
-            		"User with email '" + userLogin.getEmail() + "' doesn't exist", HttpStatus.NOT_FOUND);
+			return ResponseUtils.mapToJsonResponse(
+					"User with email '" + userLogin.getEmail() + "' doesn't exists",
+            		HttpStatus.NOT_FOUND);
 		else {
 			if(optionalUser.get().getPassword().equals(userLogin.getPassword())) {
 				userRepository.deleteByEmail(userLogin.getEmail());
-		        return new ResponseEntity<>(
-		        	"User with email '" + userLogin.getEmail() + "' successfully removed!", HttpStatus.OK);
+				return ResponseUtils.mapToJsonResponse(
+					"User with email '" + userLogin.getEmail() + "' successfully removed!",
+					HttpStatus.OK);
 			} else
-				return new ResponseEntity<>("User password incorrect!", HttpStatus.BAD_REQUEST);
+				return ResponseUtils.mapToJsonResponse(
+					"User password incorrect!", HttpStatus.BAD_REQUEST);
 		}
 	}
 
@@ -95,8 +99,8 @@ public class UserServiceImpl implements UserService {
         Optional<User> optionalUser = userRepository.findById(user.getId());
 		
 		if(!optionalUser.isPresent())
-			return new ResponseEntity<>(
-            	"User with id '" + user.getId() + "' doesn't exist", HttpStatus.NOT_FOUND);
+			return ResponseUtils.mapToJsonResponse(
+				"User with id '" + user.getId() + "' doesn't exist", HttpStatus.NOT_FOUND);
 		else {
             user.setId(optionalUser.get().getId());
             userRepository.saveAndFlush(user);
@@ -112,8 +116,8 @@ public class UserServiceImpl implements UserService {
         List<User> usersList = userRepository.findAll();
 		
         if(usersList.size() == 0)
-			return new ResponseEntity<>(
-            		"There are no users to send as an answer", HttpStatus.NOT_FOUND);
+			return ResponseUtils.mapToJsonResponse(
+				"There are no users to send as an answer", HttpStatus.NOT_FOUND);
         else {
         	// Removing password from response with Stream
             List<UserNoPasswordDto> usersNoPasswordList = usersList.stream()
@@ -127,14 +131,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public ResponseEntity<?> recoverPassword(String email) {
 		if(email.isBlank())
-			return new ResponseEntity<>("User email (string) cannot be null or empty",
-				HttpStatus.BAD_REQUEST);
+			return ResponseUtils.mapToJsonResponse(
+				"User email (string) cannot be null or empty", HttpStatus.BAD_REQUEST);
 		else {
 			Optional<User> optionalUser = userRepository.findByEmail(email);
 			
 			if(!optionalUser.isPresent())
-				return new ResponseEntity<>(
-	            		"User with id '" + email + "' doesn't exist", HttpStatus.NOT_FOUND);
+				return ResponseUtils.mapToJsonResponse(
+            		"User with id '" + email + "' doesn't exist", HttpStatus.NOT_FOUND);
 			else {
 		        String subject = "Petzonalize - Recuperación de Contraseña";
 		        String logoUrl = ProductMapper.getProductUrlByName(
@@ -148,7 +152,8 @@ public class UserServiceImpl implements UserService {
                 String htmlContent = templateEngine.process("password_recovery", context);
 
                 emailUtils.sendEmail(email, subject, htmlContent);
-		        return new ResponseEntity<>("User password sent to email!", HttpStatus.OK);
+				return ResponseUtils.mapToJsonResponse(
+					"User password sent to email!", HttpStatus.OK);
 			}
 		}
 	}
@@ -158,7 +163,7 @@ public class UserServiceImpl implements UserService {
 		Optional<User> optionalUser = userRepository.findByEmail(userLogin.getEmail());
 		
 		if(!optionalUser.isPresent())
-			return new ResponseEntity<>("User with email '" + userLogin.getEmail()
+			return ResponseUtils.mapToJsonResponse("User with email '" + userLogin.getEmail()
 				+ "' doesn't exist", HttpStatus.NOT_FOUND);
 		else {
 			if(optionalUser.get().getPassword().equals(userLogin.getPassword()))           	
@@ -166,7 +171,8 @@ public class UserServiceImpl implements UserService {
 					UserMapper.mapToUserWithoutPassword(optionalUser.get()),
 					HttpStatus.OK);
 			else
-				return new ResponseEntity<>("User password incorrect!", HttpStatus.BAD_REQUEST);
+				return ResponseUtils.mapToJsonResponse(
+					"User password incorrect!", HttpStatus.BAD_REQUEST);
 		}
 	}
 }

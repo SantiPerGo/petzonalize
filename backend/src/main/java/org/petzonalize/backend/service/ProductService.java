@@ -22,7 +22,7 @@ public interface ProductService {
      * @param id The ID of the product to be deleted
      * @return Response entity with a success message or an error message
      */
-    ResponseEntity<String> deleteProduct(Long id);
+    ResponseEntity<?> deleteProduct(Long id);
 
     /**
      * Updates an existing product.

@@ -17,6 +17,7 @@ import org.petzonalize.backend.repository.ProductRepository;
 import org.petzonalize.backend.repository.UserRepository;
 import org.petzonalize.backend.service.OrderService;
 import org.petzonalize.backend.utils.EmailUtils;
+import org.petzonalize.backend.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -97,12 +98,12 @@ public class OrderServiceImpl implements OrderService {
 					// Creating connection between order and product
 					orderHasProductRepository.saveAndFlush(orderHasProduct);
 				} else {
-					return new ResponseEntity<>("Product amount is greater than stock: " +
-						productOrder, HttpStatus.BAD_REQUEST);
+					return ResponseUtils.mapToJsonResponse("Product amount is greater than stock: " +
+							productOrder, HttpStatus.BAD_REQUEST);
 				}
 			} else {
-				return new ResponseEntity<>("Product not found: " +
-					productOrder, HttpStatus.BAD_REQUEST);
+				return ResponseUtils.mapToJsonResponse("Product not found: " +
+						productOrder, HttpStatus.BAD_REQUEST);
 			}
 		}
 
@@ -119,7 +120,8 @@ public class OrderServiceImpl implements OrderService {
         String htmlContent = templateEngine.process("order_recipe", context);
 
 		emailUtils.sendEmail(user.getEmail(), subject, htmlContent);
-		
-		return new ResponseEntity<>("Order purchase recipe sent to email!", HttpStatus.OK);
+
+		return ResponseUtils.mapToJsonResponse("Order purchase recipe sent to email!",
+			HttpStatus.OK);
 	}
 }

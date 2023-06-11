@@ -34,7 +34,7 @@ public class UserController {
 	}
     
     @DeleteMapping
-    public ResponseEntity<String> deleteUser(@RequestBody UserLoginDto userLogin) {
+    public ResponseEntity<?> deleteUser(@RequestBody UserLoginDto userLogin) {
         return userService.deleteUser(userLogin);
     }
     

@@ -7,6 +7,7 @@ import org.petzonalize.backend.entity.Product;
 import org.petzonalize.backend.mapper.ProductMapper;
 import org.petzonalize.backend.repository.ProductRepository;
 import org.petzonalize.backend.service.ProductService;
+import org.petzonalize.backend.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +24,9 @@ public class ProductServiceImpl implements ProductService {
 		Optional<Product> optionalProduct = productRepository.findByName(product.getName());
 		
 		if(optionalProduct.isPresent())
-            return new ResponseEntity<>(
-            		"Product with name '" + product.getName() + "' already exists",
-            		HttpStatus.CONFLICT);
+			return ResponseUtils.mapToJsonResponse(
+        		"Product with name '" + product.getName() + "' already exists",
+        		HttpStatus.CONFLICT); 
 		else
             return new ResponseEntity<>(
                 productRepository.saveAndFlush(
@@ -34,16 +35,16 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ResponseEntity<String> deleteProduct(Long id){
+	public ResponseEntity<?> deleteProduct(Long id){
 		Optional<Product> optionalProduct = productRepository.findById(id);
 		
 		if(!optionalProduct.isPresent())
-			return new ResponseEntity<>(
-            		"Product with id '" + id + "' doesn't exist", HttpStatus.NOT_FOUND);
+			return ResponseUtils.mapToJsonResponse(
+        		"Product with id '" + id + "' doesn't exist", HttpStatus.NOT_FOUND); 
 		else {
 	        productRepository.deleteById(id);
-	        return new ResponseEntity<>(
-	        		"Product with id '" + id + "' successfully removed!", HttpStatus.OK);
+			return ResponseUtils.mapToJsonResponse(
+        		"Product with id '" + id + "' successfully removed!", HttpStatus.OK); 
 		}
 	}
 
@@ -52,8 +53,8 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> optionalProduct = productRepository.findById(product.getId());
 		
 		if(!optionalProduct.isPresent())
-			return new ResponseEntity<>(
-            	"Product with id '" + product.getId() + "' doesn't exist", HttpStatus.NOT_FOUND);
+			return ResponseUtils.mapToJsonResponse(
+				"Product with id '" + product.getId() + "' doesn't exist", HttpStatus.NOT_FOUND); 
 		else {
             product.setId(optionalProduct.get().getId());
             return new ResponseEntity<>(productRepository.saveAndFlush(product), HttpStatus.OK);
@@ -65,8 +66,8 @@ public class ProductServiceImpl implements ProductService {
         List<Product> productsList = productRepository.findAll();
 		
         if(productsList.size() == 0)
-			return new ResponseEntity<>(
-            		"There are no products to send as an answer", HttpStatus.NOT_FOUND);
+			return ResponseUtils.mapToJsonResponse(
+        		"There are no products to send as an answer", HttpStatus.NOT_FOUND); 
         else
         	return new ResponseEntity<>(productsList, HttpStatus.OK);
 	}
