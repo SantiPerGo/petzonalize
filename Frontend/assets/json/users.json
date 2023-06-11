@@ -5,7 +5,10 @@
         "email": "juanreyssan@gmail.com",
         "phone":"525519673129" ,
         "password": "password",
-        "privileges": "admin"
+        "privileges": {
+             "id": 1,
+              "privilege": "admin"
+        } 
     },
     {
         "id": 2,
@@ -13,7 +16,10 @@
         "email": "mayitabar98@gmail.com",
         "phone":"525517909516" ,
         "password": "guestguest",
-        "privileges": "client"
+        "privileges": {
+             "id": 1,
+              "privilege": "admin"
+        }
     },
     {
         "id": 3,
@@ -21,7 +27,10 @@
         "email": "lupita_osito32@gmail.com",
         "phone":"525580528301" ,
         "password": "qwertyuiop",
-        "privileges": "admin"
+        "privileges": {
+             "id": 1,
+              "privilege": "admin"
+        }
     },
     {
         "id": 4,
@@ -29,7 +38,10 @@
         "email": "darioastronautagp@gmail.com",
         "phone":"525527839796",
         "password": "col12345",
-        "privileges": "client"
+        "privileges": {
+             "id": 1,
+              "privilege": "admin"
+        }
     },
     {
         "id": 5,
@@ -37,7 +49,10 @@
         "email": "manu93rzgz@gmail.com",
         "phone":"525518090880" ,
         "password": "megustaelarroz18",
-        "privileges": "admin"
+        "privileges": {
+             "id": 1,
+              "privilege": "admin"
+        }
     },
     {
         "id": 6,
@@ -45,7 +60,10 @@
         "email": "alpemu_electro22@gmail.com",
         "phone":"525542481533",
         "password": "alexisperalta22",
-        "privileges": "client"
+        "privileges": {
+             "id": 1,
+              "privilege": "admin"
+        }
     },
     {
         "id": 7,
@@ -53,7 +71,10 @@
         "email": "kristyespinoza921@gmail.com",
         "phone":"525573406189",
         "password": "footballkristy92",
-        "privileges": "admin"
+        "privileges": {
+             "id": 1,
+              "privilege": "admin"
+        }
     },
     {
         "id": 8,
@@ -61,7 +82,10 @@
         "email": "juarezsd29473@gmail.com",
         "phone":"525569771680",
         "password": "dragonisidro123",
-        "privileges": "client"
+        "privileges": {
+             "id": 1,
+              "privilege": "admin"
+        }
     },
     {
         "id": 9,
@@ -69,7 +93,10 @@
         "email": "jusanarmenti21@gmail.com",
         "phone":"525569753092",
         "password": "princessjuanita77",
-        "privileges": "admin"
+        "privileges": {
+             "id": 1,
+              "privilege": "admin"
+        }
     },
     {
         "id": 10,
@@ -77,6 +104,9 @@
         "email": "sandraexploradora21@gmail.com",
         "phone":"525546483824",
         "password": "passw0rdstarwars21",
-        "privileges": "client"
+        "privileges": {
+             "id": 1,
+              "privilege": "admin"
+        }
     }
 ]
