@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.petzonalize.backend.entity.Product;
+import org.petzonalize.backend.mapper.ProductMapper;
 import org.petzonalize.backend.repository.ProductRepository;
 import org.petzonalize.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,23 +26,11 @@ public class ProductServiceImpl implements ProductService {
             return new ResponseEntity<>(
             		"Product with name '" + product.getName() + "' already exists",
             		HttpStatus.CONFLICT);
-		else {
-            Product newProduct = Product.builder()
-                    .name(product.getName())
-                    .description(product.getDescription())
-                    .category(product.getCategory())
-                    .customizable(product.isCustomizable())
-                    .price(product.getPrice())
-                    .imgUrl(product.getImgUrl())
-                    .stock(product.getStock())
-                    .type(product.getType())
-                    .properties(product.getProperties())
-                    .build();
-
+		else
             return new ResponseEntity<>(
-                productRepository.saveAndFlush(newProduct), HttpStatus.CREATED);
-
-		}
+                productRepository.saveAndFlush(
+                	ProductMapper.mapToProduct(product)
+        		), HttpStatus.CREATED);
 	}
 
 	@Override
