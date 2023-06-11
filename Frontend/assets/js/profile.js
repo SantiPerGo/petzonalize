@@ -34,7 +34,7 @@ $(document).ready(() => {
       $("#subtitle").text("Cliente");
   } else {
     sessionStorage.setItem("not-account", "¡Necesitas Iniciar Sesión para Acceder a tu Perfil!");
-    window.location.href = '../../index.html';
+    //window.location.href = '../../index.html';
   }
 });
 
@@ -198,13 +198,27 @@ const confirmDeleteAccount = () => {
     });
 };
 
+
+//Añadí estas funciones a partir de aquí
+
+
+//Muestra el formulario cuando se da click al botón de eliminar cuenta
 function showDeleteForm() {
   let deleteContainer = document.getElementById('delete-user-container');
   deleteContainer.classList.remove('pop--hidden');
 }
 
+//Cancela y vuelve a ocultar el formulario cuando se da click al botón de cancelar eliminación
 function cancelDeleteAccount() {
   let deleteContainer = document.getElementById('delete-user-container');
   deleteContainer.classList.add('pop--hidden');
 }
 
+//Cerrar sesión y redirigir hacia el index
+function closeSession() {
+  // Borrar el valor del 'users-logged-in' del localStorage
+  localStorage.removeItem('users-logged-in');
+  
+  // Redirigir hacia el index
+  window.location.href = '../../index.html'; 
+}
