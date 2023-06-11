@@ -17,8 +17,8 @@
         "phone":"525517909516" ,
         "password": "guestguest",
         "privileges": {
-             "id": 1,
-              "privilege": "admin"
+             "id": 2,
+              "privilege": "client"
         }
     },
     {
@@ -39,8 +39,8 @@
         "phone":"525527839796",
         "password": "col12345",
         "privileges": {
-             "id": 1,
-              "privilege": "admin"
+             "id": 2,
+              "privilege": "client"
         }
     },
     {
@@ -61,8 +61,8 @@
         "phone":"525542481533",
         "password": "alexisperalta22",
         "privileges": {
-             "id": 1,
-              "privilege": "admin"
+             "id": 2,
+              "privilege": "client"
         }
     },
     {
@@ -83,8 +83,8 @@
         "phone":"525569771680",
         "password": "dragonisidro123",
         "privileges": {
-             "id": 1,
-              "privilege": "admin"
+             "id": 2,
+              "privilege": "client"
         }
     },
     {
@@ -105,8 +105,8 @@
         "phone":"525546483824",
         "password": "passw0rdstarwars21",
         "privileges": {
-             "id": 1,
-              "privilege": "admin"
+             "id": 2,
+              "privilege": "client"
         }
     }
 ]
