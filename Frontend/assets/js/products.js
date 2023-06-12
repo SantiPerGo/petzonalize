@@ -207,12 +207,24 @@ const saveProductInStorage = product => {
 const addProductsToCart = (product, quantity) => {
   const shoppingCart = localStorage.getItem("shopping-cart");
   const products = shoppingCart !== null ? JSON.parse(shoppingCart) : [{ total: 0 }];
-
-  // Adding product with new property to the shopping cart
-  product["amount"] = quantity;
-  products.push(product);
+  
+  let productExistence = products.some(item => item["id"] == product.id);
+  
+  if(productExistence == false){
+    // Adding product with new property to the shopping cart
+    product["amount"] = quantity;
+    products.push(product);
+  }
+  else if(productExistence == true){
+    products.forEach( item => {
+     // Adding amount to existent product 
+      if(item["id"] == product.id){
+        item.amount += quantity;
+      }
+    });
+  }
+  
   products[0].total += quantity;
-
   localStorage.setItem("shopping-cart", JSON.stringify(products));
 
   const shoppingCartCounter = $("#shopping-cart-counter");

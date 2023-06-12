@@ -4,9 +4,18 @@
 :root {
     --beige: #FFF1DC;
     --brown: #BDA692;
+    --light-blue: #60d3fd;
     --blue: #3A98B9;
-    --gray: #EEEEEE;
+    --light-gray: #f8f8f8;
+    --gray: #eeeeee;
+    --dark-gray: #333333;
+    --light-purple: #d3b3fd;
     --purple: #73628A;
+    --white: white;
+    --black: black;
+
+    --light-blue-filter: invert(66%) sepia(43%) saturate(520%) hue-rotate(154deg) brightness(103%) contrast(98%);
+    --blue-filter: invert(52%) sepia(7%) saturate(3082%) hue-rotate(150deg) brightness(99%) contrast(99%);
 }
 
 html,
@@ -15,7 +24,8 @@ body {
 }
 
 body {
-    background-color: var(--gray);
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
     font-size: calc(0.75rem + 1vw);
     font-family: 'Signika Negative', sans-serif;
     margin-top: calc(3rem + 4vw);
@@ -66,6 +76,57 @@ footer {
     color: var(--blue) !important;
 }
 
+.toggle-button {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.toggle-button input {
+    display: none;
+}
+
+.slider {
+    position: relative;
+    width: 5rem;
+    height: 100%;
+    overflow: hidden;
+}
+
+.image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.4s;
+}
+
+.sun {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../img/dog-face.png'); /* Image for the sun */
+    opacity: 1;
+}
+
+.moon {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../img/cat-face.png'); /* Image for the moon */
+    opacity: 0;
+}
+
+input:checked + .slider .sun {
+    opacity: 0;
+}
+
+input:checked + .slider .moon {
+    opacity: 1;
+}
+  
+
 /* Navbar Shopping Cart Counter */
 
 .shopping-cart {
@@ -79,7 +140,7 @@ footer {
     padding: calc(0.1rem + 0.1vw) calc(0.35rem + 0.25vw);
     border-radius: 50%;
     background: var(--purple);
-    color: var(--gray);
+    color: var(--light-gray);
     font-size: calc(0.5rem + 0.5vw);
 }
 
@@ -119,7 +180,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-blue-title,
 .section-purple-title {
-    color: white;
+    color: var(--white);
     text-align: center;
     padding: 1rem 0;
 }
@@ -136,12 +197,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .carousel-text-shadow {
     text-shadow: 0 0 0.25rem black;
-    color: var(--gray);
+    color: var(--light-gray);
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    filter: invert(52%) sepia(7%) saturate(3082%) hue-rotate(150deg) brightness(99%) contrast(99%);
+    filter: var(--blue-filter);
     background-image: url("../img/Paw.png");
     width: calc(1rem + 3vw);
     height: calc(1rem + 3vw);
@@ -168,7 +229,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-blue,
 .btn-purple {
     transition: all 0.25s;
-    color: var(--gray) !important;
+    color: var(--white) !important;
     border-radius: 5rem;
     font-size: calc(1rem + 1vw);
     padding: 0.5rem 2rem;
@@ -200,18 +261,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-control {
     transition: all 0.25s;
-    background-color: white;
+    background-color: var(--gray);
     border: 0.25rem solid var(--brown);
     border-radius: 0.75rem;
     font-size: calc(0.75rem + 0.75vw);
 }
 
 .form-control::placeholder {
-    color: var(--brown);
+    color: gray;
 }
 
 .form-control:focus {
-    background-color: white;
+    background-color: var(--gray);
     border: 0.25rem solid var(--brown);
     box-shadow: 0 0 1rem var(--brown);
     transform: scale(1.05);
