@@ -2,7 +2,7 @@ package org.petzonalize.backend.controller;
 
 import org.petzonalize.backend.dto.HttpResponseDto;
 import org.petzonalize.backend.dto.UserLoginDto;
-import org.petzonalize.backend.dto.UserNoPasswordDto;
+import org.petzonalize.backend.dto.UserWithPrivilegeDto;
 import org.petzonalize.backend.entity.User;
 import org.petzonalize.backend.service.UserService;
 
@@ -41,7 +41,7 @@ public class UserController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Successful query!",
             content = @Content(mediaType = "application/json",
-            schema = @Schema(implementation = UserNoPasswordDto.class, type = "List"))),
+            schema = @Schema(implementation = UserWithPrivilegeDto.class, type = "List"))),
         @ApiResponse(responseCode = "404", description = "Users not found!",
         	content = @Content(mediaType = "application/json",
                 schema = @Schema(implementation = HttpResponseDto.class)))

@@ -5,9 +5,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.petzonalize.backend.dto.UserLoginDto;
-import org.petzonalize.backend.dto.UserNoPasswordDto;
+import org.petzonalize.backend.dto.UserWithPrivilegeDto;
 import org.petzonalize.backend.entity.Privilege;
 import org.petzonalize.backend.entity.User;
+import org.petzonalize.backend.entity.UserHasPrivilege;
 import org.petzonalize.backend.mapper.ProductMapper;
 import org.petzonalize.backend.mapper.UserHasPrivilegeMapper;
 import org.petzonalize.backend.mapper.UserMapper;
@@ -113,18 +114,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public ResponseEntity<?> getUsers() {
-        List<User> usersList = userRepository.findAll();
+        List<UserHasPrivilege> usersList = userHasPrivilegeRepository.findAll();
 		
         if(usersList.size() == 0)
 			return ResponseUtils.mapToJsonResponse(
 				"There are no users to send as an answer", HttpStatus.NOT_FOUND);
         else {
         	// Removing password from response with Stream
-            List<UserNoPasswordDto> usersNoPasswordList = usersList.stream()
-        		.map(user -> UserMapper.mapToUserWithoutPassword(user))
+            List<UserWithPrivilegeDto> usersWithPrivilegesList =
+        		usersList.stream()
+        		.map(user -> UserMapper.mapToUserWithPrivilege(user))
         		.collect(Collectors.toList());
             
-        	return new ResponseEntity<>(usersNoPasswordList, HttpStatus.OK);
+        	return new ResponseEntity<>(usersWithPrivilegesList, HttpStatus.OK);
         }
 	}
 	
