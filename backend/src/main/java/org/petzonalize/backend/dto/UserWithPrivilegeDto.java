@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserNoPasswordDto implements UserConstants {	
+public class UserWithPrivilegeDto implements UserConstants {	
 	@Id
 	@Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,4 +46,6 @@ public class UserNoPasswordDto implements UserConstants {
     @Size(max = USER_ADDRESS_MAX, message = USER_ADDRESS_SIZE)
     @NotBlank(message = USER_ADDRESS_NULL)
     private String address;
+    
+    private String privilege;
 }
