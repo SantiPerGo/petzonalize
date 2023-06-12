@@ -9,6 +9,8 @@ const customTxt = document.getElementById("custom-text");
 const txt = document.getElementById("custom-text");
 const deleter = document.getElementById("remove");
 
+let productId;
+
 let method="POST";
 let page = "#";
 $(document).ready(() => { 
@@ -104,7 +106,7 @@ editform.submit(submitButton => {
   let getty = document.getElementById('product-form-uploads').files[0].name;
   getty= ("/assets/img/products/not customizable/"+getty);
 
-  let data= { name:name, description:description, category:category,
+  let data= { id:id, name:name, description:description, category:category,
   customizable:false, price:price, imgUrl:"getty", stock:stock, type:pet, properties:null};
   console.log(data);
 
@@ -127,7 +129,7 @@ editform.submit(submitButton => {
       console.log(response)
   }
   
-  postData("https://petzonalize.up.railway.app/products", data).then((data) => {
+  postData("http://localhost:8080/products", data).then((data) => {
     console.log(data); // JSON data parsed by `data.json()` call
   });
 
