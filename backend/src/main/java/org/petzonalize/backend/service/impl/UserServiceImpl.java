@@ -65,12 +65,12 @@ public class UserServiceImpl implements UserService {
             user.setId(null);
 			userRepository.saveAndFlush(user);
         	
-        	userHasPrivilegeRepository.saveAndFlush(
+        	UserHasPrivilege userHasPrivilege = userHasPrivilegeRepository.saveAndFlush(
     			UserHasPrivilegeMapper.mapToUserHasPrivilege(user, clientPrivilege)
 			);
         	        	
         	return new ResponseEntity<>(
-        			UserMapper.mapToUserWithoutPassword(user), HttpStatus.CREATED);
+        		UserMapper.mapToUserWithPrivilege(userHasPrivilege), HttpStatus.CREATED);
 		}
 	}
 
