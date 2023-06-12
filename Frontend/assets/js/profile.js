@@ -34,7 +34,7 @@ $(document).ready(() => {
       $("#subtitle").text("Cliente");
   } else {
     sessionStorage.setItem("not-account", "¡Necesitas Iniciar Sesión para Acceder a tu Perfil!");
-    //window.location.href = '../../index.html';
+    window.location.href = '../../index.html';
   }
 });
 
