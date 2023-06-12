@@ -99,7 +99,27 @@
                         </div>
                     </div>
                 </form>
+
+                <form id="form-address" class="text-start m-md-3 mt-2">
+                    <label for="input-address" class="form-label"><b>Dirección:</b></label>
+                
+                    <div class="row">
+                        <div id="input-address-container" class="col-10 col-lg-11 input-container">
+                            <input type="text" class="form-view" id="input-address" placeholder="P. Sherman, 42 Wallaby Way, Sydney" name="address"
+                                readonly>
+                        </div>
+                
+                        <div class="col-2 col-lg-1">
+                            <div class="row">
+                                <button id="edit-address" class="btn m-0 p-0 btn-pencil" onclick="editInput('address')">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
         
+                
                 <form id="form-password" class="text-start m-md-3 mt-2">
                     <label for="input-password" class="form-label"><b>Contraseña:</b></label>
         

@@ -87,8 +87,8 @@ const resetInput = input => {
 loginForm.submit(submitButton => {
     submitButton.preventDefault();
 
-    const email = $("#input-email-login").val().trim();
-    const password = $("#input-password-login").val().trim();
+    /* const email = $("#input-email-login").val().trim();
+    const password = $("#input-password-login").val().trim(); */
 
     const user = {
         email: $("#input-email-login").val().trim(),
@@ -101,7 +101,13 @@ loginForm.submit(submitButton => {
             body: JSON.stringify(user),
             headers: {"Content-type": "application/json; charset=UTF-8"}
         })
-            .then(response => response.json())
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error("Login failed");
+                }
+            })
             .then(usersResponse =>{
                 localStorage.setItem(`users-logged-in`, JSON.stringify(usersResponse));
                 window.location.href = 'profile.html';

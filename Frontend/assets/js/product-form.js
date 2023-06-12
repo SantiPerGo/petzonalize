@@ -9,37 +9,29 @@ const customTxt = document.getElementById("custom-text");
 const txt = document.getElementById("custom-text");
 const deleter = document.getElementById("remove");
 
-let usuario =    {
-  id: 1,
-  name: "Juan Fernando Reyes Sánchez",
-  email: "juanreyssan@gmail.com",
-  phone:"525519673129" ,
-  password: "password",
-  privileges: "admin"
-}
-usuario=JSON.stringify(usuario)
-sessionStorage.setItem("users-logged-in",usuario)
+let productId;
 
-const method="POST";
-const page = "#";
+let method="POST";
+let page = "#";
 $(document).ready(() => { 
   validateForm(editform);
 
   //Adquirir elemento en session
-  let produtToEdit = sessionStorage.getItem("product");
+  let productToEdit = sessionStorage.getItem("product");
 
-  if(produtToEdit != null) {
-    produtToEdit = JSON.parse(produtToEdit);
+  if(productToEdit != null) {
+    productToEdit = JSON.parse(productToEdit);
+    productId = productToEdit.id;
     sessionStorage.removeItem("product");
     method="PUT";
     page="../html/products.html";
 
     // Mostrar datos de sessionstorage
-    $('#product-form-name').val(produtToEdit.name);
-    $('#product-form-description').val(produtToEdit.description);
-    $('#product-form-quantity').val(produtToEdit.stock);
-    $('#product-form-price').val(produtToEdit.price);
-    let img = produtToEdit.imgUrl;
+    $('#product-form-name').val(productToEdit.name);
+    $('#product-form-description').val(productToEdit.description);
+    $('#product-form-quantity').val(productToEdit.stock);
+    $('#product-form-price').val(productToEdit.price);
+    let img = productToEdit.imgUrl;
 
     previewDefaultText.style.display = "none";
     previewImage.style.display = "block";
@@ -47,9 +39,9 @@ $(document).ready(() => {
     
     previewImage.setAttribute("src", img);
     customTxt.innerHTML = img;
-    $('#product-form-category').val(produtToEdit.category);
+    $('#product-form-category').val(productToEdit.category);
 
-    if(produtToEdit.type === "dog")
+    if(productToEdit.type === "dog")
       document.querySelector('#product-form-dog').checked = true;
     else
       document.querySelector('#product-form-cat').checked = true;
@@ -68,7 +60,7 @@ $(document).ready(() => {
         })
         .then(data => {
           
-          if(data.status==200){
+          if(data.status===200){
             sessionStorage.setItem("alert", 8 )
             window.location.href="../html/products.html";
           }else{
@@ -87,7 +79,7 @@ $(document).ready(() => {
         })
       
       }
-      url=("https://petzonalize.up.railway.app/products/"+produtToEdit.id);
+      url=("https://petzonalize.up.railway.app/products/"+productToEdit.id);
       deleter.addEventListener(`click`, ()=>{
       deletion(url)
       console.log("deleter")
@@ -96,12 +88,10 @@ $(document).ready(() => {
     
   }
 });
+
 // metodo post
-
 // Example POST method implementation:
-
 //declarar elementos
-
 
 editform.submit(submitButton => {
   submitButton.preventDefault();
@@ -114,19 +104,24 @@ editform.submit(submitButton => {
   const category = document.getElementById("product-form-category").value;
   const price = Number(document.getElementById("product-form-price").value);
   const pet = document.getElementById('product-form-dog').checked ? "dog" : "cat";
-  let getty = document.getElementById('product-form-uploads').files[0].name;
-  getty= ("/assets/img/products/not customizable/"+getty);
+  const imgUrl = $(previewImage).attr("src");
 
-  let data= { name:name, description:description, category:category,
-  customizable:false, price:price, imgUrl:"getty", stock:stock, type:pet, properties:null};
+  let data= { id:productId, name:name, description:description, category:category,
+  customizable:false, price:price, imgUrl:imgUrl, stock:stock, type:pet, properties:null};
   console.log(data);
 
   async function postData(url, data) {
+      const file = realFileBtn.files[0];
+      const formData = new FormData();
+      formData.append("image", file);
+
+      // Append the JSON data as a Blob
+      const jsonBlob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+      formData.append('product', jsonBlob);  
   
       let response = await fetch(url, {
           method: method,
-          body: JSON.stringify(data),
-          headers: {"Content-type": "application/json; charset=UTF-8"}
+          body: formData
       })
   
       response = await response.json();
@@ -134,7 +129,7 @@ editform.submit(submitButton => {
       console.log(response)
   }
   
-  postData("https://petzonalize.up.railway.app/products", data).then((data) => {
+  postData("http://localhost:8080/products", data).then((data) => {
     console.log(data); // JSON data parsed by `data.json()` call
   });
 
@@ -160,49 +155,6 @@ editform.submit(submitButton => {
 
 // Boton reiniciar/borrar formulario
 const resetForm = () => editform.reset();
-async function deletion(url) {
-  
-  let response = await fetch(url, {
-      method: "DELETE",
-  }) .then(response => {
-    
-    //console.log(response.status); 
-    //console.log(response.statusText); 
-    
-    return response;
-  
-  })
-  .then(data => {
-    
-    if(data.status==200){
-      sessionStorage.setItem("alert", 8 )
-      window.location.href="../html/products.html";
-    }else{
-      alertElement.removeClass("text-success");
-      alertElement.addClass("alert-danger");
-      alertElement.addClass("text-danger");
-      alertElement.text("¡No se encontró ningun producto con ese id!");
-      alertElement.slideDown(250);
-      setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-    }
-  
-  })
-  .catch(error => {
-
-
-  })
-
-}
-url=("https://petzonalize.up.railway.app/products/"+43);
-deleter.addEventListener(`click`, ()=>{
-deletion(url)
-console.log("deleter")
-
-})
-
-
-
-
 
 // Boton cargar imagen
 const realFileBtn = document.getElementById("product-form-uploads");
