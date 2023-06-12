@@ -1,5 +1,6 @@
 package org.petzonalize.backend.controller;
 
+import org.petzonalize.backend.dto.HttpResponseDto;
 import org.petzonalize.backend.entity.Product;
 import org.petzonalize.backend.service.ProductService;
 
@@ -29,8 +30,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @CrossOrigin(origins="*")
 @ApiResponse(responseCode = "400", description = "Bad request",
 	content = @Content(mediaType = "application/json",
-		schema = @Schema(implementation = String.class)))
-@Tag(name = "Product Controller",
+		schema = @Schema(implementation = HttpResponseDto.class)))
+@Tag(name = "Product Endpoint",
 	description = "CRUD for products connecting with Firebase Storage.")
 public class ProductController {
 	@Autowired
@@ -43,7 +44,7 @@ public class ProductController {
             schema = @Schema(implementation = Product.class, type = "List"))),
         @ApiResponse(responseCode = "404", description = "Products not found!",
         	content = @Content(mediaType = "application/json",
-                schema = @Schema(implementation = String.class)))
+                schema = @Schema(implementation = HttpResponseDto.class)))
     })
     @GetMapping
     public ResponseEntity<?> getProducts() {
@@ -57,11 +58,11 @@ public class ProductController {
             schema = @Schema(implementation = Product.class))),
         @ApiResponse(responseCode = "409", description = "Product already exists",
         	content = @Content(mediaType = "application/json",
-                schema = @Schema(implementation = String.class))),
+                schema = @Schema(implementation = HttpResponseDto.class))),
         @ApiResponse(responseCode = "500",
         	description = "Image couldn't be uploaded into Firebase Storage",
                 content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = String.class)))
+                    schema = @Schema(implementation = HttpResponseDto.class)))
     })
     @PostMapping
 	public ResponseEntity<?> createProduct(@RequestPart("product") Product product,
@@ -73,10 +74,10 @@ public class ProductController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Successful deletion!",
             content = @Content(mediaType = "application/json",
-            schema = @Schema(implementation = String.class))),
+            schema = @Schema(implementation = HttpResponseDto.class))),
         @ApiResponse(responseCode = "404", description = "Product not found!",
         	content = @Content(mediaType = "application/json",
-                schema = @Schema(implementation = String.class)))
+                schema = @Schema(implementation = HttpResponseDto.class)))
     })
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
@@ -90,7 +91,7 @@ public class ProductController {
             schema = @Schema(implementation = Product.class))),
         @ApiResponse(responseCode = "404", description = "Product not found!",
         	content = @Content(mediaType = "application/json",
-                schema = @Schema(implementation = String.class)))
+                schema = @Schema(implementation = HttpResponseDto.class)))
     })
     @PutMapping
     public ResponseEntity<?> updateProduct(@RequestBody Product product){

@@ -1,5 +1,6 @@
 package org.petzonalize.backend.controller;
 
+import org.petzonalize.backend.dto.HttpResponseDto;
 import org.petzonalize.backend.entity.Customizable;
 import org.petzonalize.backend.service.CustomizableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @CrossOrigin(origins="*")
 @ApiResponse(responseCode = "400", description = "Bad request",
 	content = @Content(mediaType = "application/json",
-		schema = @Schema(implementation = String.class)))
-@Tag(name = "Customizable Controller",
+		schema = @Schema(implementation = HttpResponseDto.class)))
+@Tag(name = "Customizable Endpoint",
 	description = "Customizables are hats and costumes for pets, also patterns.")
 public class CustomizableController {
 	@Autowired
@@ -35,7 +36,7 @@ public class CustomizableController {
             schema = @Schema(implementation = Customizable.class, type = "List"))),
         @ApiResponse(responseCode = "404", description = "Customizables not found!",
         	content = @Content(mediaType = "application/json",
-                schema = @Schema(implementation = String.class)))
+                schema = @Schema(implementation = HttpResponseDto.class)))
     })
     @GetMapping
     public ResponseEntity<?> getCustomizables() {

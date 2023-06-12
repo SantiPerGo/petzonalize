@@ -15,7 +15,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// TODO: Complete swagger documentation
 @Data
 @Builder
 @NoArgsConstructor

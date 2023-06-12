@@ -1,5 +1,6 @@
 package org.petzonalize.backend.controller;
 
+import org.petzonalize.backend.dto.HttpResponseDto;
 import org.petzonalize.backend.dto.UserLoginDto;
 import org.petzonalize.backend.dto.UserNoPasswordDto;
 import org.petzonalize.backend.entity.User;
@@ -29,8 +30,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @CrossOrigin(origins="*")
 @ApiResponse(responseCode = "400", description = "Bad request",
 	content = @Content(mediaType = "application/json",
-		schema = @Schema(implementation = String.class)))
-@Tag(name = "User Controller",
+		schema = @Schema(implementation = HttpResponseDto.class)))
+@Tag(name = "User Endpoints",
 	description = "CRUD for users, including login and password recovery by sending email.")
 public class UserController {
 	@Autowired
@@ -43,7 +44,7 @@ public class UserController {
             schema = @Schema(implementation = UserNoPasswordDto.class, type = "List"))),
         @ApiResponse(responseCode = "404", description = "Users not found!",
         	content = @Content(mediaType = "application/json",
-                schema = @Schema(implementation = String.class)))
+                schema = @Schema(implementation = HttpResponseDto.class)))
     })
     @GetMapping
     public ResponseEntity<?> getUsers() {
@@ -57,7 +58,7 @@ public class UserController {
             schema = @Schema(implementation = User.class))),
         @ApiResponse(responseCode = "409", description = "User already exists",
         	content = @Content(mediaType = "application/json",
-                schema = @Schema(implementation = String.class)))
+                schema = @Schema(implementation = HttpResponseDto.class)))
     })
     @PostMapping
 	public ResponseEntity<?> createUser(@RequestBody final User user) {
@@ -71,7 +72,7 @@ public class UserController {
             schema = @Schema(implementation = UserLoginDto.class))),
         @ApiResponse(responseCode = "404", description = "User not found!",
         	content = @Content(mediaType = "application/json",
-                schema = @Schema(implementation = String.class)))
+                schema = @Schema(implementation = HttpResponseDto.class)))
     })
     @DeleteMapping
     public ResponseEntity<?> deleteUser(@RequestBody UserLoginDto userLogin) {
@@ -85,7 +86,7 @@ public class UserController {
             schema = @Schema(implementation = User.class))),
         @ApiResponse(responseCode = "404", description = "User not found!",
         	content = @Content(mediaType = "application/json",
-                schema = @Schema(implementation = String.class)))
+                schema = @Schema(implementation = HttpResponseDto.class)))
     })
     @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody User user){
@@ -96,10 +97,10 @@ public class UserController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Password sent to email successfully!",
             content = @Content(mediaType = "application/json",
-            schema = @Schema(implementation = String.class))),
+            schema = @Schema(implementation = HttpResponseDto.class))),
         @ApiResponse(responseCode = "404", description = "User not found!",
         	content = @Content(mediaType = "application/json",
-                schema = @Schema(implementation = String.class)))
+                schema = @Schema(implementation = HttpResponseDto.class)))
     })
     @GetMapping("{email}")
 	public ResponseEntity<?> recoverPassword(@PathVariable String email) {
@@ -113,7 +114,7 @@ public class UserController {
             schema = @Schema(implementation = UserLoginDto.class))),
         @ApiResponse(responseCode = "404", description = "User not found!",
         	content = @Content(mediaType = "application/json",
-                schema = @Schema(implementation = String.class)))
+                schema = @Schema(implementation = HttpResponseDto.class)))
     })
     @PostMapping("login")
 	public ResponseEntity<?> login(@RequestBody UserLoginDto userLogin) {

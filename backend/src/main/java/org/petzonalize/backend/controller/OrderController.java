@@ -1,5 +1,6 @@
 package org.petzonalize.backend.controller;
 
+import org.petzonalize.backend.dto.HttpResponseDto;
 import org.petzonalize.backend.dto.OrderWrapperDto;
 import org.petzonalize.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @CrossOrigin(origins="*")
 @ApiResponse(responseCode = "400", description = "Bad request",
 	content = @Content(mediaType = "application/json",
-		schema = @Schema(implementation = String.class)))
-@Tag(name = "Order Controller",
+		schema = @Schema(implementation = HttpResponseDto.class)))
+@Tag(name = "Order Endpoint",
 	description = "To create an order per user and send the purchase recipe to the user's email.")
 public class OrderController {
 	@Autowired
@@ -33,7 +34,7 @@ public class OrderController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Order created and email sent!",
         	content = @Content(mediaType = "application/json",
-        		schema = @Schema(implementation = String.class)))
+        		schema = @Schema(implementation = HttpResponseDto.class)))
     })
     @PostMapping
 	public ResponseEntity<?> orderProducts(@RequestBody OrderWrapperDto wrapper) {
