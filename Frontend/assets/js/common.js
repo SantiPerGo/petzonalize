@@ -65,13 +65,14 @@ const switchMode = isDarkMode => {
     $(":root").css("--blue-filter", isDarkMode ? lightBlueFilter : blueFilter);
 
     $("img").each((key, element) => {
-        if($(element).attr("src").includes("Logo.png") ||
-            $(element).attr("src").includes("Logo Dark.png")) {
-            if(!isDarkMode)
-                $(element).attr("src", "/assets/img/Logo.png");
-            else 
-                $(element).attr("src", "/assets/img/Logo Dark.png");
-        }
+        if($(element).attr("src") !== undefined)
+            if($(element).attr("src").includes("Logo.png") ||
+                $(element).attr("src").includes("Logo Dark.png")) {
+                if(!isDarkMode)
+                    $(element).attr("src", "/assets/img/Logo.png");
+                else 
+                    $(element).attr("src", "/assets/img/Logo Dark.png");
+            }
     });
 };
 
