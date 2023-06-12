@@ -11,57 +11,69 @@ $(document).ready(function(){
             shoppingCartCounter.text(products[0].total);
             shoppingCartCounter.removeClass("d-none");
         }
+        
+        let isDarkMode = localStorage.getItem("is-dark-mode");
 
-        const lightBlueColor = $(":root").css("--light-blue");
-        const blueColor = $(":root").css("--blue");
-        const lightPurpleColor = $(":root").css("--light-purple");
-        const purpleColor = $(":root").css("--purple");
-        const beigeColor = $(":root").css("--beige");
-        const brownColor = $(":root").css("--brown");
-        const lightGrayColor = $(":root").css("--light-gray");
-        const grayColor = $(":root").css("--gray");
-        const darkGrayColor = $(":root").css("--dark-gray");
-
-        const lightBlueFilter = $(":root").css("--light-blue-filter");
-        const blueFilter = $(":root").css("--blue-filter");
-
-        let darkMode = true;
+        if(isDarkMode !== null) {
+            isDarkMode = isDarkMode === "true";
+            switchMode(isDarkMode);
+        } else 
+            isDarkMode = false;
 
         $("#dark-mode").click(() => {
-            $(":root").css("--blue", darkMode ? lightBlueColor : blueColor);
-            $(":root").css("--purple", darkMode ? lightPurpleColor : purpleColor);
-
-            $(":root").css("--light-blue", darkMode ? blueColor : lightBlueColor);
-            $(":root").css("--light-purple", darkMode ? purpleColor : lightPurpleColor);
-
-            $(":root").css("--beige", darkMode ? brownColor : beigeColor);
-            $(":root").css("--brown", darkMode ? beigeColor : brownColor);
-
-            $(":root").css("--white", darkMode ? "black" : "white");
-            $(":root").css("--black", darkMode ? "white" : "black");
-            
-            $(":root").css("--gray", darkMode ? lightGrayColor : grayColor);
-            $(":root").css("--light-gray", darkMode ? grayColor : lightGrayColor);
-            $(":root").css("--dark-gray", darkMode ? grayColor : darkGrayColor);
-
-            $(":root").css("--blue-filter", darkMode ? lightBlueFilter : blueFilter);
-            
-            darkMode = !darkMode;
-
-            $("img").each((key, element) => {
-                if($(element).attr("src").includes("Logo.png") ||
-                    $(element).attr("src").includes("Logo Dark.png")) {
-                    if(darkMode)
-                        $(element).attr("src", "/assets/img/Logo.png");
-                    else 
-                        $(element).attr("src", "/assets/img/Logo Dark.png");
-                }
-            });
+            isDarkMode = !isDarkMode;
+            localStorage.setItem("is-dark-mode", isDarkMode);
+            switchMode(isDarkMode);
         });
     });
     
     $.get("/assets/html/footer.html", data => $("footer").replaceWith(data));
 });
+
+const lightBlueColor = $(":root").css("--light-blue");
+const blueColor = $(":root").css("--blue");
+const lightPurpleColor = $(":root").css("--light-purple");
+const purpleColor = $(":root").css("--purple");
+const beigeColor = $(":root").css("--beige");
+const brownColor = $(":root").css("--brown");
+const lightGrayColor = $(":root").css("--light-gray");
+const grayColor = $(":root").css("--gray");
+const darkGrayColor = $(":root").css("--dark-gray");
+
+const lightBlueFilter = $(":root").css("--light-blue-filter");
+const blueFilter = $(":root").css("--blue-filter");
+
+const switchMode = isDarkMode => {
+    $("#dark-mode").attr("checked", isDarkMode);
+
+    $(":root").css("--blue", isDarkMode ? lightBlueColor : blueColor);
+    $(":root").css("--purple", isDarkMode ? lightPurpleColor : purpleColor);
+
+    $(":root").css("--light-blue", isDarkMode ? blueColor : lightBlueColor);
+    $(":root").css("--light-purple", isDarkMode ? purpleColor : lightPurpleColor);
+
+    $(":root").css("--beige", isDarkMode ? brownColor : beigeColor);
+    $(":root").css("--brown", isDarkMode ? beigeColor : brownColor);
+
+    $(":root").css("--white", isDarkMode ? "black" : "white");
+    $(":root").css("--black", isDarkMode ? "white" : "black");
+    
+    $(":root").css("--gray", isDarkMode ? lightGrayColor : grayColor);
+    $(":root").css("--light-gray", isDarkMode ? grayColor : lightGrayColor);
+    $(":root").css("--dark-gray", isDarkMode ? grayColor : darkGrayColor);
+
+    $(":root").css("--blue-filter", isDarkMode ? lightBlueFilter : blueFilter);
+
+    $("img").each((key, element) => {
+        if($(element).attr("src").includes("Logo.png") ||
+            $(element).attr("src").includes("Logo Dark.png")) {
+            if(!isDarkMode)
+                $(element).attr("src", "/assets/img/Logo.png");
+            else 
+                $(element).attr("src", "/assets/img/Logo Dark.png");
+        }
+    });
+};
 
 const validateForm = form => {
     return $(form).validate({
