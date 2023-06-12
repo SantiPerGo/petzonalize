@@ -17,20 +17,21 @@ $(document).ready(() => {
   validateForm(editform);
 
   //Adquirir elemento en session
-  let produtToEdit = sessionStorage.getItem("product");
+  let productToEdit = sessionStorage.getItem("product");
 
-  if(produtToEdit != null) {
-    produtToEdit = JSON.parse(produtToEdit);
+  if(productToEdit != null) {
+    productToEdit = JSON.parse(productToEdit);
+    productId = productToEdit.id;
     sessionStorage.removeItem("product");
     method="PUT";
     page="../html/products.html";
 
     // Mostrar datos de sessionstorage
-    $('#product-form-name').val(produtToEdit.name);
-    $('#product-form-description').val(produtToEdit.description);
-    $('#product-form-quantity').val(produtToEdit.stock);
-    $('#product-form-price').val(produtToEdit.price);
-    let img = produtToEdit.imgUrl;
+    $('#product-form-name').val(productToEdit.name);
+    $('#product-form-description').val(productToEdit.description);
+    $('#product-form-quantity').val(productToEdit.stock);
+    $('#product-form-price').val(productToEdit.price);
+    let img = productToEdit.imgUrl;
 
     previewDefaultText.style.display = "none";
     previewImage.style.display = "block";
@@ -38,9 +39,9 @@ $(document).ready(() => {
     
     previewImage.setAttribute("src", img);
     customTxt.innerHTML = img;
-    $('#product-form-category').val(produtToEdit.category);
+    $('#product-form-category').val(productToEdit.category);
 
-    if(produtToEdit.type === "dog")
+    if(productToEdit.type === "dog")
       document.querySelector('#product-form-dog').checked = true;
     else
       document.querySelector('#product-form-cat').checked = true;
@@ -78,7 +79,7 @@ $(document).ready(() => {
         })
       
       }
-      url=("https://petzonalize.up.railway.app/products/"+produtToEdit.id);
+      url=("https://petzonalize.up.railway.app/products/"+productToEdit.id);
       deleter.addEventListener(`click`, ()=>{
       deletion(url)
       console.log("deleter")
@@ -106,7 +107,7 @@ editform.submit(submitButton => {
   let getty = document.getElementById('product-form-uploads').files[0].name;
   getty= ("/assets/img/products/not customizable/"+getty);
 
-  let data= { id:id, name:name, description:description, category:category,
+  let data= { id:productId, name:name, description:description, category:category,
   customizable:false, price:price, imgUrl:"getty", stock:stock, type:pet, properties:null};
   console.log(data);
 

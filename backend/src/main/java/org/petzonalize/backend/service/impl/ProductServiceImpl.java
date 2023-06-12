@@ -23,7 +23,25 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ResponseEntity<?> createProduct(Product product, MultipartFile image) {
 		Optional<Product> optionalProduct = productRepository.findByName(product.getName());
-		return createUpdateProduct(optionalProduct, product, image);
+
+		if(optionalProduct.isPresent())
+			return ResponseUtils.mapToJsonResponse(
+				"User with name '" + product.getName() + "' already exists",
+            	HttpStatus.CONFLICT);
+		else {
+			String imgUrl = FirebaseUtils.uploadFileToFirebaseStorage(image);
+			
+			if(imgUrl != null) {
+				product.setId(optionalProduct.get().getId());
+				product.setImgUrl(imgUrl);
+	            return new ResponseEntity<>(
+	                productRepository.saveAndFlush(ProductMapper.mapToProduct(product)),
+	                HttpStatus.CREATED);
+			} else
+				return ResponseUtils.mapToJsonResponse(
+	        		"Product img couldn't be uploaded to Firebase Storage!",
+	        		HttpStatus.INTERNAL_SERVER_ERROR); 
+		}
 	}
 
 	// TODO: delete image from firebase
@@ -44,12 +62,8 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ResponseEntity<?> updateProduct(Product product, MultipartFile image) {
         Optional<Product> optionalProduct = productRepository.findById(product.getId());
-		return createUpdateProduct(optionalProduct, product, image);
-	}
-	
-	private ResponseEntity<?> createUpdateProduct
-		(Optional<Product> optionalProduct, Product product, MultipartFile image) {
-		if(!optionalProduct.isPresent())
+
+        if(!optionalProduct.isPresent())
 			return ResponseUtils.mapToJsonResponse(
 				"Product with id '" + product.getId() + "' doesn't exist", HttpStatus.NOT_FOUND); 
 		else {
@@ -59,14 +73,13 @@ public class ProductServiceImpl implements ProductService {
 				product.setId(optionalProduct.get().getId());
 				product.setImgUrl(imgUrl);
 	            return new ResponseEntity<>(
-	                productRepository.saveAndFlush(ProductMapper.mapToProduct(product)),
-	                HttpStatus.CREATED);
+	                productRepository.saveAndFlush(product), HttpStatus.CREATED);
 			} else
 				return ResponseUtils.mapToJsonResponse(
 	        		"Product img couldn't be uploaded to Firebase Storage!",
 	        		HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
-	};
+	}
 
 	@Override
 	public ResponseEntity<?> getProducts() {
