@@ -31,5 +31,5 @@ public interface ProductService {
      * @param product The product to be updated
      * @return Response entity with the updated product or an error message
      */
-    ResponseEntity<?> updateProduct(Product product);
+    ResponseEntity<?> updateProduct(Product product, MultipartFile image);
 }

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -91,10 +90,15 @@ public class ProductController {
             schema = @Schema(implementation = Product.class))),
         @ApiResponse(responseCode = "404", description = "Product not found!",
         	content = @Content(mediaType = "application/json",
+                schema = @Schema(implementation = HttpResponseDto.class))),
+        @ApiResponse(responseCode = "500",
+    	description = "Image couldn't be uploaded into Firebase Storage",
+            content = @Content(mediaType = "application/json",
                 schema = @Schema(implementation = HttpResponseDto.class)))
     })
     @PutMapping
-    public ResponseEntity<?> updateProduct(@RequestBody Product product){
-        return productService.updateProduct(product);
+    public ResponseEntity<?> updateProduct(@RequestPart("product") Product product,
+            @RequestPart("image") MultipartFile image){
+        return productService.updateProduct(product, image);
     }
 }

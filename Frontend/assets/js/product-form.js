@@ -9,19 +9,8 @@ const customTxt = document.getElementById("custom-text");
 const txt = document.getElementById("custom-text");
 const deleter = document.getElementById("remove");
 
-let usuario =    {
-  id: 1,
-  name: "Juan Fernando Reyes Sánchez",
-  email: "juanreyssan@gmail.com",
-  phone:"525519673129" ,
-  password: "password",
-  privileges: "admin"
-}
-usuario=JSON.stringify(usuario)
-sessionStorage.setItem("users-logged-in",usuario)
-
-const method="POST";
-const page = "#";
+let method="POST";
+let page = "#";
 $(document).ready(() => { 
   validateForm(editform);
 
@@ -68,7 +57,7 @@ $(document).ready(() => {
         })
         .then(data => {
           
-          if(data.status==200){
+          if(data.status===200){
             sessionStorage.setItem("alert", 8 )
             window.location.href="../html/products.html";
           }else{
@@ -96,12 +85,10 @@ $(document).ready(() => {
     
   }
 });
+
 // metodo post
-
 // Example POST method implementation:
-
 //declarar elementos
-
 
 editform.submit(submitButton => {
   submitButton.preventDefault();
@@ -122,11 +109,17 @@ editform.submit(submitButton => {
   console.log(data);
 
   async function postData(url, data) {
+      const file = realFileBtn.files[0];
+      const formData = new FormData();
+      formData.append("image", file);
+
+      // Append the JSON data as a Blob
+      const jsonBlob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+      formData.append('product', jsonBlob);  
   
       let response = await fetch(url, {
           method: method,
-          body: JSON.stringify(data),
-          headers: {"Content-type": "application/json; charset=UTF-8"}
+          body: formData
       })
   
       response = await response.json();
@@ -146,7 +139,7 @@ editform.submit(submitButton => {
       alertElement.text("¡Producto añadido con Éxito!");
       alertElement.slideDown(250);
       setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-      window.location.href =page;
+      //window.location.href =page;
   }else{    
     alertElement.removeClass("alert-success");
     alertElement.removeClass("text-success");
@@ -160,49 +153,6 @@ editform.submit(submitButton => {
 
 // Boton reiniciar/borrar formulario
 const resetForm = () => editform.reset();
-async function deletion(url) {
-  
-  let response = await fetch(url, {
-      method: "DELETE",
-  }) .then(response => {
-    
-    //console.log(response.status); 
-    //console.log(response.statusText); 
-    
-    return response;
-  
-  })
-  .then(data => {
-    
-    if(data.status==200){
-      sessionStorage.setItem("alert", 8 )
-      window.location.href="../html/products.html";
-    }else{
-      alertElement.removeClass("text-success");
-      alertElement.addClass("alert-danger");
-      alertElement.addClass("text-danger");
-      alertElement.text("¡No se encontró ningun producto con ese id!");
-      alertElement.slideDown(250);
-      setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-    }
-  
-  })
-  .catch(error => {
-
-
-  })
-
-}
-url=("https://petzonalize.up.railway.app/products/"+43);
-deleter.addEventListener(`click`, ()=>{
-deletion(url)
-console.log("deleter")
-
-})
-
-
-
-
 
 // Boton cargar imagen
 const realFileBtn = document.getElementById("product-form-uploads");
