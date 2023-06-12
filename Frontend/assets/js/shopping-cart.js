@@ -98,7 +98,7 @@ const customProducts = (product) => {
     if(product.category == "pet"){
         patternAvailable = ``;
     }else{
-        if(product.properties.hasOwnProperty("pattern")){
+        if(product.properties.hasOwnProperty("pattern") && product.properties["pattern"] != null){
             patternAvailable = ` <div class="col-material">
                                 <div class="rounded-circle mx-auto" style="height: 2.62em; width: 2.62em; overflow: hidden; ">
                                     <img width="100%" height="auto" src="${product.properties.pattern}" >
@@ -113,23 +113,33 @@ const customProducts = (product) => {
         }
     }
     
-    if(product.properties.hasOwnProperty("petname")){
-        userCustoms += `<p class="my-0">Nombre: ${product.properties.petname}</p>`;                      
+    if(product.properties.hasOwnProperty("petname") && product.properties["petname"] != null){
+        if(product.properties["petname"] != ""){
+            userCustoms += `<p class="my-0">Nombre: ${product.properties.petname}</p>`;  
+        }
+        else{
+            userCustoms += `<p class="my-0">Nombre: No Aplica</p>`;
+        }
     }
-    if(product.properties.hasOwnProperty("petphone")){
-        userCustoms += `<p class="my-0">Teléfono: ${product.properties.petphone}</p>`;
+    if(product.properties.hasOwnProperty("petphone") && product.properties["petphone"] != null){
+        if(product.properties["petphone"] != ""){
+            userCustoms += `<p class="my-0">Teléfono: ${product.properties.petphone}</p>`;
+        }
+        else{
+            userCustoms += `<p class="my-0">Teléfono: No Aplica</p>`;
+        }
     }
-    if(product.properties.hasOwnProperty("body")){
+    if(product.properties.hasOwnProperty("body") && product.properties["body"] != null){
         outfits += `<div class="" style="height: 3.2em; width: 50%; overflow: hidden;">
                         <img width="auto" height="100%" src="${product.properties.body}" >
                     </div>`;
     }
-    if(product.properties.hasOwnProperty("head")){
+    if(product.properties.hasOwnProperty("head") && product.properties["head"] != null){
         outfits += `<div class="" style="height: 3.2em; width: 50%; overflow: hidden;">
         <img width="auto" height="100%" src="${product.properties.head}" >
     </div>`;
     }
-    if(product.properties.hasOwnProperty("color")){
+    if(product.properties.hasOwnProperty("color") && product.properties["color"] != null){
         customColor = `<div class="col-color">
                             <div class="rounded-circle mx-auto" style="height: 2.62em; width: 2.62em; background-color: ${product.properties.color}; ">
                             </div>
@@ -167,7 +177,7 @@ const customProducts = (product) => {
                         </div>
                     <div class="col col-12">
                         <div class="col-size">
-                            <p>${product.properties.hasOwnProperty("size") ? product.properties.size : " "}</p>
+                            <p>${product.properties.hasOwnProperty("size") && product.properties["size"] != null ? product.properties.size : " "}</p>
                             ${userCustoms}
                         </div>
                     </div>
