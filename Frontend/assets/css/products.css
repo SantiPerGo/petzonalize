@@ -21,6 +21,7 @@
 /* Cards Styles */
 
 .card {
+    background-color: var(--gray);
     transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
@@ -37,12 +38,18 @@
 }
 
 .card-header {
+    background-color: var(--gray) !important;
     font-size: calc(1.5rem + 0.5vw);
     display: inline-block;
 }
 
 .card-body {
+    background-color: var(--gray) !important;
     font-size: calc(1rem + 0.5vw);
+}
+
+.card-footer {
+    background-color: var(--gray) !important;
 }
 
 .card-customizable {
@@ -50,8 +57,16 @@
     color: var(--brown);
 }
 
+.card-customizable-bg {
+    background-color: var(--beige) !important;
+}
+
 .text-brown {
     color: var(--brown);
+}
+
+.text-gray {
+    color: var(--blue);
 }
 
 button a {

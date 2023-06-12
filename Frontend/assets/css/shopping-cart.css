@@ -2,6 +2,15 @@
   height: 100%;
 }
 
+h2 {
+  color: black !important;
+}
+
+.number-display {  
+  background-color: transparent !important;
+  border: none !important;
+}
+
 .product-box{
     /*background-color: brown;*/
     min-height: 280px;
@@ -117,12 +126,8 @@ ion-icon {
     }
 
   .description-gradient{
-      top: 0;
-      height: inherit;
       width: 100%;
-      background: rgb(255,255,255);
-      background: linear-gradient(180deg, rgba(255,255,255,0) 52%, rgba(255,241,220,1) 88%);
-      position: absolute;
+      background: var(--white);
     }
  
     .show-description {
@@ -135,7 +140,7 @@ ion-icon {
     }
     
     .ver-mas {
-      color: var(--purple); /* Cambia el color a tu preferencia */
+      color: var(--brown); /* Cambia el color a tu preferencia */
       text-decoration: underline; /* Agrega decoración de subrayado o personalízala */
       cursor: pointer; /* Cambia el cursor al estilo "puntero" al pasar el ratón sobre él */
     }
@@ -169,7 +174,7 @@ ion-icon {
     .not-register-form-container{
       position: fixed;
       width: 100%;
-      background: rgb(114,15,176);
+      background: var(--purple);
       background: radial-gradient(circle, rgba(114, 15, 176, 0) 0%, rgba(0,0,0,0.48923319327731096) 86%);
       height: 100%;
       z-index: 6;

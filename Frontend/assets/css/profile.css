@@ -70,8 +70,12 @@ h2 {
     padding-bottom: auto;
 }   
 
+input {
+    color: var(--black);
+}
 
-  
-
+input::placeholder {
+    color: var(--black);
+}
 
 

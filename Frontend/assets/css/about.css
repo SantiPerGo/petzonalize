@@ -18,6 +18,10 @@
 
 /* Team Values Sections */
 
+.subtitle {
+    color: black !important;
+}
+
 .bg-cat {
     background-color: #b5cce5;
 }
