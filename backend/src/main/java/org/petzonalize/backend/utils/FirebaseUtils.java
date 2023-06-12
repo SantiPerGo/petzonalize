@@ -5,8 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +25,6 @@ import com.google.firebase.cloud.StorageClient;
 @Service
 public class FirebaseUtils {
 	private static final String FIREBASE_BUCKET = "petzonalize.appspot.com";
-	private static final String DOWNLOAD_URL =
-		"https://firebasestorage.googleapis.com/v0/b/"+FIREBASE_BUCKET+"/o/%s?alt=media";
 	
 	private static String uploadFile(File file, String fileName) throws FileNotFoundException, IOException {
 		String blobName = "Created/" + fileName;
@@ -40,8 +36,10 @@ public class FirebaseUtils {
         
         Storage storage = StorageOptions.newBuilder().setCredentials(credentials)
     		.build().getService();
-        storage.create(blobInfo, Files.readAllBytes(file.toPath()));
-        return String.format(DOWNLOAD_URL, URLEncoder.encode(fileName, StandardCharsets.UTF_8));
+        
+        Blob blob = storage.create(blobInfo, Files.readAllBytes(file.toPath()));
+        
+        return blob.getMediaLink();
     }
 	
 	private static File convertToFile(MultipartFile multipartFile, String fileName) throws IOException {
@@ -74,7 +72,7 @@ public class FirebaseUtils {
         }
     }
 	
-	public List<String> getImagesFromFirebaseStorage() {
+	public static List<String> getImagesFromFirebaseStorage() {
         List<String> imageUrls = new ArrayList<>();
 
         StorageClient storageClient = StorageClient.getInstance();
@@ -92,7 +90,7 @@ public class FirebaseUtils {
         return imageUrls;
     }
 	
-	public String getImageUrlByName(List<String> imageUrls, String imageName) {
+	public static String getImageUrlByName(List<String> imageUrls, String imageName) {
 	    for (String imageUrl : imageUrls) 
 	        if (imageUrl.contains(imageName))
 	            return imageUrl;
@@ -100,7 +98,7 @@ public class FirebaseUtils {
 	    return null;
 	}
 	
-	public String getImageNameFromPath(String imagePath) {
+	public static String getImageNameFromPath(String imagePath) {
         int lastSlashIndex = imagePath.lastIndexOf("/");
         if (lastSlashIndex != -1 && lastSlashIndex < imagePath.length() - 1) 
             return imagePath.substring(lastSlashIndex + 1);

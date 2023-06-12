@@ -15,14 +15,17 @@ let id=0;
 
 let method="POST";
 const page = "#";
+let productId;
+
 $(document).ready(() => { 
   validateForm(editform);
 
   //Adquirir elemento en session
-  let produtToEdit = sessionStorage.getItem("product");
+  let productToEdit = sessionStorage.getItem("product");
 
-  if(produtToEdit != null) {
-    produtToEdit = JSON.parse(produtToEdit);
+  if(productToEdit != null) {
+    productToEdit = JSON.parse(productToEdit);
+    productId = productToEdit.id;
     sessionStorage.removeItem("product");
     method="PUT";
     page="../html/products.html";
@@ -41,9 +44,9 @@ $(document).ready(() => {
     
     previewImage.setAttribute("src", img);
     customTxt.innerHTML = img;
-    $('#product-form-category').val(produtToEdit.category);
+    $('#product-form-category').val(productToEdit.category);
 
-    if(produtToEdit.type === "dog")
+    if(productToEdit.type === "dog")
       document.querySelector('#product-form-dog').checked = true;
     else
       document.querySelector('#product-form-cat').checked = true;
@@ -62,7 +65,7 @@ $(document).ready(() => {
         })
         .then(data => {
           
-          if(data.status==200){
+          if(data.status===200){
             sessionStorage.setItem("alert", 8 )
             window.location.href="../html/products.html";
           }else{
@@ -82,7 +85,7 @@ $(document).ready(() => {
         })
       
       }
-      url=("https://petzonalize.up.railway.app/products/"+produtToEdit.id);
+      url=("https://petzonalize.up.railway.app/products/"+productToEdit.id);
       deleter.addEventListener(`click`, ()=>{
       deletion(url)
       console.log("deleter")
@@ -93,12 +96,10 @@ $(document).ready(() => {
     
   }
 });
+
 // metodo post
-
 // Example POST method implementation:
-
 //declarar elementos
-
 
 editform.submit(submitButton => {
   submitButton.preventDefault();
@@ -111,19 +112,24 @@ editform.submit(submitButton => {
   const category = document.getElementById("product-form-category").value;
   const price = Number(document.getElementById("product-form-price").value);
   const pet = document.getElementById('product-form-dog').checked ? "dog" : "cat";
-  let getty = document.getElementById('product-form-uploads').files[0].name;
-  getty= ("/assets/img/products/not customizable/"+getty);
+  const imgUrl = $(previewImage).attr("src");
 
-  let data= { name:name, description:description, category:category,
-  customizable:false, price:price, imgUrl:"getty", stock:stock, type:pet, properties:null};
+  let data= { id:productId, name:name, description:description, category:category,
+  customizable:false, price:price, imgUrl:imgUrl, stock:stock, type:pet, properties:null};
   console.log(data);
 
   async function postData(url, data) {
+      const file = realFileBtn.files[0];
+      const formData = new FormData();
+      formData.append("image", file);
+
+      // Append the JSON data as a Blob
+      const jsonBlob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+      formData.append('product', jsonBlob);  
   
       let response = await fetch(url, {
           method: method,
-          body: JSON.stringify(data),
-          headers: {"Content-type": "application/json; charset=UTF-8"}
+          body: formData
       })
   
       response = await response.json();
@@ -131,7 +137,7 @@ editform.submit(submitButton => {
       console.log(response)
   }
   
-  postData("https://petzonalize.up.railway.app/products", data).then((data) => {
+  postData("http://localhost:8080/products", data).then((data) => {
     console.log(data); // JSON data parsed by `data.json()` call
   });
 
