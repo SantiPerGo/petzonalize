@@ -10,13 +10,14 @@ import org.petzonalize.backend.entity.Product;
 import org.petzonalize.backend.entity.User;
 import org.petzonalize.backend.mapper.OrderHasProductMapper;
 import org.petzonalize.backend.mapper.OrderMapper;
+import org.petzonalize.backend.mapper.ProductMapper;
 import org.petzonalize.backend.repository.OrderHasProductRepository;
 import org.petzonalize.backend.repository.OrderRepository;
 import org.petzonalize.backend.repository.ProductRepository;
 import org.petzonalize.backend.repository.UserRepository;
 import org.petzonalize.backend.service.OrderService;
-import org.petzonalize.backend.utils.EmailService;
-import org.petzonalize.backend.utils.FirebaseHandler;
+import org.petzonalize.backend.utils.EmailUtils;
+import org.petzonalize.backend.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,16 +40,13 @@ public class OrderServiceImpl implements OrderService {
     
     @Autowired
     private UserRepository userRepository;
-    
-    @Autowired
-    private FirebaseHandler firebaseHandler;
 
     @Autowired
     private TemplateEngine templateEngine;
     
-    private final EmailService emailService;
-    public OrderServiceImpl(EmailService emailService) {
-        this.emailService = emailService;
+    private final EmailUtils emailUtils;
+    public OrderServiceImpl(EmailUtils emailUtils) {
+        this.emailUtils = emailUtils;
     }
     
     @Transactional
@@ -100,25 +98,18 @@ public class OrderServiceImpl implements OrderService {
 					// Creating connection between order and product
 					orderHasProductRepository.saveAndFlush(orderHasProduct);
 				} else {
-					return new ResponseEntity<>("Product amount is greater than stock: " +
-						productOrder, HttpStatus.BAD_REQUEST);
+					return ResponseUtils.mapToJsonResponse("Product amount is greater than stock: " +
+							productOrder, HttpStatus.BAD_REQUEST);
 				}
 			} else {
-				return new ResponseEntity<>("Product not found: " +
-					productOrder, HttpStatus.BAD_REQUEST);
+				return ResponseUtils.mapToJsonResponse("Product not found: " +
+						productOrder, HttpStatus.BAD_REQUEST);
 			}
 		}
 
         String subject = "Petzonalize - ¡Gracias por tu Compra!";
-    	List<String> imageUrls = firebaseHandler.getImagesFromFirebaseStorage();
-        String logoUrl = firebaseHandler.getImageUrlByName(imageUrls, "Logo.png");
-        
-        // Getting images urls        
-        products.forEach(product -> {
-	        product.setImgUrl(firebaseHandler.getImageUrlByName(imageUrls, 
-		        firebaseHandler.getImageNameFromPath(product.getImgUrl()))
-    		);
-        });
+        String logoUrl = ProductMapper.getProductUrlByName(
+        		productRepository.findAll(), "Logo.png");
         
         // Loading HTML with Thymeleaf
         Context context = new Context();
@@ -128,8 +119,9 @@ public class OrderServiceImpl implements OrderService {
         context.setVariable("totalAmount", totalAmount);
         String htmlContent = templateEngine.process("order_recipe", context);
 
-		emailService.sendEmail(user.getEmail(), subject, htmlContent);
-		
-		return new ResponseEntity<>("Order purchase recipe sent to email!", HttpStatus.OK);
+		emailUtils.sendEmail(user.getEmail(), subject, htmlContent);
+
+		return ResponseUtils.mapToJsonResponse("Order purchase recipe sent to email!",
+			HttpStatus.OK);
 	}
 }

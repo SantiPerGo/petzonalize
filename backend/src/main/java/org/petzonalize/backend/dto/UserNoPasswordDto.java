@@ -1,15 +1,14 @@
-package org.petzonalize.backend.entity;
+package org.petzonalize.backend.dto;
 
 import org.petzonalize.backend.constant.UserConstants;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,8 +19,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="users")
-public class User implements UserConstants {	
+public class UserNoPasswordDto implements UserConstants {	
 	@Id
 	@Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,14 +41,10 @@ public class User implements UserConstants {
 		message = USER_PHONE_SIZE)
 	@NotBlank(message = USER_PHONE_NULL)
     private String phone;
-
-	@Size(min = USER_PASSWORD_MIN, max = USER_PASSWORD_MAX,
-		message = USER_PASSWORD_SIZE)
-	@Column(nullable = true)
-    private String password;
 	
     @NotNull(message = USER_ADDRESS_NULL)
     @Size(max = USER_ADDRESS_MAX, message = USER_ADDRESS_SIZE)
     @NotBlank(message = USER_ADDRESS_NULL)
     private String address;
+
 }

@@ -16,10 +16,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="users_has_privileges")
+@Entity(name="user_has_privilege")
 public class UserHasPrivilege {
 	@Id
-	@Column(name = "users_has_privileges_id")
+	@Column(name = "user_has_privilege_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 

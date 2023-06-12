@@ -1,6 +1,6 @@
 package org.petzonalize.backend.service;
 
-import org.petzonalize.backend.dto.UserDto;
+import org.petzonalize.backend.dto.UserLoginDto;
 import org.petzonalize.backend.entity.User;
 import org.springframework.http.ResponseEntity;
 
@@ -23,7 +23,7 @@ public interface UserService {
      * @param userLogin The user's login details (email and password)
      * @return Response entity with a success message or an error message
      */
-    ResponseEntity<String> deleteUser(UserDto userLogin);
+    ResponseEntity<?> deleteUser(UserLoginDto userLogin);
 
     /**
      * Updates an existing user.
@@ -44,5 +44,5 @@ public interface UserService {
      * @param userLogin The user's login details (email and password)
      * @return Response entity with the authenticated user (without password) or an error message
      */
-    ResponseEntity<?> login(UserDto userLogin);
+    ResponseEntity<?> login(UserLoginDto userLogin);
 }

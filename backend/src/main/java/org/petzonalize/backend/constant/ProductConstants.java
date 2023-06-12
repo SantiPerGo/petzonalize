@@ -14,9 +14,9 @@ public interface ProductConstants {
     
 	String PRODUCT_CUSTOM_NULL = "Product customizable (boolean) cannot be null or empty";
     
-	int PRODUCT_IMG_MAX = 150;
-	String PRODUCT_IMG_NULL = "Product category (string) cannot be null or empty";
-    String PRODUCT_IMG_SIZE = "Product category (string) cannot be longer than 150 characters";
+	int PRODUCT_IMG_MAX = 250;
+	String PRODUCT_IMG_NULL = "Product image url (string) cannot be null or empty";
+    String PRODUCT_IMG_SIZE = "Product image url (string) cannot be longer than 250 characters";
     
 	int PRODUCT_TYPE_MAX = 20;
     String PRODUCT_TYPE_SIZE = "Product type (string) cannot be longer than 20 characters";

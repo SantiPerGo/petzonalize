@@ -7,7 +7,7 @@ import org.petzonalize.backend.entity.UserHasPrivilege;
 public abstract class UserHasPrivilegeMapper {
 	public static UserHasPrivilege mapToUserHasPrivilege(User user, Privilege privilege) {
 		return UserHasPrivilege.builder()
-			.id(0L)
+			.id(null)
 			.user(user)
 			.privilege(privilege)
 			.build();
