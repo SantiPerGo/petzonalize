@@ -8,19 +8,12 @@ const previewDefaultText = previewContainer.querySelector(".image-preview__defau
 const customTxt = document.getElementById("custom-text");
 const txt = document.getElementById("custom-text");
 const deleter = document.getElementById("remove");
+const realFileBtn = document.getElementById("product-form-uploads");
+const customBtn = document.getElementById("upload-image");
 
-let usuario =    {
-  id: 1,
-  name: "Juan Fernando Reyes Sánchez",
-  email: "juanreyssan@gmail.com",
-  phone:"525519673129" ,
-  password: "password",
-  privileges: "admin"
-}
-usuario=JSON.stringify(usuario)
-sessionStorage.setItem("users-logged-in",usuario)
+let id=0;
 
-const method="POST";
+let method="POST";
 const page = "#";
 $(document).ready(() => { 
   validateForm(editform);
@@ -39,6 +32,7 @@ $(document).ready(() => {
     $('#product-form-description').val(produtToEdit.description);
     $('#product-form-quantity').val(produtToEdit.stock);
     $('#product-form-price').val(produtToEdit.price);
+    id =produtToEdit.id;
     let img = produtToEdit.imgUrl;
 
     previewDefaultText.style.display = "none";
@@ -78,6 +72,7 @@ $(document).ready(() => {
             alertElement.text("¡No se encontró ningun producto con ese id!");
             alertElement.slideDown(250);
             setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+            
           }
         
         })
@@ -93,6 +88,8 @@ $(document).ready(() => {
       console.log("deleter")
       
       })
+      
+      return id;
     
   }
 });
@@ -166,8 +163,6 @@ async function deletion(url) {
       method: "DELETE",
   }) .then(response => {
     
-    //console.log(response.status); 
-    //console.log(response.statusText); 
     
     return response;
   
@@ -184,16 +179,17 @@ async function deletion(url) {
       alertElement.text("¡No se encontró ningun producto con ese id!");
       alertElement.slideDown(250);
       setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+
     }
   
   })
   .catch(error => {
-
+    console.error(error);
 
   })
 
 }
-url=("https://petzonalize.up.railway.app/products/"+43);
+url=("https://petzonalize.up.railway.app/products/"+id);
 deleter.addEventListener(`click`, ()=>{
 deletion(url)
 console.log("deleter")
@@ -205,39 +201,30 @@ console.log("deleter")
 
 
 // Boton cargar imagen
-const realFileBtn = document.getElementById("product-form-uploads");
-const customBtn = document.getElementById("upload-image");
 
 customBtn.addEventListener("click", () => realFileBtn.click());
 
 realFileBtn.addEventListener("change", function() {
+  const file = this.files[0];
+  console.log("funcion 1")
   if (realFileBtn.value) {
+    const reader = new FileReader();
+    previewDefaultText.style.display = "none";
+    previewImage.style.display = "block";
+    reader.addEventListener("load", function() {
+        previewImage.setAttribute("src", this.result);
+    });
+
+    reader.readAsDataURL(file);
     customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
     $("#imagePreview").removeClass("d-none");
+
   } else {
     customTxt.innerHTML = "No se ha cargado una imagen";
     $("#imagePreview").addClass("d-none");
+
+    previewDefaultText.style.display = null;
+    previewImage.style.display = null;
+    previewImage.setAttribute("src", "");
   }
-});
-
-// Mostrar imagen previa que se añadirá al producto
-
-uploadImg.addEventListener("change", function() {
-    const file = this.files[0];
-
-    if (file){
-        const reader = new FileReader();
-
-        previewDefaultText.style.display = "none";
-        previewImage.style.display = "block";
-
-        reader.addEventListener("load", function() {
-            previewImage.setAttribute("src", this.result);
-        });
-        reader.readAsDataURL(file);
-    } else {
-        previewDefaultText.style.display = null;
-        previewImage.style.display = null;
-        previewImage.setAttribute("src", "");
-    }
-});
+}); 
