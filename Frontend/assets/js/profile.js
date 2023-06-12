@@ -8,27 +8,31 @@ $(document).ready(() => {
   const formPhone = $("#form-phone");
   const formEmail = $("#form-email");
   const formPassword = $("#form-password");
+  const formAddress = $("#form-address"); // Nuevo formulario de dirección
   validateForm(formName);
   validateForm(formPhone);
   validateForm(formEmail);
   validateForm(formPassword);
+  validateForm(formAddress); // Validar formulario de dirección también
   formName.submit(submitButton => submitButton.preventDefault());
   formPhone.submit(submitButton => submitButton.preventDefault());
   formEmail.submit(submitButton => submitButton.preventDefault());
   formPassword.submit(submitButton => submitButton.preventDefault());
+  formAddress.submit(submitButton => submitButton.preventDefault()); // Evitar envío del formulario de dirección
 
   // Getting user from local storage
   let user = localStorage.getItem("users-logged-in");
 
-  if(user != null) {
+  if (user != null) {
     user = JSON.parse(user);
 
     // Showing user data into the inputs
     $('#input-name').val(user.name);
     $('#input-email').val(user.email);
     $('#input-phone').val(user.phone);
+    $('#input-address').val(user.address); // Mostrar dirección en el input correspondiente
 
-    if(user.privileges === "admin")
+    if (user.privileges === "admin")
       $("#subtitle").text("Administrador");
     else
       $("#subtitle").text("Cliente");
@@ -37,6 +41,7 @@ $(document).ready(() => {
     window.location.href = '../../index.html';
   }
 });
+
 
 // *********************************************************************************
 // Pencil icon, save icon and inputs validation
