@@ -32,7 +32,7 @@ $(document).ready(() => {
     $('#input-phone').val(user.phone);
     $('#input-address').val(user.address); // Mostrar dirección en el input correspondiente
 
-    if (user.privileges === "admin")
+    if (user.privilege === "admin")
       $("#subtitle").text("Administrador");
     else
       $("#subtitle").text("Cliente");
