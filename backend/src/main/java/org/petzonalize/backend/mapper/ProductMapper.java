@@ -7,7 +7,7 @@ import org.petzonalize.backend.entity.Product;
 public abstract class ProductMapper {
 	public static Product mapToProduct(Product product) {
         return Product.builder()
-        	.id(0L)
+        	.id(null)
             .name(product.getName())
             .description(product.getDescription())
             .category(product.getCategory())

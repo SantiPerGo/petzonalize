@@ -7,11 +7,13 @@ import org.petzonalize.backend.entity.Product;
 import org.petzonalize.backend.mapper.ProductMapper;
 import org.petzonalize.backend.repository.ProductRepository;
 import org.petzonalize.backend.service.ProductService;
+import org.petzonalize.backend.utils.FirebaseUtils;
 import org.petzonalize.backend.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service("productService")
 public class ProductServiceImpl implements ProductService {
@@ -20,18 +22,26 @@ public class ProductServiceImpl implements ProductService {
     
     // TODO: Allow to send and receive images
 	@Override
-	public ResponseEntity<?> createProduct(Product product) {
+	public ResponseEntity<?> createProduct(Product product, MultipartFile image) {
 		Optional<Product> optionalProduct = productRepository.findByName(product.getName());
 		
 		if(optionalProduct.isPresent())
 			return ResponseUtils.mapToJsonResponse(
         		"Product with name '" + product.getName() + "' already exists",
         		HttpStatus.CONFLICT); 
-		else
-            return new ResponseEntity<>(
-                productRepository.saveAndFlush(
-                	ProductMapper.mapToProduct(product)
-        		), HttpStatus.CREATED);
+		else {
+			String imgUrl = FirebaseUtils.uploadFileToFirebaseStorage(image);
+			
+			if(imgUrl != null) {
+				product.setImgUrl(imgUrl);
+	            return new ResponseEntity<>(
+	                productRepository.saveAndFlush(ProductMapper.mapToProduct(product)),
+	                HttpStatus.CREATED);
+			} else
+				return ResponseUtils.mapToJsonResponse(
+	        		"Product img couldn't be saved to Firebase storage!",
+	        		HttpStatus.INTERNAL_SERVER_ERROR); 
+		}
 	}
 
 	@Override

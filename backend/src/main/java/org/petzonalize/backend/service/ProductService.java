@@ -2,6 +2,7 @@ package org.petzonalize.backend.service;
 
 import org.petzonalize.backend.entity.Product;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface ProductService {
     /**
@@ -13,9 +14,10 @@ public interface ProductService {
     /**
      * Creates a new product.
      * @param product The product to be created
-     * @return Response entity with the created product or an error message
+     * @param image The image file associated with the product
+     * @return ResponseEntity containing the created product or an error message
      */
-    ResponseEntity<?> createProduct(Product product);
+    ResponseEntity<?> createProduct(Product product, MultipartFile image);
 
     /**
      * Deletes a product by its ID.

@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
 			Privilege clientPrivilege =
 				privilegeRepository.findByPrivilege("client").get();
 					
-            user.setId(0L);
+            user.setId(null);
 			userRepository.saveAndFlush(user);
         	
         	userHasPrivilegeRepository.saveAndFlush(

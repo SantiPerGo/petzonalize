@@ -7,7 +7,7 @@ import org.petzonalize.backend.entity.Product;
 public abstract class OrderHasProductMapper {
 	public static OrderHasProduct mapToOrderHasProduct(Order order, Product product) {
 		return OrderHasProduct.builder()
-			.id(0L)
+			.id(null)
 			.order(order)
 			.product(product)
 			.build();
