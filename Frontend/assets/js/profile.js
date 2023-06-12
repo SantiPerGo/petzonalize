@@ -142,10 +142,6 @@ const deleteAccount = () => {
   $("#buttons").addClass("d-none");
 };
 
-
-//Añadí estas funciones a partir de aquí
-
-
 // Muestra el formulario cuando se da click al botón de eliminar cuenta
 function showDeleteForm() {
   let deleteContainer = document.getElementById('delete-user-container');
@@ -167,18 +163,13 @@ function closeSession() {
   window.location.href = '../../index.html'; 
 }
 
+const formDelete = $("#form-delete-account");
+formDelete.submit(submitButton => {
+  submitButton.preventDefault();
 
-//De momento esta función solo hace esto, es decir lo mismo que la de cerrar sesión
-function confirmDeleteAccount() {
   // Borrar el valor del 'users-logged-in' del localStorage
-  localStorage.removeItem('users-logged-in');
+  //localStorage.removeItem('users-logged-in');
   
   // Redirigir hacia el index
-  window.location.href = '../../index.html';
-}
-
-
-
-
-
-
+  //window.location.href = '../../index.html';
+});

@@ -12,6 +12,7 @@ import org.petzonalize.backend.entity.UserHasPrivilege;
 import org.petzonalize.backend.mapper.ProductMapper;
 import org.petzonalize.backend.mapper.UserHasPrivilegeMapper;
 import org.petzonalize.backend.mapper.UserMapper;
+import org.petzonalize.backend.repository.OrderRepository;
 import org.petzonalize.backend.repository.PrivilegeRepository;
 import org.petzonalize.backend.repository.ProductRepository;
 import org.petzonalize.backend.repository.UserHasPrivilegeRepository;
@@ -35,6 +36,9 @@ public class UserServiceImpl implements UserService {
     
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private OrderRepository orderRepository;
     
     @Autowired
     private PrivilegeRepository privilegeRepository;
@@ -84,8 +88,13 @@ public class UserServiceImpl implements UserService {
 					"User with email '" + userLogin.getEmail() + "' doesn't exists",
             		HttpStatus.NOT_FOUND);
 		else {
-			if(optionalUser.get().getPassword().equals(userLogin.getPassword())) {
+			User user = optionalUser.get();
+			
+			if(user.getPassword().equals(userLogin.getPassword())) {
+				orderRepository.deleteByUser(user);
+				userHasPrivilegeRepository.deleteByUser(user);
 				userRepository.deleteByEmail(userLogin.getEmail());
+				
 				return ResponseUtils.mapToJsonResponse(
 					"User with email '" + userLogin.getEmail() + "' successfully removed!",
 					HttpStatus.OK);
