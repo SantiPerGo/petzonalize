@@ -143,51 +143,19 @@ const deleteAccount = () => {
 };
 
 
-
-/* const confirmDeleteAccount = () => {
-  fetch("https://petzonalize.up.railway.app/users", {
-    method: "GET",
-  })
-    .then(response => response.json())
-    .then(data => {
-      delete data["users-logged-in"];
-
-      return fetch("https://petzonalize.up.railway.app/users",{
-        method: "PUT",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
-    })
-    .then(response => {
-      if (response.ok) {
-        localStorage.removeItem("users-logged-in");
-        sessionStorage.setItem("eliminated-account", "¡Cuenta Eliminada con Éxito!");
-        window.location.href = '../../index.html';
-      } else {
-        console.error("Error al eliminar la cuenta.");
-      }
-    })
-    .catch(error => {
-      console.error("Error", error);
-    });
-}; */
-
-
 //Añadí estas funciones a partir de aquí
 
 
-//Muestra el formulario cuando se da click al botón de eliminar cuenta
+// Muestra el formulario cuando se da click al botón de eliminar cuenta
 function showDeleteForm() {
   let deleteContainer = document.getElementById('delete-user-container');
-  deleteContainer.classList.remove('pop--hidden');
+  deleteContainer.style.visibility = 'visible';
 }
 
-//Cancela y vuelve a ocultar el formulario cuando se da click al botón de cancelar eliminación
+// Cancela y oculta el formulario cuando se da click al botón de cancelar eliminación
 function cancelDeleteAccount() {
   let deleteContainer = document.getElementById('delete-user-container');
-  deleteContainer.classList.add('pop--hidden');
+  deleteContainer.style.visibility = 'hidden';
 }
 
 //Cerrar sesión y redirigir hacia el index
