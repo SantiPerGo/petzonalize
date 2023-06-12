@@ -13,6 +13,9 @@
     --purple: #73628A;
     --white: white;
     --black: black;
+
+    --light-blue-filter: invert(66%) sepia(43%) saturate(520%) hue-rotate(154deg) brightness(103%) contrast(98%);
+    --blue-filter: invert(52%) sepia(7%) saturate(3082%) hue-rotate(150deg) brightness(99%) contrast(99%);
 }
 
 html,
@@ -199,7 +202,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    filter: invert(52%) sepia(7%) saturate(3082%) hue-rotate(150deg) brightness(99%) contrast(99%);
+    filter: var(--blue-filter);
     background-image: url("../img/Paw.png");
     width: calc(1rem + 3vw);
     height: calc(1rem + 3vw);

@@ -21,6 +21,10 @@ $(document).ready(function(){
         const lightGrayColor = $(":root").css("--light-gray");
         const grayColor = $(":root").css("--gray");
         const darkGrayColor = $(":root").css("--dark-gray");
+
+        const lightBlueFilter = $(":root").css("--light-blue-filter");
+        const blueFilter = $(":root").css("--blue-filter");
+
         let darkMode = true;
 
         $("#dark-mode").click(() => {
@@ -39,6 +43,8 @@ $(document).ready(function(){
             $(":root").css("--gray", darkMode ? lightGrayColor : grayColor);
             $(":root").css("--light-gray", darkMode ? grayColor : lightGrayColor);
             $(":root").css("--dark-gray", darkMode ? grayColor : darkGrayColor);
+
+            $(":root").css("--blue-filter", darkMode ? lightBlueFilter : blueFilter);
             
             darkMode = !darkMode;
 
