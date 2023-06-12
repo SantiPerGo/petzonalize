@@ -49,26 +49,30 @@ h2 {
     justify-items: center;
 }
 
-.pop--hidden{
-    display: none;
-  }
 
-
-  .pop--unhidden{
-    display: flex;
-  }
-
-    #delete-user-container {
+#delete-user-container {
+    visibility: hidden;
     position: fixed;
-    width: 100%;
-    background: rgb(114,15,176);
-    background: radial-gradient(circle, rgba(114, 15, 176, 0) 0%, rgba(0,0,0,0.48923319327731096) 86%);
-    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(114, 15, 176);
+    background: radial-gradient(circle, rgba(114, 15, 176, 0) 0%, rgba(0, 0, 0, 0.48923319327731096) 86%);
     z-index: 6;
     backdrop-filter: blur(3px);
-    padding-top: auto;
-    padding-bottom: auto;
-}   
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #delete-user-container form {
+    margin-top: 100px;
+  }
+  
+  
 
 input {
     color: var(--black);
@@ -77,5 +81,4 @@ input {
 input::placeholder {
     color: var(--black);
 }
-
 
