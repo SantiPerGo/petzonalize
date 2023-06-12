@@ -118,7 +118,7 @@ const customProducts = (product) => {
             userCustoms += `<p class="my-0">Nombre: ${product.properties.petname}</p>`;  
         }
         else{
-            userCustoms += `<p class="my-0">Nombre: No Aplica</p>`;
+            userCustoms += `<p class="my-0">Nombre: No Aplica </p>`;
         }
     }
     if(product.properties.hasOwnProperty("petphone") && product.properties["petphone"] != null){
