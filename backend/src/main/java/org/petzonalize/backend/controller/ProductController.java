@@ -98,7 +98,7 @@ public class ProductController {
     })
     @PutMapping
     public ResponseEntity<?> updateProduct(@RequestPart("product") Product product,
-            @RequestPart("image") MultipartFile image){
+            @RequestPart(name = "image", required = false) MultipartFile image){
         return productService.updateProduct(product, image);
     }
 }

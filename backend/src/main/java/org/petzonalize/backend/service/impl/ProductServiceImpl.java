@@ -67,17 +67,33 @@ public class ProductServiceImpl implements ProductService {
 			return ResponseUtils.mapToJsonResponse(
 				"Product with id '" + product.getId() + "' doesn't exist", HttpStatus.NOT_FOUND); 
 		else {
-			String imgUrl = FirebaseUtils.uploadFileToFirebaseStorage(image);
-			
-			if(imgUrl != null) {
-				product.setId(optionalProduct.get().getId());
-				product.setImgUrl(imgUrl);
-	            return new ResponseEntity<>(
-	                productRepository.saveAndFlush(product), HttpStatus.CREATED);
-			} else
-				return ResponseUtils.mapToJsonResponse(
-	        		"Product img couldn't be uploaded to Firebase Storage!",
-	        		HttpStatus.INTERNAL_SERVER_ERROR); 
+			if(image != null) {
+				String imgUrl = FirebaseUtils.uploadFileToFirebaseStorage(image);
+				
+				if(imgUrl != null) {
+					product.setId(optionalProduct.get().getId());
+					product.setImgUrl(imgUrl);
+		            return new ResponseEntity<>(
+		                productRepository.saveAndFlush(product), HttpStatus.CREATED);
+				} else
+					return ResponseUtils.mapToJsonResponse(
+		        		"Product img couldn't be uploaded to Firebase Storage!",
+		        		HttpStatus.INTERNAL_SERVER_ERROR); 
+			} else {
+				// Getting images urls from firebase
+		        List<String> imageUrls = FirebaseUtils.getImagesFromFirebaseStorage();
+		        
+		        String imgUrl = FirebaseUtils.getImageUrlByName(imageUrls, 
+			        FirebaseUtils.getImageNameFromPath(product.getImgUrl()));
+		        
+		        if(imgUrl == null)
+					return ResponseUtils.mapToJsonResponse(
+		        		"Provided url doesn't exist in Firebase Storage!",
+		        		HttpStatus.BAD_REQUEST); 
+	        	else
+					return new ResponseEntity<>(
+						productRepository.saveAndFlush(product), HttpStatus.CREATED);
+			}
 		}
 	}
 

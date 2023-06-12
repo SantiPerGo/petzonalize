@@ -104,11 +104,10 @@ editform.submit(submitButton => {
   const category = document.getElementById("product-form-category").value;
   const price = Number(document.getElementById("product-form-price").value);
   const pet = document.getElementById('product-form-dog').checked ? "dog" : "cat";
-  let getty = document.getElementById('product-form-uploads').files[0].name;
-  getty= ("/assets/img/products/not customizable/"+getty);
+  const imgUrl = $(previewImage).attr("src");
 
   let data= { id:productId, name:name, description:description, category:category,
-  customizable:false, price:price, imgUrl:"getty", stock:stock, type:pet, properties:null};
+  customizable:false, price:price, imgUrl:imgUrl, stock:stock, type:pet, properties:null};
   console.log(data);
 
   async function postData(url, data) {
@@ -142,7 +141,7 @@ editform.submit(submitButton => {
       alertElement.text("¡Producto añadido con Éxito!");
       alertElement.slideDown(250);
       setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-      //window.location.href =page;
+      window.location.href =page;
   }else{    
     alertElement.removeClass("alert-success");
     alertElement.removeClass("text-success");
