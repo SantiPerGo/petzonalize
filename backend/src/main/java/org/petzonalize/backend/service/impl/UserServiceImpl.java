@@ -168,13 +168,22 @@ public class UserServiceImpl implements UserService {
 			return ResponseUtils.mapToJsonResponse("User with email '" + userLogin.getEmail()
 				+ "' doesn't exist", HttpStatus.NOT_FOUND);
 		else {
-			if(optionalUser.get().getPassword().equals(userLogin.getPassword()))           	
-				return new ResponseEntity<>(
-					UserMapper.mapToUserWithoutPassword(optionalUser.get()),
-					HttpStatus.OK);
-			else
-				return ResponseUtils.mapToJsonResponse(
-					"User password incorrect!", HttpStatus.BAD_REQUEST);
+			Optional<UserHasPrivilege> optionalUserHasPrivilege =
+				userHasPrivilegeRepository.findByUser(optionalUser.get());
+			
+			if(optionalUserHasPrivilege.isPresent()) {
+				UserHasPrivilege user = optionalUserHasPrivilege.get();
+				
+				if(user.getUser().getPassword().equals(userLogin.getPassword()))           	
+					return new ResponseEntity<>(
+						UserMapper.mapToUserWithPrivilege(user),
+						HttpStatus.OK);
+				else
+					return ResponseUtils.mapToJsonResponse(
+						"User password incorrect!", HttpStatus.BAD_REQUEST);
+			} else 
+				return ResponseUtils.mapToJsonResponse("User with email '" + userLogin.getEmail()
+					+ "' doesn't exist", HttpStatus.NOT_FOUND);
 		}
 	}
 }

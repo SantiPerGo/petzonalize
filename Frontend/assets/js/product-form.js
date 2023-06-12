@@ -8,11 +8,15 @@ const previewDefaultText = previewContainer.querySelector(".image-preview__defau
 const customTxt = document.getElementById("custom-text");
 const txt = document.getElementById("custom-text");
 const deleter = document.getElementById("remove");
+const realFileBtn = document.getElementById("product-form-uploads");
+const customBtn = document.getElementById("upload-image");
 
-let productId;
+let id=0;
 
 let method="POST";
-let page = "#";
+const page = "#";
+let productId;
+
 $(document).ready(() => { 
   validateForm(editform);
 
@@ -27,11 +31,12 @@ $(document).ready(() => {
     page="../html/products.html";
 
     // Mostrar datos de sessionstorage
-    $('#product-form-name').val(productToEdit.name);
-    $('#product-form-description').val(productToEdit.description);
-    $('#product-form-quantity').val(productToEdit.stock);
-    $('#product-form-price').val(productToEdit.price);
-    let img = productToEdit.imgUrl;
+    $('#product-form-name').val(produtToEdit.name);
+    $('#product-form-description').val(produtToEdit.description);
+    $('#product-form-quantity').val(produtToEdit.stock);
+    $('#product-form-price').val(produtToEdit.price);
+    id =produtToEdit.id;
+    let img = produtToEdit.imgUrl;
 
     previewDefaultText.style.display = "none";
     previewImage.style.display = "block";
@@ -70,6 +75,7 @@ $(document).ready(() => {
             alertElement.text("¡No se encontró ningun producto con ese id!");
             alertElement.slideDown(250);
             setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+            
           }
         
         })
@@ -85,6 +91,8 @@ $(document).ready(() => {
       console.log("deleter")
       
       })
+      
+      return id;
     
   }
 });
@@ -155,41 +163,74 @@ editform.submit(submitButton => {
 
 // Boton reiniciar/borrar formulario
 const resetForm = () => editform.reset();
+async function deletion(url) {
+  
+  let response = await fetch(url, {
+      method: "DELETE",
+  }) .then(response => {
+    
+    
+    return response;
+  
+  })
+  .then(data => {
+    
+    if(data.status==200){
+      sessionStorage.setItem("alert", 8 )
+      window.location.href="../html/products.html";
+    }else{
+      alertElement.removeClass("text-success");
+      alertElement.addClass("alert-danger");
+      alertElement.addClass("text-danger");
+      alertElement.text("¡No se encontró ningun producto con ese id!");
+      alertElement.slideDown(250);
+      setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+
+    }
+  
+  })
+  .catch(error => {
+    console.error(error);
+
+  })
+
+}
+url=("https://petzonalize.up.railway.app/products/"+id);
+deleter.addEventListener(`click`, ()=>{
+deletion(url)
+console.log("deleter")
+
+})
+
+
+
+
 
 // Boton cargar imagen
-const realFileBtn = document.getElementById("product-form-uploads");
-const customBtn = document.getElementById("upload-image");
 
 customBtn.addEventListener("click", () => realFileBtn.click());
 
 realFileBtn.addEventListener("change", function() {
+  const file = this.files[0];
+  console.log("funcion 1")
   if (realFileBtn.value) {
+    const reader = new FileReader();
+    previewDefaultText.style.display = "none";
+    previewImage.style.display = "block";
+    reader.addEventListener("load", function() {
+        previewImage.setAttribute("src", this.result);
+    });
+
+    reader.readAsDataURL(file);
     customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
     $("#imagePreview").removeClass("d-none");
+
   } else {
     customTxt.innerHTML = "No se ha cargado una imagen";
     $("#imagePreview").addClass("d-none");
+
+    previewDefaultText.style.display = null;
+    previewImage.style.display = null;
+    previewImage.setAttribute("src", "");
   }
-});
-
-// Mostrar imagen previa que se añadirá al producto
-
-uploadImg.addEventListener("change", function() {
-    const file = this.files[0];
-
-    if (file){
-        const reader = new FileReader();
-
-        previewDefaultText.style.display = "none";
-        previewImage.style.display = "block";
-
-        reader.addEventListener("load", function() {
-            previewImage.setAttribute("src", this.result);
-        });
-        reader.readAsDataURL(file);
-    } else {
-        previewDefaultText.style.display = null;
-        previewImage.style.display = null;
-        previewImage.setAttribute("src", "");
-    }
-});
+}); 
