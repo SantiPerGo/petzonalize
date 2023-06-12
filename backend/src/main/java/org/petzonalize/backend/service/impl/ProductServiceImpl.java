@@ -39,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
 	                HttpStatus.CREATED);
 			} else
 				return ResponseUtils.mapToJsonResponse(
-	        		"Product img couldn't be saved to Firebase storage!",
+	        		"Product img couldn't be uploaded to Firebase Storage!",
 	        		HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}
