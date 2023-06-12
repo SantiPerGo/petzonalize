@@ -1,5 +1,6 @@
 package org.petzonalize.backend.controller;
 
+import org.petzonalize.backend.dto.HttpResponseDto;
 import org.petzonalize.backend.entity.ProductSize;
 import org.petzonalize.backend.service.ProductSizeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @CrossOrigin(origins="*")
 @ApiResponse(responseCode = "400", description = "Bad request",
 	content = @Content(mediaType = "application/json",
-		schema = @Schema(implementation = String.class)))
-@Tag(name = "Product Size Controller",
+		schema = @Schema(implementation = HttpResponseDto.class)))
+@Tag(name = "Product Size Endpoint",
 	description = "Product sizes are for customizables like collars, bowls, nameplates, etc.")
 public class ProductSizeController {
 	@Autowired
@@ -35,7 +36,7 @@ public class ProductSizeController {
             schema = @Schema(implementation = ProductSize.class, type = "List"))),
         @ApiResponse(responseCode = "404", description = "Product sizes not found!",
         	content = @Content(mediaType = "application/json",
-                schema = @Schema(implementation = String.class)))
+                schema = @Schema(implementation = HttpResponseDto.class)))
     })
     @GetMapping
     public ResponseEntity<?> getSizes() {

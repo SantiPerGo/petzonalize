@@ -3,6 +3,7 @@ package org.petzonalize.backend.exception;
 import java.util.ArrayList;
 
 import org.hibernate.TransientPropertyValueException;
+import org.petzonalize.backend.dto.HttpResponseDto;
 import org.petzonalize.backend.utils.ResponseUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class ControllerExceptionHandler {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "400", description = "Bad Request",
             content = @Content(mediaType = "text/plain",
-                schema = @Schema(implementation = String.class)))
+                schema = @Schema(implementation = HttpResponseDto.class)))
     })
 	@ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<?> handleNotReadableException(HttpMessageNotReadableException ex) {
@@ -52,7 +53,7 @@ public class ControllerExceptionHandler {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "400", description = "Bad Request",
             content = @Content(mediaType = "text/plain",
-                schema = @Schema(implementation = String.class)))
+                schema = @Schema(implementation = HttpResponseDto.class)))
     })
     public ResponseEntity<?> handleTransientException(TransientPropertyValueException ex) {
         return ResponseUtils.mapToJsonResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);

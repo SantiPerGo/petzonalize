@@ -20,7 +20,6 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
     
-    // TODO: Allow to send and receive images
 	@Override
 	public ResponseEntity<?> createProduct(Product product, MultipartFile image) {
 		Optional<Product> optionalProduct = productRepository.findByName(product.getName());
@@ -44,6 +43,7 @@ public class ProductServiceImpl implements ProductService {
 		}
 	}
 
+	// TODO: delete image from firebase
 	@Override
 	public ResponseEntity<?> deleteProduct(Long id){
 		Optional<Product> optionalProduct = productRepository.findById(id);
