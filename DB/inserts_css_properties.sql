@@ -22,3 +22,11 @@ INSERT INTO css_properties (`dog_top`, `dog_right`, `cat_top`, `cat_right`)
 -- ID 6
 INSERT INTO css_properties (`dog_top`, `dog_right`, `cat_top`, `cat_right`)
 	VALUES ('25%', '30%', '30%', '30%');
+
+
+INSERT INTO css_properties (`dog_top`, `dog_right`, `cat_top`, `cat_right`)
+	VALUES ('25%', '25%', '25%', '18%');
+
+
+INSERT INTO css_properties (`dog_top`, `dog_right`, `cat_top`, `cat_right`)
+	VALUES ('25%', '25%', '25%', '18%');
