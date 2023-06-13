@@ -110,7 +110,7 @@ const validateForm = form => {
             number: {
                 min: 1,
                 required: true,
-                number: true
+                digits: true
             },
             price: {
                 min: 1,
@@ -148,7 +148,7 @@ const validateForm = form => {
                 required: "Debes ingresar tu número telefónico",
                 minlength: "Tu número debe tener 10 digitos",
                 maxlength: "Tu número no puede tener más de 10 digitos",
-                digits: "Sólo puedes ingresar digitos"
+                digits: "El valor debe ser un número entero (sin decimales)"
             },
             password: {
                 required: "Debes ingresar tu contraseña",
@@ -162,7 +162,7 @@ const validateForm = form => {
             number: {
                 min: "El valor debe ser al menos 1",
                 required: "Debes ingresar la cantidad deseada",
-                number: "El valor debe ser un número"
+                digits: "El valor debe ser un número entero (sin decimales)"
             },
             price: {
                 min: "El precio debe ser al menos 1",
