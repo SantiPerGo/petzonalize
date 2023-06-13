@@ -167,9 +167,31 @@ const formDelete = $("#form-delete-account");
 formDelete.submit(submitButton => {
   submitButton.preventDefault();
 
-  // Borrar el valor del 'users-logged-in' del localStorage
-  //localStorage.removeItem('users-logged-in');
+  const url = "https://petzonalize.up.railway.app/users";
+  const requestData = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: $('#input-email').val(),
+      password: $("#input-password-delete").val()
+    }),
+  };
+
+  fetch(url, requestData)
+    .then((response) => {
+      if (!response.ok)
+        throw new Error("Error al realizar la solicitud");
   
-  // Redirigir hacia el index
-  //window.location.href = '../../index.html';
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Usuario eliminado:", data);
+      localStorage.removeItem('users-logged-in');
+      window.location.href = '../../index.html';
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud:", error);
+    });
 });

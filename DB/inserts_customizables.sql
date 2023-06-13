@@ -37,3 +37,11 @@ INSERT INTO customizables (`name`, `category`, `type`, `price`, `img_url`)
 -- ID 10
 INSERT INTO customizables (`name`, `category`, `type`, `price`, `img_url`)
 	VALUES ('Estampado de Cuadrados', 'pattern', 'squares', 59.12, '/assets/img/products/customizable/customizable-pattern-squares.jpg');
+
+-- ID 11
+INSERT INTO customizables (`name`, `category`, `type`, `price`, `img_url`, `stock`, `css_property_id`)
+	VALUES ('Chalequito de Generation', 'custome-body', 'generation-vest', 359, '/assets/img/products/customizable/customizable-body-generation-vest.png', 56, '7');
+
+-- ID 12
+INSERT INTO customizables (`name`, `category`, `type`, `price`, `img_url`, `stock`, `css_property_id`)
+	VALUES ('Sueter (Sintético) de Generation', 'custome-body', 'generation-sweater', 459, '/assets/img/products/customizable/customizable-body-generation-sweater.png', 36, '8');

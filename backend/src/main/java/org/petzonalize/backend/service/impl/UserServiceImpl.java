@@ -115,9 +115,18 @@ public class UserServiceImpl implements UserService {
             user.setId(optionalUser.get().getId());
             userRepository.saveAndFlush(user);
             
-            return new ResponseEntity<>(
-        		UserMapper.mapToUserWithoutPassword(user),
-        		HttpStatus.OK);
+			Optional<UserHasPrivilege> optionalUserHasPrivilege =
+				userHasPrivilegeRepository.findByUser(optionalUser.get());
+            
+			if(optionalUserHasPrivilege.isPresent()) {
+				UserHasPrivilege userHasPrivilege = optionalUserHasPrivilege.get();
+
+				return new ResponseEntity<>(
+	        		UserMapper.mapToUserWithPrivilege(userHasPrivilege),
+	        		HttpStatus.OK);
+			} else 
+				return ResponseUtils.mapToJsonResponse(
+					"User with id '" + user.getId() + "' doesn't exist", HttpStatus.NOT_FOUND);
 		}
 	}
 

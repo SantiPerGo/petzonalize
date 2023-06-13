@@ -52,6 +52,8 @@ INSERT INTO css_properties (`dog_top`, `dog_right`, `cat_top`, `cat_right`) VALU
 INSERT INTO css_properties (`dog_top`, `dog_right`, `cat_top`, `cat_right`) VALUES ('15%', '30%', '15%', '25%');
 INSERT INTO css_properties (`dog_top`, `dog_right`, `cat_top`, `cat_right`) VALUES ('20%', '30%', '25%', '27%');
 INSERT INTO css_properties (`dog_top`, `dog_right`, `cat_top`, `cat_right`) VALUES ('25%', '30%', '30%', '30%');
+INSERT INTO css_properties (`dog_top`, `dog_right`, `cat_top`, `cat_right`) VALUES ('25%', '25%', '25%', '18%');
+INSERT INTO css_properties (`dog_top`, `dog_right`, `cat_top`, `cat_right`) VALUES ('25%', '25%', '25%', '18%');
 
 -- customizables
 INSERT INTO customizables (`name`, `category`, `type`, `price`, `img_url`, `stock`, `css_property_id`) VALUES ('Sombrero de Mariachi', 'custome-head', 'mariachi', 234.99, '/assets/img/products/customizable/customizable-head-mariachi.png', 30, '1');
@@ -63,6 +65,8 @@ INSERT INTO customizables (`name`, `category`, `type`, `price`, `img_url`) VALUE
 INSERT INTO customizables (`name`, `category`, `type`, `price`, `img_url`) VALUES ('Estampado de Corazones', 'pattern', 'hearts', 29.73, '/assets/img/products/customizable/customizable-pattern-hearts.png');
 INSERT INTO customizables (`name`, `category`, `type`, `price`, `img_url`) VALUES ('Estampado de Tela', 'pattern', 'fabric', 39, '/assets/img/products/customizable/customizable-pattern-fabric.jpg');
 INSERT INTO customizables (`name`, `category`, `type`, `price`, `img_url`) VALUES ('Estampado de Cuadrados', 'pattern', 'squares', 59.12, '/assets/img/products/customizable/customizable-pattern-squares.jpg');
+INSERT INTO customizables (`name`, `category`, `type`, `price`, `img_url`, `stock`, `css_property_id`) VALUES ('Chalequito de Generation', 'custome-body', 'generation-vest', 359, '/assets/img/products/customizable/customizable-body-generation-vest.png', 56, '7');
+INSERT INTO customizables (`name`, `category`, `type`, `price`, `img_url`, `stock`, `css_property_id`) VALUES ('Sueter (Sintético) de Generation', 'custome-body', 'generation-sweater', 459, '/assets/img/products/customizable/customizable-body-generation-sweater.png', 36, '8');
 
 -- product properties
 INSERT INTO product_properties (`color`, `size`, `pattern`, `material`) VALUES ('hsla(237, 100%, 50%, 1)', 'Pequeño - 25 cm a 38 cm - 1.5 cm de ancho', 'circles', 'nylon');

@@ -102,11 +102,14 @@ loginForm.submit(submitButton => {
             headers: {"Content-type": "application/json; charset=UTF-8"}
         })
             .then(response => {
-                if (response.ok) {
+                if (response.ok)
                     return response.json();
-                } else {
-                    throw new Error("Login failed");
-                }
+                else if (response.status === 400) 
+                    showAlert("Correo o contraseña incorrectos");
+                else if (response.status === 404) 
+                    showAlert("La cuenta de usuario no existe");
+                
+                throw new Error("Login failed");
             })
             .then(usersResponse =>{
                 localStorage.setItem(`users-logged-in`, JSON.stringify(usersResponse));
@@ -114,16 +117,20 @@ loginForm.submit(submitButton => {
                 console.log("Sesion iniciada");   
             })
             .catch(error =>{
-                alertElement.text("Correo o contraseña incorrectos");
-                alertElement.slideDown(250);
-                setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-    
-                alertElement.removeClass("alert-success");
-                alertElement.removeClass("text-success");
-                alertElement.addClass("alert-danger");
-                alertElement.addClass("text-danger");
+                console.log(error);
             })
 });
+
+const showAlert = text => {
+    alertElement.text(text);
+    alertElement.slideDown(250);
+    setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+
+    alertElement.removeClass("alert-success");
+    alertElement.removeClass("text-success");
+    alertElement.addClass("alert-danger");
+    alertElement.addClass("text-danger");
+};
 
 // ----- Escucha cuando el usuario recupera contraseña ------
 recoverForm.submit(submitButton => {
