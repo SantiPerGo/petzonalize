@@ -22,9 +22,11 @@ const createProductsCards = products => {
     card.find('[id*="product-img"]').attr('src', product.imgUrl);
     card.find('[id*="product-img"]').attr('alt', product.name);
     card.find('[id*="product-name"]').text(product.name);
-    const stock = product.stock === undefined ? "Variable" : product.stock;
+    const stock = product.stock === undefined || product.stock === null
+        ? "Variable" : product.stock;
     card.find('[id*="product-stock"]').text(stock);
-    const price = product.price === undefined ? "Variable" : `$${product.price}`;
+    const price = product.price === undefined || product.price === null
+        ? "Variable" : `$${product.price}`;
     card.find('[id*="product-price"]').text(price);
 
     if (product.customizable === false) {
@@ -34,7 +36,7 @@ const createProductsCards = products => {
       if (user != null) {
         user = JSON.parse(user);
 
-        if (user.privileges.privilege === "admin") {
+        if (user.privilege === "admin") {
           editIcon.removeClass("d-none");
           editIcon.click(() => {
             sessionStorage.setItem("product", JSON.stringify(product));

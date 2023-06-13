@@ -132,6 +132,7 @@ $(document).ready(() => {
       productForm.find('[id*="product-img"]').attr("src", product.imgUrl);
       productForm.find('[id*="product-img"]').attr("alt", product.name);
       productForm.find('[id*="product-name"]').text(product.name);
+      productForm.find('[id*="product-price"]').text(product.price);
       productForm.find('[id*="product-description"]').text(product.description);
 
       updateShoppingCartButtons()

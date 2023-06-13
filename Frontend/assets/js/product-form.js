@@ -21,14 +21,14 @@ $(document).ready(() => {
     method="PUT";
 
     // Mostrar datos de sessionstorage
-    $('#product-form-name').val(produtToEdit.name);
-    $('#product-form-description').val(produtToEdit.description);
-    $('#product-form-quantity').val(produtToEdit.stock);
-    $('#product-form-price').val(produtToEdit.price);
+    $('#product-form-name').val(productToEdit.name);
+    $('#product-form-description').val(productToEdit.description);
+    $('#product-form-quantity').val(productToEdit.stock);
+    $('#product-form-price').val(productToEdit.price);
     $('#product-form-category').val(productToEdit.category);
 
     // Loading img and url text
-    let img = produtToEdit.imgUrl;
+    let img = productToEdit.imgUrl;
 
     previewDefaultText.style.display = "none";
     previewImage.style.display = "block";
@@ -62,9 +62,12 @@ const postData = (url, data) => {
   const jsonBlob = new Blob([JSON.stringify(data)], { type: 'application/json' });
   formData.append('product', jsonBlob);  
 
+  $("#loading").removeClass("d-none");
+
   fetch(url, { method: method, body: formData })
     .then(data => {
-      if(data.status === 200) {
+      $("#loading").addClass("d-none");
+      if(data.status === 201 || data.status === 200) {
         alertElement.removeClass("alert-danger");
         alertElement.removeClass("text-danger");
         alertElement.addClass("alert-success");
@@ -74,10 +77,14 @@ const postData = (url, data) => {
         setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
         window.location.href = "../html/products.html";
       } else {
+        if(data.status === 400) 
+          alertElement.text("¡Debes cargar una imagen para el producto!");
+        else
+          alertElement.text("¡Hubo un error con los datos ingresados!");
+
         alertElement.removeClass("text-success");
         alertElement.addClass("alert-danger");
         alertElement.addClass("text-danger");
-        alertElement.text("¡Hubo un error con los datos ingresados!");
         alertElement.slideDown(250);
         setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
       }
@@ -88,13 +95,16 @@ const postData = (url, data) => {
 editform.submit(submitButton => {
   submitButton.preventDefault();
 
-  if(editform.valid())  {
+  const isDogChecked = document.getElementById('product-form-dog').checked;
+  const isCatChecked = document.getElementById('product-form-cat').checked;
+
+  if(editform.valid() && (isDogChecked || isCatChecked))  {
     const name = document.getElementById("product-form-name").value;
     const description = document.getElementById("product-form-description").value;
     const stock = Number(document.getElementById("product-form-quantity").value);
     const category = document.getElementById("product-form-category").value;
     const price = Number(document.getElementById("product-form-price").value);
-    const pet = document.getElementById('product-form-dog').checked ? "dog" : "cat";
+    const pet = isDogChecked ? "dog" : "cat";
     const imgUrl = $(previewImage).attr("src");
 
     let data= {
@@ -104,6 +114,13 @@ editform.submit(submitButton => {
     };
     
     postData("https://petzonalize.up.railway.app/products", data);
+  } else if(!isDogChecked && !isCatChecked) {
+    alertElement.removeClass("text-success");
+    alertElement.addClass("alert-danger");
+    alertElement.addClass("text-danger");
+    alertElement.text("¡Debes elegir el tipo de mascota!");
+    alertElement.slideDown(250);
+    setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
   }
 })
 

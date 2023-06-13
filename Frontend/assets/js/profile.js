@@ -2,23 +2,26 @@
 // Default operations when the page is loaded
 // *********************************************************************************
 
+const formDeleteAccount = $("#form-delete-account");
 $(document).ready(() => {
   // Starting inputs validation with jquery
   const formName = $("#form-name");
   const formPhone = $("#form-phone");
   const formEmail = $("#form-email");
   const formPassword = $("#form-password");
-  const formAddress = $("#form-address"); // Nuevo formulario de dirección
+  const formAddress = $("#form-address"); 
   validateForm(formName);
   validateForm(formPhone);
   validateForm(formEmail);
   validateForm(formPassword);
-  validateForm(formAddress); // Validar formulario de dirección también
+  validateForm(formAddress); 
+  validateForm(formDeleteAccount); 
   formName.submit(submitButton => submitButton.preventDefault());
   formPhone.submit(submitButton => submitButton.preventDefault());
   formEmail.submit(submitButton => submitButton.preventDefault());
   formPassword.submit(submitButton => submitButton.preventDefault());
-  formAddress.submit(submitButton => submitButton.preventDefault()); // Evitar envío del formulario de dirección
+  formAddress.submit(submitButton => submitButton.preventDefault());
+  formDeleteAccount.submit(submitButton => submitButton.preventDefault());
 
   // Getting user from local storage
   let user = localStorage.getItem("users-logged-in");
@@ -146,12 +149,14 @@ const deleteAccount = () => {
 function showDeleteForm() {
   let deleteContainer = document.getElementById('delete-user-container');
   deleteContainer.style.visibility = 'visible';
+  $("footer").find("a").each((key, element) => $(element).addClass("invisible"));
 }
 
 // Cancela y oculta el formulario cuando se da click al botón de cancelar eliminación
 function cancelDeleteAccount() {
   let deleteContainer = document.getElementById('delete-user-container');
   deleteContainer.style.visibility = 'hidden';
+  $("footer").find("a").each((key, element) => $(element).removeClass("invisible"));
 }
 
 //Cerrar sesión y redirigir hacia el index
@@ -163,35 +168,46 @@ function closeSession() {
   window.location.href = '../../index.html'; 
 }
 
-const formDelete = $("#form-delete-account");
-formDelete.submit(submitButton => {
+formDeleteAccount.submit(submitButton => {
   submitButton.preventDefault();
 
-  const url = "https://petzonalize.up.railway.app/users";
-  const requestData = {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: $('#input-email').val(),
-      password: $("#input-password-delete").val()
-    }),
-  };
+  if(formDeleteAccount.valid()) {
+    const url = "https://petzonalize.up.railway.app/users";
+    const requestData = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: $('#input-email').val(),
+        password: $("#input-password-delete").val()
+      }),
+    };
 
-  fetch(url, requestData)
-    .then((response) => {
-      if (!response.ok)
-        throw new Error("Error al realizar la solicitud");
-  
-      return response.json();
-    })
-    .then((data) => {
-      console.log("Usuario eliminado:", data);
-      localStorage.removeItem('users-logged-in');
-      window.location.href = '../../index.html';
-    })
-    .catch((error) => {
-      console.error("Error en la solicitud:", error);
-    });
+    fetch(url, requestData)
+      .then((response) => {
+        if (!response.ok)
+          throw new Error("Error al realizar la solicitud");
+    
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Usuario eliminado:", data);
+        localStorage.removeItem('users-logged-in');
+        window.location.href = '../../index.html';
+      })
+      .catch((error) => {
+        console.error(error);
+        cancelDeleteAccount();
+        resetInput($("#input-password-delete"));
+
+        const alertElement = $("#alert");
+        alertElement.removeClass("text-success");
+        alertElement.addClass("alert-danger");
+        alertElement.addClass("text-danger");
+        alertElement.text("¡Contraseña incorrecta!");
+        alertElement.slideDown(250);
+        setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+      });
+  }
 });
