@@ -24,4 +24,4 @@ INSERT INTO css_properties (`dog_top`, `dog_right`, `cat_top`, `cat_right`)
 	VALUES ('25%', '30%', '30%', '30%');
 
 INSERT INTO css_properties (`dog_top`, `dog_right`, `cat_top`, `cat_right`)
-	VALUES ('35%', '23%', '38%', '18%');
+	VALUES ('37%', '23%', '39%', '18%');

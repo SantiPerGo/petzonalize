@@ -40,4 +40,4 @@ INSERT INTO customizables (`name`, `category`, `type`, `price`, `img_url`)
 
 -- ID 11
 INSERT INTO customizables (`name`, `category`, `type`, `price`, `img_url`, `stock`, `css_property_id`)
-	VALUES ('Sueter (Sintético) de Generation', 'custome-body', 'generation-sweater', 459, '/assets/img/products/customizable/customizable-body-generation-sweater.png', 36, '7');
+	VALUES ('Suéter (Sintético) de Generation', 'custome-body', 'generation-sweater', 459, '/assets/img/products/customizable/customizable-body-generation-sweater.png', 36, '7');
