@@ -476,7 +476,7 @@ btnOpenWindowOrder.addEventListener('click', function() {
 //--------------- Mensaje de pedido creado ---------------------
   function showAlert() {
     let alerta = document.getElementById('alert');
-    alerta.innerHTML = '¡Gracias por tu pedido! Favor de estar pendiente de tu correo donde recibirás los detalles. ✉️';
+    alerta.innerHTML = '¡Gracias por tu pedido! Debes estar pendiente de tu correo donde recibirás los detalles';
     alerta.style.display = 'block';
 
     setTimeout(function() {
