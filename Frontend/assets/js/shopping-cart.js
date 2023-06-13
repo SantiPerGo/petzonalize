@@ -13,7 +13,7 @@ const emptyCart = () => {
     emptyCartButton.disabled = true;
     btnOpenWindowOrder .disabled = true;
 
-    return `<div class="list-not-found mt-4">
+    return `<div class="list-not-found mt-4 text-black">
     <div class="row justify-content-center">
         <div class="col col-12 mt-4">
             <h4>No tienes productos en el carrito</h4>

@@ -106,6 +106,9 @@ public class OrderServiceImpl implements OrderService {
 						productOrder, HttpStatus.BAD_REQUEST);
 			}
 		}
+		
+		// Total cost rounded to 2 decimals
+		total = Math.round(total * 100.0) / 100.0;
 
         String subject = "Petzonalize - ¡Gracias por tu Compra!";
         String logoUrl = ProductMapper.getProductUrlByName(
