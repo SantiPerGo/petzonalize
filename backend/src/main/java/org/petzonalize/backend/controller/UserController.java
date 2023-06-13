@@ -55,7 +55,7 @@ public class UserController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Successful user creation!",
             content = @Content(mediaType = "application/json",
-            schema = @Schema(implementation = User.class))),
+            schema = @Schema(implementation = UserWithPrivilegeDto.class))),
         @ApiResponse(responseCode = "409", description = "User already exists",
         	content = @Content(mediaType = "application/json",
                 schema = @Schema(implementation = HttpResponseDto.class)))
@@ -69,7 +69,7 @@ public class UserController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Successful deletion!",
             content = @Content(mediaType = "application/json",
-            schema = @Schema(implementation = UserLoginDto.class))),
+            schema = @Schema(implementation = HttpResponseDto.class))),
         @ApiResponse(responseCode = "404", description = "User not found!",
         	content = @Content(mediaType = "application/json",
                 schema = @Schema(implementation = HttpResponseDto.class)))
@@ -83,7 +83,7 @@ public class UserController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Successful update!",
             content = @Content(mediaType = "application/json",
-            schema = @Schema(implementation = User.class))),
+            schema = @Schema(implementation = UserWithPrivilegeDto.class))),
         @ApiResponse(responseCode = "404", description = "User not found!",
         	content = @Content(mediaType = "application/json",
                 schema = @Schema(implementation = HttpResponseDto.class)))
@@ -111,7 +111,7 @@ public class UserController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Successful login!",
             content = @Content(mediaType = "application/json",
-            schema = @Schema(implementation = UserLoginDto.class))),
+            schema = @Schema(implementation = UserWithPrivilegeDto.class))),
         @ApiResponse(responseCode = "404", description = "User not found!",
         	content = @Content(mediaType = "application/json",
                 schema = @Schema(implementation = HttpResponseDto.class)))
