@@ -15,7 +15,7 @@ public interface CustomizableConstants {
     
     String CUSTOMIZABLE_PRICE_NULL = "Customizable price (double) cannot be null or empty";
     
-	int CUSTOMIZABLE_IMG_MAX = 150;
+	int CUSTOMIZABLE_IMG_MAX = 250;
 	String CUSTOMIZABLE_IMG_NULL = "Customizable name url (string) cannot be null or empty";
     String CUSTOMIZABLE_IMG_SIZE = "Customizable name url (string) cannot be longer than 150 characters";
     
