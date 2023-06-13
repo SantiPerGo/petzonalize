@@ -35,16 +35,16 @@
                 <div class="row justify-content-center" id="row-container">
                     <div class="form-container col col-lg-10 col-md-10 col-sm-10 col-10 my-md-4 mx-md-4">
                         <div class="row justify-content-center text-center">
-                            <div class="form-group text-center mt-5">
-                                <h1> Producto </h1>
-                            </div>
+                            <form id="edit-form">
+                                <div class="form-group text-center mt-5">
+                                    <h1> Producto </h1>
+                                </div>
 
-                            <div class="row justify-content-center">
+                                <div class="row justify-content-center">
 
-                                <!------- Column Left ------>
-                                <div class="col-flex col-6 col-md-6 col-sm-12 col-12">
-                            
-                                    <form id="edit-form">
+                                    <!------- Column Left ------>
+                                    <div class="col-flex col-6 col-md-6 col-sm-12 col-12">
+                                
                                         <!-- Name -->
                                         <div class="form-group my-3 mx-md-3">
                                             <label for="product-form-name" class="form-label"><b>Nombre:</b></label>
@@ -71,7 +71,7 @@
                                         <div class="form-group my-3 mx-md-3">
                                             <label for="product-form-price" class="form-label"><b>Precio:</b></label>
                                             <input type="number" class="form-control" id="product-form-price"
-                                                placeholder="Precio" name="number" >
+                                                placeholder="Precio" name="price" >
                                         </div>
 
                                         <!-- Catergory -->
@@ -112,56 +112,52 @@
                                                 </div>
                                             </div>
                                         </div> 
+                                    </div>
+
+                                    <!------- Column Right ------>
+                                    <div class="col-flex col-6 col-md-6 col-sm-12 col-12">
+
+                                        <!-- Upload image -->
+                                        <div class="form-group my-md-3 mx-md-3">
+                                            <label for="uploads" class=""><b> Elige la imagen que deseas cargar: </b></label>
+                                            <br>
+                                            <input 
+                                            type="file" 
+                                            id="product-form-uploads" 
+                                            class="form-control" 
+                                            name="inpFile" 
+                                            accept=".jpg, .jpeg, .png, .svg, .gif"
+                                            hidden/>
+
+                                            <div class="row d-flex justify-content-center text-center">
+                                                <button type="button" id="upload-image" class="btn btn-blue mt-3 w-75">Cargar imagen</button><br>
+                                                <span class="custom-text my-3" id="custom-text">No se ha cargado una imagen</span>
+                                            </div>
+
+                                            <!-- Image Preview-->
+                                            <div class="image-preview d-flex justify-content-center d-none" id="imagePreview">
+                                                <img src="" alt="Image Preview" class="image-preview__image w-100 h-100">
+                                                <span class="image-preview__default-text"></span>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
                                         
-                                    
-
+                                <!----------- Buttons bottom --------->
+                                <div class="row justify-content-center mb-3">
+                                    <div class="col-md-6 col-12 d-flex justify-content-around">
+                                        <button id="remove" type="button" class="btn btn-purple w-75">Eliminar</button>
+                                    </div>
+                                    <div class="col-md-6 col-12 d-flex justify-content-around mt-3 mt-md-0">
+                                        <button id="add" type="submit" class="btn btn-purple w-75">Guardar</button>
+                                    </div>
                                 </div>
-
-                                <!------- Column Right ------>
-                                <div class="col-flex col-6 col-md-6 col-sm-12 col-12">
-
-                                    <!-- Upload image -->
-                                    <div class="form-group my-md-3 mx-md-3">
-                                        <label for="uploads" class=""><b> Elige la imagen que deseas cargar: </b></label>
-                                        <br>
-                                        <input 
-                                        type="file" 
-                                        id="product-form-uploads" 
-                                        class="form-control" 
-                                        name="inpFile" 
-                                        accept=".jpg, .jpeg, .png, .svg, .gif"
-                                        hidden/>
-
-                                        <div class="row d-flex justify-content-center text-center">
-                                            <button type="button" id="upload-image" class="btn btn-blue mt-3 w-75">Cargar imagen</button><br>
-                                            <span class="custom-text my-3" id="custom-text">No se ha cargado una imagen</span>
-                                        </div>
-
-                                        <!-- Image Preview-->
-                                        <div class="image-preview d-flex justify-content-center d-none" id="imagePreview">
-                                            <img src="" alt="Image Preview" class="image-preview__image w-100 h-100">
-                                            <span class="image-preview__default-text"></span>
-                                        </div>
-                                    </div>                                   
-
-                                </div>
-                            </div>
-                                    
-                            <!----------- Buttons bottom --------->
-                            <div class="row justify-content-center mb-3">
-                                <div class="col-md-6 col-12 d-flex justify-content-around">
-                                    <button id="remove" type="button" class="btn btn-purple w-75">Eliminar</button>
-                                </div>
-                                <div class="col-md-6 col-12 d-flex justify-content-around mt-3 mt-md-0">
-                                    <button id="add" type="submit" class="btn btn-purple w-75">Guardar</button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
     </main>
 
     <footer></footer>
