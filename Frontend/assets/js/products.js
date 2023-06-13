@@ -36,7 +36,7 @@ const createProductsCards = products => {
       if (user != null) {
         user = JSON.parse(user);
 
-        if (user.privileges.privilege === "admin") {
+        if (user.privilege === "admin") {
           editIcon.removeClass("d-none");
           editIcon.click(() => {
             sessionStorage.setItem("product", JSON.stringify(product));

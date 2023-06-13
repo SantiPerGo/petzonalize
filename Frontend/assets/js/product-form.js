@@ -21,14 +21,14 @@ $(document).ready(() => {
     method="PUT";
 
     // Mostrar datos de sessionstorage
-    $('#product-form-name').val(produtToEdit.name);
-    $('#product-form-description').val(produtToEdit.description);
-    $('#product-form-quantity').val(produtToEdit.stock);
-    $('#product-form-price').val(produtToEdit.price);
+    $('#product-form-name').val(productToEdit.name);
+    $('#product-form-description').val(productToEdit.description);
+    $('#product-form-quantity').val(productToEdit.stock);
+    $('#product-form-price').val(productToEdit.price);
     $('#product-form-category').val(productToEdit.category);
 
     // Loading img and url text
-    let img = produtToEdit.imgUrl;
+    let img = productToEdit.imgUrl;
 
     previewDefaultText.style.display = "none";
     previewImage.style.display = "block";
