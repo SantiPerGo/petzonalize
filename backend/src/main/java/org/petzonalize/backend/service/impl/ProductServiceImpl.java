@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
 
 		if(optionalProduct.isPresent())
 			return ResponseUtils.mapToJsonResponse(
-				"User with name '" + product.getName() + "' already exists",
+				"Product with name '" + product.getName() + "' already exists",
             	HttpStatus.CONFLICT);
 		else {
 			String imgUrl = FirebaseUtils.uploadFileToFirebaseStorage(image);
@@ -73,7 +73,7 @@ public class ProductServiceImpl implements ProductService {
 					product.setId(optionalProduct.get().getId());
 					product.setImgUrl(imgUrl);
 		            return new ResponseEntity<>(
-		                productRepository.saveAndFlush(product), HttpStatus.CREATED);
+		                productRepository.saveAndFlush(product), HttpStatus.OK);
 				} else
 					return ResponseUtils.mapToJsonResponse(
 		        		"Product img couldn't be uploaded to Firebase Storage!",
@@ -91,7 +91,7 @@ public class ProductServiceImpl implements ProductService {
 		        		HttpStatus.BAD_REQUEST); 
 	        	else
 					return new ResponseEntity<>(
-						productRepository.saveAndFlush(product), HttpStatus.CREATED);
+						productRepository.saveAndFlush(product), HttpStatus.OK);
 			}
 		}
 	}
