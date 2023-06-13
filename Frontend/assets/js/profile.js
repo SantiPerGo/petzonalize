@@ -149,14 +149,14 @@ const deleteAccount = () => {
 function showDeleteForm() {
   let deleteContainer = document.getElementById('delete-user-container');
   deleteContainer.style.visibility = 'visible';
-  $("footer").find("a").each((key, element) => $(element).addClass("invisible"));
+  $("footer").find("a").each((key, element) => $(element).css("pointer-events","none"));
 }
 
 // Cancela y oculta el formulario cuando se da click al botón de cancelar eliminación
 function cancelDeleteAccount() {
   let deleteContainer = document.getElementById('delete-user-container');
   deleteContainer.style.visibility = 'hidden';
-  $("footer").find("a").each((key, element) => $(element).removeClass("invisible"));
+  $("footer").find("a").each((key, element) => $(element).css("pointer-events","auto"));
 }
 
 //Cerrar sesión y redirigir hacia el index

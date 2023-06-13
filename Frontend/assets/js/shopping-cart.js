@@ -438,6 +438,7 @@ notRegisteredForm.submit(submitButton => {
 const hiddenWindowOrder = () =>{
     formOrderContainer.classList.add("pop--hidden");
     formOrderContainer.classList.remove("pop--unhidden");
+    $("footer").find("a").each((key, element) => $(element).css("pointer-events","auto"));
 }
 
 btnCloseWindowOrder.addEventListener('click', ()=>{
@@ -461,10 +462,12 @@ const setInputs = (userData) => {
 btnOpenWindowOrder.addEventListener('click', function() {
     formOrderContainer.classList.remove("pop--hidden");
     formOrderContainer.classList.add("pop--unhidden");
+    $("footer").find("a").each((key, element) => $(element).css("pointer-events","none"));
 
     let userLogged = localStorage.getItem("users-logged-in");
-    if(userLogged != null){
-        let userData = JSON.parse(localStorage.getItem("user"));
+
+    if(userLogged !== null){
+        let userData = JSON.parse(userLogged);
         setInputs(userData);
     }
 });
