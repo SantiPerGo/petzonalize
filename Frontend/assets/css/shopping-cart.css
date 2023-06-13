@@ -6,35 +6,19 @@ main h2 {
   color: black !important;
 }
 
-.number-display {  
-  background-color: transparent !important;
-  border: none !important;
-}
-
-.product-box{
-    /*background-color: brown;*/
-    min-height: 280px;
-    max-width: 84%;
-    margin-left: auto;
-    margin-right: auto;
-}
+/* Products not customizable */
 
 .container-button-delete{
   position: absolute;
 }
 
-.container-button-delete img{
+.container-button-delete img {
   width: 1.9em;
 }
 
 /* Estos estilos corresponden a los botones
 y disposición de los mismos para que sea responsivo
 */
-
-ion-icon {
-    color: #73628A;
-    font-size: 35px;
-  }
 
  .cantidadproductos {
     display: flex;
@@ -46,25 +30,9 @@ ion-icon {
     margin: auto 0.2rem auto 0.2rem;
     padding-left: 0.4rem;
     padding-right: 0.4rem;
-    border: 1px solid #ccc;
-    background-color: rgba(255, 255, 255, 0.655);
-    border-radius: 3px;
-  }
-  
-  .button-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
   }
   
 @media screen and (max-width: 768px) {
-    .button-icon {
-      padding: 3px;
-    }
-    
     .number-display {
       padding: 0 10px;
     }
@@ -157,20 +125,6 @@ ion-icon {
 
   
   /* Tamaño del contenedor de botones */
-  .buttons-container{
-    max-width: 400px;
-    max-height: 500px;
-    
-  }
-
-  @media (max-width: 768px) {
-    .buttons-container {
-      max-width: 350px;
-      max-height: 450px;
-      margin: 0 auto;
-      }
-    }
-
     .not-register-form-container{
       position: fixed;
       width: 100%;
@@ -190,3 +144,21 @@ ion-icon {
     .pop--unhidden{
       display: flex;
     }
+
+/* Button animations */
+
+.cantidadproductos .btn-blue {
+    padding: 0.1rem 1.25rem;
+}
+
+.container-button-delete img {
+    transition: all 0.25s;
+}
+
+.container-button-delete img:hover {
+    transform: scale(1.1);
+}
+
+.container-button-delete img:active {
+    transform: scale(1);
+}

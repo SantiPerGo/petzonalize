@@ -42,12 +42,13 @@ const notCustomProducts = (product) => {
          </div>
          </div>
          <!------- Columna Informacion de Producto-------->
-         <div class="col-12 col-lg-8 col-md-8 col-sm-12">
+         <div class="col-12 col-lg-8 col-md-8 col-sm-12 d-flex align-items-center">
          <div class="row justify-content-center">
          <div class="col-12 col-lg-12">
-         <h4>${product.name}</h4>
+         <h2 class="d-none d-md-block">${product.name}</h2>
+         <h2 class="fs-5 d-md-none">${product.name}</h2>
          </div>
-         <div class="row col-lg-12 col-md-12 col-sm-12">
+         <div class="row col-lg-12 col-md-12 col-sm-12 my-md-3">
          <div class=" descriptioncontainer">
          <p class="description">${product.description}
          </p>
@@ -56,28 +57,24 @@ const notCustomProducts = (product) => {
          <a href="#" class="ver-mas">Ver más</a>
          </div>
          <div class="col-12 col-lg-12">
-         <div class="row justify-content-center mt-3">
+         <div class="row d-flex justify-content-center align-items-center">
          <div class="col-6 col-lg-6 col-sm-12">
          <div class="w-100">
-         <p>Precio Individual: $<span>${product.price}</span></p>
+         <p class="m-0">Precio Individual: $<span>${product.price}</span></p>
          </div>
          </div>
          <div class="col-6 col-lg-6 col-sm-12">
-         <div class="row justify-content-center">
+         <div class="row d-flex justify-content-center align-items-center">
          <div class="col-12 py-0">
          <div class="amountText">
-         <p class="my-0">Cantidad</p>
+         <p class="my-0">Cantidad:</p>
          </div>  
          </div>
          <div class="col-12 text-center mt-0">
          <div class="amountButtons cantidadproductos">
-         <button type="button" class="button-icon removepiece" id="removepiece"><ion-icon id="removepiece" name="remove-circle">
-         </ion-icon>
-         </button>
-         <p class="number-display" id="amount-product">${product.amount}</p>
-         <button type="button" class="button-icon addpiece" id="addpiece"><ion-icon id="addpiece" name="add-circle">
-         </ion-icon>
-         </button>
+            <button id="removepiece" class="btn btn-blue">-</button>
+            <p class="number-display px-3 py-0" id="amount-product">${product.amount}</p>
+            <button id="addpiece" class="btn btn-blue">+</button>
          </div>
          </div>
          </div>
@@ -156,15 +153,16 @@ const customProducts = (product) => {
          </div>
          <!--------- Columna de Imagen Producto--------->
          <div class="col-12 col-lg-4 col-md-8 col-sm-12 product-image-container">
-         <div class="">
+         <div>
          <img class="productimage" src="${product.imgUrl}" alt="">
          </div>
          </div>
          <!------- Columna Informacion de Producto-------->
          <div class="col-12 col-lg-8 col-md-8 col-sm-12">
          <div class="row justify-content-center">
-         <div class="col-12 col-lg-12">
-         <h4>${product.name}</h4>
+         <div class="col-12 col-lg-12 mt-3 mb-3 mt-md-0">
+         <h2 class="d-none d-md-block">${product.name}</h2>
+         <h2 class="fs-5 d-md-none">${product.name}</h2>
          </div>
          <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="description-customizable">
@@ -177,7 +175,7 @@ const customProducts = (product) => {
                         </div>
                     <div class="col col-12">
                         <div class="col-size">
-                            <p>${product.properties.hasOwnProperty("size") && product.properties["size"] != null ? product.properties.size : " "}</p>
+                            <p class="m-0">${product.properties.hasOwnProperty("size") && product.properties["size"] != null ? product.properties.size : " "}</p>
                             ${userCustoms}
                         </div>
                     </div>
@@ -190,28 +188,24 @@ const customProducts = (product) => {
                 </div>
             </div>
             <div class="col-12 col-lg-12">
-                <div class="row justify-content-center mt-3">
+                <div class="row mt-3 d-flex justify-content-center align-items-center">
                     <div class="col-6 col-lg-6 col-sm-12">
                         <div class="w-100">
-                            <p>Precio Individual: $<span>${product.price}</span></p>
+                            <p class="m-0">Precio Individual: $<span>${product.price}</span></p>
                         </div>
                     </div>
                     <div class="col-6 col-lg-6 col-sm-12">
-                        <div class="row justify-content-center">
+                        <div class="row d-flex justify-content-center align-items-center">
                             <div class="col-12 py-0">
                                 <div class="amountText">
-                                    <p class="my-0">Cantidad</p>
+                                    <p class="m-0">Cantidad:</p>
                                 </div>  
                             </div>
                             <div class="col-12 text-center mt-0">
                                 <div class="amountButtons cantidadproductos">
-                                    <button type="button" class="button-icon removepiece" id="removepiece"><ion-icon id="removepiece" name="remove-circle">
-                                        </ion-icon>
-                                    </button>
-                                <p class="number-display" id="amount-product">${product.amount}</p>
-         <button type="button" class="button-icon addpiece" id="addpiece"><ion-icon id="addpiece" name="add-circle">
-         </ion-icon>
-         </button>
+                                    <button id="removepiece" class="btn btn-blue">-</button>
+                                    <p class="number-display px-3 py-0" id="amount-product">${product.amount}</p>
+                                    <button id="addpiece" class="btn btn-blue">+</button>
          </div>
          </div>
          </div>
@@ -361,7 +355,8 @@ const modifyAmountProducts = () => {
     for (let index = 0; index < amountContainer.length; index++) {
         //------------------ Agregar Items ---------------------------
         amountContainer[index].children["addpiece"].addEventListener("click", () => {
-            if (userCartProducts[index + 1].amount < 10) {
+            if (userCartProducts[index + 1].amount < 10 &&
+                document.getElementById("piecesProducts").innerText < 10) {
                 userCartProducts[index + 1].amount += 1;
                 userCartProducts[0].total += 1;
                 updateIconCartReference(userCartProducts[0].total);
@@ -369,8 +364,9 @@ const modifyAmountProducts = () => {
                 updateAmountSpan();
                 updateTotalPrice();
                 localStorage.setItem("shopping-cart", JSON.stringify(userCartProducts));
-            }
-
+            } 
+            
+            updateAmountIcons();
         });
 
 
@@ -385,7 +381,9 @@ const modifyAmountProducts = () => {
                 updateAmountSpan();
                 updateTotalPrice();
                 localStorage.setItem("shopping-cart", JSON.stringify(userCartProducts));
-            }
+            } 
+
+            updateAmountIcons();
         });
 
     }
@@ -408,7 +406,24 @@ deleteProduct.forEach((deleteIconProduct, index) => {
 //------------------- Form not registered user --------------------
 $(document).ready(()=>{
     validateForm(notRegisteredForm);
+    updateAmountIcons();
 });
+
+const updateAmountIcons = () => {
+    const amountContainer = document.getElementsByClassName("cantidadproductos");
+
+    for (let index = 0; index < amountContainer.length; index++) {
+        if(document.getElementById("piecesProducts").innerText >= 10)
+            amountContainer[index].children["addpiece"].disabled = true;
+        else
+            amountContainer[index].children["addpiece"].disabled = false;
+            
+        if(userCartProducts[index + 1].amount <= 1)
+            amountContainer[index].children["removepiece"].disabled = true;
+        else
+            amountContainer[index].children["removepiece"].disabled = false;
+    }
+};
 
 //---------------- Formulario escucha boton, valida y crea la orden -------
 notRegisteredForm.submit(submitButton => {

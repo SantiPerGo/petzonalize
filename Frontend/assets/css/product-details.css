@@ -17,7 +17,7 @@
 
 #product-quantity,
 #product-quantity-not-custom {
-  background-color: var(--gray);
+  background-color: transparent;
 }
 
 .container-custom {
