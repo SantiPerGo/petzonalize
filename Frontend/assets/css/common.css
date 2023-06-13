@@ -4,7 +4,7 @@
 :root {
     --beige: #FFF1DC;
     --brown: #BDA692;
-    --light-blue: #60d3fd;
+    --light-blue: #b5c3ff;
     --blue: #3A98B9;
     --light-gray: #f8f8f8;
     --gray: #eeeeee;
@@ -89,7 +89,7 @@ footer {
 .slider {
     position: relative;
     width: 5rem;
-    height: 100%;
+    height: calc(3rem + 2vw);
     overflow: hidden;
 }
 
@@ -147,7 +147,7 @@ input:checked + .slider .moon {
 
 @media (max-width: 767.98px) {
     .shopping-cart .shopping-cart-counter {
-        top: calc(12.5rem + 10vw);
+        top: calc(16rem + 10vw);
         right: 45vw;
         padding: calc(0.1rem + 0.1vw) calc(0.4rem + 0.4vw);
         font-size: calc(0.5rem + 1.5vw);

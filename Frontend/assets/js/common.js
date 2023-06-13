@@ -95,7 +95,8 @@ const validateForm = form => {
             phone: {
                 minlength: 10,
                 maxlength: 10,
-                required: true
+                required: true,
+                digits: true
             },
             password: {
                 minlength: 8,
@@ -107,8 +108,14 @@ const validateForm = form => {
                 equalTo: "#confirmPassword"
             }, 
             number: {
-                minlength: 1,
-                required: true
+                min: 1,
+                required: true,
+                digits: true
+            },
+            price: {
+                min: 1,
+                required: true,
+                number: true
             },
             subject: {
                 minlength: 5,
@@ -140,7 +147,8 @@ const validateForm = form => {
             phone: {
                 required: "Debes ingresar tu número telefónico",
                 minlength: "Tu número debe tener 10 digitos",
-                maxlength: "Tu número no puede tener más de 10 digitos"
+                maxlength: "Tu número no puede tener más de 10 digitos",
+                digits: "El valor debe ser un número entero (sin decimales)"
             },
             password: {
                 required: "Debes ingresar tu contraseña",
@@ -152,8 +160,14 @@ const validateForm = form => {
                 equalTo: "Las contraseñas no coinciden"
             },
             number: {
+                min: "El valor debe ser al menos 1",
                 required: "Debes ingresar la cantidad deseada",
-                minlength: "El valor debe ser al menos 1"
+                digits: "El valor debe ser un número entero (sin decimales)"
+            },
+            price: {
+                min: "El precio debe ser al menos 1",
+                required: "Debes ingresar el precio del producto",
+                number: "El precio debe ser un número"
             },
             subject: {
                 required: "Debes ingresar el asunto del correo",

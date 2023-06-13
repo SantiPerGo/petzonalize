@@ -32,7 +32,6 @@ public class ProductServiceImpl implements ProductService {
 			String imgUrl = FirebaseUtils.uploadFileToFirebaseStorage(image);
 			
 			if(imgUrl != null) {
-				product.setId(optionalProduct.get().getId());
 				product.setImgUrl(imgUrl);
 	            return new ResponseEntity<>(
 	                productRepository.saveAndFlush(ProductMapper.mapToProduct(product)),
