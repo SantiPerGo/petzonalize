@@ -195,13 +195,15 @@ const creatingUserAccount = () => {
         body: JSON.stringify(user)
     })
     .then(response => {
-        if (response.ok) {
-            localStorage.setItem("users-logged-in", JSON.stringify(user));
-            window.location.href = 'profile.html';
-            console.log("Cuenta creada");
-        } else {
+        if (response.ok) 
+            return response.json();
+        else 
             console.error("Failed to create account. Status: " + response.status);
-        }
+    })
+    .then(response => {
+        localStorage.setItem("users-logged-in", JSON.stringify(response));
+        window.location.href = 'profile.html';
+        console.log("Cuenta creada");
     })
     .catch(error => {
         console.error("Not user registered:", error);
