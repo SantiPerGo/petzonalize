@@ -18,6 +18,11 @@ h2 {
 .btn-pencil:hover {
     color: var(--purple);
     transform: scale(1.1);
+    cursor: var(--cursor-click), auto;
+}
+
+.btn-pencil i:hover {
+    cursor: var(--cursor-click), auto;
 }
 
 .btn-pencil:active {

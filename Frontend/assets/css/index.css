@@ -22,6 +22,11 @@
     transition: 0.3s;
 }
 
+.title-content:hover,
+.title-content h2:hover {
+    cursor: var(--cursor-click), auto;
+}
+
 .box-card:hover .title-content {
     top: 0;
     backdrop-filter: blur(1px);

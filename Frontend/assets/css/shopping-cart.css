@@ -157,6 +157,7 @@ y disposición de los mismos para que sea responsivo
 
 .container-button-delete img:hover {
     transform: scale(1.1);
+    cursor: var(--cursor-click), auto;
 }
 
 .container-button-delete img:active {

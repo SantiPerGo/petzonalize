@@ -43,6 +43,15 @@ const darkGrayColor = $(":root").css("--dark-gray");
 const lightBlueFilter = $(":root").css("--light-blue-filter");
 const blueFilter = $(":root").css("--blue-filter");
 
+const cursorClick = $(":root").css("--cursor-click");
+const cursorArrow = $(":root").css("--cursor-arrow");
+const cursorLeft = $(":root").css("--cursor-left");
+const cursorRight = $(":root").css("--cursor-right");
+const cursorClickLight = $(":root").css("--cursor-click-light");
+const cursorArrowLight = $(":root").css("--cursor-arrow-light");
+const cursorLeftLight = $(":root").css("--cursor-left-light");
+const cursorRightLight = $(":root").css("--cursor-right-light");
+
 const switchMode = isDarkMode => {
     $("#dark-mode").attr("checked", isDarkMode);
 
@@ -63,6 +72,11 @@ const switchMode = isDarkMode => {
     $(":root").css("--dark-gray", isDarkMode ? grayColor : darkGrayColor);
 
     $(":root").css("--blue-filter", isDarkMode ? lightBlueFilter : blueFilter);
+
+    $(":root").css("--cursor-click", isDarkMode ? cursorClickLight : cursorClick);
+    $(":root").css("--cursor-arrow", isDarkMode ? cursorArrowLight : cursorArrow);
+    $(":root").css("--cursor-left", isDarkMode ? cursorLeftLight : cursorLeft);
+    $(":root").css("--cursor-right", isDarkMode ? cursorRightLight : cursorRight);
 
     $("img").each((key, element) => {
         if($(element).attr("src") !== undefined)

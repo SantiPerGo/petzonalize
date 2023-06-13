@@ -14,8 +14,23 @@
     --white: white;
     --black: black;
 
+    /* Cursor icons */
+    --cursor-click: url("../img/icons/click.svg");
+    --cursor-arrow: url("../img/icons/arrow.svg");
+    --cursor-left: url("../img/icons/fast-backward-button.svg");
+    --cursor-right: url("../img/icons/fast-forward-button.svg");
+
+    --cursor-click-light: url("../img/icons/click-light.svg");
+    --cursor-arrow-light: url("../img/icons/arrow-light.svg");
+    --cursor-left-light: url("../img/icons/fast-backward-button-light.svg");
+    --cursor-right-light: url("../img/icons/fast-forward-button-light.svg");
+
     --light-blue-filter: invert(66%) sepia(43%) saturate(520%) hue-rotate(154deg) brightness(103%) contrast(98%);
     --blue-filter: invert(52%) sepia(7%) saturate(3082%) hue-rotate(150deg) brightness(99%) contrast(99%);
+}
+
+* {
+    cursor: var(--cursor-arrow), auto;
 }
 
 html,
@@ -35,11 +50,21 @@ body {
     display: none;
 }
 
+input, textarea {
+    cursor: text;
+}
+
+.form-check-input {
+    cursor: var(--cursor-click), auto;
+}
+
 /* Navbar and footer styles */
 
 nav, footer {
     background-color: var(--beige);
     color: var(--brown);
+    position: relative;
+    z-index: 1;
 }
 
 footer h2 {
@@ -76,10 +101,19 @@ footer {
     color: var(--blue) !important;
 }
 
+.nav-link:hover,
+.nav-link b:hover {
+    cursor: var(--cursor-click), auto;
+}
+
 .toggle-button {
     display: inline-block;
     width: 100%;
     height: 100%;
+}
+
+.image:hover {
+    cursor: var(--cursor-click), auto;
 }
 
 .toggle-button input {
@@ -221,6 +255,16 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(2) rotate(90deg);
 }
 
+.carousel-control-prev:hover,
+.carousel-control-prev-icon:hover {
+    cursor: var(--cursor-left), auto;
+}
+
+.carousel-control-next:hover,
+.carousel-control-next-icon:hover {
+    cursor: var(--cursor-right), auto;
+}
+
 /*  Buttons Styles */
 
 .btn-blue,
@@ -247,6 +291,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-blue:hover,
 .btn-purple:hover {
     transform: scale(1.1);
+    cursor: var(--cursor-click), auto;
 }
 
 .btn-blue:active,

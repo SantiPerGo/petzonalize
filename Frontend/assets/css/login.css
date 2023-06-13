@@ -20,6 +20,11 @@ main {
                  1px 0 var(--purple), 0 -1px var(--purple);
     
     transform: scale(1.1);
+    cursor: var(--cursor-click), auto;
+}
+
+#view-recover-section b:hover {
+    cursor: var(--cursor-click), auto;
 }
 
 #view-recover-section:active {

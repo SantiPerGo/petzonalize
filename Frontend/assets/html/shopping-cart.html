@@ -37,11 +37,6 @@
             <div class="col col-lg-8 p-4">
 
                 <div class="bg-beige mt-2 not-registered-user-box">
-                    <div class="container-button-delete">
-                        <button type="button" class="d-flex border-0 rounded-circle p-0" id="close-window-form">
-                            <img src="../img/shopping-cart/cross.svg" alt="">
-                        </button>
-                    </div>
                     <form id="not-registered-form">
 
                         <!-- Section right - Register -->
@@ -79,12 +74,16 @@
                         </div>
                        </div>
 
-
                         <!-- Buttons of register -->
                         <div class="row gy-3 mt-md-3">
-                            <div class="col col-sm-12 col-lg-12">
+                            <div class="col-12 col-md-6">
                                 <div class="px-auto d-flex">
-                                    <button id="create-order-btn" type="submit" class="btn btn-purple mx-auto h-100">Confirmar Pedido</button>
+                                    <button id="create-order-btn" type="submit" class="btn btn-purple mx-auto w-100 h-100">Confirmar Pedido</button>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="px-auto d-flex">
+                                    <button id="close-window-form" type="button" class="btn btn-blue mx-auto w-100 h-100">Cancelar</button>
                                 </div>
                             </div>
                         </div>
@@ -146,7 +145,7 @@
                                 <!-- Botones version movil -->
                                 <div class="row justify-content-center d-md-none">
                                     <div class="col-6 info">
-                                        <button id="open-create-order"
+                                        <button id="open-create-order-mobile"
                                             class="btn btn-purple w-100 px-0">Ordenar</button>
                                     </div>
 

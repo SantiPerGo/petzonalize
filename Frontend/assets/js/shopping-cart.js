@@ -4,6 +4,7 @@ const notFountContainer = document.querySelector(".list-not-found");
 const notRegisteredForm = $("#not-registered-form");
 const btnCreateOrder = document.getElementById("create-order-btn");
 const btnOpenWindowOrder = document.getElementById("open-create-order");
+const btnOpenWindowOrderMobile = document.getElementById("open-create-order-mobile");
 const btnCloseWindowOrder = document.getElementById("close-window-form");
 const formOrderContainer = document.querySelector(".not-register-form-container");
 
@@ -11,7 +12,8 @@ const emptyCart = () => {
     const emptyCartButton = document.getElementById('empty-cart');
 
     emptyCartButton.disabled = true;
-    btnOpenWindowOrder .disabled = true;
+    btnOpenWindowOrder.disabled = true;
+    btnOpenWindowOrderMobile.disabled = true;
 
     return `<div class="list-not-found mt-4 text-black">
     <div class="row justify-content-center">
@@ -438,7 +440,6 @@ notRegisteredForm.submit(submitButton => {
 const hiddenWindowOrder = () =>{
     formOrderContainer.classList.add("pop--hidden");
     formOrderContainer.classList.remove("pop--unhidden");
-    $("footer").find("a").each((key, element) => $(element).css("pointer-events","auto"));
 }
 
 btnCloseWindowOrder.addEventListener('click', ()=>{
@@ -459,10 +460,9 @@ const setInputs = (userData) => {
 }
 
 //-------------- Carga formulario de compra --------------
-btnOpenWindowOrder.addEventListener('click', function() {
+const showWindowOrder = () => {
     formOrderContainer.classList.remove("pop--hidden");
     formOrderContainer.classList.add("pop--unhidden");
-    $("footer").find("a").each((key, element) => $(element).css("pointer-events","none"));
 
     let userLogged = localStorage.getItem("users-logged-in");
 
@@ -470,8 +470,10 @@ btnOpenWindowOrder.addEventListener('click', function() {
         let userData = JSON.parse(userLogged);
         setInputs(userData);
     }
-});
+};
 
+btnOpenWindowOrder.addEventListener('click', showWindowOrder);
+btnOpenWindowOrderMobile.addEventListener('click', showWindowOrder);
 
 //--------------- Mensaje de pedido creado ---------------------
   function showAlert() {
