@@ -11,18 +11,21 @@ const formOrderContainer = document.querySelector(".not-register-form-container"
 const emptyCart = () => {
     const emptyCartButton = document.getElementById('empty-cart');
 
+    $(productsListContainer).addClass("d-none");
     emptyCartButton.disabled = true;
     btnOpenWindowOrder.disabled = true;
     btnOpenWindowOrderMobile.disabled = true;
+    $("aside").addClass("d-none");
 
-    return `<div class="list-not-found mt-4 text-black">
-    <div class="row justify-content-center">
-        <div class="col col-12 mt-4">
-            <h4>No tienes productos en el carrito</h4>
+    return `<div class="list-not-found mt-4 text-black d-flex justify-content-center">
+    <div class="row">
+        <div class="col-12 mt-4 d-flex justify-content-center text-center">
+            <h2>No Tienes Productos en el Carrito</h2>
         </div>
-        <div class="col col-12 mt-4">
+        <div class="col-12 mt-4 d-flex justify-content-center">
             <div class="error-image-container mt-4">
-                <img src="../img/page-error-cat.png" alt="Gatito dice que tienes carrito Vacio" class="errorcat">
+                <img src="../img/page-error-cat.png" alt="Gatito dice que tienes carrito Vacio"
+                    class="errorcat">
             </div>
         </div>
     </div>
@@ -252,11 +255,11 @@ const getUserProductsInStorage = () => {
             updateTotalPrice();
         }
         else if(userCartProducts.length <= 1){
-            productsListContainer.innerHTML = emptyCart();
+            $("main").append(emptyCart());
         }
     }
     else{
-        productsListContainer.innerHTML = emptyCart();
+        $("main").append(emptyCart());
     }
 
 }
@@ -277,8 +280,7 @@ function deleteShoppingCart() {
     updateAmountSpan();
     updateIconCartReference('0');
     // Vaciar el contenido del contenedor
-    productsListContainer.innerHTML = "";
-    productsListContainer.innerHTML = emptyCart();
+    $("main").append(emptyCart());
 }
 
 
