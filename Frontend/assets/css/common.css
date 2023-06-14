@@ -306,7 +306,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .carousel-control-prev-icon:hover {
-    transform: scale(2) rotate(-90deg);
+    transform: scale(1.4) rotate(-90deg);
 }
 
 .carousel-control-next-icon {
@@ -314,7 +314,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .carousel-control-next-icon:hover {
-    transform: scale(2) rotate(90deg);
+    transform: scale(1.4) rotate(90deg);
 }
 
 .carousel-control-prev:hover,
