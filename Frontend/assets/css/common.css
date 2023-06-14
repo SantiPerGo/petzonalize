@@ -163,7 +163,8 @@ footer {
 }
 
 .nav-link:hover,
-.nav-link b:hover {
+.nav-link b:hover,
+.navbar-brand img:hover {
     cursor: var(--cursor-click), auto;
 }
 
