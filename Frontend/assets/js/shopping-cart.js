@@ -475,16 +475,6 @@ const showWindowOrder = () => {
 btnOpenWindowOrder.addEventListener('click', showWindowOrder);
 btnOpenWindowOrderMobile.addEventListener('click', showWindowOrder);
 
-//--------------- Mensaje de pedido creado ---------------------
-  function showAlert() {
-    const toastElement = $("#toast");
-    const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
-    const toastBody = $("#toast-body");
-    toastBody.text("¡Gracias por tu pedido! Debes estar pendiente de tu correo donde recibirás los detalles");
-    toastElement.addClass(`toast-success`);
-    toastInstance.show();
-  }
-
 //------------- Crear orden -------------
 const clearInputs = (name, email, phone, address) =>{
     name.val("");
@@ -513,20 +503,34 @@ const createUserOrder = () => {
         "products": finalOrderProducts
     };
     
-    console.log(userOrder)
-    //sessionStorage.setItem("purchase-order", JSON.stringify(finalOrderProducts));
-
     fetch(urlOrder, {
         method: 'POST',
         body: JSON.stringify(userOrder), // Enviando orden a end-Point /Buy de Backend
         headers:{
           'Content-Type': 'application/json'
         }
-      }).then(response => console.log('Message:', response))
-      .catch(error => console.error('Error:', error))
-
-    clearInputs(name, email, phone, address);
-    showAlert();
-    deleteShoppingCart();
-    hiddenWindowOrder();
+      }).then(response => {
+        if(response.status === 200) {
+            clearInputs(name, email, phone, address);
+            deleteShoppingCart();
+            hiddenWindowOrder();
+            sessionStorage.setItem("order-created", "¡Gracias por tu pedido! Debes estar pendiente de tu correo donde recibirás tu recibo completo");
+            window.location.href = "../../index.html";
+        } else 
+            loadAlertText("¡Error al crear el pedido! Intenta de nuevo más tarde", "error")
+      })
+      .catch(error => {
+        console.error('Error:', error)
+        loadAlertText("¡Error al crear el pedido! Intenta de nuevo más tarde", "error")
+    })
 } 
+
+
+const loadAlertText = (text, type) => {
+    const toastElement = $("#toast");
+    const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
+    const toastBody = $("#toast-body");
+    toastBody.text(text);
+    toastElement.addClass(`toast-${type}`);
+    toastInstance.show();
+  };

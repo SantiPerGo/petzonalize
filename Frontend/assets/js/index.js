@@ -4,6 +4,7 @@ $(document).ready(() => {
     const accountResult = sessionStorage.getItem("eliminated-account");
     const sessionResult = sessionStorage.getItem("not-account");
     const closedSessionResult = sessionStorage.getItem("closed-session");
+    const orderCreatedResult = sessionStorage.getItem("order-created");
 
     const toastElement = $("#toast");
     const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
@@ -30,6 +31,18 @@ $(document).ready(() => {
         toastElement.addClass("toast-error");
         toastInstance.show();
         sessionStorage.removeItem("not-account");
+    } else if(orderCreatedResult !== null) {
+        $("#order-created-text").text(orderCreatedResult);
+        const orderContainer = $("#order-container");
+        orderContainer.removeClass("pop--hidden");
+        orderContainer.addClass("pop--unhidden");
+
+        setTimeout(() => {
+            orderContainer.addClass("pop--hidden");
+            orderContainer.removeClass("pop--unhidden");
+        }, 5000);
+
+        sessionStorage.removeItem("order-created");
     }
 });
 
