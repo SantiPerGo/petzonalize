@@ -48,6 +48,14 @@ h2 {
     font-size: calc(0.5rem + 1.5vw);
 }
 
+.form-label b {
+    cursor: var(--cursor-arrow), auto;
+}
+
+#form-delete-account .form-label b {
+    cursor: var(--cursor-click), auto;
+}
+
 .input-container {
     display: flex;
     justify-items: center;

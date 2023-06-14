@@ -58,7 +58,9 @@ input, textarea {
     cursor: text;
 }
 
-.form-check-input {
+.form-check-input,
+.form-check-label,
+.form-label b {
     cursor: var(--cursor-click), auto;
 }
 
