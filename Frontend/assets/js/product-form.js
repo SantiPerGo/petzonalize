@@ -15,6 +15,8 @@ $(document).ready(() => {
   let productToEdit = sessionStorage.getItem("product");
 
   if(productToEdit != null) {
+    $("#add").text("Actualizar");
+
     productToEdit = JSON.parse(productToEdit);
     sessionStorage.removeItem("product");
     productId = productToEdit.id;
@@ -42,6 +44,11 @@ $(document).ready(() => {
       document.querySelector('#product-form-dog').checked = true;
     else
       document.querySelector('#product-form-cat').checked = true;
+  } else {
+    $("#remove").addClass("d-none");
+    $("#add").removeClass("w-75");
+    $("#add").addClass("w-100");
+    $("#add-container").removeClass("col-md-6");
   }
 });
 
