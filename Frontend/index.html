@@ -27,58 +27,89 @@
     <!-- Success Alert -->
     <div id="alert" class="alert alert-success m-0 text-success text-center" role="alert"></div>
 
-    <header class="container-fluid my-3">
-        <div class="row justify-content-center carousel-row">
-            <div class="col-sm-12 col-lg-12 mx-2">
-                <!---- CAROUSEL DE PRODUCTOS -->
-                <!---- Imagenes de resolucion minima Width = 320px -->
+    <main class="container-fluid justify-content-center mb-3">
+        <header class="container-fluid my-3">
+            <div class="row justify-content-center carousel-row">
+                <div class="col-12">
+                    <!---- CAROUSEL DE PRODUCTOS -->
+                    <!---- Imagenes de resolucion minima Width = 320px -->
+    
+                    <div id="carouselExample" class="carousel slide d-none d-md-block" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="4000">
+                                <img src="./assets/img/index/welcome.png"
+                                    class="d-block w-75 rounded-5 mx-auto" alt="product advertisement 01" />
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="./assets/img/index/new-generation-sweater.png"
+                                    class="d-block w-75 rounded-5 mx-auto" alt="product advertisement 02" />
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="./assets/img/index/new-mariachi-hat.png"
+                                    class="d-block w-75 rounded-5 mx-auto" alt="product advertisement 03" />
+                            </div>
+                        </div>
 
-                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="4000">
-                            <img src="./assets/img/index/welcome.png"
-                                class="d-block w-75 rounded-5 mx-auto" alt="product advertisement 01" />
-                        </div>
-                        <div class="carousel-item" data-bs-interval="4000">
-                            <img src="./assets/img/index/new-generation-sweater.png"
-                                class="d-block w-75 rounded-5 mx-auto" alt="product advertisement 02" />
-                        </div>
-                        <div class="carousel-item" data-bs-interval="4000">
-                            <img src="./assets/img/index/new-mariachi-hat.png"
-                                class="d-block w-75 rounded-5 mx-auto" alt="product advertisement 03" />
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+                    <div id="carouselMobile" class="carousel slide d-md-none" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="4000">
+                                <img src="./assets/img/index/welcome.png"
+                                    class="d-block w-100 rounded-5 mx-auto" alt="product advertisement 01" />
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="./assets/img/index/new-generation-sweater.png"
+                                    class="d-block w-100 rounded-5 mx-auto" alt="product advertisement 02" />
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="./assets/img/index/new-mariachi-hat.png"
+                                    class="d-block w-100 rounded-5 mx-auto" alt="product advertisement 03" />
+                            </div>
+
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselMobile"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselMobile"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+    
                 </div>
-
             </div>
-        </div>
-    </header>
-
-    <main class="container justify-content-center mb-3">
-        <section class="row justify-content-center products-container gy-3">
-            <!---- Tarjeta Productos Perros -->
-            <div class="col mx-auto col-lg-6 col-sm-12">
-                <div onclick="changeToProductsPage('perros')" class="row mx-auto box-card rounded-4 bg-products-dogs">
-                    <div class="col col-12 title-content position-absolute w-100 text-center p-4 text-white">
-                        <h2>Todo Para Tu Perro</h2>
+        </header>
+        
+        <section class="container">
+            <div class="row gy-3 products-container">
+                <!---- Tarjeta Productos Perros -->
+                <div class="col-md-6 col-12">
+                    <div onclick="changeToProductsPage('perros')" class="row mx-auto box-card rounded-4 bg-products-dogs">
+                        <div class="col col-12 title-content position-absolute w-100 text-center p-4 text-white">
+                            <h2>Todo Para Tu Perro</h2>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!---- Tarjeta Productos Gatos -->
-            <div class="col mx-auto col-lg-6 col-sm-12">
-                <div onclick="changeToProductsPage('gatos')" class="row mx-auto box-card rounded-4 bg-products-cats">
-                    <div class="col col-12 title-content position-absolute w-100 text-center p-4 text-white">
-                        <h2>Todo Para Tu Gato</h2>
+                <!---- Tarjeta Productos Gatos -->
+                <div class="col-md-6 col-12">
+                    <div onclick="changeToProductsPage('gatos')" class="row mx-auto box-card rounded-4 bg-products-cats">
+                        <div class="col col-12 title-content position-absolute w-100 text-center p-4 text-white">
+                            <h2>Todo Para Tu Gato</h2>
+                        </div>
                     </div>
                 </div>
             </div>
