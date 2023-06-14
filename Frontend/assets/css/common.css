@@ -136,6 +136,27 @@ footer .bi {
     height: 0.75rem;
 }
 
+/* Pet Mode Switch */
+
+.toggle-label {
+    font-family: 'Righteous';
+    color: var(--blue);
+}
+
+.pet-switch {
+    background-color: var(--blue);
+    border-color: var(--blue);
+}
+
+.pet-switch:focus {
+    box-shadow: 0 0 0 0 transparent;
+}
+
+.pet-switch:checked {
+    background-color: var(--purple);
+    border-color: var(--purple);
+}
+
 nav {
     border-bottom: .5rem solid var(--brown);
 }
