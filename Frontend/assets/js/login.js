@@ -162,9 +162,9 @@ loginForm.submit(submitButton => {
             if (response.ok) {
                 return response.json();
             } else if (response.status === 400) {
-                showAlert("Correo o contraseña incorrectos");
+                loadAlertText("Correo o contraseña incorrectos", "error");
             } else if (response.status === 404) {
-                showAlert("La cuenta de usuario no existe");
+                loadAlertText("La cuenta de usuario no existe", "error");
             }
 
             throw new Error("Login failed");
@@ -195,7 +195,7 @@ loginForm.submit(submitButton => {
                         window.location.href = 'profile.html';
                         console.log("Sesión iniciada desde archivo JSON local");
                     } else {
-                        showAlert("Correo o contraseña incorrectos");
+                        loadAlertText("Correo o contraseña incorrectos", "error");
                     }
                 })
                 .catch(error => console.log(error));
@@ -203,7 +203,6 @@ loginForm.submit(submitButton => {
     }
 });
 
-<<<<<<< HEAD
 const loadAlertText = (text, type) => {
     const toastElement = $("#toast");
     const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
@@ -211,38 +210,81 @@ const loadAlertText = (text, type) => {
     toastBody.text(text);
     toastElement.addClass(`toast-${type}`);
     toastInstance.show();
-=======
-// ----- Alertas -------
-const showAlert = text => {
-    alertElement.text(text);
-    alertElement.slideDown(250);
-    setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-
-    alertElement.removeClass("alert-success");
-    alertElement.removeClass("text-success");
-    alertElement.addClass("alert-danger");
-    alertElement.addClass("text-danger");
->>>>>>> 1297482 (front-login-perf: login n register fetch with database n local json)
 };
 
 // ----- Escucha cuando el usuario recupera contraseña ------
+/* recoverForm.submit(submitButton => {
+    submitButton.preventDefault();
+
+    const email = $("#recover-email-login").val().trim();
+
+    if (recoverForm.valid()) {
+        fetch("https://petzonalize.up.railway.app/users/" + email)
+            .then(response => {
+                if (response.ok) {
+                    // Success: Password recovery logic
+                    loadAlertText("Se ha enviado la contraseña a tu correo", "success");
+                } else if (response.status === 404) {
+                    // User not found
+                    loadAlertText("El correo no pertenece a ninguna cuenta", "error");
+                } else {
+                    throw new Error("Failed to recover password. Status: " + response.status);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+}); */
+
+
+// ------ Escucha cuando el usuario recupera contraseña del Database o Users.Json -------------
 recoverForm.submit(submitButton => {
     submitButton.preventDefault();
 
-    const email = $("#recover-email-login").val().trim()
+    const email = $("#recover-email-login").val().trim();
 
-    if(recoverForm.valid()) {
+    if (recoverForm.valid()) {
         fetch("https://petzonalize.up.railway.app/users/" + email)
             .then(response => {
-            if(response.ok){
-                loadAlertText("Se ha enviado la contraseña a tu correo", "success");
-            } else {
-                loadAlertText("El correo no pertenece a ninguna cuenta", "error");         
-            }}
-    )} 
+                if (response.ok) {
+                    // Success: Password recovery logic
+                    loadAlertText("Se ha enviado la contraseña a tu correo", "success");
+                } else if (response.status === 404) {
+                    // User not found
+                    loadAlertText("El correo no pertenece a ninguna cuenta", "error");
+                } else {
+                    throw new Error("Failed to recover password. Status: " + response.status);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                // Fetch from local JSON file if the API request fails
+                fetch("/assets/json/users.json")
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            throw new Error("Failed to fetch from local JSON file");
+                        }
+                    })
+                    .then(usersResponse => {
+                        // Check if the email exists in the local JSON data
+                        const user = usersResponse.find(user => user.email === email);
+                        if (user) {
+                            // Email found: Proceed with further logic
+                            console.log("User recovery from local JSON file:", user);
+                            loadAlertText("Se ha enviado la contraseña a tu correo", "success");
+                        } else {
+                            // Email not found: Display an appropriate message
+                            console.log("Email does not exist in the local JSON file");
+                            loadAlertText("El correo no pertenece a ninguna cuenta", "error");
+                        }
+                    })
+                    .catch(error => console.log(error));
+            });
+    }
 });
-
-// ------ Escucha cuando el usuario recupera contraseña del Database o Users.Json -------------
 
 
 // ----- Escucha cuando el usuario se registre ------
@@ -354,7 +396,7 @@ const creatingUserAccount = () => {
                 );
                 if (existingUser) {
                     console.error("This email already exists:", existingUser);
-                    showAlert("Este correo ya existe");
+                    loadAlertText("Este correo ya existe", "error");
                 } else {
                     // Add the new user to the local JSON data
                     usersResponse.push(user);
