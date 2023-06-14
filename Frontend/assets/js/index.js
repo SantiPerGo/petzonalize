@@ -5,35 +5,30 @@ $(document).ready(() => {
     const sessionResult = sessionStorage.getItem("not-account");
     const closedSessionResult = sessionStorage.getItem("closed-session");
 
-    const alertElement = $("#alert");
+    const toastElement = $("#toast");
+    const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
+    const toastBody = $("#toast-body");
 
     if(emailResult !== null && emailStatus !== null) {
-        alertElement.text(emailResult);
-        alertElement.slideDown(250);
-        setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+        toastBody.text(emailResult);
+        toastInstance.show();
 
-        if(emailStatus === "false") {
-            alertElement.removeClass("alert-success");
-            alertElement.removeClass("text-success");
-            alertElement.addClass("alert-danger");
-            alertElement.addClass("text-danger");
-        }
+        if(emailStatus === "false") 
+            toastElement.addClass("toast-error");
+        else
+            toastElement.addClass("toast-success");
 
         sessionStorage.removeItem("email-operation");
         sessionStorage.removeItem("email-status");
     } else if(accountResult !== null || closedSessionResult !== null) {
-        alertElement.text(accountResult !== null ? accountResult : closedSessionResult);
-        alertElement.slideDown(250);
-        setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+        toastBody.text(accountResult !== null ? accountResult : closedSessionResult);
+        toastElement.addClass("toast-success");
+        toastInstance.show();
         sessionStorage.removeItem(accountResult !== null ? "eliminated-account" : "closed-session");
     } else if(sessionResult !== null) {
-        alertElement.removeClass("alert-success");
-        alertElement.removeClass("text-success");
-        alertElement.addClass("alert-danger");
-        alertElement.addClass("text-danger");
-        alertElement.text(sessionResult);
-        alertElement.slideDown(250);
-        setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+        toastBody.text(sessionResult);
+        toastElement.addClass("toast-error");
+        toastInstance.show();
         sessionStorage.removeItem("not-account");
     }
 });

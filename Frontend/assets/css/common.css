@@ -50,10 +50,6 @@ main {
     min-height: calc(80vh + 1vw);
 }
 
-.alert {
-    display: none;
-}
-
 input, textarea {
     cursor: text;
 }
@@ -62,6 +58,39 @@ input, textarea {
 .form-check-label,
 .form-label b {
     cursor: var(--cursor-click), auto;
+}
+
+/* Toast styles */
+
+.toast-container {
+    width: 35%;
+}
+
+@media only screen and (max-width: 768px) {
+    .toast-container {
+        width: 100%;
+    }
+}
+
+#toast {
+    font-family: 'Signika Negative', sans-serif;
+    font-size: calc(0.75rem + 1vw);
+}
+
+#toast i {
+    cursor: var(--cursor-click), auto;
+}
+
+.toast-success {
+    background-color: #9deda1;
+}
+
+.toast-error {
+    background-color: #ed9d9d;
+}
+
+.toast-info {
+    background-color: #9dbeed;
 }
 
 /* Navbar and footer styles */

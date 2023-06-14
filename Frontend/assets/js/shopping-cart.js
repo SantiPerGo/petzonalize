@@ -477,13 +477,12 @@ btnOpenWindowOrderMobile.addEventListener('click', showWindowOrder);
 
 //--------------- Mensaje de pedido creado ---------------------
   function showAlert() {
-    let alerta = document.getElementById('alert');
-    alerta.innerHTML = '¡Gracias por tu pedido! Debes estar pendiente de tu correo donde recibirás los detalles';
-    alerta.style.display = 'block';
-
-    setTimeout(function() {
-        alerta.style.display = 'none';
-      }, 4000);
+    const toastElement = $("#toast");
+    const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
+    const toastBody = $("#toast-body");
+    toastBody.text("¡Gracias por tu pedido! Debes estar pendiente de tu correo donde recibirás los detalles");
+    toastElement.addClass(`toast-success`);
+    toastInstance.show();
   }
 
 //------------- Crear orden -------------

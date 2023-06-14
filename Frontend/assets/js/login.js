@@ -11,8 +11,6 @@ const loginContainer = document.getElementById("login-container");
 const signupContainer = document.getElementById("signup-container");
 const recoverContainer = document.getElementById("recover-container");
 
-const alertElement = $("#alert");
-
 //-------------- Cambio de Vista -------------------
 buttonToSignUp.addEventListener('click', ()=>{
     loginContainer.classList.add("d-none");
@@ -105,9 +103,9 @@ loginForm.submit(submitButton => {
                 if (response.ok)
                     return response.json();
                 else if (response.status === 400) 
-                    showAlert("Correo o contraseña incorrectos");
+                    loadAlertText("Correo o contraseña incorrectos", "error");    
                 else if (response.status === 404) 
-                    showAlert("La cuenta de usuario no existe");
+                    loadAlertText("La cuenta de usuario no existe", "error");   
                 
                 throw new Error("Login failed");
             })
@@ -121,15 +119,13 @@ loginForm.submit(submitButton => {
             })
 });
 
-const showAlert = text => {
-    alertElement.text(text);
-    alertElement.slideDown(250);
-    setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-
-    alertElement.removeClass("alert-success");
-    alertElement.removeClass("text-success");
-    alertElement.addClass("alert-danger");
-    alertElement.addClass("text-danger");
+const loadAlertText = (text, type) => {
+    const toastElement = $("#toast");
+    const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
+    const toastBody = $("#toast-body");
+    toastBody.text(text);
+    toastElement.addClass(`toast-${type}`);
+    toastInstance.show();
 };
 
 // ----- Escucha cuando el usuario recupera contraseña ------
@@ -141,20 +137,10 @@ recoverForm.submit(submitButton => {
     if(recoverForm.valid()) {
         fetch("https://petzonalize.up.railway.app/users/" + email)
             .then(response => {
-                if(response.ok){
-                alertElement.text("Se ha enviado la contraseña a tu correo");
-                alertElement.slideDown(250);
-                setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-
-                alertElement.addClass("alert-success");
-                alertElement.addClass("text-success");
-                alertElement.removeClass("alert-danger");
-                alertElement.removeClass("text-danger");
+            if(response.ok){
+                loadAlertText("Se ha enviado la contraseña a tu correo", "success");
             } else {
-                console.error("Not user registered");  
-                alertElement.text("Por favor verifica si el correo es el suscrito a nuestra página");  
-                alertElement.slideDown(250);
-                setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);            
+                loadAlertText("El correo no pertenece a ninguna cuenta", "error");         
             }}
     )} 
 });
