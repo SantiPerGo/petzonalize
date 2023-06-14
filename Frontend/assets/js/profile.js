@@ -120,8 +120,10 @@ const updateUserData = (userData) => {
     body: JSON.stringify(userData),
   };
 
+  $("#loading").removeClass("d-none");
   fetch(url, requestData)
     .then((response) => {
+      $("#loading").addClass("d-none");
       if (!response.ok) {
         throw new Error("Error al realizar la solicitud");
       }
@@ -131,6 +133,7 @@ const updateUserData = (userData) => {
       console.log("Datos actualizados:", data);
     })
     .catch((error) => {
+      $("#loading").addClass("d-none");
       console.error("Error en la solicitud:", error);
       console.log("JSON almacenado localmente:", userData);
     });
@@ -184,8 +187,10 @@ formDeleteAccount.submit(submitButton => {
       }),
     };
 
+    $("#loading").removeClass("d-none");
     fetch(url, requestData)
       .then((response) => {
+        $("#loading").addClass("d-none");
         if (!response.ok)
           throw new Error("Error al realizar la solicitud");
     
@@ -199,6 +204,7 @@ formDeleteAccount.submit(submitButton => {
         window.location.href = '../../index.html';
       })
       .catch((error) => {
+        $("#loading").addClass("d-none");
         console.error(error);
         cancelDeleteAccount();
         resetInput($("#input-password-delete"));

@@ -505,6 +505,7 @@ const createUserOrder = () => {
         "products": finalOrderProducts
     };
     
+    $("#loading").removeClass("d-none");
     fetch(urlOrder, {
         method: 'POST',
         body: JSON.stringify(userOrder), // Enviando orden a end-Point /Buy de Backend
@@ -512,6 +513,7 @@ const createUserOrder = () => {
           'Content-Type': 'application/json'
         }
       }).then(response => {
+        $("#loading").addClass("d-none");
         if(response.status === 200) {
             clearInputs(name, email, phone, address);
             deleteShoppingCart();
@@ -522,6 +524,7 @@ const createUserOrder = () => {
             loadAlertText("¡Error al crear el pedido! Intenta de nuevo más tarde", "error")
       })
       .catch(error => {
+        $("#loading").addClass("d-none");
         console.error('Error:', error)
         loadAlertText("¡Error al crear el pedido! Intenta de nuevo más tarde", "error")
     })

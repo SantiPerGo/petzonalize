@@ -92,7 +92,10 @@ const postData = (url, data) => {
 
       }
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      $("#loading").addClass("d-none");
+    })
 }
 
 editform.submit(submitButton => {
@@ -135,15 +138,20 @@ const deleter = document.getElementById("remove");
 deleter.addEventListener(`click`, () => {
   const url=("https://petzonalize.up.railway.app/products/"+productId);
 
+  $("#loading").removeClass("d-none");
   fetch(url, {method: "DELETE"})
     .then(data => {
+      $("#loading").addClass("d-none");
       if(data.status === 200) {
         sessionStorage.setItem("alert", 8 )
         window.location.href="../html/products.html";
       } else
         loadAlertText("¡No se encontró ningun producto con ese id!", "error");
     })
-    .catch(error => console.error(error))
+    .catch(error => {
+      console.error(error);
+      $("#loading").addClass("d-none");
+    })
 })
 
 // ---------------------------------------------------------------------
