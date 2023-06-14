@@ -37,6 +37,17 @@ $(document).ready(function(){
     $.get("/assets/html/footer.html", data => {
         $("footer").replaceWith(data);
 
+        $("#toggle-check").click(() => {
+            if($("#toggle-check").is(":checked")) {
+                $(".toggle-label").css("color", "var(--purple)");
+                $("footer").append("<script id='oneko-script' src='/assets/js/libraries/oneko.js'></script>");
+            } else {
+                $(".toggle-label").css("color", "var(--blue)");
+                $("#oneko").remove();
+                $("#oneko-script").remove();
+            }
+        });
+
         // Updating footer backend status each minute
         updateBackendStatus();
         setInterval(() => updateBackendStatus(), 60_000);
@@ -132,6 +143,18 @@ const switchMode = isDarkMode => {
                     $(element).attr("src", "/assets/img/Logo.png");
                 else 
                     $(element).attr("src", "/assets/img/Logo Dark.png");
+            } else if($(element).attr("src").includes("page-error-cat.png") ||
+                $(element).attr("src").includes("page-error-cat-dark.png")) {
+                if(!isDarkMode)
+                    $(element).attr("src", "/assets/img/page-error-cat.png");
+                else 
+                    $(element).attr("src", "/assets/img/page-error-cat-dark.png");
+            } else if($(element).attr("src").includes("page-error-dog.png") ||
+                $(element).attr("src").includes("page-error-dog-dark.png")) {
+                if(!isDarkMode)
+                    $(element).attr("src", "/assets/img/page-error-dog.png");
+                else 
+                    $(element).attr("src", "/assets/img/page-error-dog-dark.png");
             }
     });
 };

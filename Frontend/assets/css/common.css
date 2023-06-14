@@ -136,6 +136,27 @@ footer .bi {
     height: 0.75rem;
 }
 
+/* Pet Mode Switch */
+
+.toggle-label {
+    font-family: 'Righteous';
+    color: var(--blue);
+}
+
+.pet-switch {
+    background-color: var(--blue);
+    border-color: var(--blue);
+}
+
+.pet-switch:focus {
+    box-shadow: 0 0 0 0 transparent;
+}
+
+.pet-switch:checked {
+    background-color: var(--purple);
+    border-color: var(--purple);
+}
+
 nav {
     border-bottom: .5rem solid var(--brown);
 }
@@ -163,7 +184,8 @@ footer {
 }
 
 .nav-link:hover,
-.nav-link b:hover {
+.nav-link b:hover,
+.navbar-brand img:hover {
     cursor: var(--cursor-click), auto;
 }
 
@@ -305,7 +327,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .carousel-control-prev-icon:hover {
-    transform: scale(2) rotate(-90deg);
+    transform: scale(1.4) rotate(-90deg);
 }
 
 .carousel-control-next-icon {
@@ -313,7 +335,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .carousel-control-next-icon:hover {
-    transform: scale(2) rotate(90deg);
+    transform: scale(1.4) rotate(90deg);
 }
 
 .carousel-control-prev:hover,

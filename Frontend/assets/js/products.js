@@ -30,19 +30,14 @@ const createProductsCards = products => {
     card.find('[id*="product-price"]').text(price);
 
     if (product.customizable === false) {
-      let user = localStorage.getItem("users-logged-in");
       const editIcon = card.find('[id*="product-edit"]');
 
-      if (user != null) {
-        user = JSON.parse(user);
-
-        if (user.privilege === "admin") {
-          editIcon.removeClass("d-none");
-          editIcon.click(() => {
-            sessionStorage.setItem("product", JSON.stringify(product));
-            window.location.href = 'product-form.html';
-          });
-        }
+      if (isUserAdmin) {
+        editIcon.removeClass("d-none");
+        editIcon.click(() => {
+          sessionStorage.setItem("product", JSON.stringify(product));
+          window.location.href = 'product-form.html';
+        });
       }
 
       // Adding increase and decrease buttons methods
@@ -330,6 +325,8 @@ const loadProducts = async intervalId => {
 // Start loading animation and load products
 // *********************************************************************************
 
+let isUserAdmin = false;
+
 // Loading products in cards
 $(document).ready(() => {
   // Start loading text in carousel
@@ -352,6 +349,22 @@ $(document).ready(() => {
     toastInstance.show();
     sessionStorage.removeItem("alert");
   }
+
+  let user = localStorage.getItem("users-logged-in");
+
+  if(user !== null) {
+    user = JSON.parse(user);
+
+    console.log("getting user")
+    if(user.privilege === "admin") {
+      $("#search-container").toggleClass("col-md-8 col-lg-9");
+      $("#search-container").toggleClass("col-md-4 col-lg-6");
+      $("#create-product-container").removeClass("d-none");
+      $("#create-product-space").toggleClass("d-block d-md-none d-none");
+      isUserAdmin = true;
+      console.log("user is admin")
+    }
+  } 
 });
 
 // *********************************************************************************
@@ -376,9 +389,11 @@ const toggle = () => {
   // Showing or hiding filters
   slideElement.toggleClass("show");
 
-  $("#create-product").toggleClass("d-none");
-  $("#search-container").toggleClass("col-md-4 col-lg-6");
-  $("#search-container").toggleClass("col-md-8 col-lg-9");
+  if(isUserAdmin) {
+    $("#create-product").toggleClass("d-none");
+    $("#search-container").toggleClass("col-md-4 col-lg-6");
+    $("#search-container").toggleClass("col-md-8 col-lg-9");
+  }
 
   // Changing cards sizes
   toggleCards("col-xl-4", "col-xl-6");

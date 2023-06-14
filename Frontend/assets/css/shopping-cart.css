@@ -112,14 +112,11 @@ y disposición de los mismos para que sea responsivo
       text-decoration: underline; /* Agrega decoración de subrayado o personalízala */
       cursor: pointer; /* Cambia el cursor al estilo "puntero" al pasar el ratón sobre él */
     }
-
-    @media screen and (min-width: 992px) {
       
-      .errorcat {
-          width: 500px;
-          height: 300px;
-      }
-  }
+    .errorcat {
+        width: calc(5rem + 50vw);
+        height: auto;
+    }
 
   /* Contenedor de los botones */
 

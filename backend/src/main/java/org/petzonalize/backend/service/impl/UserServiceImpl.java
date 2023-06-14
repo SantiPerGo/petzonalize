@@ -9,16 +9,15 @@ import org.petzonalize.backend.dto.UserWithPrivilegeDto;
 import org.petzonalize.backend.entity.Privilege;
 import org.petzonalize.backend.entity.User;
 import org.petzonalize.backend.entity.UserHasPrivilege;
-import org.petzonalize.backend.mapper.ProductMapper;
 import org.petzonalize.backend.mapper.UserHasPrivilegeMapper;
 import org.petzonalize.backend.mapper.UserMapper;
 import org.petzonalize.backend.repository.OrderRepository;
 import org.petzonalize.backend.repository.PrivilegeRepository;
-import org.petzonalize.backend.repository.ProductRepository;
 import org.petzonalize.backend.repository.UserHasPrivilegeRepository;
 import org.petzonalize.backend.repository.UserRepository;
 import org.petzonalize.backend.service.UserService;
 import org.petzonalize.backend.utils.EmailUtils;
+import org.petzonalize.backend.utils.FirebaseUtils;
 import org.petzonalize.backend.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,9 +30,6 @@ import jakarta.transaction.Transactional;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {	
-    @Autowired
-    private ProductRepository productRepository;
-    
     @Autowired
     private UserRepository userRepository;
     
@@ -161,8 +157,8 @@ public class UserServiceImpl implements UserService {
             		"User with id '" + email + "' doesn't exist", HttpStatus.NOT_FOUND);
 			else {
 		        String subject = "Petzonalize - Recuperación de Contraseña";
-		        String logoUrl = ProductMapper.getProductUrlByName(
-		        		productRepository.findAll(), "Logo.png");
+		        String logoUrl = FirebaseUtils.getImageUrlByName(
+		        		FirebaseUtils.getImagesFromFirebaseStorage(), "Logo.png");
 		        
 		        // Loading HTML with Thymeleaf
 		        Context context = new Context();
