@@ -25,6 +25,13 @@ $(document).ready(function(){
             localStorage.setItem("is-dark-mode", isDarkMode);
             switchMode(isDarkMode);
         });
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 0) 
+              $("nav").addClass("nav-opaque");
+            else
+              $("nav").removeClass("nav-opaque");
+        });
     });
     
     $.get("/assets/html/footer.html", data => $("footer").replaceWith(data));

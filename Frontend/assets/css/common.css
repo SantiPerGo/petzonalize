@@ -69,6 +69,13 @@ nav, footer {
     color: var(--brown);
     position: relative;
     z-index: 1;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.nav-opaque {
+    opacity: 0.9;
+    transition: opacity 0.5s ease;
 }
 
 footer h2 {
