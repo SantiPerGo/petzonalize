@@ -21,8 +21,17 @@
     <body>
         <nav></nav>
 
-        <!-- Success Alert -->
-        <div id="alert" class="alert alert-danger m-0 text-danger text-center" role="alert"></div>
+        <!-- Toast -->
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="toast" class="toast align-items-center w-100" data-bs-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="toast-body"><b id="toast-body"></b></div>
+                    <div class="me-2 m-auto" data-bs-dismiss="toast" aria-label="Close">
+                        <i class="bi bi-x d-flex align-items-center"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <main class="container-fluid p-0 d-flex align-items-center justify-content-center">
 
@@ -64,10 +73,10 @@
                             <!-- Buttons of login -->
                             <div class="row gy-3 mt-1 mt-md-3">
                                 <div class="col-12 col-sm-6 col-md-12 col-lg-6">
-                                    <button id="login-account" type="submit" class="btn btn-purple h-100">Iniciar sesión</button>
+                                    <button id="login-account" type="submit" class="btn btn-purple w-100 h-100">Iniciar sesión</button>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-12 col-lg-6"> 
-                                    <button id="view-sign-up" type="button" class="btn btn-blue h-100">Registrarme</button>
+                                    <button id="view-sign-up" type="button" class="btn btn-blue w-100 h-100">Registrarme</button>
                                 </div>
                             </div>
                         </form>
@@ -97,7 +106,7 @@
                             <div class="text-start my-3 mx-3">
                                 <label for="input-address-register" class="form-label"><b>Dirección local:</b></label>
                                 <input type="text" class="form-control" id="input-address-register" 
-                                        placeholder="P. Sherman, 42 Wallaby Way, Sydney" name="name" required>
+                                        placeholder="P. Sherman, 42 Wallaby Way, Sydney" name="address" required>
                             </div>
 
                             <div class="text-start my-3 mx-3">
@@ -121,10 +130,10 @@
                             <!-- Buttons of register -->
                             <div class="row gy-3 mt-1 mt-md-3">
                                 <div class="col-12 col-sm-6 col-md-12 col-lg-6">
-                                    <button id="create-account" type="submit" class="btn btn-purple h-100">Crear cuenta</button>
+                                    <button id="create-account" type="submit" class="btn btn-purple w-100 h-100">Crear cuenta</button>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-12 col-lg-6"> 
-                                    <button id="view-login" type="button" class="btn btn-blue h-100">Tengo cuenta</button>
+                                    <button id="view-login" type="button" class="btn btn-blue w-100 h-100">Tengo cuenta</button>
                                 </div>
                             </div>
                         </form>    
@@ -150,10 +159,10 @@
                             <!-- Buttons of login -->
                             <div class="row gy-3 mt-3">
                                 <div class="col-12 col-sm-6 col-md-12 col-lg-6">
-                                    <button id="send-password" type="submit" class="btn btn-purple h-100">Enviar correo</button>
+                                    <button id="send-password" type="submit" class="btn btn-purple w-100 h-100">Enviar correo</button>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-12 col-lg-6"> 
-                                    <button id="view-login-2" type="button" class="btn btn-blue h-100">Iniciar sesión</button>
+                                    <button id="view-login-2" type="button" class="btn btn-blue w-100 h-100">Iniciar sesión</button>
                                 </div>
                             </div>
                         </form>

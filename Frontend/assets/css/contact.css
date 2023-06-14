@@ -35,3 +35,7 @@ iframe {
     border: 0.25rem solid var(--blue);
     border-radius: 1rem;
 }
+
+.accordion-button:hover {
+    cursor: var(--cursor-click), auto;
+}

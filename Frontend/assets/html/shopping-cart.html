@@ -23,13 +23,18 @@
 
 <body>
     <nav></nav>
-
-    <!---
-            <div class="alert alert-primary m-0 text-primary" role="alert">
-            A simple primary alert—check it out!
+    
+    <!-- Toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toast" class="toast align-items-center w-100" data-bs-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex align-items-center justify-content-center">
+                <div class="toast-body"><b id="toast-body"></b></div>
+                <div class="me-2 m-auto" data-bs-dismiss="toast" aria-label="Close">
+                    <i class="bi bi-x d-flex align-items-center"></i>
+                </div>
+            </div>
         </div>
-        ---->
-    <header></header>
+    </div>
 
     <main class="container-fluid">
         <!---------------- formulario usuario no registrado------------------------>
@@ -37,11 +42,6 @@
             <div class="col col-lg-8 p-4">
 
                 <div class="bg-beige mt-2 not-registered-user-box">
-                    <div class="container-button-delete">
-                        <button type="button" class="d-flex border-0 rounded-circle p-0" id="close-window-form">
-                            <img src="../img/shopping-cart/cross.svg" alt="">
-                        </button>
-                    </div>
                     <form id="not-registered-form">
 
                         <!-- Section right - Register -->
@@ -79,12 +79,16 @@
                         </div>
                        </div>
 
-
                         <!-- Buttons of register -->
                         <div class="row gy-3 mt-md-3">
-                            <div class="col col-sm-12 col-lg-12">
+                            <div class="col-12 col-md-6">
                                 <div class="px-auto d-flex">
-                                    <button id="create-order-btn" type="submit" class="btn btn-purple mx-auto h-100">Crear Pedido</button>
+                                    <button id="create-order-btn" type="submit" class="btn btn-purple mx-auto w-100 h-100">Confirmar Pedido</button>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="px-auto d-flex">
+                                    <button id="close-window-form" type="button" class="btn btn-blue mx-auto w-100 h-100">Cancelar</button>
                                 </div>
                             </div>
                         </div>
@@ -95,51 +99,67 @@
         </div>
         <!---------------- Contenedor Principal ------------------------>
         <div class="row justify-content-center">
-            <!--------- Alert de creación de orden ------>
-            <div id="alert" class="alert alert-success m-0 text-success text-center" role="alert"></div>
             <!--------- Titulo ------>
             <div class="col-lg-12 col-sm-12 pt-4 text-center tittle-container">
-                <h2 class="lh-sm">Carrito de Compras</h2>
+                <h1 class="lh-sm text-black">Carrito de Compras</h1>
             </div>
             <div class="col-12 text-center p-2">
-                <div class="row">
+                <div class="row px-1 px-md-0 m-0">
                     <!----- Contenedor de Producto ---->
-                    <div id="products-list" class="col-lg-8 col-md-8 col-sm-12 x-auto products-container">
+                    <div id="products-list" class="col-md-8 col-12 p-0 pe-md-3 products-container">
                         <!--- Lista de Items -->
 
                     </div>
                     <!--------Botones de compra -------->
-                    <div class="col-lg-3 col-md-4 col-sm-12 pt-4 buttons-container bg-beige">
-                        <aside class="info-buy">
-                            <div class="row justify-content-center">
-                                <div class="col-sm-12 col-lg-12">
-                                    <div class="row justify-content-center">
-                                        <div class="col col-lg-12 col-md-12 col-sm-6 mx-0 my-1 info">
-                                            <p> Productos: <span id="piecesProducts">0</span></p>
-                                        </div>
-                                        <div class="col col-lg-12 col-md-12 col-sm-6 mx-0 my-1 info">
-                                            <p>Total: $<span class="totalPrice">0.00</span></p>
-                                        </div>
+                    <aside class="col-md-4 col-12 h-25 buttons-container bg-beige d-flex align-items-center justify-content-center">
+                        <div class="row d-flex align-items-center justify-content-center">
+                            <div class="col-12">
+                                <div class="row justify-content-center">
+                                    <div class="col-12 mx-0 my-1 info">
+                                        <h2>Resumen</h2>
                                     </div>
-                                </div>
-                                <div class="col-sm-12 col-lg-12">
-                                    <div class="row justify-content-center">
-                                        <div class="col col-lg-12 col-md-12 col-sm-6 mx-0 my-1 info">
-                                            <button id="open-create-order" class="btn btn-blue">Crear Orden</button>
-
-                                        </div>
-                                        <div class="col col-lg-12 col-md-12 col-sm-6 mx-0 my-1 col-md-6 info">
-                                            <button id="empty-cart" onclick="deleteShoppingCart()"
-                                                class="btn btn-blue">Vaciar Carrito</button>
-                                        </div>
+                                    <div class="col-md-12 col-6 mx-0 my-1 info">
+                                        <p> Productos: <span id="piecesProducts">0</span></p>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-sm-12 my-4 col mx-auto">
-                                    <button onclick="backShoppingCartPage()" class="btn btn-purple">Regresar</button>
+                                    <div class="col-md-12 col-6 mx-0 my-1 info">
+                                        <p>Total: $<span class="totalPrice">0.00</span></p>
+                                    </div>
                                 </div>
                             </div>
-                        </aside>
-                    </div>
+
+                            <div class="col-12">
+                                <!-- Botones version de escritorio -->
+                                <div class="row justify-content-center d-none d-md-block">
+                                    <div class="col-12 info">
+                                        <button id="open-create-order"
+                                            class="btn btn-purple w-100">Crear Orden</button>
+                                    </div>
+                                    <div class="col-12 my-4 info">
+                                        <button id="empty-cart" onclick="deleteShoppingCart()"
+                                            class="btn btn-blue w-100">Vaciar Carrito</button>
+                                    </div>
+
+                                    <div class="col-12 info">
+                                        <button onclick="backShoppingCartPage()"
+                                            class="btn btn-blue w-100">Regresar</button>
+                                    </div>
+                                </div>
+
+                                <!-- Botones version movil -->
+                                <div class="row justify-content-center d-md-none">
+                                    <div class="col-6 info">
+                                        <button id="open-create-order-mobile"
+                                            class="btn btn-purple w-100 px-0">Ordenar</button>
+                                    </div>
+
+                                    <div class="col-6 info">
+                                        <button onclick="backShoppingCartPage()"
+                                            class="btn btn-blue w-100 px-0">Regresar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
                 </div>
             </div>
 

@@ -4,6 +4,7 @@ const notFountContainer = document.querySelector(".list-not-found");
 const notRegisteredForm = $("#not-registered-form");
 const btnCreateOrder = document.getElementById("create-order-btn");
 const btnOpenWindowOrder = document.getElementById("open-create-order");
+const btnOpenWindowOrderMobile = document.getElementById("open-create-order-mobile");
 const btnCloseWindowOrder = document.getElementById("close-window-form");
 const formOrderContainer = document.querySelector(".not-register-form-container");
 
@@ -11,9 +12,10 @@ const emptyCart = () => {
     const emptyCartButton = document.getElementById('empty-cart');
 
     emptyCartButton.disabled = true;
-    btnOpenWindowOrder .disabled = true;
+    btnOpenWindowOrder.disabled = true;
+    btnOpenWindowOrderMobile.disabled = true;
 
-    return `<div class="list-not-found mt-4">
+    return `<div class="list-not-found mt-4 text-black">
     <div class="row justify-content-center">
         <div class="col col-12 mt-4">
             <h4>No tienes productos en el carrito</h4>
@@ -42,12 +44,13 @@ const notCustomProducts = (product) => {
          </div>
          </div>
          <!------- Columna Informacion de Producto-------->
-         <div class="col-12 col-lg-8 col-md-8 col-sm-12">
+         <div class="col-12 col-lg-8 col-md-8 col-sm-12 d-flex align-items-center">
          <div class="row justify-content-center">
          <div class="col-12 col-lg-12">
-         <h4>${product.name}</h4>
+         <h2 class="d-none d-md-block">${product.name}</h2>
+         <h2 class="fs-5 d-md-none">${product.name}</h2>
          </div>
-         <div class="row col-lg-12 col-md-12 col-sm-12">
+         <div class="row col-lg-12 col-md-12 col-sm-12 my-md-3">
          <div class=" descriptioncontainer">
          <p class="description">${product.description}
          </p>
@@ -56,28 +59,24 @@ const notCustomProducts = (product) => {
          <a href="#" class="ver-mas">Ver más</a>
          </div>
          <div class="col-12 col-lg-12">
-         <div class="row justify-content-center mt-3">
+         <div class="row d-flex justify-content-center align-items-center">
          <div class="col-6 col-lg-6 col-sm-12">
          <div class="w-100">
-         <p>Precio Individual: $<span>${product.price}</span></p>
+         <p class="m-0">Precio Individual: $<span>${product.price}</span></p>
          </div>
          </div>
          <div class="col-6 col-lg-6 col-sm-12">
-         <div class="row justify-content-center">
+         <div class="row d-flex justify-content-center align-items-center">
          <div class="col-12 py-0">
          <div class="amountText">
-         <p class="my-0">Cantidad</p>
+         <p class="my-0">Cantidad:</p>
          </div>  
          </div>
          <div class="col-12 text-center mt-0">
          <div class="amountButtons cantidadproductos">
-         <button type="button" class="button-icon removepiece" id="removepiece"><ion-icon id="removepiece" name="remove-circle">
-         </ion-icon>
-         </button>
-         <p class="number-display" id="amount-product">${product.amount}</p>
-         <button type="button" class="button-icon addpiece" id="addpiece"><ion-icon id="addpiece" name="add-circle">
-         </ion-icon>
-         </button>
+            <button id="removepiece" class="btn btn-blue">-</button>
+            <p class="number-display px-3 py-0" id="amount-product">${product.amount}</p>
+            <button id="addpiece" class="btn btn-blue">+</button>
          </div>
          </div>
          </div>
@@ -156,15 +155,16 @@ const customProducts = (product) => {
          </div>
          <!--------- Columna de Imagen Producto--------->
          <div class="col-12 col-lg-4 col-md-8 col-sm-12 product-image-container">
-         <div class="">
+         <div>
          <img class="productimage" src="${product.imgUrl}" alt="">
          </div>
          </div>
          <!------- Columna Informacion de Producto-------->
          <div class="col-12 col-lg-8 col-md-8 col-sm-12">
          <div class="row justify-content-center">
-         <div class="col-12 col-lg-12">
-         <h4>${product.name}</h4>
+         <div class="col-12 col-lg-12 mt-3 mb-3 mt-md-0">
+         <h2 class="d-none d-md-block">${product.name}</h2>
+         <h2 class="fs-5 d-md-none">${product.name}</h2>
          </div>
          <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="description-customizable">
@@ -177,7 +177,7 @@ const customProducts = (product) => {
                         </div>
                     <div class="col col-12">
                         <div class="col-size">
-                            <p>${product.properties.hasOwnProperty("size") && product.properties["size"] != null ? product.properties.size : " "}</p>
+                            <p class="m-0">${product.properties.hasOwnProperty("size") && product.properties["size"] != null ? product.properties.size : " "}</p>
                             ${userCustoms}
                         </div>
                     </div>
@@ -190,28 +190,24 @@ const customProducts = (product) => {
                 </div>
             </div>
             <div class="col-12 col-lg-12">
-                <div class="row justify-content-center mt-3">
+                <div class="row mt-3 d-flex justify-content-center align-items-center">
                     <div class="col-6 col-lg-6 col-sm-12">
                         <div class="w-100">
-                            <p>Precio Individual: $<span>${product.price}</span></p>
+                            <p class="m-0">Precio Individual: $<span>${product.price}</span></p>
                         </div>
                     </div>
                     <div class="col-6 col-lg-6 col-sm-12">
-                        <div class="row justify-content-center">
+                        <div class="row d-flex justify-content-center align-items-center">
                             <div class="col-12 py-0">
                                 <div class="amountText">
-                                    <p class="my-0">Cantidad</p>
+                                    <p class="m-0">Cantidad:</p>
                                 </div>  
                             </div>
                             <div class="col-12 text-center mt-0">
                                 <div class="amountButtons cantidadproductos">
-                                    <button type="button" class="button-icon removepiece" id="removepiece"><ion-icon id="removepiece" name="remove-circle">
-                                        </ion-icon>
-                                    </button>
-                                <p class="number-display" id="amount-product">${product.amount}</p>
-         <button type="button" class="button-icon addpiece" id="addpiece"><ion-icon id="addpiece" name="add-circle">
-         </ion-icon>
-         </button>
+                                    <button id="removepiece" class="btn btn-blue">-</button>
+                                    <p class="number-display px-3 py-0" id="amount-product">${product.amount}</p>
+                                    <button id="addpiece" class="btn btn-blue">+</button>
          </div>
          </div>
          </div>
@@ -361,7 +357,8 @@ const modifyAmountProducts = () => {
     for (let index = 0; index < amountContainer.length; index++) {
         //------------------ Agregar Items ---------------------------
         amountContainer[index].children["addpiece"].addEventListener("click", () => {
-            if (userCartProducts[index + 1].amount < 10) {
+            if (userCartProducts[index + 1].amount < 10 &&
+                document.getElementById("piecesProducts").innerText < 10) {
                 userCartProducts[index + 1].amount += 1;
                 userCartProducts[0].total += 1;
                 updateIconCartReference(userCartProducts[0].total);
@@ -369,8 +366,9 @@ const modifyAmountProducts = () => {
                 updateAmountSpan();
                 updateTotalPrice();
                 localStorage.setItem("shopping-cart", JSON.stringify(userCartProducts));
-            }
-
+            } 
+            
+            updateAmountIcons();
         });
 
 
@@ -385,7 +383,9 @@ const modifyAmountProducts = () => {
                 updateAmountSpan();
                 updateTotalPrice();
                 localStorage.setItem("shopping-cart", JSON.stringify(userCartProducts));
-            }
+            } 
+
+            updateAmountIcons();
         });
 
     }
@@ -408,7 +408,24 @@ deleteProduct.forEach((deleteIconProduct, index) => {
 //------------------- Form not registered user --------------------
 $(document).ready(()=>{
     validateForm(notRegisteredForm);
+    updateAmountIcons();
 });
+
+const updateAmountIcons = () => {
+    const amountContainer = document.getElementsByClassName("cantidadproductos");
+
+    for (let index = 0; index < amountContainer.length; index++) {
+        if(document.getElementById("piecesProducts").innerText >= 10)
+            amountContainer[index].children["addpiece"].disabled = true;
+        else
+            amountContainer[index].children["addpiece"].disabled = false;
+            
+        if(userCartProducts[index + 1].amount <= 1)
+            amountContainer[index].children["removepiece"].disabled = true;
+        else
+            amountContainer[index].children["removepiece"].disabled = false;
+    }
+};
 
 //---------------- Formulario escucha boton, valida y crea la orden -------
 notRegisteredForm.submit(submitButton => {
@@ -443,28 +460,20 @@ const setInputs = (userData) => {
 }
 
 //-------------- Carga formulario de compra --------------
-btnOpenWindowOrder.addEventListener('click', function() {
+const showWindowOrder = () => {
     formOrderContainer.classList.remove("pop--hidden");
     formOrderContainer.classList.add("pop--unhidden");
 
     let userLogged = localStorage.getItem("users-logged-in");
-    if(userLogged != null){
-        let userData = JSON.parse(localStorage.getItem("user"));
+
+    if(userLogged !== null){
+        let userData = JSON.parse(userLogged);
         setInputs(userData);
     }
-});
+};
 
-
-//--------------- Mensaje de pedido creado ---------------------
-  function showAlert() {
-    let alerta = document.getElementById('alert');
-    alerta.innerHTML = '¡Gracias por tu pedido! Favor de estar pendiente de tu correo donde recibirás los detalles. ✉️';
-    alerta.style.display = 'block';
-
-    setTimeout(function() {
-        alerta.style.display = 'none';
-      }, 4000);
-  }
+btnOpenWindowOrder.addEventListener('click', showWindowOrder);
+btnOpenWindowOrderMobile.addEventListener('click', showWindowOrder);
 
 //------------- Crear orden -------------
 const clearInputs = (name, email, phone, address) =>{
@@ -494,20 +503,34 @@ const createUserOrder = () => {
         "products": finalOrderProducts
     };
     
-    console.log(userOrder)
-    //sessionStorage.setItem("purchase-order", JSON.stringify(finalOrderProducts));
-
     fetch(urlOrder, {
         method: 'POST',
         body: JSON.stringify(userOrder), // Enviando orden a end-Point /Buy de Backend
         headers:{
           'Content-Type': 'application/json'
         }
-      }).then(response => console.log('Message:', response))
-      .catch(error => console.error('Error:', error))
-
-    clearInputs(name, email, phone, address);
-    showAlert();
-    deleteShoppingCart();
-    hiddenWindowOrder();
+      }).then(response => {
+        if(response.status === 200) {
+            clearInputs(name, email, phone, address);
+            deleteShoppingCart();
+            hiddenWindowOrder();
+            sessionStorage.setItem("order-created", "¡Gracias por tu pedido! Debes estar pendiente de tu correo donde recibirás tu recibo completo");
+            window.location.href = "../../index.html";
+        } else 
+            loadAlertText("¡Error al crear el pedido! Intenta de nuevo más tarde", "error")
+      })
+      .catch(error => {
+        console.error('Error:', error)
+        loadAlertText("¡Error al crear el pedido! Intenta de nuevo más tarde", "error")
+    })
 } 
+
+
+const loadAlertText = (text, type) => {
+    const toastElement = $("#toast");
+    const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
+    const toastBody = $("#toast-body");
+    toastBody.text(text);
+    toastElement.addClass(`toast-${type}`);
+    toastInstance.show();
+  };

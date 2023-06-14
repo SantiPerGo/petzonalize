@@ -340,6 +340,18 @@ $(document).ready(() => {
   }, 500);
 
   loadProducts(intervalId);
+
+  let alertText = sessionStorage.getItem("alert");
+
+  if(alertText !== null){
+    const toastElement = $("#toast");
+    const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
+    const toastBody = $("#toast-body");
+    toastBody.text("¡Producto eliminado con Éxito!");
+    toastElement.addClass("toast-success");
+    toastInstance.show();
+    sessionStorage.removeItem("alert");
+  }
 });
 
 // *********************************************************************************
@@ -552,18 +564,4 @@ const clearProductFilters = () => {
     if ($(checkbox).is(":checked"))
       $(checkbox).prop('checked', false);
   });
-}
-
-const alertElement = $("#alert");
-let alert = sessionStorage.getItem("alert")
-if(alert!=null){
-  console.log("alert")
-  alertElement.removeClass("alert-danger");
-  alertElement.removeClass("text-danger");
-  alertElement.addClass("alert-success");
-  alertElement.addClass("text-success");
-  alertElement.text("¡Producto eliminado con Éxito!");
-  alertElement.slideDown(250);
-  setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-  sessionStorage.removeItem("alert");
 }

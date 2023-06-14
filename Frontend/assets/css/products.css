@@ -85,6 +85,11 @@ button a {
 .product-edit-icon:hover {
     color: var(--purple);
     transform: scale(1.1);
+    cursor: var(--cursor-click), auto;
+}
+
+.product-edit-icon i:hover {
+    cursor: var(--cursor-click), auto;
 }
 
 .product-edit-icon:active {

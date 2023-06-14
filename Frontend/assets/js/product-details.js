@@ -676,9 +676,12 @@ const quantityGroup = $("#quantity-group");
 buyButton.on('click', () => {
   if(product.category === "collar" || product.category === "bowl"  || product.category === "nameplate") {
     if($("#size-container").find(".is-selected-text")[0] === undefined) {
-      $("#alert").text("Debes elegir un tamaño antes de comprar el producto");
-      $("#alert").slideDown(250);
-      setTimeout(() => $("#alert").slideUp(250, () => $(this).remove()), 5000);
+      const toastElement = $("#toast");
+      const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
+      const toastBody = $("#toast-body");
+      toastBody.text("Debes elegir un tamaño antes de comprar el producto");
+      toastElement.addClass("toast-error");
+      toastInstance.show();
     } else
       showQuantityButtons();
   } else 

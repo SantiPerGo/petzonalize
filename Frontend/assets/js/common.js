@@ -25,10 +25,49 @@ $(document).ready(function(){
             localStorage.setItem("is-dark-mode", isDarkMode);
             switchMode(isDarkMode);
         });
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 0) 
+              $("nav").addClass("nav-opaque");
+            else
+              $("nav").removeClass("nav-opaque");
+        });
     });
     
-    $.get("/assets/html/footer.html", data => $("footer").replaceWith(data));
+    $.get("/assets/html/footer.html", data => {
+        $("footer").replaceWith(data);
+
+        // Updating footer backend status each minute
+        updateBackendStatus();
+        setInterval(() => updateBackendStatus(), 60_000);
+    });
 });
+
+function updateBackendStatus() {
+    fetch("https://petzonalize.up.railway.app/actuator/health")
+        .then(responseHttp => {
+            if(responseHttp.status === 200) {
+                console.log("Backend server is alive!");
+                $("#indicator-text").text("Online");
+                $("#indicator-container").css("color", "var(--purple)");
+                $("#indicator-circle").css("background-color", "var(--purple)");
+
+                $("#indicator-text-mobile").text("Online");
+                $("#indicator-container-mobile").css("color", "var(--purple)");
+                $("#indicator-circle-mobile").css("background-color", "var(--purple)");
+            }
+        })
+        .catch(error => {
+            console.log("Backend server is dead!");
+            $("#indicator-text").text("Offline");
+            $("#indicator-container").css("color", "var(--blue)");
+            $("#indicator-circle").css("background-color", "var(--blue)");
+
+            $("#indicator-text-mobile").text("Offline");
+            $("#indicator-container-mobile").css("color", "var(--blue)");
+            $("#indicator-circle-mobile").css("background-color", "var(--blue)");
+        });
+}
 
 const lightBlueColor = $(":root").css("--light-blue");
 const blueColor = $(":root").css("--blue");
@@ -42,6 +81,15 @@ const darkGrayColor = $(":root").css("--dark-gray");
 
 const lightBlueFilter = $(":root").css("--light-blue-filter");
 const blueFilter = $(":root").css("--blue-filter");
+
+const cursorClick = $(":root").css("--cursor-click");
+const cursorArrow = $(":root").css("--cursor-arrow");
+const cursorLeft = $(":root").css("--cursor-left");
+const cursorRight = $(":root").css("--cursor-right");
+const cursorClickLight = $(":root").css("--cursor-click-light");
+const cursorArrowLight = $(":root").css("--cursor-arrow-light");
+const cursorLeftLight = $(":root").css("--cursor-left-light");
+const cursorRightLight = $(":root").css("--cursor-right-light");
 
 const switchMode = isDarkMode => {
     $("#dark-mode").attr("checked", isDarkMode);
@@ -63,6 +111,18 @@ const switchMode = isDarkMode => {
     $(":root").css("--dark-gray", isDarkMode ? grayColor : darkGrayColor);
 
     $(":root").css("--blue-filter", isDarkMode ? lightBlueFilter : blueFilter);
+
+    $(":root").css("--cursor-click", isDarkMode ? cursorClickLight : cursorClick);
+    $(":root").css("--cursor-arrow", isDarkMode ? cursorArrowLight : cursorArrow);
+    $(":root").css("--cursor-left", isDarkMode ? cursorLeftLight : cursorLeft);
+    $(":root").css("--cursor-right", isDarkMode ? cursorRightLight : cursorRight);
+
+    if(document.location.href.match(/[^\/]+$/)[0] === "index.html") {
+        if(isDarkMode) 
+            $("#order-img").attr("src", "assets/img/dog-cat-happy-dark.png");
+        else
+            $("#order-img").attr("src", "assets/img/dog-cat-happy.png");
+    }
 
     $("img").each((key, element) => {
         if($(element).attr("src") !== undefined)

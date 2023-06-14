@@ -25,7 +25,19 @@
 <body>
     <nav></nav>
     <div id="loading" class="loading d-none">Loading&#8230;</div>
-    <div id="alert" class="alert alert-success m-0 text-success text-center" role="alert"></div>
+        
+    <!-- Toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toast" class="toast align-items-center w-100" data-bs-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex align-items-center justify-content-center">
+                <div class="toast-body"><b id="toast-body"></b></div>
+                <div class="me-2 m-auto" data-bs-dismiss="toast" aria-label="Close">
+                    <i class="bi bi-x d-flex align-items-center"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <header></header>
 
     <main class="container-fluid main-container w-100">
@@ -119,8 +131,8 @@
                                     <div class="col-flex col-6 col-md-6 col-sm-12 col-12">
 
                                         <!-- Upload image -->
-                                        <div class="form-group my-md-3 mx-md-3">
-                                            <label for="uploads" class=""><b> Elige la imagen que deseas cargar: </b></label>
+                                        <div class="form-group my-md-3 mx-md-3 text-center">
+                                            <label for="uploads"><b> Elige la imagen que deseas cargar: </b></label>
                                             <br>
                                             <input 
                                             type="file" 
@@ -147,9 +159,9 @@
                                 <!----------- Buttons bottom --------->
                                 <div class="row justify-content-center mb-3">
                                     <div class="col-md-6 col-12 d-flex justify-content-around">
-                                        <button id="remove" type="button" class="btn btn-purple w-75">Eliminar</button>
+                                        <button id="remove" type="button" class="btn btn-blue w-75">Eliminar</button>
                                     </div>
-                                    <div class="col-md-6 col-12 d-flex justify-content-around mt-3 mt-md-0">
+                                    <div id="add-container" class="col-md-6 col-12 d-flex justify-content-around mt-3 mt-md-0">
                                         <button id="add" type="submit" class="btn btn-purple w-75">Guardar</button>
                                     </div>
                                 </div>

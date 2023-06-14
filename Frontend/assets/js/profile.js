@@ -149,20 +149,20 @@ const deleteAccount = () => {
 function showDeleteForm() {
   let deleteContainer = document.getElementById('delete-user-container');
   deleteContainer.style.visibility = 'visible';
-  $("footer").find("a").each((key, element) => $(element).addClass("invisible"));
 }
 
 // Cancela y oculta el formulario cuando se da click al botón de cancelar eliminación
 function cancelDeleteAccount() {
   let deleteContainer = document.getElementById('delete-user-container');
   deleteContainer.style.visibility = 'hidden';
-  $("footer").find("a").each((key, element) => $(element).removeClass("invisible"));
 }
 
 //Cerrar sesión y redirigir hacia el index
 function closeSession() {
   // Borrar el valor del 'users-logged-in' del localStorage
   localStorage.removeItem('users-logged-in');
+  sessionStorage.setItem("closed-session",
+    "¡Sesión Cerrada con Éxito!");
   
   // Redirigir hacia el index
   window.location.href = '../../index.html'; 
@@ -194,6 +194,8 @@ formDeleteAccount.submit(submitButton => {
       .then((data) => {
         console.log("Usuario eliminado:", data);
         localStorage.removeItem('users-logged-in');
+        sessionStorage.setItem("eliminated-account",
+          "¡Cuenta Eliminada con Éxito!");
         window.location.href = '../../index.html';
       })
       .catch((error) => {
@@ -201,13 +203,12 @@ formDeleteAccount.submit(submitButton => {
         cancelDeleteAccount();
         resetInput($("#input-password-delete"));
 
-        const alertElement = $("#alert");
-        alertElement.removeClass("text-success");
-        alertElement.addClass("alert-danger");
-        alertElement.addClass("text-danger");
-        alertElement.text("¡Contraseña incorrecta!");
-        alertElement.slideDown(250);
-        setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
+        const toastElement = $("#toast");
+        const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
+        const toastBody = $("#toast-body");
+        toastBody.text("¡Contraseña incorrecta!");
+        toastElement.addClass("toast-error");
+        toastInstance.show();
       });
   }
 });

@@ -15,6 +15,8 @@ $(document).ready(() => {
   let productToEdit = sessionStorage.getItem("product");
 
   if(productToEdit != null) {
+    $("#add").text("Actualizar");
+
     productToEdit = JSON.parse(productToEdit);
     sessionStorage.removeItem("product");
     productId = productToEdit.id;
@@ -42,6 +44,11 @@ $(document).ready(() => {
       document.querySelector('#product-form-dog').checked = true;
     else
       document.querySelector('#product-form-cat').checked = true;
+  } else {
+    $("#remove").addClass("d-none");
+    $("#add").removeClass("w-75");
+    $("#add").addClass("w-100");
+    $("#add-container").removeClass("col-md-6");
   }
 });
 
@@ -51,7 +58,14 @@ $(document).ready(() => {
 //declarar elementos
 // ---------------------------------------------------------------------
 
-const alertElement = $("#alert");
+const loadAlertText = (text, type) => {
+  const toastElement = $("#toast");
+  const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
+  const toastBody = $("#toast-body");
+  toastBody.text(text);
+  toastElement.addClass(`toast-${type}`);
+  toastInstance.show();
+};
 
 const postData = (url, data) => {
   const file = realFileBtn.files[0];
@@ -68,25 +82,14 @@ const postData = (url, data) => {
     .then(data => {
       $("#loading").addClass("d-none");
       if(data.status === 201 || data.status === 200) {
-        alertElement.removeClass("alert-danger");
-        alertElement.removeClass("text-danger");
-        alertElement.addClass("alert-success");
-        alertElement.addClass("text-success");
-        alertElement.text("¡Producto añadido con Éxito!");
-        alertElement.slideDown(250);
-        setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-        window.location.href = "../html/products.html";
+        loadAlertText("¡Producto añadido con Éxito!", "success");
+        setTimeout(() => window.location.href = "../html/products.html", 1000);
       } else {
-        if(data.status === 400) 
-          alertElement.text("¡Debes cargar una imagen para el producto!");
+        if(data.status === 400)
+          loadAlertText("¡Debes cargar una imagen para el producto!", "error");
         else
-          alertElement.text("¡Hubo un error con los datos ingresados!");
+          loadAlertText("¡Hubo un error con los datos ingresados!", "error");
 
-        alertElement.removeClass("text-success");
-        alertElement.addClass("alert-danger");
-        alertElement.addClass("text-danger");
-        alertElement.slideDown(250);
-        setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
       }
     })
     .catch(error => console.log(error))
@@ -114,14 +117,8 @@ editform.submit(submitButton => {
     };
     
     postData("https://petzonalize.up.railway.app/products", data);
-  } else if(!isDogChecked && !isCatChecked) {
-    alertElement.removeClass("text-success");
-    alertElement.addClass("alert-danger");
-    alertElement.addClass("text-danger");
-    alertElement.text("¡Debes elegir el tipo de mascota!");
-    alertElement.slideDown(250);
-    setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-  }
+  } else if(!isDogChecked && !isCatChecked)
+    loadAlertText("¡Debes elegir el tipo de mascota!", "error"); 
 })
 
 // ---------------------------------------------------------------------
@@ -143,14 +140,8 @@ deleter.addEventListener(`click`, () => {
       if(data.status === 200) {
         sessionStorage.setItem("alert", 8 )
         window.location.href="../html/products.html";
-      } else {
-        alertElement.removeClass("text-success");
-        alertElement.addClass("alert-danger");
-        alertElement.addClass("text-danger");
-        alertElement.text("¡No se encontró ningun producto con ese id!");
-        alertElement.slideDown(250);
-        setTimeout(() => alertElement.slideUp(250, () => $(this).remove()), 5000);
-      }
+      } else
+        loadAlertText("¡No se encontró ningun producto con ese id!", "error");
     })
     .catch(error => console.error(error))
 })
