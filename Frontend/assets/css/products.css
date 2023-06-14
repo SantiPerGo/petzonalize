@@ -109,10 +109,10 @@ button a {
 
 /* Checkboxes */
 
-.form-check-input {
+main .form-check-input {
     background-color: var(--brown);
 }
 
-.form-check-input:checked {
+main .form-check-input:checked {
     background-color: var(--purple);
 }
