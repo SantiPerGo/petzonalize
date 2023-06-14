@@ -34,8 +34,40 @@ $(document).ready(function(){
         });
     });
     
-    $.get("/assets/html/footer.html", data => $("footer").replaceWith(data));
+    $.get("/assets/html/footer.html", data => {
+        $("footer").replaceWith(data);
+
+        // Updating footer backend status each minute
+        updateBackendStatus();
+        setInterval(() => updateBackendStatus(), 60_000);
+    });
 });
+
+function updateBackendStatus() {
+    fetch("https://petzonalize.up.railway.app/actuator/health")
+        .then(responseHttp => {
+            if(responseHttp.status === 200) {
+                console.log("Backend server is alive!");
+                $("#indicator-text").text("Online");
+                $("#indicator-container").css("color", "var(--purple)");
+                $("#indicator-circle").css("background-color", "var(--purple)");
+
+                $("#indicator-text-mobile").text("Online");
+                $("#indicator-container-mobile").css("color", "var(--purple)");
+                $("#indicator-circle-mobile").css("background-color", "var(--purple)");
+            }
+        })
+        .catch(error => {
+            console.log("Backend server is dead!");
+            $("#indicator-text").text("Offline");
+            $("#indicator-container").css("color", "var(--blue)");
+            $("#indicator-circle").css("background-color", "var(--blue)");
+
+            $("#indicator-text-mobile").text("Offline");
+            $("#indicator-container-mobile").css("color", "var(--blue)");
+            $("#indicator-circle-mobile").css("background-color", "var(--blue)");
+        });
+}
 
 const lightBlueColor = $(":root").css("--light-blue");
 const blueColor = $(":root").css("--blue");

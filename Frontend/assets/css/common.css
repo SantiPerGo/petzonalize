@@ -117,6 +117,25 @@ footer .bi {
     font-size: calc(2rem + 1vw) !important;
 }
 
+#indicator-container,
+#indicator-container-mobile {
+    color: var(--purple);
+}
+
+#indicator-circle,
+#indicator-circle-mobile {
+    background-color: var(--purple);
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+}
+
+#indicator-circle-mobile {
+    width: 0.75rem;
+    height: 0.75rem;
+}
+
 nav {
     border-bottom: .5rem solid var(--brown);
 }

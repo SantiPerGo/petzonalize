@@ -1,5 +1,14 @@
 <!-- Footer -->
 <footer class="text-center">
+    <!-- Backend desktop -->
+    <div class="row position-absolute align-items-center justify-content-end
+        h-100 end-0 me-5 d-none d-md-flex">
+        <h2 id="indicator-container" class="col-12 col-md-6 col-lg-8 col-xl-10 col-xxl-12">
+            <span id="indicator-circle"></span>
+            Backend Status: <span id="indicator-text">Online</span>
+        </h2>
+    </div>
+
     <div class="row">
         <div class="navbar sticky-bottom navbar-expand">
             <div class="collapse navbar-collapse justify-content-center">
@@ -19,6 +28,14 @@
         <div class="col-12 pb-3">
             <h2 class="col-12">Petzonalize! © 2023 All Rights Reserved</h2>
         </div>
+    </div>
+
+    <!-- Backend mobile -->
+    <div class="row d-flex align-items-center justify-content-center d-md-none">
+        <h2 id="indicator-container-mobile" class="mb-3">
+            <span id="indicator-circle-mobile"></span>
+            Backend Status: <span id="indicator-text-mobile">Online</span>
+        </h2>
     </div>
 
     <script src="/assets/js/libraries/oneko.js"></script>
