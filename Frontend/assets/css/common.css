@@ -46,6 +46,10 @@ body {
     margin-top: calc(3rem + 4vw);
 }
 
+main {
+    min-height: calc(80vh + 1vw);
+}
+
 .alert {
     display: none;
 }

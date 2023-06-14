@@ -2,7 +2,6 @@ main {
     background-image: url(../img/profile/dog-on-computer.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: calc(80vh + 1vw);
 }
 
 h2 {
