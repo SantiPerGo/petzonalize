@@ -10,13 +10,13 @@ import org.petzonalize.backend.entity.Product;
 import org.petzonalize.backend.entity.User;
 import org.petzonalize.backend.mapper.OrderHasProductMapper;
 import org.petzonalize.backend.mapper.OrderMapper;
-import org.petzonalize.backend.mapper.ProductMapper;
 import org.petzonalize.backend.repository.OrderHasProductRepository;
 import org.petzonalize.backend.repository.OrderRepository;
 import org.petzonalize.backend.repository.ProductRepository;
 import org.petzonalize.backend.repository.UserRepository;
 import org.petzonalize.backend.service.OrderService;
 import org.petzonalize.backend.utils.EmailUtils;
+import org.petzonalize.backend.utils.FirebaseUtils;
 import org.petzonalize.backend.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -111,8 +111,8 @@ public class OrderServiceImpl implements OrderService {
 		total = Math.round(total * 100.0) / 100.0;
 
         String subject = "Petzonalize - ¡Gracias por tu Compra!";
-        String logoUrl = ProductMapper.getProductUrlByName(
-        		productRepository.findAll(), "Logo.png");
+        String logoUrl = FirebaseUtils.getImageUrlByName(
+        		FirebaseUtils.getImagesFromFirebaseStorage(), "Logo.png");
         
         // Loading HTML with Thymeleaf
         Context context = new Context();
