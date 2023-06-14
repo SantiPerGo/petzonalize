@@ -6,18 +6,13 @@ main {
 
 #view-recover-section {
     text-decoration: none;
-    color: var(--light-blue);
-    text-shadow: -1px 0 var(--blue), 0 1px var(--blue),
-                 1px 0 var(--blue), 0 -1px var(--blue);
+    color: var(--brown);
     font-size: calc(1rem + 1vw);
     transition: all 0.25s;
 }
 
 #view-recover-section:hover {
-    color: var(--light-purple);
-    text-shadow: -1px 0 var(--purple), 0 1px var(--purple),
-                 1px 0 var(--purple), 0 -1px var(--purple);
-    
+    color: var(--purple);
     transform: scale(1.1);
     cursor: var(--cursor-click), auto;
 }
