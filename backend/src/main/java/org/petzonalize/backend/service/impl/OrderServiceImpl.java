@@ -79,14 +79,17 @@ public class OrderServiceImpl implements OrderService {
 			
 			if(optionalProduct.isPresent()) {
 				Product product = optionalProduct.get();
-				int stock = product.getStock();
+				
+				int stock = product.isCustomizable() ? 0 : product.getStock();
 				int amount = productOrder.getAmount();
 				
-				if(stock >= amount) {
-					product.setStock(stock - amount);
-					
-					// Updating product stock
-					productRepository.saveAndFlush(product);
+				if(stock >= amount || product.isCustomizable()) {
+					if(!product.isCustomizable()) {
+						product.setStock(stock - amount);
+						
+						// Updating product stock
+						productRepository.saveAndFlush(product);
+					}
 					
 					// Updating order total cost
 					total += (productOrder.getPrice() * amount);

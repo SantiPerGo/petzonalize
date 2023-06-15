@@ -63,17 +63,6 @@ const clearInputs = () => {
     loginForm.find('input').each((key, input) => resetInput(input));
 };
 
-const resetInput = input => {
-    $(input).val("");
-    $(input).removeData("previousValue");
-    $(input).removeAttr("aria-invalid");
-    $(input).removeClass("valid");
-    $(input).removeClass("invalid");
-    $(input).removeClass("input-icon-valid");
-    $(input).removeClass("input-icon-invalid");
-    $(`#${input.id}-error`).remove();
-};
-
 // ------ Escucha cuando el usuario inicie sesion con DB ó Json local -------------
 loginForm.submit(submitButton => {
     submitButton.preventDefault();

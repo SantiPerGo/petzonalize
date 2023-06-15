@@ -109,6 +109,10 @@ public class UserServiceImpl implements UserService {
 				"User with id '" + user.getId() + "' doesn't exist", HttpStatus.NOT_FOUND);
 		else {
             user.setId(optionalUser.get().getId());
+
+            if(user.getPassword().isBlank() || user.getPassword().isEmpty()) 
+            	user.setPassword(optionalUser.get().getPassword());
+            
             userRepository.saveAndFlush(user);
             
 			Optional<UserHasPrivilege> optionalUserHasPrivilege =

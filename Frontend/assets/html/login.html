@@ -61,9 +61,18 @@
                             </div>   
 
                             <div class="text-start my-4">
-                                <label for="input-password-login" class="form-label"><b>Contraseña:</b></label>   
-                                <input type="password" class="form-control" id="input-password-login" 
-                                        placeholder="Contraseña" name="password" required>
+                                <label for="input-password-login" class="form-label"><b>Contraseña:</b></label> 
+
+                                <div class="input-group password-input-group" id="group-input-password-login">  
+                                    <input type="password" class="form-control form-password" id="input-password-login" 
+                                        aria-describedby="password-span" placeholder="Contraseña" name="password" required>
+                                    
+                                    <span class="input-group-text p-0 m-0 px-2 px-md-3 password-span"
+                                        id="span-input-password-login">
+                                        <i class="bi bi-eye-slash password-icon p-0 m-0" id="icon-input-password-login"
+                                            onclick="showHidePassword(this, 'input-password-login')"></i>
+                                    </span>
+                                </div>
                             </div>
 
                             <div class="mt-1 mt-md-3 text-brown">
@@ -118,15 +127,32 @@
                             </div>
 
                             <div class="text-start my-3 mx-3">
-
                                 <label for="input-signup-password" class="form-label"><b>Contraseña:</b></label>
-                                <input type="password" class="form-control" id="input-signup-password" 
-                                        placeholder="Contraseña" name="password" required>
+                                
+                                <div class="input-group password-input-group" id="group-input-signup-password">  
+                                    <input type="password" class="form-control form-password" id="input-signup-password" 
+                                        aria-describedby="password-span" placeholder="Contraseña" name="password" required>
+                                    
+                                    <span class="input-group-text p-0 m-0 px-2 px-md-3 password-span"
+                                        id="span-input-signup-password">
+                                        <i class="bi bi-eye-slash password-icon p-0 m-0" id="icon-input-signup-password"
+                                            onclick="showHidePassword(this, 'input-signup-password')"></i>
+                                    </span>
+                                </div>
                             </div>
                             <div class="text-start mx-3">
                                 <label for="input-password-confirm-register" class="form-label"><b>Confirmar contraseña:</b></label>
-                                <input type="password" class="form-control" id="confirmPassword" 
-                                        placeholder="Confirmar contraseña" name="confirmPassword" required>
+                                
+                                <div class="input-group password-input-group" id="group-input-password-confirm-register">  
+                                    <input type="password" class="form-control form-password" id="input-password-confirm-register" 
+                                        aria-describedby="password-span" placeholder="Confirmar Contraseña" name="confirmPassword" required>
+                                    
+                                    <span class="input-group-text p-0 m-0 px-2 px-md-3 password-span"
+                                        id="span-input-password-confirm-register">
+                                        <i class="bi bi-eye-slash password-icon p-0 m-0" id="icon-input-password-confirm-register"
+                                            onclick="showHidePassword(this, 'input-password-confirm-register')"></i>
+                                    </span>
+                                </div>
                             </div>
 
                             <!-- Buttons of register -->

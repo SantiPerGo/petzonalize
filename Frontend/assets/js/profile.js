@@ -69,6 +69,10 @@ const inputState = (id, state) => {
   const icon = $(`#edit-${id}`).children();
   const form = $(`#form-${id}`);
   const inputContainer = $(`#input-${id}-container`);
+  let spanInput = null;
+
+  if(id === "password")
+    spanInput = $(`#span-input-${id}`);
 
   if(state) {
     form.validate().settings.ignore = ":hidden";
@@ -78,6 +82,9 @@ const inputState = (id, state) => {
     icon.removeClass("bi-pencil-square");
     icon.addClass("bi-check-circle");
     inputContainer.removeClass("input-container");
+
+    if(spanInput !== null)
+      spanInput.removeClass("d-none");
   } else {
     form.validate().settings.ignore = "*";
     input.addClass("form-view");
@@ -88,17 +95,10 @@ const inputState = (id, state) => {
     inputContainer.addClass("input-container");
     form.find('input').each((key, input) => resetInput(input));
     updateLocalStorage(id, input);
-  }
-};
 
-const resetInput = input => {
-  $(input).removeData("previousValue");
-  $(input).removeAttr("aria-invalid");
-  $(input).removeClass("valid");
-  $(input).removeClass("invalid");
-  $(input).removeClass("input-icon-valid");
-  $(input).removeClass("input-icon-invalid");
-  $(`#${input.id}-error`).remove();
+    if(spanInput !== null)
+      spanInput.addClass("d-none");
+  }
 };
 
 const updateLocalStorage = (id, input) => {
