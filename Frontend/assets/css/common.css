@@ -405,7 +405,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Password with icon */
 
-.input-group-text {
+.password-span {
     background-color: var(--gray);
     border: 0.25rem solid var(--brown);
     border-radius: 0.75rem;
@@ -416,8 +416,8 @@ h1, h2, h3, h4, h5, h6 {
     border-right: none;
 }
 
-.input-group-text,
-.input-group-text:focus {
+.password-span,
+.password-span:focus {
     border-left: none;
 }
 

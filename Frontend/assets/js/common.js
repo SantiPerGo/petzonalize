@@ -133,9 +133,9 @@ const switchMode = isDarkMode => {
 
     if(document.location.href.match(/[^\/]+$/)[0] === "index.html") {
         if(isDarkMode) 
-            $("#order-img").attr("src", "assets/img/dog-cat-happy-dark.png");
+            $("#order-img").attr("src", "/assets/img/dog-cat-happy-dark.png");
         else
-            $("#order-img").attr("src", "assets/img/dog-cat-happy.png");
+            $("#order-img").attr("src", "/assets/img/dog-cat-happy.png");
     }
 
     $("img").each((key, element) => {
@@ -319,13 +319,18 @@ const resetInput = input => {
     $(input).removeClass("input-icon-valid");
     $(input).removeClass("input-icon-invalid");
     
-    $(`#span-${input.id}`).removeClass("valid");
-    $(`#span-${input.id}`).removeClass("invalid");
-    $(`#icon-${input.id}`).css("color","var(--brown)");
-    $(`#group-${input.id}`).removeClass("valid-password");
-    $(`#group-${input.id}`).removeClass("invalid-password");
-    $(input).removeClass("valid-password-border");
-    $(input).removeClass("invalid-password-border");
+    if(input.name === "password" || input.name === "confirmPassword") {
+        $(`#span-${input.id}`).removeClass("valid");
+        $(`#span-${input.id}`).removeClass("invalid");
+        $(`#icon-${input.id}`).css("color","var(--brown)");
+        $(`#group-${input.id}`).removeClass("valid-password");
+        $(`#group-${input.id}`).removeClass("invalid-password");
+        $(input).removeClass("valid-password-border");
+        $(input).removeClass("invalid-password-border");
+        $(`#icon-${input.id}`).addClass("bi-eye-slash");
+        $(`#icon-${input.id}`).removeClass("bi-eye");
+        $(input).attr("type", "password");
+    }
 
     $(`#${input.id}-error`).remove();
 };
