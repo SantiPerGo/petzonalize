@@ -63,39 +63,49 @@ const loadAlertText = (text, type) => {
   const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
   const toastBody = $("#toast-body");
   toastBody.text(text);
+  toastElement.removeClass("toast-success");
+  toastElement.removeClass("toast-error");
   toastElement.addClass(`toast-${type}`);
   toastInstance.show();
 };
 
 const postData = (url, data) => {
-  const file = realFileBtn.files[0];
-  const formData = new FormData();
-  formData.append("image", file);
+  if(isBackendAlive) {
+    const file = realFileBtn.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
 
-  // Append the JSON data as a Blob
-  const jsonBlob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-  formData.append('product', jsonBlob);  
+    // Append the JSON data as a Blob
+    const jsonBlob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+    formData.append('product', jsonBlob);  
 
-  $("#loading").removeClass("d-none");
+    $("#loading").removeClass("d-none");
 
-  fetch(url, { method: method, body: formData })
-    .then(data => {
-      $("#loading").addClass("d-none");
-      if(data.status === 201 || data.status === 200) {
-        loadAlertText("¡Producto añadido con Éxito!", "success");
-        setTimeout(() => window.location.href = "../html/products.html", 1000);
-      } else {
-        if(data.status === 400)
-          loadAlertText("¡Debes cargar una imagen para el producto!", "error");
-        else
-          loadAlertText("¡Hubo un error con los datos ingresados!", "error");
-
-      }
-    })
-    .catch(error => {
-      console.log(error)
-      $("#loading").addClass("d-none");
-    })
+    fetch(url, { method: method, body: formData })
+      .then(data => {
+        $("#loading").addClass("d-none");
+        if(data.status === 200) {
+          sessionStorage.setItem("product-form", "¡Producto actualizado con Éxito!");
+          window.location.href = "../html/products.html";
+        } else if(data.status === 201) {
+          sessionStorage.setItem("product-form", "¡Producto añadido con Éxito!");
+          window.location.href = "../html/products.html";
+        } else {
+          if(data.status === 400)
+            loadAlertText("¡Debes cargar una imagen para el producto!", "error");
+          else
+            loadAlertText("¡Hubo un error con los datos ingresados!", "error");
+        }
+      })
+      .catch(error => {
+        console.log(error)
+        $("#loading").addClass("d-none");
+        loadAlertText("¡Error al guardar o actualizar el producto! Intenta de nuevo más tarde", "error");
+      })
+  } else {
+    sessionStorage.setItem("product-form", "¡Producto añadido o actualizado con éxito!");
+    window.location.href = "../html/products.html";
+  }
 }
 
 editform.submit(submitButton => {
@@ -136,22 +146,28 @@ const resetForm = () => editform.reset();
 
 const deleter = document.getElementById("remove");
 deleter.addEventListener(`click`, () => {
-  const url=("https://petzonalize.up.railway.app/products/"+productId);
+  if(isBackendAlive) {
+    const url=("https://petzonalize.up.railway.app/products/"+productId);
 
-  $("#loading").removeClass("d-none");
-  fetch(url, {method: "DELETE"})
-    .then(data => {
-      $("#loading").addClass("d-none");
-      if(data.status === 200) {
-        sessionStorage.setItem("alert", 8 )
-        window.location.href="../html/products.html";
-      } else
-        loadAlertText("¡No se encontró ningun producto con ese id!", "error");
-    })
-    .catch(error => {
-      console.error(error);
-      $("#loading").addClass("d-none");
-    })
+    $("#loading").removeClass("d-none");
+    fetch(url, {method: "DELETE"})
+      .then(data => {
+        $("#loading").addClass("d-none");
+        if(data.status === 200) {
+          sessionStorage.setItem("product-form", "¡Producto eliminado con éxito!")
+          window.location.href="../html/products.html";
+        } else
+          loadAlertText("¡No se encontró ningun producto con ese id!", "error");
+      })
+      .catch(error => {
+        console.error(error);
+        $("#loading").addClass("d-none");
+        loadAlertText("¡Error al eliminar el producto! Intenta de nuevo más tarde", "error");
+      })
+  } else {
+    sessionStorage.setItem("product-form", "¡Producto eliminado con éxito!")
+    window.location.href="../html/products.html";
+  }
 })
 
 // ---------------------------------------------------------------------

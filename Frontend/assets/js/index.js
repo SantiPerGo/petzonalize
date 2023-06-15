@@ -9,6 +9,8 @@ $(document).ready(() => {
     const toastElement = $("#toast");
     const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
     const toastBody = $("#toast-body");
+    toastElement.removeClass("toast-success");
+    toastElement.removeClass("toast-error");
 
     if(emailResult !== null && emailStatus !== null) {
         toastBody.text(emailResult);

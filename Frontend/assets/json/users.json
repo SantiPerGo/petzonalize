@@ -1,112 +1,101 @@
 [
     {
         "id": 1,
+        "name": "Santi PerGo",
+        "email": "tuprofedog@gmail.com",
+        "phone": "5530827907",
+        "password": "TuProfeDog",
+        "address": "123 Main St, New York, USA",
+        "privilege": "admin"
+    },
+    {
+        "id": 2,
         "name": "Juan Fernando Reyes Sánchez",
         "email": "juanreyssan@gmail.com",
         "phone":"525519673129" ,
         "password": "password",
-        "privileges": {
-             "id": 1,
-              "privilege": "admin"
-        } 
+        "address": "456 Elm St, Madrid, Spain",
+        "privilege": "admin"
     },
     {
-        "id": 2,
+        "id": 3,
         "name": "Amaya Hernández Barrera",
         "email": "mayitabar98@gmail.com",
         "phone":"525517909516" ,
         "password": "guestguest",
-        "privileges": {
-             "id": 2,
-              "privilege": "client"
-        }
+        "address": "789 Oak St, Mexico City, Mexico",
+        "privilege": "client"
     },
     {
-        "id": 3,
+        "id": 4,
         "name": "María Guadalupe Castellanos Córdoba",
         "email": "lupita_osito32@gmail.com",
         "phone":"525580528301" ,
         "password": "qwertyuiop",
-        "privileges": {
-             "id": 1,
-              "privilege": "admin"
-        }
+        "address": "321 Pine St, Sydney, Australia",
+        "privilege": "admin"
     },
     {
-        "id": 4,
+        "id": 5,
         "name": "Darío González Pichardo",
         "email": "darioastronautagp@gmail.com",
         "phone":"525527839796",
         "password": "col12345",
-        "privileges": {
-             "id": 2,
-              "privilege": "client"
-        }
+        "address": "654 Maple St, Paris, France",
+        "privilege": "client"
     },
     {
-        "id": 5,
+        "id": 6,
         "name": "Manuel Rodríguez González",
         "email": "manu93rzgz@gmail.com",
         "phone":"525518090880" ,
         "password": "megustaelarroz18",
-        "privileges": {
-             "id": 1,
-              "privilege": "admin"
-        }
+        "address": "987 Birch St, Tokyo, Japan",
+        "privilege": "admin"
     },
     {
-        "id": 6,
+        "id": 7,
         "name": "Alexis Peralta Muñoz",
         "email": "alpemu_electro22@gmail.com",
         "phone":"525542481533",
         "password": "alexisperalta22",
-        "privileges": {
-             "id": 2,
-              "privilege": "client"
-        }
+        "address": "741 Cedar St, Sao Paulo, Brazil",
+        "privilege": "client"
     },
     {
-        "id": 7,
+        "id": 8,
         "name": "Cristina Espinoza Leyva",
         "email": "kristyespinoza921@gmail.com",
         "phone":"525573406189",
         "password": "footballkristy92",
-        "privileges": {
-             "id": 1,
-              "privilege": "admin"
-        }
+        "address": "852 Walnut St, Berlin, Germany",
+        "privilege": "admin"
     },
     {
-        "id": 8,
+        "id": 9,
         "name": "Isidro Juárez Velázquez",
         "email": "juarezsd29473@gmail.com",
         "phone":"525569771680",
         "password": "dragonisidro123",
-        "privileges": {
-             "id": 2,
-              "privilege": "client"
-        }
+        "address": "963 Spruce St, Rome, Italy",
+        "privilege": "client"
     },
     {
-        "id": 9,
+        "id": 10,
         "name": "Juana Sánchez Armenta",
         "email": "jusanarmenti21@gmail.com",
         "phone":"525569753092",
         "password": "princessjuanita77",
-        "privileges": {
-             "id": 1,
-              "privilege": "admin"
-        }
+        "address": "159 Fir St, Beijing, China",
+        "privilege": "admin"
     },
     {
-        "id": 10,
+        "id": 11,
         "name": "Sandra Castillo Pérez",
         "email": "sandraexploradora21@gmail.com",
         "phone":"525546483824",
         "password": "passw0rdstarwars21",
-        "privileges": {
-             "id": 2,
-              "privilege": "client"
-        }
+        "address": "357 Palm St, Sydney, Australia",
+        "privilege": "client"
     }
 ]

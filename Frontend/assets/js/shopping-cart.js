@@ -506,28 +506,37 @@ const createUserOrder = () => {
     };
     
     $("#loading").removeClass("d-none");
-    fetch(urlOrder, {
-        method: 'POST',
-        body: JSON.stringify(userOrder), // Enviando orden a end-Point /Buy de Backend
-        headers:{
-          'Content-Type': 'application/json'
-        }
-      }).then(response => {
-        $("#loading").addClass("d-none");
-        if(response.status === 200) {
-            clearInputs(name, email, phone, address);
-            deleteShoppingCart();
-            hiddenWindowOrder();
-            sessionStorage.setItem("order-created", "¡Gracias por tu pedido! Debes estar pendiente de tu correo donde recibirás tu recibo completo");
-            window.location.href = "../../index.html";
-        } else 
+
+    if(isBackendAlive) {
+        fetch(urlOrder, {
+            method: 'POST',
+            body: JSON.stringify(userOrder), // Enviando orden a end-Point /Buy de Backend
+            headers:{
+            'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            $("#loading").addClass("d-none");
+            if(response.status === 200) {
+                clearInputs(name, email, phone, address);
+                deleteShoppingCart();
+                hiddenWindowOrder();
+                sessionStorage.setItem("order-created", "¡Gracias por tu pedido! Debes estar pendiente de tu correo donde recibirás tu recibo completo");
+                window.location.href = "../../index.html";
+            } else 
+                loadAlertText("¡Error al crear el pedido! Intenta de nuevo más tarde", "error")
+        })
+        .catch(error => {
+            $("#loading").addClass("d-none");
+            console.error('Error:', error)
             loadAlertText("¡Error al crear el pedido! Intenta de nuevo más tarde", "error")
-      })
-      .catch(error => {
-        $("#loading").addClass("d-none");
-        console.error('Error:', error)
-        loadAlertText("¡Error al crear el pedido! Intenta de nuevo más tarde", "error")
-    })
+        })
+    } else {
+        clearInputs(name, email, phone, address);
+        deleteShoppingCart();
+        hiddenWindowOrder();
+        sessionStorage.setItem("order-created", "¡Gracias por tu pedido! Debes estar pendiente de tu correo donde recibirás tu recibo completo");
+        window.location.href = "../../index.html";
+    }
 } 
 
 
@@ -536,6 +545,8 @@ const loadAlertText = (text, type) => {
     const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
     const toastBody = $("#toast-body");
     toastBody.text(text);
+    toastElement.removeClass("toast-success");
+    toastElement.removeClass("toast-error");
     toastElement.addClass(`toast-${type}`);
     toastInstance.show();
   };

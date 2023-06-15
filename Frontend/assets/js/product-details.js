@@ -680,6 +680,7 @@ buyButton.on('click', () => {
       const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
       const toastBody = $("#toast-body");
       toastBody.text("Debes elegir un tamaño antes de comprar el producto");
+      toastElement.removeClass("toast-success");
       toastElement.addClass("toast-error");
       toastInstance.show();
     } else
