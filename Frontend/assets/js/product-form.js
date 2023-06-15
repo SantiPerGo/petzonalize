@@ -45,10 +45,12 @@ $(document).ready(() => {
     else
       document.querySelector('#product-form-cat').checked = true;
   } else {
-    $("#remove").addClass("d-none");
-    $("#add").removeClass("w-75");
-    $("#add").addClass("w-100");
-    $("#add-container").removeClass("col-md-6");
+    $("#remove-container").addClass("d-none");
+
+    $("#add-container").removeClass("col-md-4");
+    $("#add-container").addClass("col-md-6");
+    $("#return-container").removeClass("col-md-4");
+    $("#return-container").addClass("col-md-6");
   }
 });
 
@@ -203,3 +205,9 @@ realFileBtn.addEventListener("change", function() {
     previewImage.setAttribute("src", "");
   }
 }); 
+
+// ---------------------------------------------------------------------
+// Boton regresar
+// ---------------------------------------------------------------------
+
+$("#return").click(() => window.location.href="../html/products.html");
