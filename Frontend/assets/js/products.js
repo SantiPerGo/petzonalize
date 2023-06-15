@@ -292,11 +292,17 @@ const loadProductsFromJson = (products, customizables, sizes) => {
 };
 
 const loadProducts = async intervalId => {
-  let [products, customizables, sizes, productsHasLoaded] = await getProductsFromJson(
-    "https://petzonalize.up.railway.app/products",
-    "https://petzonalize.up.railway.app/customizables",
-    "https://petzonalize.up.railway.app/sizes"
-  );
+  let products, customizables, sizes, productsHasLoaded;
+  if(isBackendAlive) 
+    [products, customizables, sizes, productsHasLoaded] = await getProductsFromJson(
+      "https://petzonalize.up.railway.app/products",
+      "https://petzonalize.up.railway.app/customizables",
+      "https://petzonalize.up.railway.app/sizes"
+    );
+  else
+    [products, customizables, sizes, productsHasLoaded] = await getProductsFromJson(
+      "/assets/json/products.json", "/assets/json/customizables.json", "/assets/json/sizes.json"
+    );
 
   // Hiding loading animation
   $("#loading-anim").remove()
@@ -306,20 +312,12 @@ const loadProducts = async intervalId => {
 
   // Loading error page or products
   if (!productsHasLoaded) {
-    if(!isBackendAlive) 
-      [products, customizables, sizes, productsHasLoaded] = await getProductsFromJson(
-        "/assets/json/products.json", "/assets/json/customizables.json", "/assets/json/sizes.json"
-      );
+    showErrorPage(true);
+    loadAlertText("¡Error al cargar los productos! Intenta de nuevo más tarde", "error")
 
-    if (!productsHasLoaded) {
-      showErrorPage(true);
-      loadAlertText("¡Error al cargar los productos! Intenta de nuevo más tarde", "error")
-
-      // Deleting default card items
-      $("#product-custom").remove();
-      $("#product-not-custom").remove();
-    } else
-      loadProductsFromJson(products, customizables, sizes);
+    // Deleting default card items
+    $("#product-custom").remove();
+    $("#product-not-custom").remove();
   } else 
     loadProductsFromJson(products, customizables, sizes);
 };
