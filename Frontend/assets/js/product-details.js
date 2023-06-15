@@ -618,17 +618,6 @@ const calculateProductPrice = () => {
     $("#product-buy").prop('disabled', false);
 };
 
-const resetInput = input => {
-  $(input).val("");
-  $(input).removeData("previousValue");
-  $(input).removeAttr("aria-invalid");
-  $(input).removeClass("valid");
-  $(input).removeClass("invalid");
-  $(input).removeClass("input-icon-valid");
-  $(input).removeClass("input-icon-invalid");
-  $(`#${input.id}-error`).remove();
-};
-
 // *********************************************************************************
 // *********************************************************************************
 // Custom Products Buy and return buttons
