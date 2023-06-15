@@ -40,40 +40,6 @@ buttonBackToLogin.addEventListener('click', ()=>{
     clearInputs();
 });
 
-//----------------Show in console list of users registered from Database or Users.Json---------------------
-  fetch('https://petzonalize.up.railway.app/users')
-  .then(response => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error('Failed to fetch data from the API');
-    }
-  })
-  .then(users => {
-    console.log(users);
-    console.log("usuarios obtenidos de la Data Base");
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    // Fetch from local JSON file if there's an error
-    fetch('/assets/json/users.json')
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Failed to fetch data from the local JSON file');
-        }
-      })
-      .then(users => {
-        console.log(users);
-        console.log("usuarios obtenidos de archivo local JSON");
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  });
-
-
 // ------------Look if there's a user registered in local storage--------------
  $(document).ready(() => {
     // Forms validation
@@ -108,42 +74,7 @@ const resetInput = input => {
     $(`#${input.id}-error`).remove();
 };
 
-// ------ Escucha cuando el usuario inicie sesion con DB -----
-/* loginForm.submit(submitButton => {
-    submitButton.preventDefault();
-
-    const user = {
-        email: $("#input-email-login").val().trim(),
-        password: $("#input-password-login").val().trim()
-    }
-
-    if(loginForm.valid())
-        fetch("https://petzonalize.up.railway.app/users/login", {
-            method: "POST",
-            body: JSON.stringify(user),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        })
-            .then(response => {
-                if (response.ok)
-                    return response.json();
-                else if (response.status === 400) 
-                    loadAlertText("Correo o contraseña incorrectos", "error");    
-                else if (response.status === 404) 
-                    loadAlertText("La cuenta de usuario no existe", "error");   
-                
-                throw new Error("Login failed");
-            })
-            .then(usersResponse =>{
-                localStorage.setItem(`users-logged-in`, JSON.stringify(usersResponse));
-                window.location.href = 'profile.html';
-                console.log("Sesion iniciada");   
-            })
-            .catch(error =>{
-                console.log(error);
-            }) 
-}); */
-
-// ---------- Inicio de sesión con DB ó Json local -------------
+// ------ Escucha cuando el usuario inicie sesion con DB ó Json local -------------
 loginForm.submit(submitButton => {
     submitButton.preventDefault();
 
@@ -153,40 +84,49 @@ loginForm.submit(submitButton => {
     };
 
     if (loginForm.valid()) {
-        fetch("https://petzonalize.up.railway.app/users/login", {
-            method: "POST",
-            body: JSON.stringify(user),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else if (response.status === 400) {
-                loadAlertText("Correo o contraseña incorrectos", "error");
-            } else if (response.status === 404) {
-                loadAlertText("La cuenta de usuario no existe", "error");
-            }
+        $("#loading").removeClass("d-none");
 
-            throw new Error("Login failed");
-        })
-        .then(usersResponse => {
-            localStorage.setItem(`users-logged-in`, JSON.stringify(usersResponse));
-            window.location.href = 'profile.html';
-            console.log("Sesión iniciada");
-        })
-        .catch(error => {
-            console.log(error);
+        if(isBackendAlive) {
+            fetch("https://petzonalize.up.railway.app/users/login", {
+                method: "POST",
+                body: JSON.stringify(user),
+                headers: {"Content-type": "application/json; charset=UTF-8"}
+            })
+            .then(response => {
+                $("#loading").addClass("d-none");
+    
+                if (response.ok) 
+                    return response.json();
+                else if (response.status === 400) 
+                    loadAlertText("Correo o contraseña incorrectos", "error");
+                else if (response.status === 404) 
+                    loadAlertText("La cuenta de usuario no existe", "error");
+    
+                throw new Error("Login failed");
+            })
+            .then(usersResponse => {
+                localStorage.setItem(`users-logged-in`, JSON.stringify(usersResponse));
+                window.location.href = 'profile.html';
+                console.log("Sesión iniciada");
+            })
+            .catch(error => {
+                $("#loading").addClass("d-none");
+                console.log(error);
+                loadAlertText("¡Error al iniciar sesión! Intenta de nuevo más tarde", "error")
+            });
+        } else {
             // Fetch from local JSON file for email and password validation
             fetch("/assets/json/users.json")
                 .then(response => {
-                    if (response.ok) {
-                        console.log("No se puede acceder a la base de datos, se está intentando ingresar localmente");
+                    $("#loading").addClass("d-none");
+                    console.log("No se puede acceder a la base de datos, se está intentando ingresar localmente");
+                    if (response.ok)
                         return response.json();
-                    } else {
+                    else 
                         throw new Error("Failed to fetch from local JSON file");
-                    }
                 })
                 .then(usersResponse => {
+                    console.log(usersResponse)
                     const matchedUser = usersResponse.find(
                         u => u.email === user.email && u.password === user.password
                     );
@@ -198,8 +138,12 @@ loginForm.submit(submitButton => {
                         loadAlertText("Correo o contraseña incorrectos", "error");
                     }
                 })
-                .catch(error => console.log(error));
-        });
+                .catch(error => {
+                    $("#loading").addClass("d-none");
+                    console.log(error);
+                    loadAlertText("¡Error al iniciar sesión! Intenta de nuevo más tarde", "error")
+                });
+        }
     }
 });
 
@@ -208,35 +152,11 @@ const loadAlertText = (text, type) => {
     const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
     const toastBody = $("#toast-body");
     toastBody.text(text);
+    toastElement.removeClass("toast-success");
+    toastElement.removeClass("toast-error");
     toastElement.addClass(`toast-${type}`);
     toastInstance.show();
 };
-
-// ----- Escucha cuando el usuario recupera contraseña ------
-/* recoverForm.submit(submitButton => {
-    submitButton.preventDefault();
-
-    const email = $("#recover-email-login").val().trim();
-
-    if (recoverForm.valid()) {
-        fetch("https://petzonalize.up.railway.app/users/" + email)
-            .then(response => {
-                if (response.ok) {
-                    // Success: Password recovery logic
-                    loadAlertText("Se ha enviado la contraseña a tu correo", "success");
-                } else if (response.status === 404) {
-                    // User not found
-                    loadAlertText("El correo no pertenece a ninguna cuenta", "error");
-                } else {
-                    throw new Error("Failed to recover password. Status: " + response.status);
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
-}); */
-
 
 // ------ Escucha cuando el usuario recupera contraseña del Database o Users.Json -------------
 recoverForm.submit(submitButton => {
@@ -245,44 +165,56 @@ recoverForm.submit(submitButton => {
     const email = $("#recover-email-login").val().trim();
 
     if (recoverForm.valid()) {
-        fetch("https://petzonalize.up.railway.app/users/" + email)
-            .then(response => {
-                if (response.ok) {
-                    // Success: Password recovery logic
-                    loadAlertText("Se ha enviado la contraseña a tu correo", "success");
-                } else if (response.status === 404) {
-                    // User not found
-                    loadAlertText("El correo no pertenece a ninguna cuenta", "error");
-                } else {
-                    throw new Error("Failed to recover password. Status: " + response.status);
-                }
-            })
-            .catch(error => {
-                console.log(error);
-                // Fetch from local JSON file if the API request fails
-                fetch("/assets/json/users.json")
-                    .then(response => {
-                        if (response.ok) {
-                            return response.json();
-                        } else {
-                            throw new Error("Failed to fetch from local JSON file");
-                        }
-                    })
-                    .then(usersResponse => {
-                        // Check if the email exists in the local JSON data
-                        const user = usersResponse.find(user => user.email === email);
-                        if (user) {
-                            // Email found: Proceed with further logic
-                            console.log("User recovery from local JSON file:", user);
-                            loadAlertText("Se ha enviado la contraseña a tu correo", "success");
-                        } else {
-                            // Email not found: Display an appropriate message
-                            console.log("Email does not exist in the local JSON file");
-                            loadAlertText("El correo no pertenece a ninguna cuenta", "error");
-                        }
-                    })
-                    .catch(error => console.log(error));
-            });
+        $("#loading").removeClass("d-none");
+        
+        if(isBackendAlive) {
+            fetch("https://petzonalize.up.railway.app/users/" + email)
+                .then(response => {
+                    $("#loading").addClass("d-none");
+                    if (response.ok) {
+                        // Success: Password recovery logic
+                        loadAlertText("Se ha enviado la contraseña a tu correo", "success");
+                    } else if (response.status === 404) {
+                        // User not found
+                        loadAlertText("El correo no pertenece a ninguna cuenta", "error");
+                    } else {
+                        throw new Error("Failed to recover password. Status: " + response.status);
+                    }
+                })
+                .catch(error => {
+                    $("#loading").addClass("d-none");
+                    console.log(error);
+                    loadAlertText("¡Error al recuperar la contraseña! Intenta de nuevo más tarde", "error")
+                });
+        } else {
+            // Fetch from local JSON file if the API request fails
+            fetch("/assets/json/users.json")
+                .then(response => {
+                    $("#loading").addClass("d-none");
+                    if (response.ok) 
+                        return response.json();
+                    else 
+                        throw new Error("Failed to fetch from local JSON file");
+                })
+                .then(usersResponse => {
+                    // Check if the email exists in the local JSON data
+                    const user = usersResponse.find(user => user.email === email);
+                    if (user) {
+                        // Email found: Proceed with further logic
+                        console.log("User recovery from local JSON file:", user);
+                        loadAlertText("Se ha enviado la contraseña a tu correo", "success");
+                    } else {
+                        // Email not found: Display an appropriate message
+                        console.log("Email does not exist in the local JSON file");
+                        loadAlertText("El correo no pertenece a ninguna cuenta", "error");
+                    }
+                })
+                .catch(error => {
+                    $("#loading").addClass("d-none");
+                    console.log(error);
+                    loadAlertText("¡Error al recuperar la contraseña! Intenta de nuevo más tarde", "error")
+                });
+        }
     }
 });
 
@@ -295,52 +227,10 @@ signUpForm.submit(submitButton => {
         creatingUserAccount();
 });
 
-//------------Make a POST request to create the user account
-/* const creatingUserAccount = () => {
-    const name = document.getElementById("input-name-register").value;
-    const email = document.getElementById("input-email-register").value;
-    const address = document.getElementById("input-address-register").value;
-    const phone = document.getElementById("input-phone-register").value;
-    const password = document.getElementById("input-signup-password").value;
-
-    const user = {
-        "name": name,
-        "address": address,
-        "email": email,
-        "phone": phone,
-        "password": password,
-        "privileges": {
-            "id": 2,
-            "privilege": "client"
-        } 
-    };
-    
-    fetch("https://petzonalize.up.railway.app/users", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user)
-    })
-    .then(response => {
-        if (response.ok) 
-            return response.json();
-        else 
-            console.error("Failed to create account. Status: " + response.status);
-    })
-    .then(response => {
-        localStorage.setItem("users-logged-in", JSON.stringify(response));
-        window.location.href = 'profile.html';
-        console.log("Cuenta creada");
-    })
-    .catch(error => {
-        console.error("Not user registered:", error);
-        
-    });    
-} */
-
 //------------Make a POST request to create the user account in Database or Users.Json --------------
 const creatingUserAccount = () => {
+    $("#loading").removeClass("d-none");
+
     const name = document.getElementById("input-name-register").value;
     const email = document.getElementById("input-email-register").value;
     const address = document.getElementById("input-address-register").value;
@@ -359,54 +249,61 @@ const creatingUserAccount = () => {
         } 
     };
     
-    fetch("https://petzonalize.up.railway.app/users", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user)
-    })
-    .then(response => {
-        if (response.ok) 
-            return response.json();
-        else 
-            console.log("No se puede acceder a la base de datos, se creará localmente");
-            throw new Error("Failed to create account. Status: " + response.status);
-    })
-    .then(response => {
-        localStorage.setItem("users-logged-in", JSON.stringify(response));
-        window.location.href = 'profile.html';
-        console.log("Cuenta creada");
-    })
-    .catch(error => {
-        console.error("Not user registered:", error);
+    if(isBackendAlive) {
+        fetch("https://petzonalize.up.railway.app/users", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(user)
+        })
+        .then(response => {
+            $("#loading").addClass("d-none");
+            if (response.ok) 
+                return response.json();
+            else {
+                console.log("No se puede acceder a la base de datos, se creará localmente");
+                throw new Error("Failed to create account. Status: " + response.status);
+            }
+        })
+        .then(response => {
+            localStorage.setItem("users-logged-in", JSON.stringify(response));
+            window.location.href = 'profile.html';
+            console.log("Cuenta creada");
+        })
+        .catch(error => {
+            $("#loading").addClass("d-none");
+            console.error("Not user registered:", error);
+            loadAlertText("¡Error al crear la cuenta! Intenta de nuevo más tarde", "error")
+        });    
+    } else {
         // Fetch from local JSON file if the API request fails
         fetch("/assets/json/users.json")
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error("Error al acceder al archivo local JSON");
-                }
-            })
-            .then(usersResponse => {
-                // Check if user already exists in the local JSON data
-                const existingUser = usersResponse.find(
-                    u => u.email === user.email
-                );
-                if (existingUser) {
-                    console.error("This email already exists:", existingUser);
-                    loadAlertText("Este correo ya existe", "error");
-                } else {
-                    // Add the new user to the local JSON data
-                    usersResponse.push(user);
-                    localStorage.setItem("users-logged-in", JSON.stringify(user));
-                    window.location.href = 'profile.html';
-                    console.log("User created in local JSON file:", user);
-                    // Proceed with further logic or redirection
-                }
-            })
-            .catch(error => console.log(error));
-    });    
+        .then(response => {
+            $("#loading").addClass("d-none");
+            if (response.ok) 
+                return response.json();
+            else 
+                throw new Error("Error al acceder al archivo local JSON");
+        })
+        .then(usersResponse => {
+            // Check if user already exists in the local JSON data
+            const existingUser = usersResponse.find(
+                u => u.email === user.email
+            );
+            if (existingUser) {
+                console.error("This email already exists:", existingUser);
+                loadAlertText("Ya existe una cuenta asociada con dicho correo", "error");
+            } else {
+                localStorage.setItem("users-logged-in", JSON.stringify(user));
+                window.location.href = 'profile.html';
+            }
+        })
+        .catch(error => {
+            $("#loading").addClass("d-none");
+            console.error("Not user registered:", error);
+            loadAlertText("¡Error al crear la cuenta! Intenta de nuevo más tarde", "error")
+        });    
+    }
 };
 

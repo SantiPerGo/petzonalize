@@ -54,6 +54,7 @@ $(document).ready(function(){
     });
 });
 
+let isBackendAlive = false;
 function updateBackendStatus() {
     fetch("https://petzonalize.up.railway.app/actuator/health")
         .then(responseHttp => {
@@ -66,6 +67,7 @@ function updateBackendStatus() {
                 $("#indicator-text-mobile").text("Online");
                 $("#indicator-container-mobile").css("color", "var(--purple)");
                 $("#indicator-circle-mobile").css("background-color", "var(--purple)");
+                isBackendAlive = true;
             }
         })
         .catch(error => {
@@ -77,6 +79,7 @@ function updateBackendStatus() {
             $("#indicator-text-mobile").text("Offline");
             $("#indicator-container-mobile").css("color", "var(--blue)");
             $("#indicator-circle-mobile").css("background-color", "var(--blue)");
+            isBackendAlive = false;
         });
 }
 

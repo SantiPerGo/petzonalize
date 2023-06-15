@@ -233,17 +233,13 @@ const addProductsToCart = (product, quantity) => {
 // Get products from json files
 // *********************************************************************************
 
-const getProductsFromJson = async () => {
+const getProductsFromJson = async (productsUrl, customUrl, sizesUrl) => {
   let productsLoaded = true, customizablesLoaded = true;
   let products = [], customizables = [], sizes = [];
 
   // Obtaining products by Get Method
   try {
-    await $.getJSON("https://petzonalize.up.railway.app/products",
-      (productsJson)=>{
-        products = productsJson;
-        console.log(products);
-      });
+    await $.getJSON(productsUrl, productsJson => products = productsJson);
   } catch (error) {
     console.log("Not products error: ", error);
     productsLoaded = false;
@@ -251,11 +247,7 @@ const getProductsFromJson = async () => {
 
   // Obtaning customizables properties by Get Method
   try {
-    await $.getJSON("https://petzonalize.up.railway.app/customizables",
-      customizablesJson => {
-        console.log(customizablesJson);
-        customizables = customizablesJson;
-      });
+    await $.getJSON(customUrl, customizablesJson => customizables = customizablesJson);
   } catch (error) {
     console.log("Not customizables error: ", error);
     customizablesLoaded = false;
@@ -263,16 +255,11 @@ const getProductsFromJson = async () => {
 
   // Obtaining customizables sizes by Get Method
   try {
-    await $.getJSON("https://petzonalize.up.railway.app/sizes",
-      sizesJson => {
-        console.log(sizesJson);
-        sizes = sizesJson;
-      });
+    await $.getJSON(sizesUrl, sizesJson => sizes = sizesJson);
   } catch (error) {
     console.log("Not sizes error: ", error);
     customizablesLoaded = false;
   }
-
 
   return [products, customizables, sizes, productsLoaded && customizablesLoaded];
 };
@@ -281,8 +268,35 @@ const getProductsFromJson = async () => {
 // Create product cards from json files
 // *********************************************************************************
 
+const loadProductsFromJson = (products, customizables, sizes) => {
+  createProductsCards(products);
+  sessionStorage.setItem("products", JSON.stringify(products));
+  sessionStorage.setItem("customizables", JSON.stringify(customizables));
+  sessionStorage.setItem("sizes", JSON.stringify(sizes));
+
+  // Getting filter if exists
+  const petFilter = sessionStorage.getItem("pet-filter");
+
+  if (petFilter !== null) {
+    const productsArray = [];
+    savePropertyObjectInArray(petFilter, productsArray);
+    applyProductFilters(productsArray);
+
+    // Showing filters
+    $(`#chbox-${petFilter}`).prop('checked', true);
+    toggle();
+
+    // Deleting session storage
+    sessionStorage.removeItem("pet-filter");
+  }
+};
+
 const loadProducts = async intervalId => {
-  const [products, customizables, sizes, productsHasLoaded] = await getProductsFromJson();
+  let [products, customizables, sizes, productsHasLoaded] = await getProductsFromJson(
+    "https://petzonalize.up.railway.app/products",
+    "https://petzonalize.up.railway.app/customizables",
+    "https://petzonalize.up.railway.app/sizes"
+  );
 
   // Hiding loading animation
   $("#loading-anim").remove()
@@ -292,33 +306,22 @@ const loadProducts = async intervalId => {
 
   // Loading error page or products
   if (!productsHasLoaded) {
-    showErrorPage(true);
+    if(!isBackendAlive) 
+      [products, customizables, sizes, productsHasLoaded] = await getProductsFromJson(
+        "/assets/json/products.json", "/assets/json/customizables.json", "/assets/json/sizes.json"
+      );
 
-    // Deleting default card items
-    $("#product-custom").remove();
-    $("#product-not-custom").remove();
-  } else {
-    createProductsCards(products);
-    sessionStorage.setItem("products", JSON.stringify(products));
-    sessionStorage.setItem("customizables", JSON.stringify(customizables));
-    sessionStorage.setItem("sizes", JSON.stringify(sizes));
+    if (!productsHasLoaded) {
+      showErrorPage(true);
+      loadAlertText("¡Error al cargar los productos! Intenta de nuevo más tarde", "error")
 
-    // Getting filter if exists
-    const petFilter = sessionStorage.getItem("pet-filter");
-
-    if (petFilter !== null) {
-      const productsArray = [];
-      savePropertyObjectInArray(petFilter, productsArray);
-      applyProductFilters(productsArray);
-
-      // Showing filters
-      $(`#chbox-${petFilter}`).prop('checked', true);
-      toggle();
-
-      // Deleting session storage
-      sessionStorage.removeItem("pet-filter");
-    }
-  }
+      // Deleting default card items
+      $("#product-custom").remove();
+      $("#product-not-custom").remove();
+    } else
+      loadProductsFromJson(products, customizables, sizes);
+  } else 
+    loadProductsFromJson(products, customizables, sizes);
 };
 
 // *********************************************************************************
@@ -338,16 +341,17 @@ $(document).ready(() => {
 
   loadProducts(intervalId);
 
-  let alertText = sessionStorage.getItem("alert");
+  const productFormChange = sessionStorage.getItem("product-form");
 
-  if(alertText !== null){
+  if(productFormChange !== null) {
     const toastElement = $("#toast");
     const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
     const toastBody = $("#toast-body");
-    toastBody.text("¡Producto eliminado con Éxito!");
+    toastElement.removeClass("toast-error");
+    toastBody.text(productFormChange);
     toastElement.addClass("toast-success");
+    sessionStorage.removeItem("product-form");
     toastInstance.show();
-    sessionStorage.removeItem("alert");
   }
 
   let user = localStorage.getItem("users-logged-in");

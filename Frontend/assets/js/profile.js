@@ -111,29 +111,37 @@ const updateLocalStorage = (id, input) => {
 };
 
 const updateUserData = (userData) => {
-  const url = "https://petzonalize.up.railway.app/users";
-  const requestData = {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userData),
-  };
+  if(isBackendAlive) {
+    const url = "https://petzonalize.up.railway.app/users";
+    const requestData = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    };
 
-  fetch(url, requestData)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Error al realizar la solicitud");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log("Datos actualizados:", data);
-    })
-    .catch((error) => {
-      console.error("Error en la solicitud:", error);
-      console.log("JSON almacenado localmente:", userData);
-    });
+    $("#loading").removeClass("d-none");
+    fetch(url, requestData)
+      .then((response) => {
+        $("#loading").addClass("d-none");
+
+        if(response.status === 404) 
+          loadAlertText("¡Usuario no encontrado!", "error");
+        else if (!response.ok)
+          throw new Error("¡Hubo un error de conexion!");
+          
+        return response.json();
+      })
+      .then((data) => {
+        loadAlertText("¡Datos actualizados correctamente!", "success");
+      })
+      .catch((error) => {
+        $("#loading").addClass("d-none");
+        loadAlertText("¡Error al actualizar la cuenta! Intenta de nuevo más tarde", "error")
+      });
+  } else
+    loadAlertText("¡Datos actualizados correctamente!", "success");
 };
 
 // *********************************************************************************
@@ -168,47 +176,100 @@ function closeSession() {
   window.location.href = '../../index.html'; 
 }
 
+const loadAlertText = (text, type) => {
+  const toastElement = $("#toast");
+  const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
+  const toastBody = $("#toast-body");
+  toastBody.text(text);
+  toastElement.removeClass("toast-success");
+  toastElement.removeClass("toast-error");
+  toastElement.addClass(`toast-${type}`);
+  toastInstance.show();
+};
+
 formDeleteAccount.submit(submitButton => {
   submitButton.preventDefault();
 
   if(formDeleteAccount.valid()) {
-    const url = "https://petzonalize.up.railway.app/users";
-    const requestData = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: $('#input-email').val(),
-        password: $("#input-password-delete").val()
-      }),
-    };
+    $("#loading").removeClass("d-none");
 
-    fetch(url, requestData)
-      .then((response) => {
-        if (!response.ok)
-          throw new Error("Error al realizar la solicitud");
-    
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Usuario eliminado:", data);
-        localStorage.removeItem('users-logged-in');
-        sessionStorage.setItem("eliminated-account",
-          "¡Cuenta Eliminada con Éxito!");
-        window.location.href = '../../index.html';
-      })
-      .catch((error) => {
-        console.error(error);
-        cancelDeleteAccount();
-        resetInput($("#input-password-delete"));
-
-        const toastElement = $("#toast");
-        const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
-        const toastBody = $("#toast-body");
-        toastBody.text("¡Contraseña incorrecta!");
-        toastElement.addClass("toast-error");
-        toastInstance.show();
-      });
+    if(isBackendAlive) {
+      const url = "https://petzonalize.up.railway.app/users";
+      const requestData = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: $('#input-email').val(),
+          password: $("#input-password-delete").val()
+        }),
+      };
+  
+      fetch(url, requestData)
+        .then((response) => {
+          $("#loading").addClass("d-none");
+          console.log(response.status)
+  
+          if(response.status === 400) {
+            cancelDeleteAccount();
+            resetInput($("#input-password-delete"));
+            loadAlertText("¡Contraseña incorrecta!", "error");
+          } else if(response.status === 404) {
+            cancelDeleteAccount();
+            resetInput($("#input-password-delete"));
+            loadAlertText("¡Usuario no encontrado!", "error");
+          } else if (!response.ok)
+            throw new Error("¡Hubo un error de conexion!");
+      
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Usuario eliminado:", data);
+          localStorage.removeItem('users-logged-in');
+          sessionStorage.setItem("eliminated-account",
+            "¡Cuenta Eliminada con Éxito!");
+          window.location.href = '../../index.html';
+        })
+        .catch((error) => {
+          console.error(error);
+          $("#loading").addClass("d-none");
+          cancelDeleteAccount();
+          resetInput($("#input-password-delete"));
+          loadAlertText("¡Error al borrar la cuenta! Intenta de nuevo más tarde", "error")
+        });
+    } else
+      deleteAccountFromLocal($('#input-email').val(), $("#input-password-delete").val());
   }
 });
+
+function deleteAccountFromLocal(email, password) {
+  fetch("/assets/json/users.json")
+    .then(response => {
+      $("#loading").addClass("d-none");
+        if (response.ok) 
+            return response.json();
+        else 
+            throw new Error("Error al acceder al archivo local JSON");
+    })
+    .then(usersResponse => {
+        // Check if user already exists in the local JSON data
+        const existingUser = usersResponse.find(u => u.email === email);
+        if (existingUser.password !== password) {
+          cancelDeleteAccount();
+          resetInput($("#input-password-delete"));
+          loadAlertText("¡Contraseña incorrecta!", "error");
+        } else {
+          localStorage.removeItem('users-logged-in');
+          sessionStorage.setItem("eliminated-account",
+            "¡Cuenta Eliminada con Éxito!");
+          window.location.href = '../../index.html';
+        }
+    })
+    .catch((error) => {
+      localStorage.removeItem('users-logged-in');
+      sessionStorage.setItem("eliminated-account",
+        "¡Cuenta Eliminada con Éxito!");
+      window.location.href = '../../index.html';
+    });
+}

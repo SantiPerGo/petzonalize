@@ -1,307 +1,375 @@
-{
-    "products": [
-        {
+[
+    {
+        "id": 1,
+        "name": "Hill's Adult Large Breed Lamb Meal & Brown Rice Recipe Alimento para perros",
+        "description": "El alimento seco para perros Hill's Science Diet Large Breed Adult está especialmente formulado para satisfacer las necesidades energéticas de los perros de razas grandes durante la flor de su vida.\n\nDelicioso sabor a cordero para aquellos que prefieren la variedad y elaborado con ingredientes de alta calidad y fáciles de digerir. Fuentes naturales de glucosamina y condroitina para la salud de las articulaciones. Omega-6 y vitamina E para una piel y un pelaje hermosos. Proteína de alta calidad para músculos magros",
+        "category": "food",
+        "customizable": false,
+        "price": 4123,
+        "imgUrl": "/assets/img/products/not customizable/dog-food-hills-adult-large-breed.png",
+        "stock": 5,
+        "type": "dog",
+        "properties": null
+    },
+    {
+        "id": 2,
+        "name": "Flamingo Frisbee de Goma para Perros",
+        "description": "Si quieres un juguete divertido y seguro para tu perro, este frisbee de goma es justo lo que estás buscando. Con él tu mascota podrá disfrutar jugando, realizando ejercicios de adiestramiento o practicando deporte. Este producto está fabricado con goma maciza natural, no tóxica, que, además, no hace daño al golpear.\n\nLos perros suelen coger los discos en el aire, antes de que caigan al suelo. Otros frisbee pueden dañarles la boca y dientes, ya que están hechos con materiales más duros o de peor calidad. Con este juguete, tu mascota no se hará daño, ya que está diseñado para masajear y cuidar de la dentadura de tu mejor amigo mientras lo muerde.\n\nEste frisbee de goma es un juguete muy divertido para tu perro que además viene en llamativos colores, rojo, verde o naranja. Pídelo ya y déjate sorprender por el color que te toque. ¡A tu mascota le encantará!",
+        "category": "toys",
+        "customizable": false,
+        "price": 250,
+        "imgUrl": "/assets/img/products/not customizable/dog-toys-flamingo-rubber-frisbee.png",
+        "stock": 19,
+        "type": "dog",
+        "properties": null
+    },
+    {
+        "id": 3,
+        "name": "Hartz Groomer's Best Champú para Cachorros, aroma a jazmín",
+        "description": "Fórmula suave y sin lágrimas especialmente formulada para la piel y el pelaje delicado de los cachorros sin ser agresiva ni secar. Incluye 18 onzas líquidas de champú extra suave con aroma a jazmín.\n\nAdecuado para todo tipo de pelaje, esta solución super espumosa es suave para la piel sensible y fácil de enjabonar para un pelaje completamente limpio que es suave y brillante. Hecho con ingredientes 100% seguros para mascotas.",
+        "category": "cleaning",
+        "customizable": false,
+        "price": 97,
+        "imgUrl": "/assets/img/products/not customizable/dog-cleaning-hartz-groomers-shampoo.png",
+        "stock": 269,
+        "type": "dog",
+        "properties": null
+    },
+    {
+        "id": 4,
+        "name": "Cepillo Deslanador Perros Grandes Furminator Pelo Largo",
+        "description": "Furminator Deslanador para Perro Pelo Corto La herramienta patentada Deslanador para Perro Pelo Corto, elimina de forma fácil y rápida no corta sino que elimina la muda el pelo muerto y el subpelo que es el problema más común de los dueños de mascotas la muda y los problemas de alergia y limpieza que supone\n\nEl cepillo de diseño único con su borde de acero inoxidable agarra el pelo suelto y lo elimina sin causar ningún daño en la piel. Ahora con una manera práctica y rápida de vaciar el pelo recogido por la hoja. El pelo lustroso de la mascota es un indicativo del cuidado excelente que el cepillo le proporciona.",
+        "category": "cleaning",
+        "customizable": false,
+        "price": 740,
+        "imgUrl": "/assets/img/products/not customizable/dog-cleaning-furminator-shedding-tool.png",
+        "stock": 10,
+        "type": "dog",
+        "properties": null
+    },
+    {
+        "id": 5,
+        "name": "Fancy Pets Cojin/Cama para Cama de Plásico para Perro Tamaño Grande",
+        "description": "Dale a su mascota el sueño reparador ya que es un factor clave para su inteligencia y longevidad. Su mascota se merece todo esto y con un cojín para cama grande fabricado con tela suave de alta calidad resistente al manejo cotidiano lo va a conseguir. Este cojín proporciona descanso y comodidad, previene la formación de callosidades y es totalmente lavable.",
+        "category": "supplies",
+        "customizable": false,
+        "price": 292.53,
+        "imgUrl": "/assets/img/products/not customizable/dog-supplies-fancy-pets-plastic-bed.png",
+        "stock": 23,
+        "type": "dog",
+        "properties": null
+    },
+    {
+        "id": 6,
+        "name": "ZamiPet Skin, Coat & Nails",
+        "description": "ZamiPet Skin, Coat & Nails son masticables para tu mascota de muy buen sabor que contienen Omega 6, Miel de Manuka, Prebiótico, MSM, Cúrcuma y Biotina para mantener la piel sana de su perro, además de promover un pelaje brillante y uñas fuertes.",
+        "category": "health",
+        "customizable": false,
+        "price": 800,
+        "imgUrl": "/assets/img/products/not customizable/dog-health-zamipet-vitamin-chews.png",
+        "stock": 16,
+        "type": "dog",
+        "properties": null
+    },
+    {
+        "id": 7,
+        "name": "Kit Cat Gatitos y Embarazadas (Crecimiento Sano) Alimento Seco para Gatos",
+        "description": "Kit Cat alimento natural premium para gatos fue creado por nuestros nutricionistas que también son amantes de los gatos y elaborado con la bondad de ingredientes naturales cuidadosamente seleccionados que no contienen colorantes artificiales.\n\nAdemás, esta dieta contiene fructooligosacáridos que promueven un tracto digestivo más saludable y taurina para ojos saludables. Omega 3 y 6. Piel sana. Sin cerdo, sin manteca. Añadido Taurino. Prebiótico, Vitamina E",
+        "category": "food",
+        "customizable": false,
+        "price": 185.89,
+        "imgUrl": "/assets/img/products/not customizable/cat-food-kit-cat-kitten-pregnant.png",
+        "stock": 25,
+        "type": "cat",
+        "properties": null
+    },
+    {
+        "id": 8,
+        "name": "Leaps & Bounds Pista con Pluma y Pelota con Luz Juguete para Gato, Rosa",
+        "description": "¡Los gatitos inteligentes saben que pensar es muy divertido! La pista de Leaps & Bounds ofrece divertidos desafíos en la lucha por reflejos y la resolución de problemas, y permite que los gatos te impresionen con sus habilidades. La pelota se enciende y recorre la pista. Pluma en un resorte para llamar la atención de tu mejor amigo. Color rosa de material resistente.",
+        "category": "toys",
+        "customizable": false,
+        "price": 229,
+        "imgUrl": "/assets/img/products/not customizable/cat-toys-leaps-bounds-feather-ball.png",
+        "stock": 15,
+        "type": "cat",
+        "properties": null
+    },
+    {
+        "id": 9,
+        "name": "Cepillo para Gatos, Cepillo Slicker para Masaje de Mascotas y Limpieza Automática.",
+        "description": "Remueve el pelo: remueve los pelos sueltos, largos, cortos, la suciedad y los enredos, ¡no más pelos en el suelo!\n\nFácil de limpiar: cuando hayas terminado de cepillar a tu mascota, simplemente presiona el botón y las cerdas se retraen de vuelta en el cepillo, haciendo que sea sencillo quitar el pelo del cepillo, para que esté listo para usar la próxima vez.",
+        "category": "cleaning",
+        "customizable": false,
+        "price": 254,
+        "imgUrl": "/assets/img/products/not customizable/cat-cleaning-slicker-brush.png",
+        "stock": 34,
+        "type": "cat",
+        "properties": null
+    },
+    {
+        "id": 10,
+        "name": "BIO GROOM Flea & Tick Shampoo para Gato",
+        "description": "Flea & Tick es un concentrado de champú acondicionador que contiene PYRETHRINS para un control efectivo de pulgas, piojos y garrapatas. Los ingredientes derivados del aceite de coco en esta fórmula limpian suavemente, resaltan todos los colores y hacen que el blanco brille.\n\nLa proteína y la lanolina en este champú ayudan a acondicionar la piel y el pelaje, previenen la sequedad y le dan al pelaje un brillo y brillo profundos. El abrigo se seca suave, manejable y sin enredos. pH equilibrado, suave, se enjuaga por completo, dejando el pelaje con un olor fresco y limpio.",
+        "category": "cleaning",
+        "customizable": false,
+        "price": 249,
+        "imgUrl": "/assets/img/products/not customizable/cat-cleaning-bio-groom-shampoo.png",
+        "stock": 22,
+        "type": "cat",
+        "properties": null
+    },
+    {
+        "id": 11,
+        "name": "Bedsure Cama Gato Grande Estampada - Camas para Gatos Suave y Lavable, Cojin Pequeño Interior y Redondo",
+        "description": "COMODIDAD INSTANTÁNEA: La cama gato verano tiene una zona para dormir y ultra lujosa y relleno de fibra de poliéster esponjoso para acurrucarse.\n\nDISEÑO ESPECIAL: La cama perro pequeño con lados elevados crea una sensación de seguridad y un lugar espacioso para anidar.\n\nPARTE INFERIOR ANTIDESLIZANTE: La cama gatos suave presenta un fondo antideslizante que ayuda a mantener la cama gato grande en su lugar en superficies lisas.\n\nFÁCIL MANTENIMIENTO: La cama gato lavable y resistente al agua de un lado proporciona comodidad durante todo el año.\n\nCUIDAD SENCILLA: La cama gato desenfundable se puede lavar a máquina en agua fría, circulación suave, lavada por separado, secada y planchada a baja temperatura, no limpie en seco.",
+        "category": "supplies",
+        "customizable": false,
+        "price": 521.61,
+        "imgUrl": "/assets/img/products/not customizable/cat-supplies-bedsure-big-bed.png",
+        "stock": 16,
+        "type": "cat",
+        "properties": null
+    },
+    {
+        "id": 12,
+        "name": "Suplemento en gel de vitaminas y minerales PetAg - Soporte inmunitario para gatos - Contiene vitamina D y Zinc",
+        "description": "Sistema Inmunológico y Salud ósea: Este poderoso suplemento es para apoyar a gatos de 4 meses o más. Soporte Inmunológico para Gatos: Los nutrientes apoyan el sistema inmunológico y la energía, perfecto para gatos activos.\n\nExcelente Adición a la Dieta Diaria: Las vitaminas con excelente sabor mantendrán a los gatos vibrantes y alegres todos los días.\n\nFácil de Administrar: El sabor altamente apetitoso de pollo ayuda a los gatos a obtener un pelaje brillante, suave y grueso.\n\nExcelente Solución de Cuidado: PetAg ofrece productos de alta calidad para dueños y profesionales de animales.",
+        "category": "health",
+        "customizable": false,
+        "price": 335,
+        "imgUrl": "/assets/img/products/not customizable/cat-health-petag-supplement-gel.png",
+        "stock": 12,
+        "type": "cat",
+        "properties": null
+    },
+    {
+        "id": 13,
+        "name": "Collar de Nylon",
+        "category": "collar",
+        "customizable": true,
+        "price": 179.99,
+        "imgUrl": "/assets/img/products/customizable/customizable-collar-nylon.png",
+        "stock": 67,
+        "properties": {
             "id": 1,
-            "name": "Hill's Adult Large Breed Lamb Meal & Brown Rice Recipe Alimento para perros",
-            "description": "El alimento seco para perros Hill's Science Diet Large Breed Adult está especialmente formulado para satisfacer las necesidades energéticas de los perros de razas grandes durante la flor de su vida.\n\nDelicioso sabor a cordero para aquellos que prefieren la variedad y elaborado con ingredientes de alta calidad y fáciles de digerir. Fuentes naturales de glucosamina y condroitina para la salud de las articulaciones. Omega-6 y vitamina E para una piel y un pelaje hermosos. Proteína de alta calidad para músculos magros",
-            "category": "food",
-            "customizable": false,
-            "price": 4123,
-            "imgUrl": "/assets/img/products/not customizable/dog-food-hills-adult-large-breed.png",
-            "stock": 5,
-            "type": "dog"
-        },
-        {
-            "id": 2,
-            "name": "Flamingo Frisbee de Goma para Perros",
-            "description": "Si quieres un juguete divertido y seguro para tu perro, este frisbee de goma es justo lo que estás buscando. Con él tu mascota podrá disfrutar jugando, realizando ejercicios de adiestramiento o practicando deporte. Este producto está fabricado con goma maciza natural, no tóxica, que, además, no hace daño al golpear.\n\nLos perros suelen coger los discos en el aire, antes de que caigan al suelo. Otros frisbee pueden dañarles la boca y dientes, ya que están hechos con materiales más duros o de peor calidad. Con este juguete, tu mascota no se hará daño, ya que está diseñado para masajear y cuidar de la dentadura de tu mejor amigo mientras lo muerde.\n\nEste frisbee de goma es un juguete muy divertido para tu perro que además viene en llamativos colores, rojo, verde o naranja. Pídelo ya y déjate sorprender por el color que te toque. ¡A tu mascota le encantará!",
-            "category": "toys",
-            "customizable": false,
-            "price": 250,
-            "imgUrl": "/assets/img/products/not customizable/dog-toys-flamingo-rubber-frisbee.png",
-            "stock": 19,
-            "type": "dog"
-        },
-        {
-            "id": 3,
-            "name": "Hartz Groomer's Best Champú para Cachorros, aroma a jazmín",
-            "description": "Fórmula suave y sin lágrimas especialmente formulada para la piel y el pelaje delicado de los cachorros sin ser agresiva ni secar. Incluye 18 onzas líquidas de champú extra suave con aroma a jazmín.\n\nAdecuado para todo tipo de pelaje, esta solución super espumosa es suave para la piel sensible y fácil de enjabonar para un pelaje completamente limpio que es suave y brillante. Hecho con ingredientes 100% seguros para mascotas.",
-            "category": "cleaning",
-            "customizable": false,
-            "price": 97,
-            "imgUrl": "/assets/img/products/not customizable/dog-cleaning-hartz-groomers-shampoo.png",
-            "stock": 269,
-            "type": "dog"
-        },
-        {
-            "id": 4,
-            "name": "Cepillo Deslanador Perros Grandes Furminator Pelo Largo",
-            "description": "Furminator Deslanador para Perro Pelo Corto La herramienta patentada Deslanador para Perro Pelo Corto, elimina de forma fácil y rápida no corta sino que elimina la muda el pelo muerto y el subpelo que es el problema más común de los dueños de mascotas la muda y los problemas de alergia y limpieza que supone\n\nEl cepillo de diseño único con su borde de acero inoxidable agarra el pelo suelto y lo elimina sin causar ningún daño en la piel. Ahora con una manera práctica y rápida de vaciar el pelo recogido por la hoja. El pelo lustroso de la mascota es un indicativo del cuidado excelente que el cepillo le proporciona.",
-            "category": "cleaning",
-            "customizable": false,
-            "price": 740,
-            "imgUrl": "/assets/img/products/not customizable/dog-cleaning-furminator-shedding-tool.png",
-            "stock": 10,
-            "type": "dog"
-        },
-        {
-            "id": 5,
-            "name": "Fancy Pets Cojin/Cama para Cama de Plásico para Perro Tamaño Grande",
-            "description": "Dale a su mascota el sueño reparador ya que es un factor clave para su inteligencia y longevidad. Su mascota se merece todo esto y con un cojín para cama grande fabricado con tela suave de alta calidad resistente al manejo cotidiano lo va a conseguir. Este cojín proporciona descanso y comodidad, previene la formación de callosidades y es totalmente lavable.",
-            "category": "supplies",
-            "customizable": false,
-            "price": 292.53,
-            "imgUrl": "/assets/img/products/not customizable/dog-supplies-fancy-pets-plastic-bed.png",
-            "stock": 23,
-            "type": "dog"
-        },
-        {
-            "id": 6,
-            "name": "ZamiPet Skin, Coat & Nails",
-            "description": "ZamiPet Skin, Coat & Nails son masticables para tu mascota de muy buen sabor que contienen Omega 6, Miel de Manuka, Prebiótico, MSM, Cúrcuma y Biotina para mantener la piel sana de su perro, además de promover un pelaje brillante y uñas fuertes.",
-            "category": "health",
-            "customizable": false,
-            "price": 800,
-            "imgUrl": "/assets/img/products/not customizable/dog-health-zamipet-vitamin-chews.png",
-            "stock": 16,
-            "type": "dog"
-        },
-        {
-            "id": 7,
-            "name": "Kit Cat Gatitos y Embarazadas (Crecimiento Sano) Alimento Seco para Gatos",
-            "description": "Kit Cat alimento natural premium para gatos fue creado por nuestros nutricionistas que también son amantes de los gatos y elaborado con la bondad de ingredientes naturales cuidadosamente seleccionados que no contienen colorantes artificiales.\n\nAdemás, esta dieta contiene fructooligosacáridos que promueven un tracto digestivo más saludable y taurina para ojos saludables. Omega 3 y 6. Piel sana. Sin cerdo, sin manteca. Añadido Taurino. Prebiótico, Vitamina E",
-            "category": "food",
-            "customizable": false,
-            "price": 185.89,
-            "imgUrl": "/assets/img/products/not customizable/cat-food-kit-cat-kitten-pregnant.png",
-            "stock": 25,
-            "type": "cat"
-        },
-        {
-            "id": 8,
-            "name": "Leaps & Bounds Pista con Pluma y Pelota con Luz Juguete para Gato, Rosa",
-            "description": "¡Los gatitos inteligentes saben que pensar es muy divertido! La pista de Leaps & Bounds ofrece divertidos desafíos en la lucha por reflejos y la resolución de problemas, y permite que los gatos te impresionen con sus habilidades. La pelota se enciende y recorre la pista. Pluma en un resorte para llamar la atención de tu mejor amigo. Color rosa de material resistente.",
-            "category": "toys",
-            "customizable": false,
-            "price": 229,
-            "imgUrl": "/assets/img/products/not customizable/cat-toys-leaps-bounds-feather-ball.png",
-            "stock": 15,
-            "type": "cat"
-        },
-        {
-            "id": 9,
-            "name": "Cepillo para Gatos, Cepillo Slicker para Masaje de Mascotas y Limpieza Automática.",
-            "description": "Remueve el pelo: remueve los pelos sueltos, largos, cortos, la suciedad y los enredos, ¡no más pelos en el suelo!\n\nFácil de limpiar: cuando hayas terminado de cepillar a tu mascota, simplemente presiona el botón y las cerdas se retraen de vuelta en el cepillo, haciendo que sea sencillo quitar el pelo del cepillo, para que esté listo para usar la próxima vez.",
-            "category": "cleaning",
-            "customizable": false,
-            "price": 254,
-            "imgUrl": "/assets/img/products/not customizable/cat-cleaning-slicker-brush.png",
-            "stock": 34,
-            "type": "cat"
-        },
-        {
-            "id": 10,
-            "name": "BIO GROOM Flea & Tick Shampoo para Gato",
-            "description": "Flea & Tick es un concentrado de champú acondicionador que contiene PYRETHRINS para un control efectivo de pulgas, piojos y garrapatas. Los ingredientes derivados del aceite de coco en esta fórmula limpian suavemente, resaltan todos los colores y hacen que el blanco brille.\n\nLa proteína y la lanolina en este champú ayudan a acondicionar la piel y el pelaje, previenen la sequedad y le dan al pelaje un brillo y brillo profundos. El abrigo se seca suave, manejable y sin enredos. pH equilibrado, suave, se enjuaga por completo, dejando el pelaje con un olor fresco y limpio.",
-            "category": "cleaning",
-            "customizable": false,
-            "price": 249,
-            "imgUrl": "/assets/img/products/not customizable/cat-cleaning-bio-groom-shampoo.png",
-            "stock": 22,
-            "type": "cat"
-        },
-        {
-            "id": 11,
-            "name": "Bedsure Cama Gato Grande Estampada - Camas para Gatos Suave y Lavable, Cojin Pequeño Interior y Redondo",
-            "description": "COMODIDAD INSTANTÁNEA: La cama gato verano tiene una zona para dormir y ultra lujosa y relleno de fibra de poliéster esponjoso para acurrucarse.\n\nDISEÑO ESPECIAL: La cama perro pequeño con lados elevados crea una sensación de seguridad y un lugar espacioso para anidar.\n\nPARTE INFERIOR ANTIDESLIZANTE: La cama gatos suave presenta un fondo antideslizante que ayuda a mantener la cama gato grande en su lugar en superficies lisas.\n\nFÁCIL MANTENIMIENTO: La cama gato lavable y resistente al agua de un lado proporciona comodidad durante todo el año.\n\nCUIDAD SENCILLA: La cama gato desenfundable se puede lavar a máquina en agua fría, circulación suave, lavada por separado, secada y planchada a baja temperatura, no limpie en seco.",
-            "category": "supplies",
-            "customizable": false,
-            "price": 521.61,
-            "imgUrl": "/assets/img/products/not customizable/cat-supplies-bedsure-big-bed.png",
-            "stock": 16,
-            "type": "cat"
-        },
-        {
-            "id": 12,
-            "name": "Suplemento en gel de vitaminas y minerales PetAg - Soporte inmunitario para gatos - Contiene vitamina D y Zinc",
-            "description": "Sistema Inmunológico y Salud ósea: Este poderoso suplemento es para apoyar a gatos de 4 meses o más. Soporte Inmunológico para Gatos: Los nutrientes apoyan el sistema inmunológico y la energía, perfecto para gatos activos.\n\nExcelente Adición a la Dieta Diaria: Las vitaminas con excelente sabor mantendrán a los gatos vibrantes y alegres todos los días.\n\nFácil de Administrar: El sabor altamente apetitoso de pollo ayuda a los gatos a obtener un pelaje brillante, suave y grueso.\n\nExcelente Solución de Cuidado: PetAg ofrece productos de alta calidad para dueños y profesionales de animales.",
-            "category": "health",
-            "customizable": false,
-            "price": 335,
-            "imgUrl": "/assets/img/products/not customizable/cat-health-petag-supplement-gel.png",
-            "stock": 12,
-            "type": "cat"
-        },
-        {
-            "id": 13,
-            "name": "Collar de Nylon",
-            "category": "collar",
-            "customizable": true,
-            "price": 179.99,
-            "imgUrl": "/assets/img/products/customizable/customizable-collar-nylon.png",
-            "stock": 67,
-            "properties": {
-                "color": "orange",
-                "size": "Pequeño - 25 cm a 38 cm - 1.5 cm de ancho",
-                "pattern": "circles",
-                "material": "nylon"
-            }
-        }, 
-        {
-            "id": 14,
-            "name": "Collar de Cuero Sintético",
-            "category": "collar",
-            "customizable": true,
-            "price": 150,
-            "imgUrl": "/assets/img/products/customizable/customizable-collar-leather.png",
-            "stock": 67,
-            "properties": {
-                "color": "blue",
-                "size": "Mediano - 32 cm a 48 cm - 2 cm de ancho",
-                "pattern": "circles",
-                "material": "synthetic-leather"
-            }
-        },
-        {
-            "id": 15,
-            "name": "Plato de Comida de Plástico",
-            "category": "bowl",
-            "customizable": true,
-            "price": 209.99,
-            "imgUrl": "/assets/img/products/customizable/customizable-bowl-plastic.png",
-            "stock": 136,
-            "properties": {
-                "color": "yellow",
-                "size": "Pequeño - 250 ml",
-                "pattern": "hearts",
-                "petname": "firulais",
-                "material": "plastic"
-            }
-        },
-        {
-            "id": 16,
-            "name": "Plato de Comida de Cerámica",
-            "category": "bowl",
-            "customizable": true,
-            "price": 259.99,
-            "imgUrl": "/assets/img/products/customizable/customizable-bowl-ceramic.png",
-            "stock": 136,
-            "properties": {
-                "color": "yellow",
-                "size": "Mediano - 500 ml",
-                "pattern": "fabric",
-                "petname": "neko",
-                "material": "ceramic"
-            }
-        },
-        {
-            "id": 17,
-            "name": "Plaquita con Forma de Pata",
-            "category": "nameplate",
-            "customizable": true,
-            "price": 299.99,
-            "imgUrl": "/assets/img/products/customizable/customizable-nameplate-paw.png",
-            "stock": 376,
-            "properties": {
-                "color": "blue",
-                "size": "Pequeño - 35 mm x 18 mm",
-                "shape": "paw",
-                "pattern": "circles",
-                "petname": "firulais",
-                "petphone": "55123456"
-            }
-        },
-        {
-            "id": 18,
-            "name": "Plaquita con Forma de Hueso",
-            "category": "nameplate",
-            "customizable": true,
-            "price": 255.99,
-            "imgUrl": "/assets/img/products/customizable/customizable-nameplate-bone.png",
-            "stock": 323,
-            "properties": {
-                "color": "blue",
-                "size": "Pequeño - 35 mm x 18 mm",
-                "shape": "bone",
-                "pattern": "circles",
-                "petname": "cheems",
-                "petphone": "55123456"
-            }
-        },
-        {
-            "id": 19,
-            "name": "Plaquita con Forma de Círculo Doble",
-            "category": "nameplate",
-            "customizable": true,
-            "price": 225,
-            "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle-double.png",
-            "stock": 299,
-            "properties": {
-                "color": "blue",
-                "size": "Grande - 50 mm x 32 mm",
-                "shape": "circle-double",
-                "pattern": "circles",
-                "petname": "lomito",
-                "petphone": "55123456"
-            }
-        },
-        {
-            "id": 20,
-            "name": "Plaquita con Forma de Círculo",
-            "category": "nameplate",
-            "customizable": true,
-            "price": 219,
-            "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle.png",
-            "stock": 311,
-            "properties": {
-                "color": "blue",
-                "size": "Pequeño - 35 mm x 18 mm",
-                "shape": "circle",
-                "pattern": "circles",
-                "petname": "max",
-                "petphone": "55123456"
-            }
-        },
-        {
-            "id": 21,
-            "name": "Plaquita con Forma de Estrella",
-            "category": "nameplate",
-            "customizable": true,
-            "price": 119,
-            "imgUrl": "/assets/img/products/customizable/customizable-nameplate-star.png",
-            "stock": 288,
-            "properties": {
-                "color": "blue",
-                "size": "Mediano - 38 mm x 25 mm",
-                "shape": "star",
-                "pattern": "circles",
-                "petname": "doge",
-                "petphone": "55123456"
-            }
-        },
-        {
-            "id": 22,
-            "name": "Traje de Michi",
-            "category": "pet",
-            "customizable": true,
-            "type": "cat",
-            "imgUrl": "/assets/img/products/customizable/customizable-pet-cat.png",
-            "properties": {
-                "body": "turtle",
-                "head": "cold"
-            }
-        },
-        {
-            "id": 23,
-            "name": "Traje de Lomito",
-            "category": "pet",
-            "customizable": true,
-            "type": "dog",
-            "imgUrl": "/assets/img/products/customizable/customizable-pet-dog.png",
-            "properties": {
-                "body": "shark",
-                "head": "mariachi"
-            }
+            "color": "orange",
+            "size": "Pequeño - 25 cm a 38 cm - 1.5 cm de ancho",
+            "pattern": "circles",
+            "material": "nylon",
+            "petname": null,
+            "petphone": null,
+            "shape": null,
+            "body": null,
+            "head": null
         }
-    ]
-}
+    }, 
+    {
+        "id": 14,
+        "name": "Collar de Cuero Sintético",
+        "category": "collar",
+        "customizable": true,
+        "price": 150,
+        "imgUrl": "/assets/img/products/customizable/customizable-collar-leather.png",
+        "stock": 67,
+        "properties": {
+            "id": 2,
+            "color": "blue",
+            "size": "Mediano - 32 cm a 48 cm - 2 cm de ancho",
+            "pattern": "circles",
+            "material": "synthetic-leather",
+            "petname": null,
+            "petphone": null,
+            "shape": null,
+            "body": null,
+            "head": null
+        }
+    },
+    {
+        "id": 15,
+        "name": "Plato de Comida de Plástico",
+        "category": "bowl",
+        "customizable": true,
+        "price": 209.99,
+        "imgUrl": "/assets/img/products/customizable/customizable-bowl-plastic.png",
+        "stock": 136,
+        "properties": {
+            "id": 3,
+            "color": "yellow",
+            "size": "Pequeño - 250 ml",
+            "pattern": "hearts",
+            "petname": "firulais",
+            "material": "plastic",
+            "petphone": null,
+            "shape": null,
+            "body": null,
+            "head": null
+        }
+    },
+    {
+        "id": 16,
+        "name": "Plato de Comida de Cerámica",
+        "category": "bowl",
+        "customizable": true,
+        "price": 259.99,
+        "imgUrl": "/assets/img/products/customizable/customizable-bowl-ceramic.png",
+        "stock": 136,
+        "properties": {
+            "id": 4,
+            "color": "yellow",
+            "size": "Mediano - 500 ml",
+            "pattern": "fabric",
+            "petname": "neko",
+            "material": "ceramic",
+            "petphone": null,
+            "shape": null,
+            "body": null,
+            "head": null
+        }
+    },
+    {
+        "id": 17,
+        "name": "Plaquita con Forma de Pata",
+        "category": "nameplate",
+        "customizable": true,
+        "price": 299.99,
+        "imgUrl": "/assets/img/products/customizable/customizable-nameplate-paw.png",
+        "stock": 376,
+        "properties": {
+            "id": 5,
+            "color": "blue",
+            "size": "Pequeño - 35 mm x 18 mm",
+            "shape": "paw",
+            "material": null,
+            "pattern": "circles",
+            "petname": "firulais",
+            "petphone": "55123456",
+            "body": null,
+            "head": null
+        }
+    },
+    {
+        "id": 18,
+        "name": "Plaquita con Forma de Hueso",
+        "category": "nameplate",
+        "customizable": true,
+        "price": 255.99,
+        "imgUrl": "/assets/img/products/customizable/customizable-nameplate-bone.png",
+        "stock": 323,
+        "properties": {
+            "id": 6,
+            "color": "blue",
+            "size": "Pequeño - 35 mm x 18 mm",
+            "shape": "bone",
+            "material": null,
+            "pattern": "circles",
+            "petname": "cheems",
+            "petphone": "55123456",
+            "body": null,
+            "head": null
+        }
+    },
+    {
+        "id": 19,
+        "name": "Plaquita con Forma de Círculo Doble",
+        "category": "nameplate",
+        "customizable": true,
+        "price": 225,
+        "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle-double.png",
+        "stock": 299,
+        "properties": {
+            "id": 7,
+            "color": "blue",
+            "size": "Grande - 50 mm x 32 mm",
+            "shape": "circle-double",
+            "material": null,
+            "pattern": "circles",
+            "petname": "lomito",
+            "petphone": "55123456",
+            "body": null,
+            "head": null
+        }
+    },
+    {
+        "id": 20,
+        "name": "Plaquita con Forma de Círculo",
+        "category": "nameplate",
+        "customizable": true,
+        "price": 219,
+        "imgUrl": "/assets/img/products/customizable/customizable-nameplate-circle.png",
+        "stock": 311,
+        "properties": {
+            "id": 8,
+            "color": "blue",
+            "size": "Pequeño - 35 mm x 18 mm",
+            "shape": "circle",
+            "pattern": "circles",
+            "material": null,
+            "petname": "max",
+            "petphone": "55123456",
+            "body": null,
+            "head": null
+        }
+    },
+    {
+        "id": 21,
+        "name": "Plaquita con Forma de Estrella",
+        "category": "nameplate",
+        "customizable": true,
+        "price": 119,
+        "imgUrl": "/assets/img/products/customizable/customizable-nameplate-star.png",
+        "stock": 288,
+        "properties": {
+            "id": 9,
+            "color": "blue",
+            "size": "Mediano - 38 mm x 25 mm",
+            "shape": "star",
+            "material": null,
+            "pattern": "circles",
+            "petname": "doge",
+            "petphone": "55123456",
+            "body": null,
+            "head": null
+        }
+    },
+    {
+        "id": 22,
+        "name": "Traje de Michi",
+        "category": "pet",
+        "customizable": true,
+        "type": "cat",
+        "imgUrl": "/assets/img/products/customizable/customizable-pet-cat.png",
+        "properties": {
+            "id": 10,
+            "color": null,
+            "size": null,
+            "pattern": null,
+            "material": null,
+            "petname": null,
+            "petphone": null,
+            "shape": null,
+            "body": "turtle",
+            "head": "cold"
+        }
+    },
+    {
+        "id": 23,
+        "name": "Traje de Lomito",
+        "category": "pet",
+        "customizable": true,
+        "type": "dog",
+        "imgUrl": "/assets/img/products/customizable/customizable-pet-dog.png",
+        "properties": {
+            "id": 11,
+            "color": null,
+            "size": null,
+            "pattern": null,
+            "material": null,
+            "petname": null,
+            "petphone": null,
+            "shape": null,
+            "body": "shark",
+            "head": "mariachi"
+        }
+    }
+]
