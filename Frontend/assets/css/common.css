@@ -403,6 +403,45 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(1.05);
 }
 
+/* Password with icon */
+
+.input-group-text {
+    background-color: var(--gray);
+    border: 0.25rem solid var(--brown);
+    border-radius: 0.75rem;
+}
+
+.form-password,
+.form-password:focus {
+    border-right: none;
+}
+
+.input-group-text,
+.input-group-text:focus {
+    border-left: none;
+}
+
+.password-icon {
+    font-size: calc(1rem + 1.25vw);
+    color: var(--brown);
+}
+
+.password-input-group {
+    transition: all 0.25s;
+}
+
+.password-input-group:focus-within {
+    transform: scale(1.05);
+    box-shadow: 0 0 1rem var(--brown);
+    border-radius: 0.75rem;
+}
+
+.form-password:focus {
+    transform: scale(1);
+    background-color: var(--gray);
+    box-shadow: none;
+}
+
 /* Hiding number input arrows */
 
 input::-webkit-outer-spin-button,
@@ -413,6 +452,7 @@ input::-webkit-inner-spin-button {
 
 input[type=number]{
     -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 /* Valid - Invalid forms */
@@ -423,7 +463,7 @@ input[type=number]{
 
 .valid:focus {
     border-color: var(--blue) !important; 
-    box-shadow: 0 0 0 0.25rem var(--blue) !important; /* Cambia el sombreado en foco a morado */
+    box-shadow: 0 0 1rem var(--blue) !important;
 }
 
 .valid-feedback {
@@ -443,7 +483,7 @@ input[type=number]{
   
 .invalid:focus {
     border-color: var(--purple) !important; 
-    box-shadow: 0 0 0 0.25rem var(--purple) !important; /* Cambia el sombreado en foco a morado */
+    box-shadow: 0 0 1rem var(--purple) !important;
 }
 
 .invalid-feedback {
@@ -455,6 +495,38 @@ input[type=number]{
     background-position: 98% 50%;
     background-size: calc(0.75rem + 1vw) calc(0.75rem + 1vw);
     background-repeat: no-repeat;
+}
+
+/* Valid e invalid styles for password */
+
+.invalid-password:focus-within {
+    border-color: var(--purple) !important; 
+    box-shadow: 0 0 1rem var(--purple) !important;
+}
+
+.invalid-password-border {
+    border: 0.25rem solid var(--purple);
+    border-right: none;
+}
+
+.invalid-password-border:focus {
+    border: 0.25rem solid var(--purple);
+    border-right: none;
+}
+
+.valid-password:focus-within {
+    border-color: var(--blue) !important; 
+    box-shadow: 0 0 1rem var(--blue) !important;
+}
+
+.valid-password-border {
+    border: 0.25rem solid var(--blue);
+    border-right: none;
+}
+
+.valid-password-border:focus {
+    border: 0.25rem solid var(--blue);
+    border-right: none;
 }
 
 /* Loading animation */

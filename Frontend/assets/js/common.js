@@ -268,17 +268,73 @@ const validateForm = form => {
                 minlength: "La descripción debe tener al menos 5 caracteres"
             }
         },
-        errorClass: "valid is-valid valid-feedback",
-        validClass: "invalid is-invalid invalid-feedback",
+        errorClass: "valid-feedback",
+        validClass: "invalid-feedback",
         highlight: element => {
-            $(element).addClass("invalid").removeClass("valid");
-            $(element.form).find(`label[id=${element.id}-error]`).addClass("valid-feedback");
-            $(element).removeClass('input-icon-valid').addClass('input-icon-invalid'); 
+            if ($(element).attr("name") === "password" ||
+                $(element).attr("name") === "confirmPassword") {
+                $(`#span-${element.id}`).addClass("invalid").removeClass("valid");
+                $(`#icon-${element.id}`).css("color","var(--purple)");
+
+                $(`#group-${element.id}`).addClass("invalid-password").removeClass("valid-password");
+                $(element).addClass("invalid-password-border").removeClass("valid-password-border");
+                $(element).removeClass('input-icon-valid').addClass('input-icon-invalid');
+            } else {
+                $(element).addClass("invalid").removeClass("valid");
+                $(element.form).find(`label[id=${element.id}-error]`).addClass("valid-feedback");
+                $(element).removeClass('input-icon-valid').addClass('input-icon-invalid');
+            }
         },
         unhighlight: element => {
-            $(element).removeClass("invalid").addClass("valid");
-            $(element.form).find(`label[id=${element.id}-error]`).addClass("valid-feedback");
-            $(element).removeClass('input-icon-invalid').addClass('input-icon-valid'); 
+            if ($(element).attr("name") === "password" ||
+                $(element).attr("name") === "confirmPassword") {
+                $(`#span-${element.id}`).removeClass("invalid").addClass("valid");
+                $(`#icon-${element.id}`).css("color","var(--blue)");
+
+                $(`#group-${element.id}`).addClass("valid-password").removeClass("invalid-password");
+                $(element).addClass("valid-password-border").removeClass("invalid-password-border");
+                $(element).removeClass('input-icon-invalid').addClass('input-icon-valid'); 
+            } else {
+                $(element).removeClass("invalid").addClass("valid");
+                $(element.form).find(`label[id=${element.id}-error]`).addClass("valid-feedback");
+                $(element).removeClass('input-icon-invalid').addClass('input-icon-valid'); 
+            }
+        },
+        errorPlacement: function(error, element) {
+            if (element.attr("name") === "password" ||
+                element.attr("name") === "confirmPassword")
+                    error.insertAfter(`#group-${element[0].id}`);
+            else
+                error.insertAfter(element);
         }
     });    
+};
+
+const resetInput = input => {
+    $(input).val("");
+    $(input).removeData("previousValue");
+    $(input).removeAttr("aria-invalid");
+    $(input).removeClass("valid");
+    $(input).removeClass("invalid");
+    $(input).removeClass("input-icon-valid");
+    $(input).removeClass("input-icon-invalid");
+    
+    $(`#span-${input.id}`).removeClass("valid");
+    $(`#span-${input.id}`).removeClass("invalid");
+    $(`#icon-${input.id}`).css("color","var(--brown)");
+    $(`#group-${input.id}`).removeClass("valid-password");
+    $(`#group-${input.id}`).removeClass("invalid-password");
+    $(input).removeClass("valid-password-border");
+    $(input).removeClass("invalid-password-border");
+
+    $(`#${input.id}-error`).remove();
+};
+
+const showHidePassword = (iconElement, inputId) => {
+  $(iconElement).toggleClass("bi-eye-slash");
+  $(iconElement).toggleClass("bi-eye");
+
+  const input = $(`#${inputId}`);
+  const type = input.attr("type") === "password" ? "text" : "password"
+  input.attr("type", type);
 };

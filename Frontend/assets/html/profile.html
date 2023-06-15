@@ -139,8 +139,16 @@
         
                     <div class="row">
                         <div id="input-password-container" class="col-10 col-lg-11 input-container">
-                            <input type="password" class="form-view" id="input-password" placeholder="********" name="password"
-                                readonly>
+                            <div class="input-group password-input-group" id="group-input-password">  
+                                <input type="password" class="form-view form-password" id="input-password" 
+                                    aria-describedby="password-span" placeholder="********" name="password" readonly>
+                                
+                                <span class="input-group-text p-0 m-0 px-2 px-md-3 password-span d-none"
+                                    id="span-input-password">
+                                    <i class="bi bi-eye-slash password-icon p-0 m-0" id="icon-input-password"
+                                        onclick="showHidePassword(this, 'input-password')"></i>
+                                </span>
+                            </div>
                         </div>
         
                         <div class="col-2 col-lg-1">
