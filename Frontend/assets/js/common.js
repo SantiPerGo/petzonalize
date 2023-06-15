@@ -54,7 +54,7 @@ $(document).ready(function(){
     });
 });
 
-let isBackendAlive = false;
+let isBackendAlive = true;
 function updateBackendStatus() {
     fetch("https://petzonalize.up.railway.app/actuator/health")
         .then(responseHttp => {
