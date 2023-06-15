@@ -114,7 +114,7 @@ y disposición de los mismos para que sea responsivo
     }
       
     .errorcat {
-        width: calc(5rem + 50vw);
+        width: calc(5rem + 40vw);
         height: auto;
     }
 
