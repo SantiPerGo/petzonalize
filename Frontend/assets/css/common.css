@@ -47,7 +47,7 @@ body {
 }
 
 main {
-    min-height: calc(80vh + 1vw);
+    min-height: calc(80vh + 2vw);
 }
 
 input, textarea {
