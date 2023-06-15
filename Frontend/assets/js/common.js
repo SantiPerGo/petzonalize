@@ -50,7 +50,7 @@ $(document).ready(function(){
 
         // Updating footer backend status each minute
         updateBackendStatus();
-        setInterval(() => updateBackendStatus(), 60_000);
+        setInterval(() => updateBackendStatus(), 300_000);
     });
 });
 
