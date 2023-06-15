@@ -133,9 +133,9 @@ const switchMode = isDarkMode => {
 
     if(document.location.href.match(/[^\/]+$/)[0] === "index.html") {
         if(isDarkMode) 
-            $("#order-img").attr("src", "assets/img/dog-cat-happy-dark.png");
+            $("#order-img").attr("src", "/assets/img/dog-cat-happy-dark.png");
         else
-            $("#order-img").attr("src", "assets/img/dog-cat-happy.png");
+            $("#order-img").attr("src", "/assets/img/dog-cat-happy.png");
     }
 
     $("img").each((key, element) => {
