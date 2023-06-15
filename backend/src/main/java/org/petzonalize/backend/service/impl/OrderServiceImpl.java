@@ -66,7 +66,7 @@ public class OrderServiceImpl implements OrderService {
     		user = optionalUser.get();
     	else {
     		user = customer;
-    		user.setId(0L);
+    		user.setId(null);
     		userRepository.saveAndFlush(user);
     	}    	
 		

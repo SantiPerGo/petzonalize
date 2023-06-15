@@ -310,8 +310,10 @@ const validateForm = form => {
     });    
 };
 
-const resetInput = input => {
-    $(input).val("");
+const resetInput = (input, resetInputText = true) => {
+    if(resetInputText)
+        $(input).val("");
+
     $(input).removeData("previousValue");
     $(input).removeAttr("aria-invalid");
     $(input).removeClass("valid");
