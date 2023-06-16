@@ -42,11 +42,17 @@ $(document).ready(() => {
         setTimeout(() => {
             orderContainer.addClass("pop--hidden");
             orderContainer.removeClass("pop--unhidden");
-        }, 5000);
+        }, 10000);
 
         sessionStorage.removeItem("order-created");
     }
 });
+
+const closeOrderDialog = () => {
+    const orderContainer = $("#order-container");
+    orderContainer.addClass("pop--hidden");
+    orderContainer.removeClass("pop--unhidden");
+};
 
 const changeToProductsPage = type => {
     sessionStorage.setItem("pet-filter", type);

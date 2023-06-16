@@ -40,6 +40,7 @@ y disposición de los mismos para que sea responsivo
     .products-container{
       height: 42vh;
       overflow: scroll;
+      overflow-x: hidden;
     }
 
     .descriptioncontainer, .ver-mas{

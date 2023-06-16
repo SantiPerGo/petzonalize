@@ -168,6 +168,12 @@ const switchMode = isDarkMode => {
                     $(element).attr("src", "/assets/img/page-error-dog.png");
                 else 
                     $(element).attr("src", "/assets/img/page-error-dog-dark.png");
+            } else if($(element).attr("src").includes("cross.svg") ||
+                $(element).attr("src").includes("cross-dark.svg")) {
+                if(!isDarkMode)
+                    $(element).attr("src", "/assets/img/shopping-cart/cross.svg");
+                else 
+                    $(element).attr("src", "/assets/img/shopping-cart/cross-dark.svg");
             }
     });
 };
