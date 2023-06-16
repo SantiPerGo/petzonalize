@@ -291,6 +291,17 @@ const loadProductsFromJson = (products, customizables, sizes) => {
   }
 };
 
+const loadAlertText = (text, type) => {
+  const toastElement = $("#toast");
+  const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
+  const toastBody = $("#toast-body");
+  toastBody.text(text);
+  toastElement.removeClass("toast-success");
+  toastElement.removeClass("toast-error");
+  toastElement.addClass(`toast-${type}`);
+  toastInstance.show();
+};
+
 const loadProducts = async intervalId => {
   let [products, customizables, sizes, productsHasLoaded] = await getProductsFromJson(
     "https://petzonalize.up.railway.app/products",

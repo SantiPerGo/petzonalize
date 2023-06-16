@@ -10,8 +10,10 @@ import org.petzonalize.backend.entity.Product;
 import org.petzonalize.backend.entity.User;
 import org.petzonalize.backend.mapper.OrderHasProductMapper;
 import org.petzonalize.backend.mapper.OrderMapper;
+import org.petzonalize.backend.mapper.ProductPropertyMapper;
 import org.petzonalize.backend.repository.OrderHasProductRepository;
 import org.petzonalize.backend.repository.OrderRepository;
+import org.petzonalize.backend.repository.ProductPropertyRepository;
 import org.petzonalize.backend.repository.ProductRepository;
 import org.petzonalize.backend.repository.UserRepository;
 import org.petzonalize.backend.service.OrderService;
@@ -40,6 +42,9 @@ public class OrderServiceImpl implements OrderService {
     
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private ProductPropertyRepository productPropertyRepository;
 
     @Autowired
     private TemplateEngine templateEngine;
@@ -61,7 +66,7 @@ public class OrderServiceImpl implements OrderService {
     		user = optionalUser.get();
     	else {
     		user = customer;
-    		user.setId(0L);
+    		user.setId(null);
     		userRepository.saveAndFlush(user);
     	}    	
 		
@@ -79,7 +84,8 @@ public class OrderServiceImpl implements OrderService {
 			
 			if(optionalProduct.isPresent()) {
 				Product product = optionalProduct.get();
-				
+				product.setProperties(productOrder.getProperties());
+
 				int stock = product.isCustomizable() ? 0 : product.getStock();
 				int amount = productOrder.getAmount();
 				
@@ -89,6 +95,11 @@ public class OrderServiceImpl implements OrderService {
 						
 						// Updating product stock
 						productRepository.saveAndFlush(product);
+					} else {
+						product.setProperties(
+							productPropertyRepository.saveAndFlush(
+								ProductPropertyMapper.mapToProductProperty(product))
+						);
 					}
 					
 					// Updating order total cost
@@ -96,7 +107,7 @@ public class OrderServiceImpl implements OrderService {
 					totalAmount += amount;
 					
 					OrderHasProduct orderHasProduct =
-							OrderHasProductMapper.mapToOrderHasProduct(order, product);
+							OrderHasProductMapper.mapToOrderHasProduct(order, product, amount);
 					
 					// Creating connection between order and product
 					orderHasProductRepository.saveAndFlush(orderHasProduct);

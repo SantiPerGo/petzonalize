@@ -93,7 +93,7 @@ const inputState = (id, state) => {
     icon.addClass("bi-pencil-square");
     icon.removeClass("bi-check-circle");
     inputContainer.addClass("input-container");
-    form.find('input').each((key, input) => resetInput(input));
+    form.find('input').each((key, input) => resetInput(input, false));
     updateLocalStorage(id, input);
 
     if(spanInput !== null)

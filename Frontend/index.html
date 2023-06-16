@@ -38,7 +38,14 @@
 
     <div id="order-container" class="row justify-content-center pop--hidden m-0 p-0">
         <div class="col col-lg-8 p-3">
-            <div class="bg-beige not-registered-user-box">
+            <div class="bg-beige not-registered-user-box position-relative">
+                <div class="container-button-delete">
+                    <button type="button" class="d-flex border-0 rounded-circle p-0 bg-transparent" id="close-order-dialog"
+                        onclick="closeOrderDialog()">
+                        <img src="/assets/img/shopping-cart/cross.svg" alt="">
+                    </button>
+                </div>
+
                 <div class="row d-flex justify-content-center align-items-center">
                     <img id="order-img" src="/assets/img/dog-cat-happy.png" class="w-75" alt="Dog and Cat Happy">
                 </div>

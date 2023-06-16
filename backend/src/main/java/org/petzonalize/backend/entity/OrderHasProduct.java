@@ -37,4 +37,8 @@ public class OrderHasProduct implements OrderConstants {
 	
 	@NotNull(message = ORDER_AMOUNT_NULL)
     private int amount;
+
+    @ManyToOne
+    @JoinColumn(name = "product_property_id", nullable = true)
+    private ProductProperty properties;
 }

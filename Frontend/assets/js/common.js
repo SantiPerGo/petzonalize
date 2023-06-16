@@ -37,12 +37,18 @@ $(document).ready(function(){
     $.get("/assets/html/footer.html", data => {
         $("footer").replaceWith(data);
 
+        // Enabling tooltips
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
         $("#toggle-check").click(() => {
             if($("#toggle-check").is(":checked")) {
                 $(".toggle-label").css("color", "var(--purple)");
+                $(".custom-tooltip-pet-mode").css("--bs-tooltip-bg", "var(--purple)");
                 $("footer").append("<script id='oneko-script' src='/assets/js/libraries/oneko.js'></script>");
             } else {
                 $(".toggle-label").css("color", "var(--blue)");
+                $(".custom-tooltip-pet-mode").css("--bs-tooltip-bg", "var(--blue)");
                 $("#oneko").remove();
                 $("#oneko-script").remove();
             }
@@ -50,7 +56,7 @@ $(document).ready(function(){
 
         // Updating footer backend status each minute
         updateBackendStatus();
-        setInterval(() => updateBackendStatus(), 60_000);
+        setInterval(() => updateBackendStatus(), 300_000);
     });
 });
 
@@ -64,6 +70,8 @@ function updateBackendStatus() {
                 $("#indicator-container").css("color", "var(--purple)");
                 $("#indicator-circle").css("background-color", "var(--purple)");
 
+                $(".custom-tooltip-backend-status").css("--bs-tooltip-bg", "var(--purple)");
+
                 $("#indicator-text-mobile").text("Online");
                 $("#indicator-container-mobile").css("color", "var(--purple)");
                 $("#indicator-circle-mobile").css("background-color", "var(--purple)");
@@ -75,6 +83,8 @@ function updateBackendStatus() {
             $("#indicator-text").text("Offline");
             $("#indicator-container").css("color", "var(--blue)");
             $("#indicator-circle").css("background-color", "var(--blue)");
+
+            $(".custom-tooltip-backend-status").css("--bs-tooltip-bg", "var(--blue)");
 
             $("#indicator-text-mobile").text("Offline");
             $("#indicator-container-mobile").css("color", "var(--blue)");
@@ -158,6 +168,12 @@ const switchMode = isDarkMode => {
                     $(element).attr("src", "/assets/img/page-error-dog.png");
                 else 
                     $(element).attr("src", "/assets/img/page-error-dog-dark.png");
+            } else if($(element).attr("src").includes("cross.svg") ||
+                $(element).attr("src").includes("cross-dark.svg")) {
+                if(!isDarkMode)
+                    $(element).attr("src", "/assets/img/shopping-cart/cross.svg");
+                else 
+                    $(element).attr("src", "/assets/img/shopping-cart/cross-dark.svg");
             }
     });
 };
@@ -167,6 +183,11 @@ const validateForm = form => {
         rules: {
             name: {
                 minlength: 3,
+                required: true
+            },
+            petname: {
+                minlength: 3,
+                maxlength: 10,
                 required: true
             },
             address: {
@@ -220,6 +241,11 @@ const validateForm = form => {
             name: {
                 required: "Debes ingresar tu nombre",
                 minlength: "Tu nombre debe tener al menos 3 letras"
+            },
+            petname: {
+                required: "Debes ingresar el nombre de tu mascota",
+                minlength: "El nombre de tu mascota debe tener al menos 3 letras",
+                maxlength: "El nombre de tu mascota no puede tener más de 10 letras"
             },
             address: {
                 required: "Debes ingresar tu dirección",
@@ -310,8 +336,10 @@ const validateForm = form => {
     });    
 };
 
-const resetInput = input => {
-    $(input).val("");
+const resetInput = (input, resetInputText = true) => {
+    if(resetInputText)
+        $(input).val("");
+
     $(input).removeData("previousValue");
     $(input).removeAttr("aria-invalid");
     $(input).removeClass("valid");

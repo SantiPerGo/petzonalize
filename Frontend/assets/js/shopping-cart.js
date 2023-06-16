@@ -36,7 +36,7 @@ const notCustomProducts = (product) => {
     return `<div class="product-box product-${product.id} my-4 bg-beige">
          <div class="row justify-content-center position-relative">
          <div class="container-button-delete">
-         <button type="button" class="delete-product d-flex border-0 rounded-circle p-0" id="delete-product">
+         <button type="button" class="delete-product d-flex border-0 rounded-circle p-0 bg-transparent" id="delete-product">
          <img src="../img/shopping-cart/cross.svg" alt="">
          </button>
          </div>
@@ -152,7 +152,7 @@ const customProducts = (product) => {
     return `<div class="product-box product-${product.id} my-4 bg-beige">
          <div class="row justify-content-center position-relative">
          <div class="container-button-delete">
-         <button type="button" class="delete-product d-flex border-0 rounded-circle p-0" id="delete-product">
+         <button type="button" class="delete-product d-flex border-0 rounded-circle p-0 bg-transparent" id="delete-product">
          <img src="../img/shopping-cart/cross.svg" alt="">
          </button>
          </div>
@@ -520,7 +520,7 @@ const createUserOrder = () => {
                 clearInputs(name, email, phone, address);
                 deleteShoppingCart();
                 hiddenWindowOrder();
-                sessionStorage.setItem("order-created", "¡Gracias por tu pedido! Debes estar pendiente de tu correo donde recibirás tu recibo completo");
+                sessionStorage.setItem("order-created", "¡Gracias por tu pedido! Debes estar pendiente de tu correo donde recibirás tu recibo e ir a pagar a una de nuestras sucursales");
                 window.location.href = "../../index.html";
             } else 
                 loadAlertText("¡Error al crear el pedido! Intenta de nuevo más tarde", "error")
@@ -534,7 +534,7 @@ const createUserOrder = () => {
         clearInputs(name, email, phone, address);
         deleteShoppingCart();
         hiddenWindowOrder();
-        sessionStorage.setItem("order-created", "¡Gracias por tu pedido! Debes estar pendiente de tu correo donde recibirás tu recibo completo");
+        sessionStorage.setItem("order-created", "¡Gracias por tu pedido! Debes estar pendiente de tu correo donde recibirás tu recibo e ir a pagar a una de nuestras sucursales");
         window.location.href = "../../index.html";
     }
 } 

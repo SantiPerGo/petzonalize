@@ -22,7 +22,10 @@
             <div class="col-md-3 col-lg-4 d-none d-md-flex ps-md-5 ps-lg-0 align-items-center justify-content-center">
                 <div class="form-check form-switch d-flex align-items-center m-0 p-0">
                     <input class="form-check-input pet-switch m-0 me-3" type="checkbox" role="switch" id="toggle-check">
-                    <label class="form-check-label toggle-label" for="toggle-check">
+                    <label class="form-check-label toggle-label" for="toggle-check"
+                        data-bs-toggle="tooltip" data-bs-placement="top"
+                        data-bs-custom-class="custom-tooltip-pet-mode"
+                        data-bs-title="Activa un gato que sigue tu cursor :3">
                         Modo Mascota
                     </label>
                 </div>
@@ -37,7 +40,11 @@
 
             <!-- Backend desktop -->
             <div class="col-md-3 col-lg-4 d-none d-md-flex pe-md-5 pe-lg-0 align-items-center justify-content-center">
-                <h2 id="indicator-container">
+                <h2 id="indicator-container"
+                    data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip-backend-status"
+                    data-bs-title="Online: conectado con el backend
+                    Offline: usando datos locales">
                     <span id="indicator-circle"></span>
                     Backend Status: <span id="indicator-text">Online</span>
                 </h2>
@@ -50,7 +57,11 @@
 
         <!-- Backend desktop -->
         <div class="row d-flex d-md-none mb-3 align-items-center justify-content-center">
-            <h2 id="indicator-container-mobile">
+            <h2 id="indicator-container-mobile" 
+                data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-custom-class="custom-tooltip-backend-status"
+                data-bs-title="Online: conectado con el backend
+                Offline: usando datos locales">
                 <span id="indicator-circle-mobile"></span>
                 Backend Status: <span id="indicator-text-mobile">Online</span>
             </h2>
