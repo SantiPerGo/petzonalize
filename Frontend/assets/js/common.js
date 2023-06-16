@@ -178,7 +178,6 @@ const switchMode = isDarkMode => {
     });
 };
 
-const confirmPasswordName = "input-password-confirm-register";
 const validateForm = form => {
     return $(form).validate({
         rules: {
@@ -213,7 +212,7 @@ const validateForm = form => {
             confirmPassword: {
                 minlength: 8,
                 required: true,
-                equalTo: "#" + confirmPasswordName
+                equalTo: "#input-signup-password"
             }, 
             number: {
                 min: 1,
@@ -299,7 +298,7 @@ const validateForm = form => {
         validClass: "invalid-feedback",
         highlight: element => {
             if ($(element).attr("name") === "password" ||
-                $(element).attr("name") === confirmPasswordName) {
+                $(element).attr("name") === "confirmPassword") {
                 $(`#span-${element.id}`).addClass("invalid").removeClass("valid");
                 $(`#icon-${element.id}`).css("color","var(--purple)");
 
@@ -314,7 +313,7 @@ const validateForm = form => {
         },
         unhighlight: element => {
             if ($(element).attr("name") === "password" ||
-                $(element).attr("name") === confirmPasswordName) {
+                $(element).attr("name") === "confirmPassword") {
                 $(`#span-${element.id}`).removeClass("invalid").addClass("valid");
                 $(`#icon-${element.id}`).css("color","var(--blue)");
 
@@ -329,7 +328,7 @@ const validateForm = form => {
         },
         errorPlacement: function(error, element) {
             if (element.attr("name") === "password" ||
-                element.attr("name") === confirmPasswordName)
+                element.attr("name") === "confirmPassword")
                     error.insertAfter(`#group-${element[0].id}`);
             else
                 error.insertAfter(element);
@@ -348,7 +347,7 @@ const resetInput = (input, resetInputText = true) => {
     $(input).removeClass("input-icon-valid");
     $(input).removeClass("input-icon-invalid");
     
-    if(input.name === "password" || input.name === confirmPasswordName) {
+    if(input.name === "password" || input.name === "confirmPassword") {
         $(`#span-${input.id}`).removeClass("valid");
         $(`#span-${input.id}`).removeClass("invalid");
         $(`#icon-${input.id}`).css("color","var(--brown)");
