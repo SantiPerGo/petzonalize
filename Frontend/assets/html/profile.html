@@ -193,8 +193,16 @@
                                             <label for="input-password-delete" class="form-label"><b>Contraseña:</b></label>
                                         </div>
                                         <div class="row d-flex justify-content-center">
-                                            <input type="password" class="form-control text-center w-75" id="input-password-delete"
-                                            placeholder="********" name="password" required>
+                                            <div class="input-group password-input-group p-0" id="group-input-password-delete">  
+                                                <input type="password" class="form-control form-password" id="input-password-delete" 
+                                                    aria-describedby="span-input-password-delete" placeholder="Contraseña" name="password" required>
+                                                
+                                                <span class="input-group-text p-0 m-0 px-2 px-md-3 password-span"
+                                                    id="span-input-password-delete">
+                                                    <i class="bi bi-eye-slash password-icon p-0 m-0" id="icon-input-password-delete"
+                                                        onclick="showHidePassword(this, 'input-password-delete')"></i>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -85,8 +85,11 @@ public class UserServiceImpl implements UserService {
             		HttpStatus.NOT_FOUND);
 		else {
 			User user = optionalUser.get();
-			
-			if(user.getPassword().equals(userLogin.getPassword())) {
+
+            if(user.getPassword() == null && user.getPassword() == "") 
+				return ResponseUtils.mapToJsonResponse(
+					"User password cannot be null or blank!", HttpStatus.BAD_REQUEST);
+            else if(user.getPassword().equals(userLogin.getPassword())) {
 				orderRepository.deleteByUser(user);
 				userHasPrivilegeRepository.deleteByUser(user);
 				userRepository.deleteByEmail(userLogin.getEmail());
