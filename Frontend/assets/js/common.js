@@ -185,6 +185,11 @@ const validateForm = form => {
                 minlength: 3,
                 required: true
             },
+            petname: {
+                minlength: 3,
+                maxlength: 10,
+                required: true
+            },
             address: {
                 minlength: 6,
                 required: true
@@ -236,6 +241,11 @@ const validateForm = form => {
             name: {
                 required: "Debes ingresar tu nombre",
                 minlength: "Tu nombre debe tener al menos 3 letras"
+            },
+            petname: {
+                required: "Debes ingresar el nombre de tu mascota",
+                minlength: "El nombre de tu mascota debe tener al menos 3 letras",
+                maxlength: "El nombre de tu mascota no puede tener más de 10 letras"
             },
             address: {
                 required: "Debes ingresar tu dirección",

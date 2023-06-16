@@ -39,9 +39,30 @@ $(document).ready(() => {
   validateForm(petBowlDataForm);
   petDataForm.change(() => $("#reset-pet-data").removeClass("d-none"));
   petBowlDataForm.change(() => $("#reset-pet-bowl-data").removeClass("d-none"));
-  $("#name").on("input", () => $("#product-nameplate-name").text($("#name").val()));
-  $("#phone").on("input", () => $("#product-nameplate-phone").text($("#phone").val()));
-  $("#bowl-name").on("input", () => $("#product-bowl-name").text($("#bowl-name").val()));
+  $("#name").on("input", () => {
+    $("#product-nameplate-name").text($("#name").val());
+
+    if(!petDataForm.valid())
+      buyButton.attr('disabled', true);
+    else
+      buyButton.attr('disabled', false);
+  });
+  $("#phone").on("input", () => {
+    $("#product-nameplate-phone").text($("#phone").val())
+
+    if(!petDataForm.valid())
+      buyButton.attr('disabled', true);
+    else
+      buyButton.attr('disabled', false);
+  });
+  $("#bowl-name").on("input", () => {
+    $("#product-bowl-name").text($("#bowl-name").val())
+
+    if(!petBowlDataForm.valid())
+      buyButton.attr('disabled', true);
+    else
+      buyButton.attr('disabled', false);
+  });
 
   // Resizing color picker on window size change
   jQuery(window).resize(() => {
@@ -366,12 +387,14 @@ const resetPetData = () => {
   petDataForm.find('input').each((key, input) => resetInput(input));
   $("#product-nameplate-name").text("");
   $("#product-nameplate-phone").text("");
+  buyButton.attr('disabled', false);
 }
 
 const resetPetDataBowl = () => {
   $("#reset-pet-bowl-data").addClass("d-none");
   petBowlDataForm.find('input').each((key, input) => resetInput(input));
   $("#product-bowl-name").text("");
+  buyButton.attr('disabled', false);
 }
 
 const resetCustome = id => {
@@ -618,6 +641,17 @@ const calculateProductPrice = () => {
     $("#product-buy").prop('disabled', false);
 };
 
+const loadAlertText = (text, type) => {
+  const toastElement = $("#toast");
+  const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
+  const toastBody = $("#toast-body");
+  toastBody.text(text);
+  toastElement.removeClass("toast-success");
+  toastElement.removeClass("toast-error");
+  toastElement.addClass(`toast-${type}`);
+  toastInstance.show();
+};
+
 // *********************************************************************************
 // *********************************************************************************
 // Custom Products Buy and return buttons
@@ -664,15 +698,9 @@ const quantityGroup = $("#quantity-group");
 
 buyButton.on('click', () => {
   if(product.category === "collar" || product.category === "bowl"  || product.category === "nameplate") {
-    if($("#size-container").find(".is-selected-text")[0] === undefined) {
-      const toastElement = $("#toast");
-      const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
-      const toastBody = $("#toast-body");
-      toastBody.text("Debes elegir un tamaño antes de comprar el producto");
-      toastElement.removeClass("toast-success");
-      toastElement.addClass("toast-error");
-      toastInstance.show();
-    } else
+    if($("#size-container").find(".is-selected-text")[0] === undefined) 
+      loadAlertText("¡Debes elegir un tamaño antes de comprar el producto!", "error");
+    else
       showQuantityButtons();
   } else 
     showQuantityButtons();
