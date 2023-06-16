@@ -126,15 +126,20 @@ const updateUserData = (userData) => {
       .then((response) => {
         $("#loading").addClass("d-none");
 
-        if(response.status === 404) 
+        if(response.status === 404) {
           loadAlertText("¡Usuario no encontrado!", "error");
-        else if (!response.ok)
-          throw new Error("¡Hubo un error de conexion!");
+          return null;
+        }
+        else if (!response.ok) {
+          loadAlertText("¡Error al actualizar la cuenta! Intenta de nuevo más tarde", "error");
+          return null;
+        }
           
         return response.json();
       })
       .then((data) => {
-        loadAlertText("¡Datos actualizados correctamente!", "success");
+        if(data !== null)
+          loadAlertText("¡Datos actualizados correctamente!", "success");
       })
       .catch((error) => {
         $("#loading").addClass("d-none");
@@ -215,21 +220,29 @@ formDeleteAccount.submit(submitButton => {
             cancelDeleteAccount();
             resetInput($("#input-password-delete"));
             loadAlertText("¡Contraseña incorrecta!", "error");
+            return null;
           } else if(response.status === 404) {
             cancelDeleteAccount();
             resetInput($("#input-password-delete"));
             loadAlertText("¡Usuario no encontrado!", "error");
-          } else if (!response.ok)
-            throw new Error("¡Hubo un error de conexion!");
+            return null;
+          } else if (!response.ok) {
+            cancelDeleteAccount();
+            resetInput($("#input-password-delete"));
+            loadAlertText("¡Error al borrar la cuenta! Intenta de nuevo más tarde", "error")
+            return null;
+          }
       
           return response.json();
         })
         .then((data) => {
-          console.log("Usuario eliminado:", data);
-          localStorage.removeItem('users-logged-in');
-          sessionStorage.setItem("eliminated-account",
-            "¡Cuenta Eliminada con Éxito!");
-          window.location.href = '../../index.html';
+          if(data !== null) {
+            console.log("Usuario eliminado:", data);
+            localStorage.removeItem('users-logged-in');
+            sessionStorage.setItem("eliminated-account",
+              "¡Cuenta Eliminada con Éxito!");
+            window.location.href = '../../index.html';
+          }
         })
         .catch((error) => {
           console.error(error);
