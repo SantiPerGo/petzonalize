@@ -90,13 +90,17 @@ loginForm.submit(submitButton => {
                     loadAlertText("Correo o contraseña incorrectos", "error");
                 else if (response.status === 404) 
                     loadAlertText("La cuenta de usuario no existe", "error");
-    
-                throw new Error("Login failed");
+                else
+                    loadAlertText("¡Error al iniciar sesión! Intenta de nuevo más tarde", "error");
+                    
+                return null;
             })
             .then(usersResponse => {
-                localStorage.setItem(`users-logged-in`, JSON.stringify(usersResponse));
-                window.location.href = 'profile.html';
-                console.log("Sesión iniciada");
+                if(usersResponse !== null) {
+                    localStorage.setItem(`users-logged-in`, JSON.stringify(usersResponse));
+                    window.location.href = 'profile.html';
+                    console.log("Sesión iniciada");
+                }
             })
             .catch(error => {
                 $("#loading").addClass("d-none");
