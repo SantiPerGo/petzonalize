@@ -514,7 +514,7 @@ const reloadCustomeSizes = () => {
     topBodyDifference = -15;
     rightBodyDifference = -5;
 
-    headWindow = -0.001 * $(window).width();
+    headWindow = 0 * $(window).width();
     bodyWindow = -0.0001 * $(window).width();
     bodyHeadTop = -0.003 * $(window).width();
   } else  {
@@ -525,9 +525,9 @@ const reloadCustomeSizes = () => {
     topBodyDifference = -13;
     rightBodyDifference = -5;
     
-    headWindow = -0.0025 * $(window).width();
+    headWindow = -0.001 * $(window).width();
     bodyWindow = -0.001 * $(window).width();
-    bodyHeadTop = -0.001 * $(window).width();
+    bodyHeadTop = -0.002 * $(window).width();
   }
 
   let head = $("#row-custome-head").find(".is-selected")[0];
