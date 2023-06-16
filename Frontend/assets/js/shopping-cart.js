@@ -33,7 +33,7 @@ const emptyCart = () => {
 }
 //_---------------------Plantilla Productos No Personalizables -----------------
 const notCustomProducts = (product) => {
-    return `<div class="product-box product-${product.id} my-4 bg-beige">
+    return `<div class="product-box product-${product.id} mb-4 bg-beige">
          <div class="row justify-content-center position-relative">
          <div class="container-button-delete">
          <button type="button" class="delete-product d-flex border-0 rounded-circle p-0 bg-transparent" id="delete-product">
@@ -149,7 +149,7 @@ const customProducts = (product) => {
                         </div>`;
     }
 
-    return `<div class="product-box product-${product.id} my-4 bg-beige">
+    return `<div class="product-box product-${product.id} mb-4 bg-beige">
          <div class="row justify-content-center position-relative">
          <div class="container-button-delete">
          <button type="button" class="delete-product d-flex border-0 rounded-circle p-0 bg-transparent" id="delete-product">
