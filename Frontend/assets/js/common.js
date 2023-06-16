@@ -37,12 +37,18 @@ $(document).ready(function(){
     $.get("/assets/html/footer.html", data => {
         $("footer").replaceWith(data);
 
+        // Enabling tooltips
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
         $("#toggle-check").click(() => {
             if($("#toggle-check").is(":checked")) {
                 $(".toggle-label").css("color", "var(--purple)");
+                $(".custom-tooltip-pet-mode").css("--bs-tooltip-bg", "var(--purple)");
                 $("footer").append("<script id='oneko-script' src='/assets/js/libraries/oneko.js'></script>");
             } else {
                 $(".toggle-label").css("color", "var(--blue)");
+                $(".custom-tooltip-pet-mode").css("--bs-tooltip-bg", "var(--blue)");
                 $("#oneko").remove();
                 $("#oneko-script").remove();
             }
@@ -64,6 +70,8 @@ function updateBackendStatus() {
                 $("#indicator-container").css("color", "var(--purple)");
                 $("#indicator-circle").css("background-color", "var(--purple)");
 
+                $(".custom-tooltip-backend-status").css("--bs-tooltip-bg", "var(--purple)");
+
                 $("#indicator-text-mobile").text("Online");
                 $("#indicator-container-mobile").css("color", "var(--purple)");
                 $("#indicator-circle-mobile").css("background-color", "var(--purple)");
@@ -75,6 +83,8 @@ function updateBackendStatus() {
             $("#indicator-text").text("Offline");
             $("#indicator-container").css("color", "var(--blue)");
             $("#indicator-circle").css("background-color", "var(--blue)");
+
+            $(".custom-tooltip-backend-status").css("--bs-tooltip-bg", "var(--blue)");
 
             $("#indicator-text-mobile").text("Offline");
             $("#indicator-container-mobile").css("color", "var(--blue)");

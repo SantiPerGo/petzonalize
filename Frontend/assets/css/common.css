@@ -60,6 +60,30 @@ input, textarea {
     cursor: var(--cursor-click), auto;
 }
 
+/* Tooltip styles */
+
+.custom-tooltip-backend-status {
+    --bs-tooltip-color: var(--white);
+    --bs-tooltip-bg: var(--blue);
+    font-family: 'Signika Negative', sans-serif;
+    font-size: calc(0.75rem + 1vw);
+    white-space: pre-line;
+}
+
+.custom-tooltip-pet-mode {
+    --bs-tooltip-color: var(--white);
+    --bs-tooltip-bg: var(--blue);
+    font-family: 'Signika Negative', sans-serif;
+    font-size: calc(0.75rem + 1vw);
+    white-space: pre-line;
+}
+
+.tooltip .tooltip-inner{
+    padding: 1rem !important;
+    max-width: calc(15rem + 15vw) !important;
+    width: calc(15rem + 15vw) !important;
+}
+
 /* Toast styles */
 
 .toast-container {
