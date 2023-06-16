@@ -160,7 +160,7 @@ $(document).ready(() => {
       $(window).resize(() => updateShoppingCartButtons());
     };
 
-    // sessionStorage.removeItem("product");
+    sessionStorage.removeItem("product");
   } else
     window.location.href = 'products.html';
 });

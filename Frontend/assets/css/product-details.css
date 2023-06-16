@@ -11,12 +11,14 @@
   color: black;
 }
 
-.btn {
+#product-custom .btn,
+#product-custom-carousel .btn {
   padding: 0;
   margin: 0;
 }
 
-.btn i {
+#product-custom .btn i,
+#product-custom-carousel .btn i {
   font-size: calc(1rem + 1vw);
 }
 
