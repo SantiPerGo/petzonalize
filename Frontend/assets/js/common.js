@@ -212,7 +212,7 @@ const validateForm = form => {
             confirmPassword: {
                 minlength: 8,
                 required: true,
-                equalTo: "#confirmPassword"
+                equalTo: "#input-password-confirm-register"
             }, 
             number: {
                 min: 1,

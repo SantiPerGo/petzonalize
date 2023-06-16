@@ -110,7 +110,7 @@ public class UserServiceImpl implements UserService {
 		else {
             user.setId(optionalUser.get().getId());
 
-            if(user.getPassword().isBlank() || user.getPassword().isEmpty()) 
+            if(user.getPassword() != null && user.getPassword() != "") 
             	user.setPassword(optionalUser.get().getPassword());
             
             userRepository.saveAndFlush(user);

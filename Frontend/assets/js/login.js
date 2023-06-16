@@ -90,13 +90,17 @@ loginForm.submit(submitButton => {
                     loadAlertText("Correo o contraseña incorrectos", "error");
                 else if (response.status === 404) 
                     loadAlertText("La cuenta de usuario no existe", "error");
-    
-                throw new Error("Login failed");
+                else
+                    loadAlertText("¡Error al iniciar sesión! Intenta de nuevo más tarde", "error");
+                    
+                return null;
             })
             .then(usersResponse => {
-                localStorage.setItem(`users-logged-in`, JSON.stringify(usersResponse));
-                window.location.href = 'profile.html';
-                console.log("Sesión iniciada");
+                if(usersResponse !== null) {
+                    localStorage.setItem(`users-logged-in`, JSON.stringify(usersResponse));
+                    window.location.href = 'profile.html';
+                    console.log("Sesión iniciada");
+                }
             })
             .catch(error => {
                 $("#loading").addClass("d-none");
@@ -112,19 +116,22 @@ loginForm.submit(submitButton => {
                     if (response.ok)
                         return response.json();
                     else 
-                        throw new Error("Failed to fetch from local JSON file");
+                        loadAlertText("¡Error al iniciar sesión! Intenta de nuevo más tarde", "error")
+                        
+                    return null;
                 })
                 .then(usersResponse => {
-                    console.log(usersResponse)
-                    const matchedUser = usersResponse.find(
-                        u => u.email === user.email && u.password === user.password
-                    );
-                    if (matchedUser) {
-                        localStorage.setItem(`users-logged-in`, JSON.stringify(matchedUser));
-                        window.location.href = 'profile.html';
-                        console.log("Sesión iniciada desde archivo JSON local");
-                    } else {
-                        loadAlertText("Correo o contraseña incorrectos", "error");
+                    if(usersResponse !== null) {
+                        const matchedUser = usersResponse.find(
+                            u => u.email === user.email && u.password === user.password
+                        );
+                        if (matchedUser) {
+                            localStorage.setItem(`users-logged-in`, JSON.stringify(matchedUser));
+                            window.location.href = 'profile.html';
+                            console.log("Sesión iniciada desde archivo JSON local");
+                        } else {
+                            loadAlertText("Correo o contraseña incorrectos", "error");
+                        }
                     }
                 })
                 .catch(error => {
@@ -166,9 +173,8 @@ recoverForm.submit(submitButton => {
                     } else if (response.status === 404) {
                         // User not found
                         loadAlertText("El correo no pertenece a ninguna cuenta", "error");
-                    } else {
-                        throw new Error("Failed to recover password. Status: " + response.status);
-                    }
+                    } else
+                        loadAlertText("¡Error al recuperar la contraseña! Intenta de nuevo más tarde", "error");
                 })
                 .catch(error => {
                     $("#loading").addClass("d-none");
@@ -183,19 +189,23 @@ recoverForm.submit(submitButton => {
                     if (response.ok) 
                         return response.json();
                     else 
-                        throw new Error("Failed to fetch from local JSON file");
+                        loadAlertText("El correo no pertenece a ninguna cuenta", "error");
+
+                    return null;
                 })
                 .then(usersResponse => {
-                    // Check if the email exists in the local JSON data
-                    const user = usersResponse.find(user => user.email === email);
-                    if (user) {
-                        // Email found: Proceed with further logic
-                        console.log("User recovery from local JSON file:", user);
-                        loadAlertText("Se ha enviado la contraseña a tu correo", "success");
-                    } else {
-                        // Email not found: Display an appropriate message
-                        console.log("Email does not exist in the local JSON file");
-                        loadAlertText("El correo no pertenece a ninguna cuenta", "error");
+                    if(usersResponse !== null) {
+                        // Check if the email exists in the local JSON data
+                        const user = usersResponse.find(user => user.email === email);
+                        if (user) {
+                            // Email found: Proceed with further logic
+                            console.log("User recovery from local JSON file:", user);
+                            loadAlertText("Se ha enviado la contraseña a tu correo", "success");
+                        } else {
+                            // Email not found: Display an appropriate message
+                            console.log("Email does not exist in the local JSON file");
+                            loadAlertText("El correo no pertenece a ninguna cuenta", "error");
+                        }
                     }
                 })
                 .catch(error => {
@@ -250,15 +260,17 @@ const creatingUserAccount = () => {
             $("#loading").addClass("d-none");
             if (response.ok) 
                 return response.json();
-            else {
-                console.log("No se puede acceder a la base de datos, se creará localmente");
-                throw new Error("Failed to create account. Status: " + response.status);
-            }
+            else
+                loadAlertText("¡Error al crear la cuenta! Intenta de nuevo más tarde", "error");
+
+            return null;
         })
         .then(response => {
-            localStorage.setItem("users-logged-in", JSON.stringify(response));
-            window.location.href = 'profile.html';
-            console.log("Cuenta creada");
+            if(response !== null) {
+                localStorage.setItem("users-logged-in", JSON.stringify(response));
+                window.location.href = 'profile.html';
+                console.log("Cuenta creada");
+            }
         })
         .catch(error => {
             $("#loading").addClass("d-none");
@@ -273,19 +285,23 @@ const creatingUserAccount = () => {
             if (response.ok) 
                 return response.json();
             else 
-                throw new Error("Error al acceder al archivo local JSON");
+                loadAlertText("¡Error al crear la cuenta! Intenta de nuevo más tarde", "error")
+            
+            return null;
         })
         .then(usersResponse => {
-            // Check if user already exists in the local JSON data
-            const existingUser = usersResponse.find(
-                u => u.email === user.email
-            );
-            if (existingUser) {
-                console.error("This email already exists:", existingUser);
-                loadAlertText("Ya existe una cuenta asociada con dicho correo", "error");
-            } else {
-                localStorage.setItem("users-logged-in", JSON.stringify(user));
-                window.location.href = 'profile.html';
+            if(usersResponse !== null) {
+                // Check if user already exists in the local JSON data
+                const existingUser = usersResponse.find(
+                    u => u.email === user.email
+                );
+                if (existingUser) {
+                    console.error("This email already exists:", existingUser);
+                    loadAlertText("Ya existe una cuenta asociada con dicho correo", "error");
+                } else {
+                    localStorage.setItem("users-logged-in", JSON.stringify(user));
+                    window.location.href = 'profile.html';
+                }
             }
         })
         .catch(error => {
