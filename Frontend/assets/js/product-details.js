@@ -6,14 +6,8 @@
 
 // Starting color picker
 const colorWheel = new iro.ColorPicker("#colorWheelDemo", {
+  colors: ['#f00'],
   layout: [
-    { 
-      component: iro.ui.Wheel,
-      options: {
-        wheelLightness: true,
-        wheelDirection: "anticlockwise"
-      } 
-    },
     {
       component: iro.ui.Slider,
       options: {
@@ -80,7 +74,8 @@ $(document).ready(() => {
     $(":root").css("--color-picker", colorWheel.color.hslaString);
     $("#reset-color-wheel").removeClass("d-none");
 
-    if($("#pattern-container").find(".is-selected")[0] !== undefined)
+    const patternSelected = $("#pattern-container").find(".is-selected")[0];
+    if(patternSelected !== undefined && !patternSelected.id.includes("none"))
       $(":root").css("--color-filter",
         `hue-rotate(${colorWheel.color.hue}deg) opacity(${colorWheel.color.alpha})`);
   })
@@ -111,6 +106,11 @@ $(document).ready(() => {
         $("#product-img").attr("src", product.imgUrl);
         $("#product-img").attr("alt", product.name);
         $("#product-img-container").removeClass("d-none");
+
+        const selectedSize = $("#row-size").find('[class*="is-not-selected"]').first();
+        selectedSize.removeClass("d-none");
+        selectedSize.addClass("is-selected");
+        selectedSize.removeClass("is-not-selected");
 
         if(product.category === "collar") {
           $("#collar-container").removeClass("d-none");
@@ -160,7 +160,7 @@ $(document).ready(() => {
       $(window).resize(() => updateShoppingCartButtons());
     };
 
-    sessionStorage.removeItem("product");
+    // sessionStorage.removeItem("product");
   } else
     window.location.href = 'products.html';
 });
@@ -369,19 +369,6 @@ const resetColorWheel = () => {
   $("#reset-color-wheel").addClass("d-none");
 };
 
-const resetPattern = () => {
-  $(":root").css("--bg-image", "none");
-  $(":root").css("--color-filter", "none");
-  const selectedElement = $("#row-pattern").find('[class*="is-selected"]');
-  selectedElement.addClass("is-not-selected");
-  selectedElement.removeClass("is-selected");
-  selectedElement.css("pointer-events", "auto");
-  $("#reset-pattern").addClass("d-none");
-
-  // Changing product price
-  calculateProductPrice();
-};
-
 const resetPetData = () => {
   $("#reset-pet-data").addClass("d-none");
   petDataForm.find('input').each((key, input) => resetInput(input));
@@ -397,38 +384,13 @@ const resetPetDataBowl = () => {
   buyButton.attr('disabled', false);
 }
 
-const resetCustome = id => {
-  $(`#product-${id}`).addClass("d-none");
-  $(`#reset-${id}`).addClass("d-none");
-  const selectedElement = $(`#row-custome-${id}`).find('[class*="is-selected"]');
-  selectedElement.addClass("is-not-selected");
-  selectedElement.removeClass("is-selected");
-  selectedElement.css("pointer-events", "auto");
-
-  // Changing product price
-  calculateProductPrice();
-};
-
 // *********************************************************************************
 // *********************************************************************************
 // Update buttons functions
 // *********************************************************************************
 // *********************************************************************************
 
-const updatePattern = patternElement => {
-  updateNotSelectedElements(patternElement);
-  $(":root").css("--color-filter", `hue-rotate(${colorWheel.color.hue}deg) opacity(${colorWheel.color.alpha})`);
-  $(":root").css("--bg-image", `url(${$(patternElement).find("img").attr("src")})`);
-  $("#reset-pattern").removeClass("d-none");
-
-  // Changing product price
-  calculateProductPrice();
-};
-
-const updateProductImg = selectedElement => {
-  // Showing blue border on hover of not selected elements
-  updateNotSelectedElements(selectedElement);
-
+const updateProductSrcPrice = selectedElement => {
   // Changing product img
   const imgUrl = $(selectedElement).find("img").attr("src");
   $("#product-img").attr("src", imgUrl);
@@ -438,39 +400,103 @@ const updateProductImg = selectedElement => {
   calculateProductPrice();
 };
 
-const updateBowlImg = selectedElement => {
-  updateProductImg(selectedElement);
+const updatePatternOption = (parentElementId, isNext) => {
+  const selectedElement = updateSelectedOption(parentElementId, isNext);
+  
+  if(!selectedElement.id.includes("none")) {
+    $(":root").css("--color-filter", `hue-rotate(${colorWheel.color.hue}deg) opacity(${colorWheel.color.alpha})`);
+    $(":root").css("--bg-image", `url(${$(selectedElement).find("img").attr("src")})`);
+    $("#reset-pattern").removeClass("d-none");
+  } else {
+    $(":root").css("--color-filter", "none");
+    $(":root").css("--bg-image", "none");
+    $("#reset-pattern").addClass("d-none");
+  }
+
+  // Changing product price
+  calculateProductPrice();
+};
+
+const updateOption = (parentElementId, isNext, isProductImg = false) => {
+  const selectedElement = updateSelectedOption(parentElementId, isNext);
 
   if(selectedElement.id === "bowl-ceramic")
     $("#product-bowl-name").css("top", "60%");
-  else
+  else if(selectedElement.id === "bowl-plastic")
     $("#product-bowl-name").css("top", "80%");
+
+  if(isProductImg) {
+    updateProductSrcPrice(selectedElement);
+    const productName = $(selectedElement).find(`#${$(selectedElement).attr('id')}-text`).text();
+    $("#product-name").text(productName);
+  }
 };
 
-const updatePetImg = selectedElement => {
-  updateProductImg(selectedElement);
+const updateSelectedOption = (parentElementId, isNext) => {
+  const selectedElement = $(`#${parentElementId}`).find(".is-selected")[0];
+  let newElement = isNext ? $(selectedElement).next()[0] : $(selectedElement).prev()[0];
+  
+  if(newElement === undefined) {
+    newElement = selectedElement;
+
+    if(isNext)
+      while($(newElement).prev()[0] !== undefined) 
+        newElement = $(newElement).prev()[0];
+    else
+      while($(newElement).next()[0] !== undefined) 
+        newElement = $(newElement).next()[0];
+  }
+
+  // Showing blue border on hover of not selected elements
+  $(newElement).addClass("is-selected");
+  $(newElement).removeClass("is-not-selected");
+  $(newElement).removeClass("d-none");
+
+  // Showing purple border of selected element
+  $(selectedElement).removeClass("is-selected");
+  $(selectedElement).addClass("is-not-selected");
+  $(selectedElement).addClass("d-none");
+  
+  return newElement;
+};
+
+const updateSelectedElement = elementId => {
+  const productContainer = $(`#${elementId}`);
+  productContainer.addClass("is-selected");
+  productContainer.removeClass("is-not-selected");
+  productContainer.removeClass("d-none");
+};
+
+const updateCustome = (parentElementId, isNext, id) => {
+  const selectedElement = updateSelectedOption(parentElementId, isNext);
+
+  if(!selectedElement.id.includes("none")) {
+    // Changing product img
+    const imgUrl = $(selectedElement).find("img").attr("src");
+    $(`#product-${id}`).removeClass("d-none");
+    $(`#product-${id}`).attr("src", imgUrl);
+    $(`#reset-${id}`).removeClass("d-none");
+  
+    reloadCustomeSizes();
+  } else {
+    const imgUrl = $(selectedElement).find("img").attr("src");
+    $(`#product-${id}`).addClass("d-none");
+    $(`#product-${id}`).removeAttr("src");
+    $(`#reset-${id}`).addClass("d-none");
+  }
+
+  // Changing product price
+  calculateProductPrice();
+};
+
+const updatePetImg = (parentElementId, isNext) => {
+  const selectedElement = updateSelectedOption(parentElementId, isNext);
 
   // Changing pet img
   const imgUrl = $(selectedElement).find("img").attr("src");
   $("#product-custome").attr("src", imgUrl);
 
   reloadCustomeSizes();
-};
-
-const updateCustome = (selectedElement, id) => {
-  // Showing blue border on hover of not selected elements
-  updateNotSelectedElements(selectedElement);
-
-  // Changing product img
-  const imgUrl = $(selectedElement).find("img").attr("src");
-  $(`#product-${id}`).removeClass("d-none");
-  $(`#product-${id}`).attr("src", imgUrl);
-  $(`#reset-${id}`).removeClass("d-none");
-
-  reloadCustomeSizes();
-
-  // Changing product price
-  calculateProductPrice();
 };
 
 const reloadCustomeSizes = () => {
@@ -488,9 +514,9 @@ const reloadCustomeSizes = () => {
     topBodyDifference = -15;
     rightBodyDifference = -5;
 
-    headWindow = 0.002 * $(window).width();
-    bodyWindow = 0.001 * $(window).width();
-    bodyHeadTop = 0.001 * $(window).width();
+    headWindow = -0.001 * $(window).width();
+    bodyWindow = -0.0001 * $(window).width();
+    bodyHeadTop = -0.003 * $(window).width();
   } else  {
     reloadSizeRatio("head", 2, 1.75);
     reloadSizeRatio("body", 1.5, 1);
@@ -499,15 +525,15 @@ const reloadCustomeSizes = () => {
     topBodyDifference = -13;
     rightBodyDifference = -5;
     
-    headWindow = 0.0015 * $(window).width();
-    bodyWindow = 0.001 * $(window).width();
-    bodyHeadTop = 0.001 * $(window).width();
+    headWindow = -0.0025 * $(window).width();
+    bodyWindow = -0.001 * $(window).width();
+    bodyHeadTop = -0.001 * $(window).width();
   }
 
   let head = $("#row-custome-head").find(".is-selected")[0];
   let body = $("#row-custome-body").find(".is-selected")[0];
 
-  if(head !== undefined) {
+  if(head !== undefined && !head.id.includes("none")) {
     head = head.id.replace("custome-head-", "");
     const customeHead = searchCustomeInProducts(head);
 
@@ -526,7 +552,7 @@ const reloadCustomeSizes = () => {
     $(":root").css("--head-right", `${right}%`);
   }
   
-  if(body !== undefined) {
+  if(body !== undefined && !body.id.includes("none")) {
     body = body.id.replace("custome-body-", "");
     const customeBody = searchCustomeInProducts(body);
 
@@ -585,41 +611,6 @@ const calculateAspectRatioFit = (srcWidth, srcHeight, maxWidth, maxHeight) => {
 // Common functions
 // *********************************************************************************
 // *********************************************************************************
-
-const updateSelectedElement = elementId => {
-  const productContainer = $(`#${elementId}`);
-  productContainer.addClass("is-selected");
-  productContainer.removeClass("is-not-selected");
-};
-
-const updateNotSelectedElements = selectedElement => {
-  // Showing blue border on hover of not selected elements
-  $(selectedElement).parent().find(".is-selected").each((index, selectedElement) => {
-    $(selectedElement).removeClass("is-selected");
-    $(selectedElement).addClass("is-not-selected");
-    $(selectedElement).css("pointer-events", "auto");
-  });
-
-  // Showing purple border of selected element
-  $(selectedElement).addClass("is-selected");
-  $(selectedElement).removeClass("is-not-selected");
-  $(selectedElement).css("pointer-events", "none");
-
-  const productName = $(selectedElement).find(`#${$(selectedElement).attr('id')}-text`).text();
-  $("#product-name").text(productName);
-};
-
-const updateText = (...selectedTexts) => {
-  jQuery(".is-selected-text").each((index, selectedText) => {
-    $(selectedText).removeClass("is-selected-text");
-    $(selectedText).addClass("is-not-selected-text");
-  });
-
-  selectedTexts.forEach(text => {
-    $(text).addClass("is-selected-text");
-    $(text).removeClass("is-not-selected-text");
-  });
-};
 
 const calculateProductPrice = () => {
   let totalPrice = 0;
@@ -698,7 +689,7 @@ const quantityGroup = $("#quantity-group");
 
 buyButton.on('click', () => {
   if(product.category === "collar" || product.category === "bowl"  || product.category === "nameplate") {
-    if($("#size-container").find(".is-selected-text")[0] === undefined) 
+    if($("#size-container").find(".is-selected")[0] === undefined) 
       loadAlertText("¡Debes elegir un tamaño antes de comprar el producto!", "error");
     else
       showQuantityButtons();
@@ -792,7 +783,7 @@ const addProductsToCart = (product, quantity) => {
 
   if(product.category === "collar" || product.category === "bowl" || product.category === "nameplate") {
     product.properties.color = colorWheel.color.hslaString;
-    product.properties.size = $("#size-container").find(".is-selected-text").children().text();
+    product.properties.size = $("#size-container").find(".is-selected").children().text();
     product.properties.pattern = $("#row-pattern").find(".is-selected").find("img").attr("src");
 
     if(product.category === "collar")  {
