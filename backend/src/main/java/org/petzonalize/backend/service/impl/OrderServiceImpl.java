@@ -85,7 +85,6 @@ public class OrderServiceImpl implements OrderService {
 			if(optionalProduct.isPresent()) {
 				Product product = optionalProduct.get();
 				product.setProperties(productOrder.getProperties());
-				System.out.println(product);
 
 				int stock = product.isCustomizable() ? 0 : product.getStock();
 				int amount = productOrder.getAmount();
