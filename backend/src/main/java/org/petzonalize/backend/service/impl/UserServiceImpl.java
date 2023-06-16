@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService {
 		else {
 			User user = optionalUser.get();
 
-            if(user.getPassword() == null && user.getPassword() == "") 
+            if(userLogin.getPassword() == null || userLogin.getPassword() == "") 
 				return ResponseUtils.mapToJsonResponse(
 					"User password cannot be null or blank!", HttpStatus.BAD_REQUEST);
             else if(user.getPassword().equals(userLogin.getPassword())) {
@@ -113,7 +113,7 @@ public class UserServiceImpl implements UserService {
 		else {
             user.setId(optionalUser.get().getId());
 
-            if(user.getPassword() != null && user.getPassword() != "") 
+            if(user.getPassword() == null || user.getPassword() == "") 
             	user.setPassword(optionalUser.get().getPassword());
             
             userRepository.saveAndFlush(user);
@@ -194,8 +194,11 @@ public class UserServiceImpl implements UserService {
 			
 			if(optionalUserHasPrivilege.isPresent()) {
 				UserHasPrivilege user = optionalUserHasPrivilege.get();
-				
-				if(user.getUser().getPassword().equals(userLogin.getPassword()))           	
+
+	            if(userLogin.getPassword() == null || userLogin.getPassword() == "") 
+					return ResponseUtils.mapToJsonResponse(
+						"User password cannot be null or blank!", HttpStatus.BAD_REQUEST);
+	            else if(user.getUser().getPassword().equals(userLogin.getPassword()))           	
 					return new ResponseEntity<>(
 						UserMapper.mapToUserWithPrivilege(user),
 						HttpStatus.OK);
