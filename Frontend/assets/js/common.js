@@ -141,13 +141,6 @@ const switchMode = isDarkMode => {
     $(":root").css("--cursor-left", isDarkMode ? cursorLeftLight : cursorLeft);
     $(":root").css("--cursor-right", isDarkMode ? cursorRightLight : cursorRight);
 
-    if(document.location.href.match(/[^\/]+$/)[0] === "index.html") {
-        if(isDarkMode) 
-            $("#order-img").attr("src", "/assets/img/dog-cat-happy-dark.png");
-        else
-            $("#order-img").attr("src", "/assets/img/dog-cat-happy.png");
-    }
-
     $("img").each((key, element) => {
         if($(element).attr("src") !== undefined)
             if($(element).attr("src").includes("Logo.png") ||
@@ -174,6 +167,12 @@ const switchMode = isDarkMode => {
                     $(element).attr("src", "/assets/img/shopping-cart/cross.svg");
                 else 
                     $(element).attr("src", "/assets/img/shopping-cart/cross-dark.svg");
+            } else if($(element).attr("src").includes("dog-cat-happy.png") ||
+                $(element).attr("src").includes("dog-cat-happy-dark.png")) {
+                if(!isDarkMode)
+                    $(element).attr("src", "/assets/img/dog-cat-happy.png");
+                else 
+                    $(element).attr("src", "/assets/img/dog-cat-happy-dark.png");
             }
     });
 };
